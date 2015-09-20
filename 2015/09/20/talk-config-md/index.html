@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>谈谈那些配置文件 | cutoutsy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="###0x00 写在前面
+配置文件是什么东东，配置文件相信用过电脑的同学都接触过，有时候打游戏过程中出现问题，在网上寻找解决方法时，就会涉及到修改配置文件。在系统级，有一些用户的配置文件，用户在使用软件时，软件系统为用户所要加载所需环境的设置和文件的集合。它包括所有用户专用的配置设置，如程序项目、屏幕颜色、网络连接、打印机连接、鼠标设置及窗口的大小和位置等。经常使用Linux的话，那就避免不了与配">
+<meta property="og:type" content="article">
+<meta property="og:title" content="谈谈那些配置文件">
+<meta property="og:url" content="http://cutoutsy.github.io/2015/09/20/talk-config-md/index.html">
+<meta property="og:site_name" content="cutoutsy">
+<meta property="og:description" content="###0x00 写在前面
+配置文件是什么东东，配置文件相信用过电脑的同学都接触过，有时候打游戏过程中出现问题，在网上寻找解决方法时，就会涉及到修改配置文件。在系统级，有一些用户的配置文件，用户在使用软件时，软件系统为用户所要加载所需环境的设置和文件的集合。它包括所有用户专用的配置设置，如程序项目、屏幕颜色、网络连接、打印机连接、鼠标设置及窗口的大小和位置等。经常使用Linux的话，那就避免不了与配">
+<meta property="og:updated_time" content="2015-09-20T13:32:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="谈谈那些配置文件">
+<meta name="twitter:description" content="###0x00 写在前面
+配置文件是什么东东，配置文件相信用过电脑的同学都接触过，有时候打游戏过程中出现问题，在网上寻找解决方法时，就会涉及到修改配置文件。在系统级，有一些用户的配置文件，用户在使用软件时，软件系统为用户所要加载所需环境的设置和文件的集合。它包括所有用户专用的配置设置，如程序项目、屏幕颜色、网络连接、打印机连接、鼠标设置及窗口的大小和位置等。经常使用Linux的话，那就避免不了与配">
+  
+    <link rel="alternative" href="/atom.xml" title="cutoutsy" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7oxhal.com1.z0.glb.clouddn.com/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">cutoutsy</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">看美剧真的是为了学英语么</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/cutoutsy" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/cutoutsy" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/cutoutsy" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ava/" style="font-size: 10px;">ava</a> <a href="/tags/bigdata/" style="font-size: 15px;">bigdata</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/storm/" style="font-size: 20px;">storm</a> <a href="/tags/配置文件-JAVA/" style="font-size: 10px;">配置文件 - JAVA</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">cutoutsy</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7oxhal.com1.z0.glb.clouddn.com/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">cutoutsy</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">看美剧真的是为了学英语么</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/cutoutsy" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/cutoutsy" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/cutoutsy" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-talk-config-md" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/09/20/talk-config-md/" class="article-date">
+  	<time datetime="2015-09-20T13:32:31.000Z" itemprop="datePublished">2015-09-20</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      谈谈那些配置文件
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/配置文件-JAVA/">配置文件 - JAVA</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###0x00 写在前面</p>
+<p>配置文件是什么东东，配置文件相信用过电脑的同学都接触过，有时候打游戏过程中出现问题，在网上寻找解决方法时，就会涉及到修改配置文件。在系统级，有一些用户的配置文件，用户在使用软件时，软件系统为用户所要加载所需环境的设置和文件的集合。它包括所有用户专用的配置设置，如程序项目、屏幕颜色、网络连接、打印机连接、鼠标设置及窗口的大小和位置等。经常使用Linux的话，那就避免不了与配置文件打交道。<br><a id="more"></a></p>
+<p>###0x01 常见的配置文件</p>
+<p>####<strong>ini配置文件</strong><br>这种配置文件经常使用windows的童鞋可能见得比较多，在Windows系统中，INI文件是很多，最重要的就是“System.ini”、“System32.ini”和“Win.ini”。该文件主要存放用户所做的选择以及系统的各种参数。.ini文件是Initialization File的缩写，即初始化文件，是windows的系统配置文件所采用的存储格式。不过在其他软件中也有使用，用来配置应用软件以实现不同用户的要求,比如php的配置文件php.ini。<br>格式：<br>节：［section］<br>参数（键＝值）：name=cutoutsy<br>注释：注解使用分号表示，在分号后面的文字，直到该行结尾都全部为注解。<br>实例：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">; exp ini file</span></span><br><span class="line"><span class="title">[port]</span></span><br><span class="line"><span class="setting">portname=<span class="value">COM4</span></span></span><br><span class="line"><span class="setting">port=<span class="value"><span class="number">4</span></span></span></span><br></pre></td></tr></table></figure></p>
+<p>####<strong>json配置文件</strong><br>JSON是一种轻量的数据交换格式，易于人阅读和编写，同时也易于机器解析和生成(网络传输速率)。<br>JSON语法规则：</p>
+<ul>
+<li>数据在键值对中</li>
+<li>数据由逗号分隔</li>
+<li>花括号保存对象</li>
+<li>方括号保存数组</li>
+</ul>
+<p>JSON值：</p>
+<ul>
+<li>数字（整数或浮点数）</li>
+<li>字符串（在双引号中</li>
+<li>逻辑值（true 或 false）</li>
+<li>数组（在方括号中）</li>
+<li>对象（在花括号中）</li>
+<li>null</li>
+</ul>
+<p>基础结构：对象和数组，通过这两种结构就可以组成复杂的数据结构。<br>1、对象：对象在js中表示为“{}”括起来的内容，数据结构为 {key：value,key：value,…}的键值对的结构，在面向对象的语言中，key为对象的属性，value为对应的属性值，所以很容易理解，取值方法为 对象.key 获取属性值，这个属性值的类型可以是 数字、字符串、数组、对象几种。<br>2、数组：数组在js中是中括号“[]”括起来的内容，数据结构为 [“java”,”javascript”,”vb”,…]，取值方式和所有语言中一样，使用索引获取，字段值的类型可以是 数字、字符串、数组、对象几种。</p>
+<p>比如我们用来翻墙的shadowsocks的config.json<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	"<span class="attribute">server</span>":<span class="value"><span class="string">"remote-shadowsocks-server-ip-addr"</span></span>,</span><br><span class="line">	"<span class="attribute">server_port</span>":<span class="value"><span class="number">443</span></span>,</span><br><span class="line">	"<span class="attribute">local_address</span>":<span class="value"><span class="string">"127.0.0.1"</span></span>,</span><br><span class="line">	"<span class="attribute">local_port</span>":<span class="value"><span class="number">1080</span></span>,</span><br><span class="line">	"<span class="attribute">password</span>":<span class="value"><span class="string">"your-passwd"</span></span>,</span><br><span class="line">	"<span class="attribute">timeout</span>":<span class="value"><span class="number">300</span></span>,</span><br><span class="line">	"<span class="attribute">method</span>":<span class="value"><span class="string">"aes-256-cfb"</span></span>,</span><br><span class="line">	"<span class="attribute">fast_open</span>":<span class="value"><span class="literal">false</span></span>,</span><br><span class="line">	"<span class="attribute">workers</span>":<span class="value"><span class="number">1</span></span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure></p>
+<p>很多语言都支持JSON的解析，使用比较广泛。</p>
+<p>####<strong>xml配置文件</strong><br>XML配置文件相信写JAVA WEB的童鞋肯定不会陌生，使用ssh框架的时候需要配置大量的XML配置文件。<br>XML：Extensible Markup Language，可扩展标记语言。<br>语法：</p>
+<ul>
+<li>任何的起始标签都必须有一个结束标签。</li>
+<li>可以采用另一种简化语法，可以在一个标签中同时表示起始和结束标签。这种语法是在大于符号之前紧跟一个斜线（/），例如<name>。XML解析器会将其翻译成<name></name>。</name></li>
+<li>标签必须按合适的顺序进行嵌套，所以结束标签必须按镜像顺序匹配起始标签。</li>
+<li>所有的特性都必须有值。</li>
+<li>所有的特性都必须在值的周围加上双引号。</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version="1.0"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">note</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">to</span>&gt;</span>Tove<span class="tag">&lt;/<span class="title">to</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">from</span>&gt;</span>Jani<span class="tag">&lt;/<span class="title">from</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">heading</span>&gt;</span>Reminder<span class="tag">&lt;/<span class="title">heading</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span>Don't forget me this weekend!<span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">note</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这个用得也是灰常广泛，很多语言都有很好的解析。</p>
+<p>####<strong>properties配置文件</strong><br>.properties是JAVA的一种配置文件，主要用于表达配置信息。<br>语法：<br>参数（键＝值）：name=cutoutsy<br>注释：注解使用＃表示，在＃后面的文字，直到该行结尾都全部为注解。<br>实例：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#&#26684;&#24335;&#33391;&#22909;&#30340;properties&#25991;&#20214; &#10;aaa=111 &#10;bbb=222</span><br></pre></td></tr></table></figure>
+<p>这个配置文件主要是在JAVA中使用，一个好的程序应该是基于配置的，嘻嘻。</p>
+<p>####<strong>yaml配置文件</strong><br>首次见这个后缀名的文件是在学习Storm的时候，里面有个配置文件storm.yaml,我最开始不清楚这种语言格式，没有加空格，坑了我两天……<br>YAML=”YAML Ain ’ t a Markup Language”，即：YAML 不是一种标记语言的递归缩写。<br>格式：<br>多行缩进<br>数据结构可以用类似大纲的缩排方式呈现，结构通过缩进来表示，连续的项目通过减号“-”来表示，map结构里面的key/value对用冒号“:”来分隔。样例如下<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">house:&#10;  family:&#10;    name: Doe&#10;    parents:&#10;      - John&#10;      - Jane&#10;    children:&#10;      - Paul&#10;      - Mark&#10;      - Simone&#10;  address:&#10;    number: 34&#10;    street: Main Street&#10;    city: Nowheretown&#10;    zipcode: 12345</span><br></pre></td></tr></table></figure></p>
+<p>注意：</p>
+<ol>
+<li>字串不一定要用双引号标识；</li>
+<li>在缩排中空白字符的数目并不是非常重要，只要相同阶层的元素左侧对齐就可以了（不过不能使用TAB字符）；</li>
+<li>允许在文件中加入选择性的空行，以增加可读性；</li>
+<li>在一个档案中，可同时包含多个文件，并用“——”分隔；</li>
+<li>选择性的符号“…”可以用来表示档案结尾（在利用串流的通讯中，这非常有用，可以在不关闭串流的情况下，发送结束讯号）</li>
+</ol>
+<p>单行缩写<br>YAML也有用来描述好几行相同结构的数据的缩写语法，数组用’[]’包括起来，hash用’{}’来包括。因此，上面的这个YAML能够缩写成这样:<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">house:&#10;  family: &#123; name: Doe, parents: [John, Jane], children: [Paul, Mark, Simone] &#125;&#10;  address: &#123; number: 34, street: Main Street, city: Nowheretown, zipcode: 12345 &#125;</span><br></pre></td></tr></table></figure></p>
+<p>最后贴一个storm的配置文件：</p>
+<p>####<strong>conf配置文件</strong><br>conf是config的缩写，就是配置文件的意思，这种配置文件也很常见。<br>常见的比如Apache的配置文件http.conf<br>语法：<br>参数（键 值）：name cutoutsy<br>注释：注解使用＃表示，在＃后面的文字，直到该行结尾都全部为注解。<br>实例：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># Mutex: Allows you to set the mutex mechanism and mutex file directory&#10;# for individual mutexes, or change the global defaults&#10;#&#10;# Uncomment and change the directory if mutexes are file-based and the default&#10;# mutex file directory is not on a local disk or is not appropriate for some&#10;# other reason.&#10;#&#10;# Mutex default:/private/var/run&#10;&#10;#&#10;# Listen: Allows you to bind Apache to specific IP addresses and/or&#10;# ports, instead of the default. See also the &#60;VirtualHost&#62;&#10;# directive.&#10;#&#10;# Change this to Listen on specific IP addresses as shown below to&#10;# prevent Apache from glomming onto all bound IP addresses.&#10;#&#10;#Listen 12.34.56.78:80&#10;Listen 80&#10;&#10;#&#10;# Dynamic Shared Object (DSO) Support&#10;# Example:&#10;# LoadModule foo_module modules/mod_foo.so&#10;LoadModule authn_core_module libexec/apache2/mod_authn_core.so&#10;LoadModule authz_host_module libexec/apache2/mod_authz_host.so&#10;LoadModule authz_groupfile_module libexec/apache2/mod_authz_groupfile.so&#10;LoadModule authz_user_module libexec/apache2/mod_authz_user.so</span><br></pre></td></tr></table></figure></p>
+<p>###0x03 最后说两句<br>当然还有很多其他的配置文件，我只是列举一些常见的配置文件。当我们遇到遇到需要配置这些文件的时候，我们要注意格式，不然配置不会其作用或者软件不会运行。当我们自己在软件里使用配置文件时，也要注意配置文件的选择，选择一种适合自己软件的配置文件。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/06/16/storm-0-9-5-released/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">storm-0.9.5-released</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="talk-config-md" data-title="谈谈那些配置文件" data-url="http://cutoutsy.github.io/2015/09/20/talk-config-md/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"cutoutsy"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 cutoutsy
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
