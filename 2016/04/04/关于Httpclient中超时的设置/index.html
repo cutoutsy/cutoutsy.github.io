@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>关于Httpclient中超时的设置－记一次程序调试过程 | cutoutsy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近针对校内论坛写了一个机器人，就是可以自动回复帖子，可以挣取积分、金币啥的；用Java的Httpclient4.4写的，原来我就写过针对学校论坛的自动回复，不过那个要在学校内网才能使用，我又没有学校内网的服务器，这几天发现我们学校论坛为了方便在校外访问，有一个移动版的论坛。顿时就想改一下软件然后放到我的阿里云主机上去，这样就可以7x24小时帮我回复挣积分了，23333……">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于Httpclient中超时的设置－记一次程序调试过程">
+<meta property="og:url" content="http://cutoutsy.github.io/2016/04/04/关于Httpclient中超时的设置/index.html">
+<meta property="og:site_name" content="cutoutsy">
+<meta property="og:description" content="最近针对校内论坛写了一个机器人，就是可以自动回复帖子，可以挣取积分、金币啥的；用Java的Httpclient4.4写的，原来我就写过针对学校论坛的自动回复，不过那个要在学校内网才能使用，我又没有学校内网的服务器，这几天发现我们学校论坛为了方便在校外访问，有一个移动版的论坛。顿时就想改一下软件然后放到我的阿里云主机上去，这样就可以7x24小时帮我回复挣积分了，23333……">
+<meta property="og:updated_time" content="2016-04-04T12:29:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于Httpclient中超时的设置－记一次程序调试过程">
+<meta name="twitter:description" content="最近针对校内论坛写了一个机器人，就是可以自动回复帖子，可以挣取积分、金币啥的；用Java的Httpclient4.4写的，原来我就写过针对学校论坛的自动回复，不过那个要在学校内网才能使用，我又没有学校内网的服务器，这几天发现我们学校论坛为了方便在校外访问，有一个移动版的论坛。顿时就想改一下软件然后放到我的阿里云主机上去，这样就可以7x24小时帮我回复挣积分了，23333……">
+  
+    <link rel="alternative" href="/atom.xml" title="cutoutsy" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7oxhal.com1.z0.glb.clouddn.com/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">cutoutsy</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">看美剧真的是为了学英语么</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/cutoutsy" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/cutoutsy" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/cutoutsy" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Finder/" style="font-size: 10px;">Finder</a> <a href="/tags/Httpclient/" style="font-size: 10px;">Httpclient</a> <a href="/tags/JAVA/" style="font-size: 10px;">JAVA</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Mac/" style="font-size: 15px;">Mac</a> <a href="/tags/XtraFinder/" style="font-size: 10px;">XtraFinder</a> <a href="/tags/bigdata/" style="font-size: 15px;">bigdata</a> <a href="/tags/code/" style="font-size: 10px;">code</a> <a href="/tags/coding/" style="font-size: 10px;">coding</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/font/" style="font-size: 10px;">font</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/photoshop/" style="font-size: 10px;">photoshop</a> <a href="/tags/storm/" style="font-size: 20px;">storm</a> <a href="/tags/sublime-text/" style="font-size: 10px;">sublime text</a> <a href="/tags/码币/" style="font-size: 10px;">码币</a> <a href="/tags/配置文件/" style="font-size: 10px;">配置文件</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">cutoutsy</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7oxhal.com1.z0.glb.clouddn.com/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">cutoutsy</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">看美剧真的是为了学英语么</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/cutoutsy" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/cutoutsy" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/cutoutsy" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-关于Httpclient中超时的设置" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/04/关于Httpclient中超时的设置/" class="article-date">
+  	<time datetime="2016-04-04T09:48:13.000Z" itemprop="datePublished">2016-04-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      关于Httpclient中超时的设置－记一次程序调试过程
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Httpclient/">Httpclient</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近针对校内论坛写了一个机器人，就是可以自动回复帖子，可以挣取积分、金币啥的；用Java的Httpclient4.4写的，原来我就写过针对学校论坛的自动回复，不过那个要在学校内网才能使用，我又没有学校内网的服务器，这几天发现我们学校论坛为了方便在校外访问，有一个移动版的论坛。顿时就想改一下软件然后放到我的阿里云主机上去，这样就可以7x24小时帮我回复挣积分了，23333……</p>
+<a id="more"></a>
+<p>可以当我改完放到服务器上去跑的时候，发现每当回复一个帖子之后，整个程序就卡住了，后面的语句都不执行了，也没有报错信息的输出。经过调试，我发现是在org.apache.http.impl.execchain下的MainClientExec类里execute方法下的如下代码段卡住的<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="keyword">int</span> timeout = config.getConnectionRequestTimeout();</span><br><span class="line">managedConn = connRequest.get(timeout &gt; <span class="number">0</span> ? timeout : <span class="number">0</span>, TimeUnit.MILLISECONDS);</span><br></pre></td></tr></table></figure></p>
+<p>由此可见是由于某个超时时间没有设置引起的。google了下Httpclient下的超时时间的设置，主要有三个超时时间的设置，ConnectionRequestTimeout、ConnectionTimeout、SocketTimeout，平时我们主要会设置的是后两个。<br>接着我去RequestConfig类里查看了下关于ConnectionRequestTimeout的解释</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">     * Returns the timeout in milliseconds used when requesting a connection</span><br><span class="line">     * from the connection manager. A timeout value of zero is interpreted</span><br><span class="line">     * as an infinite timeout.</span><br><span class="line">     * &lt;p&gt;</span><br><span class="line">     * A timeout value of zero is interpreted as an infinite timeout.</span><br><span class="line">     * A negative value is interpreted as undefined (system default).</span><br><span class="line">     * &lt;/p&gt;</span><br><span class="line">     * &lt;p&gt;</span><br><span class="line">     * Default: &#123;<span class="doctag">@code</span> -1&#125;</span><br><span class="line">     * &lt;/p&gt;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getConnectionRequestTimeout</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> connectionRequestTimeout;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>从注释可以看出这个超时是在从连接管理器中取出连接的超时时间，而0是被解释为无限的时间的。而上面出现问题的代码，当我们没有设置这个参数的时候时，是默认给0的，所以才会造成无限等待的情况，看着就像程序卡住了一样，还没有报错信息输出。</p>
+<p>接着我在代码里设置了这个参数，并将其超时时间设置为1s；这样就出现了报错信息：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">org.apache.http.conn.ConnectionPoolTimeoutException: Timeout waiting <span class="keyword">for</span> connection</span><br><span class="line">    at org.apache.http.impl.conn.tsccm.ConnPoolByRoute.getEntryBlocking(ConnPoolByRoute.java:<span class="number">417</span>)</span><br><span class="line">    at org.apache.http.impl.conn.tsccm.ConnPoolByRoute$<span class="number">1</span>.getPoolEntry(ConnPoolByRoute.java:<span class="number">300</span>)</span><br><span class="line">    at org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager$<span class="number">1</span>.getConnection(ThreadSafeClientConnManager.java:<span class="number">224</span>)</span><br><span class="line">    at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:<span class="number">401</span>)</span><br><span class="line">    at org.apache.http.impl.client.AbstractHttpClient.execute(AbstractHttpClient.java:<span class="number">820</span>)</span><br><span class="line">    at org.apache.http.impl.client.AbstractHttpClient.execute(AbstractHttpClient.java:<span class="number">754</span>)</span><br><span class="line">    at org.apache.http.impl.client.AbstractHttpClient.execute(AbstractHttpClient.java:<span class="number">732</span>)</span><br></pre></td></tr></table></figure></p>
+<p>根据这个报错信息，我google了一下，在stackoverflow上找到了答案，大概的意思就是说，请求返回的response需要被消费掉，于是我去看我以前写的代码，由于我在登陆的时候，需要抽取返回头部的Cookies，所以我先获得response，后面需要内容时，我在把response解析出来，然而解析之后我却没有关闭response，所以造成这样的错误，于是我加上如下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">finally</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(response != <span class="keyword">null</span>)&#123;</span><br><span class="line">		<span class="keyword">try</span>&#123;</span><br><span class="line">			response.close();</span><br><span class="line">		&#125;<span class="keyword">catch</span>(IOException e)&#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>成功解决了bug。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/03/29/定时推送coding挣码币/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">定时推送coding挣码币</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="关于Httpclient中超时的设置" data-title="关于Httpclient中超时的设置－记一次程序调试过程" data-url="http://cutoutsy.github.io/2016/04/04/关于Httpclient中超时的设置/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"cutoutsy"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 cutoutsy
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
