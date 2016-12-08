@@ -3,18 +3,25 @@
 <head>
   <meta charset="utf-8">
   
-  <title>SAP面试经历 | cutoutsy</title>
+  <title>Linux:VNC初识 | cutoutsy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一面：1、vim有几种模式，vim替换操作vim有三种模式（只答出两种）：命令模式(command mode)、插入模式(insert mode)、底线命令模式(last line mode)替换：[addr]s/源字符串/目的字符串/[option]2、线程有几种状态（4种）运行(running)，休眠(Sleeping)，等待(Wait)，监视(Monitor)3、查找一个目录下所有文件里面的">
+  <meta name="description" content="最近在公司做安装测试，有一种方式是GUI安装，不过我们的Server都是类*unix无界面的，所以就需要用到VNC来进行界面的安装，本来服务器上都安装好了，直接使用就可以了，不过在使用的过程中遇到了问题，于是就了解了一下VNC，在此做个记录。
+我们一般连接服务器是使用SSH，进行的是文字界面的连接。而VNC是图形界面的连接，要想达到这一目的，首先需要在服务器上安装VNC Server，以我使用的C">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SAP面试经历">
-<meta property="og:url" content="http://cutoutsy.github.io/2016/09/26/sap-interview/index.html">
+<meta property="og:title" content="Linux:VNC初识">
+<meta property="og:url" content="http://cutoutsy.github.io/2016/12/08/Linux-VNC初识/index.html">
 <meta property="og:site_name" content="cutoutsy">
-<meta property="og:description" content="一面：1、vim有几种模式，vim替换操作vim有三种模式（只答出两种）：命令模式(command mode)、插入模式(insert mode)、底线命令模式(last line mode)替换：[addr]s/源字符串/目的字符串/[option]2、线程有几种状态（4种）运行(running)，休眠(Sleeping)，等待(Wait)，监视(Monitor)3、查找一个目录下所有文件里面的">
-<meta property="og:updated_time" content="2016-09-25T16:04:07.000Z">
+<meta property="og:description" content="最近在公司做安装测试，有一种方式是GUI安装，不过我们的Server都是类*unix无界面的，所以就需要用到VNC来进行界面的安装，本来服务器上都安装好了，直接使用就可以了，不过在使用的过程中遇到了问题，于是就了解了一下VNC，在此做个记录。
+我们一般连接服务器是使用SSH，进行的是文字界面的连接。而VNC是图形界面的连接，要想达到这一目的，首先需要在服务器上安装VNC Server，以我使用的C">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/vncserver_start.PNG">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/tightVNC_client.PNG">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/connect_success.PNG">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/vnc_gedit.PNG">
+<meta property="og:updated_time" content="2016-12-08T00:38:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SAP面试经历">
-<meta name="twitter:description" content="一面：1、vim有几种模式，vim替换操作vim有三种模式（只答出两种）：命令模式(command mode)、插入模式(insert mode)、底线命令模式(last line mode)替换：[addr]s/源字符串/目的字符串/[option]2、线程有几种状态（4种）运行(running)，休眠(Sleeping)，等待(Wait)，监视(Monitor)3、查找一个目录下所有文件里面的">
+<meta name="twitter:title" content="Linux:VNC初识">
+<meta name="twitter:description" content="最近在公司做安装测试，有一种方式是GUI安装，不过我们的Server都是类*unix无界面的，所以就需要用到VNC来进行界面的安装，本来服务器上都安装好了，直接使用就可以了，不过在使用的过程中遇到了问题，于是就了解了一下VNC，在此做个记录。
+我们一般连接服务器是使用SSH，进行的是文字界面的连接。而VNC是图形界面的连接，要想达到这一目的，首先需要在服务器上安装VNC Server，以我使用的C">
   
     <link rel="alternative" href="/atom.xml" title="cutoutsy" type="application/atom+xml">
   
@@ -170,11 +177,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-sap-interview" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Linux-VNC初识" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/09/26/sap-interview/" class="article-date">
-  	<time datetime="2016-09-25T16:01:48.000Z" itemprop="datePublished">2016-09-26</time>
+      <a href="/2016/12/08/Linux-VNC初识/" class="article-date">
+  	<time datetime="2016-12-08T00:36:12.000Z" itemprop="datePublished">2016-12-08</time>
 </a>
     </div>
   
@@ -187,7 +194,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      SAP面试经历
+      Linux:VNC初识
     </h1>
   
 
@@ -196,7 +203,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SAP/">SAP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VNC/">VNC</a></li></ul>
 	</div>
 
         
@@ -207,15 +214,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>一面：<br>1、vim有几种模式，vim替换操作<br>vim有三种模式（只答出两种）：命令模式(command mode)、插入模式(insert mode)、底线命令模式(last line mode)<br>替换：[addr]s/源字符串/目的字符串/[option]<br>2、线程有几种状态（4种）<br>运行(running)，休眠(Sleeping)，等待(Wait)，监视(Monitor)<br>3、查找一个目录下所有文件里面的某个关键字，同时显示行号<br>grep -rn “keyword” *<br><a id="more"></a><br>4、数据库dml和ddl是什么<br>DML（data manipulation language）:它们是SELECT、UPDATE、INSERT、DELETE，就象它的名字一样，这4条命令是用来对数据库里的数据进行操作的语言<br>DDL（data definition language）：DDL比DML要多，主要的命令有CREATE、ALTER、DROP等，DDL主要是用在定义或改变表（TABLE）的结构，数据类型，表之间的链接和约束等初始化工作上，他们大多在建立表时使用<br>5、抽象类和接口的区别<br>抽象类是用来捕捉子类的通用特性的。它不能被实例化，只能被用作子类的超类。抽象类是被用来创建继承层级里子类的模板。<br>接口是抽象方法的集合。如果一个类实现了某个接口，那么它就继承了这个接口的抽象方法。这就像契约模式，如果实现了这个接口，那么就必须确保使用这些方法。接口只是一种形式，接口自身不能做任何事情。<br>6、判断一个对象是否死亡，是否要进行回收<br>最近在看《深入理解Java虚拟机》这本书，看过之后没有怎么记住，就答了个对象没有在被其他对象引用就可以被回收了，根据书上所讲，首先判断对象是否“死去”有两种算法：引用计数算法、可达性分析算法；简单来说引用计数算法就是每当有一个地方引用它时，计数器值就加1，当引用失效时，计数器值就减1，任何时刻计数器为0的对象是不可能再被使用的（这也是好多人在面试时给予的答案）。但是Java虚拟机里面没有选用这种方法来管理内存，主要原因是很难解决对象之间互循环引用的问题。Java虚拟机采用第二种算法来管理内存，可达性分析算法是一个GC Roots和引用链(Reference Chain)，当一个对象到GC Roots没有任何引用链相连，则证明此对象是不可用的，将会被判定为是可回收的对象（正确答案），当然具体情况更复杂，即使在可达性分析算法中不可达的对象，也并非是“非死不可”的，要真正宣告一个对象的死亡，至少要经历两次标记过程，过程就不详细叙述了。<br>7、文件的755三个数字分别对应什么<br>7对应所有者对文件的操作权限<br>5对应所有者所在组的其他用户对这些文件的操作权限<br>5对应其他用户组对这些文件的操作权限</p>
-<p>二面：<br>关于awk,sed,sort的命令的操作<br>这个主要就是linux文本操作的一些命令<br>html5和原来html的区别<br>1、文档声明<br>html:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/1999/xhtml"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>html5:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>可以看出，html5文档声明要比html简单很多<br>2、结构语义<br>html5提供了一些新的html5标签,比如<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">header</span>&gt;</span> <span class="tag">&lt;<span class="title">nav</span>&gt;</span> <span class="tag">&lt;<span class="title">article</span>&gt;</span> <span class="tag">&lt;<span class="title">aside</span>&gt;</span> <span class="tag">&lt;<span class="title">footer</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>3、新功能<br>html5提供了强大的绘图功能，html5可以通过强大的绘图功能，加上JS可以实现。<br>Canvas标签 SVG标签<br>视频标签</p>
-<p>Java类能不能多继承，怎么实现类似的功能<br>Java不能多继承，可以通过接口和内部类来实现类似的功能。</p>
-<p>python列表解析<br>列表解析(List comprehension)来自于函数式编程Haskell<br>语法：[expr for iter_var in iterable]<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = [x+<span class="number">1</span> <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">11</span>)]</span><br><span class="line"><span class="keyword">print</span> a</span><br><span class="line">[<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>]</span><br></pre></td></tr></table></figure></p>
-<p>shell调试（如何调试）<br>首先可以使用shell的执行选项，-x选项是常用的跟踪和调试shell脚本的手段<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-n &#21482;&#35835;&#21462;&#33050;&#26412;&#65292;&#19981;&#23454;&#38469;&#25191;&#34892;&#65292;&#21487;&#29992;&#20110;&#27979;&#35797;shell&#33050;&#26412;&#26159;&#21542;&#23384;&#22312;&#35821;&#27861;&#38169;&#35823;&#10;-x &#36827;&#20837;&#36319;&#36394;&#27169;&#24335;&#65292;&#26174;&#31034;&#25152;&#25191;&#34892;&#30340;&#27599;&#19968;&#26465;&#21629;&#20196;&#10;-c &#34;string&#34; &#20174;string&#20013;&#35835;&#21462;&#21629;&#20196;&#25191;&#34892;</span><br></pre></td></tr></table></figure></p>
-<p>还可以对”-x”选项进行增强<br>其他就是使用trap命令，tee命令，使用”调试钩子”等</p>
+        <p>最近在公司做安装测试，有一种方式是GUI安装，不过我们的Server都是类*unix无界面的，所以就需要用到VNC来进行界面的安装，本来服务器上都安装好了，直接使用就可以了，不过在使用的过程中遇到了问题，于是就了解了一下VNC，在此做个记录。</p>
+<p>我们一般连接服务器是使用SSH，进行的是文字界面的连接。而VNC是图形界面的连接，要想达到这一目的，首先需要在服务器上安装VNC Server，以我使用的Centos 7.2为例，只需执行：</p>
+<a id="more"></a>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install tigervnc-server</span><br></pre></td></tr></table></figure>
+<p>安装就ok了。VNC Server会在服务器端监听一个端口，一般是在5901~5910之间，当用户端启动TightVNC Viewer连接到服务器开放的端口后，VNC Server将一堆预定设定好的X client透过这个端口发送到用户端上，最终就能在用户端显示服务器的图形界面了。</p>
+<p>VNC Server一般不需要长期开启（像sshd似的），一般都是独立提供给一个用户来连接的，当你要使用VNC时，在连接到服务器上去，启动VNC server，手动启动，使用完毕后，再将VNC Server关闭即可。</p>
+<p>下面看一下具体的操作：<br>在服务器上开启vncserver<br><img src="http://7oxhal.com1.z0.glb.clouddn.com/vncserver_start.PNG" alt="vncserver_start"><br>我们将VNC Server的端口开在5902端口，要注意输入的密码至少需要6个字符。生成的密码会放在~/.vnc/passwd下，如果已经存在，则不会存在输入密码的界面。如果要修改密码的话直接使用vncpasswd就可以了。</p>
+<p>在windows上使用TightVNC Viewer去连接：</p>
+<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/tightVNC_client.PNG" alt="tightvnc_client"></p>
+<p>输入服务器的地址（IP或者域名）,然后输入开启的端口，点击connect.输入你刚才设置的密码，就可以得到如下的界面：</p>
+<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/connect_success.PNG" alt="connect_success"></p>
+<p>在server上<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setenv DISPLAY hostname/ip:2 &#25110;&#32773;&#10;export DISPLAY=hostname/ip:2</span><br></pre></td></tr></table></figure></p>
+<p>然后在server打开gedit，就可以得到gedit的编辑界面：</p>
+<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/vnc_gedit.PNG" alt="vnc_gedit"></p>
+<p>当然你也可以打开其他一些需要界面的程序。</p>
+<p>除此之外，vnc还可以这样使用，比如下面这种场景：<br>服务器A安装了VNC Server，服务器B没有安装VNC Server，但是服务器A，B互相可以ssh无密码登陆，这时如果我们想在服务器B上运行带界面的程序，然后通过TightVNC Viewer显示出来。</p>
+<p>我们可以在服务器B上执行同样的命令：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setenv DISPLAY server A:2 &#25110;&#32773;&#10;export DISPLAY=server A:2</span><br></pre></td></tr></table></figure></p>
+<p>然后用TightVNC Viewer连接服务器A及相应端口，在服务器B上执行需要界面的程序，在TightVNC Viewer上就可以显示出来。</p>
+<p>下面说下我在使用时遇到的问题，我使用的场景是上面这种，当我执行需要界面的程序是，报错如下：<br>Xlib: connection to “tzedek:2.0” refused by server<br>Xlib: No protocol specified</p>
+<p>(gedit:12646): Gtk-WARNING **: cannot open display:</p>
+<p>后面通过查询发现，这很有可能是由于VNC auth的问题，可以把.Xauthority和passwd删除后，重新启动vncserver,重新输入密码就可以了。</p>
+<p>关于VNC的了解差不多就这么多了，欢迎批评交流。</p>
 
       
     </div>
@@ -225,18 +245,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/10/08/IBM实习经历/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          IBM实习经历
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/08/10/konw-ant-ivy/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">初识Ant和Ivy</div>
+    <a href="/2016/11/29/while遇上read/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">linux shell:while遇上read</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -265,7 +276,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="sap-interview" data-title="SAP面试经历" data-url="http://cutoutsy.github.io/2016/09/26/sap-interview/"></div>
+	<div class="ds-thread" data-thread-key="Linux-VNC初识" data-title="Linux:VNC初识" data-url="http://cutoutsy.github.io/2016/12/08/Linux-VNC初识/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
