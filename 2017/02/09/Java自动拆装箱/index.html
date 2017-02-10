@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2015/12 | cutoutsy</title>
+  <title>Java自动拆装箱 | cutoutsy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="cutoutsy&apos;s blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="cutoutsy">
-<meta property="og:url" content="http://cutoutsy.github.io/archives/2015/12/index.html">
+  <meta name="description" content="写在前面最近在看《算法4》这本书，看到里面讲解java泛型和自动拆箱装箱的问题，原来看过的一些java书籍和视频也提到过，但是一直都没有怎么理解，在这里了解清楚了，遂写下这篇博客做个笔记。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java自动拆装箱">
+<meta property="og:url" content="http://cutoutsy.github.io/2017/02/09/Java自动拆装箱/index.html">
 <meta property="og:site_name" content="cutoutsy">
-<meta property="og:description" content="cutoutsy&apos;s blog">
+<meta property="og:description" content="写在前面最近在看《算法4》这本书，看到里面讲解java泛型和自动拆箱装箱的问题，原来看过的一些java书籍和视频也提到过，但是一直都没有怎么理解，在这里了解清楚了，遂写下这篇博客做个笔记。">
+<meta property="og:updated_time" content="2017-02-10T15:12:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cutoutsy">
-<meta name="twitter:description" content="cutoutsy&apos;s blog">
+<meta name="twitter:title" content="Java自动拆装箱">
+<meta name="twitter:description" content="写在前面最近在看《算法4》这本书，看到里面讲解java泛型和自动拆箱装箱的问题，原来看过的一些java书籍和视频也提到过，但是一直都没有怎么理解，在这里了解清楚了，遂写下这篇博客做个笔记。">
   
     <link rel="alternative" href="/atom.xml" title="cutoutsy" type="application/atom+xml">
   
@@ -169,115 +170,108 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-Java自动拆装箱" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2017/02/09/Java自动拆装箱/" class="article-date">
+  	<time datetime="2017-02-09T14:21:53.000Z" itemprop="datePublished">2017-02-09</time>
+</a>
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java自动拆装箱
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/拆箱/">拆箱</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/装箱/">装箱</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/12/11/Mac下安装破解版/" class="archive-article-date">
-  	<time datetime="2015-12-11T12:42:40.000Z" itemprop="datePublished">Dec 11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/12/11/Mac下安装破解版/">Mac下安装破解版PS</a>
-    </h1>
-  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="写在前面">写在前面</h3><p>最近在看《算法4》这本书，看到里面讲解java泛型和自动拆箱装箱的问题，原来看过的一些java书籍和视频也提到过，但是一直都没有怎么理解，在这里了解清楚了，遂写下这篇博客做个笔记。<br><a id="more"></a></p>
+<h3 id="Java泛型（generics）">Java泛型（generics）</h3><p>Java是在JDK1.5的时候引入泛型这个概念的。允许在定义类和接口的时候使用类型参数。声明的类型参数在使用的时候用具体的类型来替换。理解泛型之前我们需要先来了解下类型擦除（type erasure）。</p>
+<p>在生成Java字节代码中的时候是不包含泛型中的类型的。比如Set<string>和Set<int>会被编译器在编译的时候去掉。这个过程就称为类型擦除。在JVM看来只有Set。</int></string></p>
+<p>泛型的最主要的应用是在集合类框架中。</p>
+<h3 id="自动拆装箱">自动拆装箱</h3><p>类型参数必须被实例化为引用类型，因此Java有一种特殊机制来使泛型代码能够处理原始数据类型。Java的封装类型都是原始数据类型所对应的引用类型：Boolean、Byte、Double等分别对应着boolean、byte、double等。在处理赋值语句、方法的参数和算术或逻辑表达式时，Java会自动在引用类型和对应的原始数据类型之间进行转换。下面看一段代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">stack.push(<span class="number">17</span>);    <span class="comment">//自动装箱（int -&gt; Integer）</span></span><br><span class="line"><span class="keyword">int</span> i = stack.pop();    <span class="comment">//自动拆箱（Integer -&gt; int）</span></span><br></pre></td></tr></table></figure></p>
+<p>自动装箱：自动将一个原始数据类型转换为一个封装类型；<br>自动拆箱：自动将一个封装类型转换为一个原始数据类型。</p>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/photoshop/">photoshop</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/12/10/XtraFinder－Finder增强外挂/" class="archive-article-date">
-  	<time datetime="2015-12-10T06:52:17.000Z" itemprop="datePublished">Dec 10</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/12/10/XtraFinder－Finder增强外挂/">XtraFinder－Finder增强外挂</a>
-    </h1>
   
+    <a href="/2016/12/08/Linux-VNC初识/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux:VNC初识</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Finder/">Finder</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XtraFinder/">XtraFinder</a></li></ul>
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/12/09/working with Code Snippets in Sublime Text/" class="archive-article-date">
-  	<time datetime="2015-12-09T05:43:06.000Z" itemprop="datePublished">Dec 9</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/12/09/working with Code Snippets in Sublime Text/">Working with Code Snippets in Sublime Text</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/">code</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sublime-text/">sublime text</a></li></ul>
-	</div>
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Java自动拆装箱" data-title="Java自动拆装箱" data-url="http://cutoutsy.github.io/2017/02/09/Java自动拆装箱/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"cutoutsy"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
 
 </div>
       <footer id="footer">
@@ -306,8 +300,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false
