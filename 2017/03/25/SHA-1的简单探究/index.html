@@ -17,7 +17,7 @@
 <meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/blog_sha-1_2.png">
 <meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/blog_sha-1_3.png">
 <meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/blog_sha-1_4.png">
-<meta property="og:updated_time" content="2017-03-25T04:55:53.000Z">
+<meta property="og:updated_time" content="2017-03-25T04:59:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SHA-1的简单探究">
 <meta name="twitter:description" content="上学期选修了一门信息安全讨论，期末的时候是写一个关于信息安全方面的报告，找本科毕设精简一下交上去，被老师发现了，开学来了要重新写，哭，于是遂有下文。
@@ -238,7 +238,7 @@
 <p>SHA-1自提出后，学者们一直认为它是安全的，并没有找到计算时间小于$2^{80}$攻击方法。 我国著名密码学家王小云教授所在的团队提出了一种寻找SHA-1碰撞的，相对快速的攻击方法。此攻击方法的计算量级为269，这标志着SHA-1存在漏洞。NIST不得不选择新的哈希函数，因此才有了SHA-256、SHA-384、SHA-512等。</p>
 <p>王小云教授的开创性工作让进一步破解SHA-1成为了可能。然而，王小云教授的方法 仅可破解SHA-1的广义抗碰撞性，且计算时间相对较长。在计算发杂度上也很高，具体操 作上可行度并不是很高。这表明SHA-1在一段时间内还是可以使用的。后来Stevens提出了 一种攻击方法，可以在$2^{61}$计算量级内找到一组哈希碰撞。</p>
 <p>上述方法都是使用纯CPU计算的方法。Stevens等人在2016年提出了新的攻击方法， 把显卡(即GPU)引入破解工作，使用大规模并行处理，进行并行计算，则计算量级会进一步降低到$2^{57.5}$。这样使得具体的破解成为了可能，本次Google的破解工作也使用了类似的方法。</p>
-<h4 id="3-4_Google_的破解工作">3.4 Google 的破解工作</h4><p>Google 发布了两个 PDF 文件，第一个 PDF 文件打开打开如图 2 所示，<br><img src="http://7oxhal.com1.z0.glb.clouddn.com/blog_sha-1_2.png" alt="SHAttered1"><br>第二个 PDF 文件打开如图 3 所示，<br><img src="http://7oxhal.com1.z0.glb.clouddn.com/blog_sha-1_3.png" alt="SHAttered2"><br>这两份PDF文件经过SHA-1 哈希后的值是一样的，可以证明针对SHA-1找到了一组碰撞。但是这PDF的内容还是有意义的。可见Google的工作不仅仅是找到一组碰撞那么简单。 Google的官方网站的后续说明也证明了这一点。Google让用户上传任意文件，来检测文件本身是否可能被这种攻击威胁。可见这对于哈希函数本身虽不能算彻底的破解，但是基本以宣 告SHA-1 的死刑。如果你想查看自己的文件是否存在碰撞，可以将文件上传 到[<a href="https://shattered.io/]这个网站。比如我把本文生成的PDF上传，得到的检测结果如图" target="_blank" rel="external">https://shattered.io/]这个网站。比如我把本文生成的PDF上传，得到的检测结果如图</a> 4 所示， 从检测结果可以知道，本文生成的文档还是安全的。<br><img src="http://7oxhal.com1.z0.glb.clouddn.com/blog_sha-1_4.png" alt="upload"></p>
+<h4 id="3-4_Google_的破解工作">3.4 Google 的破解工作</h4><p>Google 发布了两个 PDF 文件，第一个 PDF 文件打开打开如图 2 所示，<br><img src="http://7oxhal.com1.z0.glb.clouddn.com/blog_sha-1_2.png" alt="SHAttered1"><br>第二个 PDF 文件打开如图 3 所示，<br><img src="http://7oxhal.com1.z0.glb.clouddn.com/blog_sha-1_3.png" alt="SHAttered2"><br>这两份PDF文件经过SHA-1 哈希后的值是一样的，可以证明针对SHA-1找到了一组碰撞。但是这PDF的内容还是有意义的。可见Google的工作不仅仅是找到一组碰撞那么简单。 Google的官方网站的后续说明也证明了这一点。Google让用户上传任意文件，来检测文件本身是否可能被这种攻击威胁。可见这对于哈希函数本身虽不能算彻底的破解，但是基本以宣 告SHA-1 的死刑。如果你想查看自己的文件是否存在碰撞，可以将文件上传 到 <a href="https://shattered.io/" target="_blank" rel="external">https://shattered.io/</a> 这个网站。比如我把本文生成的PDF上传，得到的检测结果如图 4 所示， 从检测结果可以知道，本文生成的文档还是安全的。<br><img src="http://7oxhal.com1.z0.glb.clouddn.com/blog_sha-1_4.png" alt="upload"></p>
 <h3 id="4_一些其他的SHA">4 一些其他的SHA</h3><p>在SHA-0和 SHA-1 之后，NSA 又设计发布了 SHA-2 和 SHA-3，其中 SHA-2 包括SHA-224、SHA-256、SHA-384、SHA-512、SHA-512/224和SHA-512/256。后面跟的数字是哈希后的 bit 位数。至今尚未出现对 SHA-2 有效的攻击，但是由于其算法与 SHA-1 相似。 需要一个其他替代的散列算法，于是 SHA-3 出现了，SHA-3 并不是要替换 SHA-2，而是算 法不同，更加的安全。<br>现在很多网络上很多地方还在使用SHA-1，比如我们现在我们打开网站好多都是https。 但是一些一些网站使用的 https 证书是用 SHA-1 进行哈希计算的，这样是很不安全的。现在 很有必须更换为 SHA-2 等安全性算法，当然国内还有好多网站没有实现 https，这也需要尽 快加上 https，使用户访问网站更加安全。</p>
 <h3 id="5_结论">5 结论</h3><p>本文根据最近Google对SHA-1的破解，了解了关于哈希函数的定义以及它的一些应用发展。之后着重讨论了SHA-1的算法及破解的历程，以及Google这次破解对信息安全一些 领域的影响。最后介绍了其他的哈希函数 SHA-2 和 SHA-3 这些现在安全的的哈希函数。<br>当然本文只是一个简单的探究，还有好多关于哈希函数的其他知识尚未涉及到。</p>
 
