@@ -3,28 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Mac下安装破解版PS | cutoutsy</title>
+  <title>Linux学习:lsattr、chattr命令 | cutoutsy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这段时间再帮人写一个网站前台，美工给的都是psd原型设计图。需要自己切图，这就不得不用到ps这个强大的软件了。最开始就准备装个破解版的，没有成功。就试用了30天，昨天到期了，不得不装个破解版的啦……
-下载Adobe Photoshop CS6百度或者google会出来很多的下载包，但是很多都不靠谱，今天下载了一个百度软件中心的，安装破解后中文字体显示发虚，而且软件启动界面也不是正版的样子。">
+  <meta name="description" content="前两天在服务器上发现了几个异常文件，应该不是自己创建的，感觉服务器被人攻击了。然后我在删除这几个文件的时候，说我没有权限，黑人问号，我可是root用户，还没有权限删除这几个文件么。
+上网上查了下，应该是用chattr命令锁定文件了。然后用lsattr命令查看了下，果然是这样的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mac下安装破解版PS">
-<meta property="og:url" content="http://cutoutsy.github.io/2015/12/11/Mac下安装破解版/index.html">
+<meta property="og:title" content="Linux学习:lsattr、chattr命令">
+<meta property="og:url" content="http://cutoutsy.github.io/2017/04/10/Linux学习-lsattr、chattr命令学习/index.html">
 <meta property="og:site_name" content="cutoutsy">
-<meta property="og:description" content="这段时间再帮人写一个网站前台，美工给的都是psd原型设计图。需要自己切图，这就不得不用到ps这个强大的软件了。最开始就准备装个破解版的，没有成功。就试用了30天，昨天到期了，不得不装个破解版的啦……
-下载Adobe Photoshop CS6百度或者google会出来很多的下载包，但是很多都不靠谱，今天下载了一个百度软件中心的，安装破解后中文字体显示发虚，而且软件启动界面也不是正版的样子。">
-<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/blog-psdownload.png">
-<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/blog-psinstall.png">
-<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/blog-pstry.png">
-<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/blog-psacceptagreement.png">
-<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/blog-psshowpackage.png">
-<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/blog-psframework.png">
-<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/blog-psui.png">
-<meta property="og:updated_time" content="2015-12-11T12:42:40.000Z">
+<meta property="og:description" content="前两天在服务器上发现了几个异常文件，应该不是自己创建的，感觉服务器被人攻击了。然后我在删除这几个文件的时候，说我没有权限，黑人问号，我可是root用户，还没有权限删除这几个文件么。
+上网上查了下，应该是用chattr命令锁定文件了。然后用lsattr命令查看了下，果然是这样的">
+<meta property="og:updated_time" content="2017-04-10T01:59:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mac下安装破解版PS">
-<meta name="twitter:description" content="这段时间再帮人写一个网站前台，美工给的都是psd原型设计图。需要自己切图，这就不得不用到ps这个强大的软件了。最开始就准备装个破解版的，没有成功。就试用了30天，昨天到期了，不得不装个破解版的啦……
-下载Adobe Photoshop CS6百度或者google会出来很多的下载包，但是很多都不靠谱，今天下载了一个百度软件中心的，安装破解后中文字体显示发虚，而且软件启动界面也不是正版的样子。">
+<meta name="twitter:title" content="Linux学习:lsattr、chattr命令">
+<meta name="twitter:description" content="前两天在服务器上发现了几个异常文件，应该不是自己创建的，感觉服务器被人攻击了。然后我在删除这几个文件的时候，说我没有权限，黑人问号，我可是root用户，还没有权限删除这几个文件么。
+上网上查了下，应该是用chattr命令锁定文件了。然后用lsattr命令查看了下，果然是这样的">
   
     <link rel="alternative" href="/atom.xml" title="cutoutsy" type="application/atom+xml">
   
@@ -180,11 +173,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-Mac下安装破解版" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Linux学习-lsattr、chattr命令学习" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/12/11/Mac下安装破解版/" class="article-date">
-  	<time datetime="2015-12-11T12:42:40.000Z" itemprop="datePublished">2015-12-11</time>
+      <a href="/2017/04/10/Linux学习-lsattr、chattr命令学习/" class="article-date">
+  	<time datetime="2017-04-10T01:12:54.000Z" itemprop="datePublished">2017-04-10</time>
 </a>
     </div>
   
@@ -197,7 +190,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Mac下安装破解版PS
+      Linux学习:lsattr、chattr命令
     </h1>
   
 
@@ -206,7 +199,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/photoshop/">photoshop</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/chattr/">chattr</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lsattr/">lsattr</a></li></ul>
 	</div>
 
         
@@ -217,25 +210,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这段时间再帮人写一个网站前台，美工给的都是psd原型设计图。需要自己切图，这就不得不用到ps这个强大的软件了。最开始就准备装个破解版的，没有成功。就试用了30天，昨天到期了，不得不装个破解版的啦……</p>
-<h3 id="下载Adobe_Photoshop_CS6">下载Adobe Photoshop CS6</h3><p>百度或者google会出来很多的下载包，但是很多都不靠谱，今天下载了一个百度软件中心的，安装破解后中文字体显示发虚，而且软件启动界面也不是正版的样子。<br><a id="more"></a><br>所以如果可以的话去<a href="https://helpx.adobe.com/cn/x-productkb/policy-pricing/cs6-CN-product-downloads.html" target="_blank" rel="external">Adobe官网</a>下载。<br><img src="http://7oxhal.com1.z0.glb.clouddn.com/blog-psdownload.png" alt="ps下载"><br>选择适合自己的平台下载。也可以通过我分享的<a href="http://pan.baidu.com/s/1o7wSTL4" target="_blank" rel="external">百度云链接</a>进行下载，提取密码：sbv6，这个是从官网下载的。</p>
-<h3 id="安装Adobe_Photoshop_CS6">安装Adobe Photoshop CS6</h3><p>下载完成之后，双击解压，找到Install:</p>
-<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/blog-psinstall.png" alt="ps安装"></p>
-<p>我们安装试用版，在安装试用版之前请务必断网，点击Try/试用</p>
-<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/blog-pstry.png" alt="ps试用"></p>
-<p>接受协议，可能这之前会让你输入Adobe ID，选择稍后登录就可以了</p>
-<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/blog-psacceptagreement.png" alt="ps接受协议"></p>
-<p>之后就进入安装界面，等待安装结束就可以了。</p>
-<h3 id="破解Adobe_Photoshop_CS6">破解Adobe Photoshop CS6</h3><p>破解之前，你需要下载一个文件（amtlib.framework），这个放百度云盘地址可能会有问题，大家可以回复本文，我给大家下载百度云链接，这个亲测可用，第一次没有装上破解版就是因为没有下载到可用的这个文件。</p>
-<p>下载amtlib.framework后，在“应用程序”文件夹，找到Adobe Photoshop CSS6文件夹，在里面找到Adobe Photoshop CS6.app，右键选择“显示包内容” </p>
-<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/blog-psshowpackage.png" alt="ps文件夹"></p>
-<p>找到contents/framework文件夹，把刚才解压得到的amtlib.framework拷贝进去，替换整个文件夹,</p>
-<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/blog-psframework.png" alt="psframework"></p>
-<p>这儿有可能由于权限问题复制不进去，这个时候我们可以用shell在sudo下进行复制。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp -r amtlib.framework(&#20320;&#19979;&#36733;&#30340;amtlib.framework) /Applications/Adobe Photoshop CC/Adobe Photoshop CC.app/Contents/Frameworks</span><br></pre></td></tr></table></figure>
-<p>这样就破解结束了，破解成功的标志就是打开软件不会提示让你注册和试用天数倒计时，这是我破解后的ps(英文版)：</p>
-<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/blog-psui.png" alt="ps ui"></p>
-<p>这样妈妈再也不用担心我的ps试用期到期了……</p>
+        <p>前两天在服务器上发现了几个异常文件，应该不是自己创建的，感觉服务器被人攻击了。然后我在删除这几个文件的时候，说我没有权限，黑人问号，我可是root用户，还没有权限删除这几个文件么。</p>
+<p>上网上查了下，应该是用chattr命令锁定文件了。然后用lsattr命令查看了下，果然是这样的</p>
+<a id="more"></a>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# lsattr linux &#10;----i--------e-- linux&#10;[root@localhost ~]#</span><br></pre></td></tr></table></figure>
+<p>其中i表示该文件不能被删除、改名、设定链接关系，同时不能写入或新增内容。</p>
+<p>下面就来详细学习下lsattr和chattr命令，之前没有使用过。</p>
+<h3 id="chattr命令">chattr命令</h3><p>作用：chattr命令主要是改变文件、目录属性的，与chmod命令相比，chmod只是改变文件的读写、执行权限，更底层的属性控制由chattr来改变。</p>
+<p>用法：chattr [ -RVf ] [ -v version ] [ mode ] files…</p>
+<p>-R 表示递归改变整个目录下的所有文件属性<br>-V 输出详细信息</p>
+<p>主要是mode部分，[mode]部分由+-=和[ASacDdIiJsTtu]这些字符组成，这部分才是用来控制文件的属性的。</p>
+<p>+ ：在原有参数设定基础上，追加参数。<br>- ：在原有参数设定基础上，移除参数。<br>= ：更新为指定参数设定。<br>A：文件或目录的 atime (access time)不可被修改(modified), 可以有效预防例如手提电脑磁盘I/O错误的发生。<br>S：硬盘I/O同步选项，功能类似sync。<br>a：即append，设定该参数后，只能向文件中添加数据，而不能删除，多用于服务器日志文件安全，只有root才能设定这个属性。<br>c：即compresse，设定文件是否经压缩后再存储。读取时需要经过自动解压操作。<br>d：即no dump，设定文件不能成为dump程序的备份目标。<br>i：设定文件不能被删除、改名、设定链接关系，同时不能写入或新增内容。i参数对于文件 系统的安全设置有很大帮助。<br>j：即journal，设定此参数使得当通过mount参数：data=ordered或者data=writeback挂载的文件系统，文件在写入时会先被记录(在journal中)。如果filesystem被设定参数为data=journal，则该参数自动失效。<br>s：保密性地删除文件或目录，即硬盘空间被全部收回。<br>u：与s相反，当设定为u时，数据内容其实还存在磁盘中，可以用于undeletion。</p>
+<p>各参数选项中常用到的是a和i。a选项强制只可添加不可删除，多用于日志系统的安全设定。而i是更为严格的安全设定，只有superuser (root) 或具有CAP_LINUX_IMMUTABLE处理能力（标识）的进程能够施加该选项。</p>
+<p>我们刚通过lsattr看到的i选项就是这儿添加的i文件属性控制。</p>
+<p>可以通过chattr命令防止系统中某个关键文件被修改，也可以给日志系统设置a属性，只能向日志文件添加数据。</p>
+<h3 id="lsattr命令">lsattr命令</h3><p>作用：显示文件或者目录的属性</p>
+<p>用法：lsattr [ -RVadv ] [ files…  ]</p>
+<p>-R  显示目录及其里面的文件和目录的属性<br>-a  显示所有的文件和目录，包括以”.”开头的隐藏文件</p>
+<h3 id="简单示例">简单示例</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;[root@localhost ~]# lsattr /etc/resolv.conf &#10;-------------e-- /etc/resolv.conf&#10;[root@localhost ~]# &#10;[root@localhost ~]# chattr +i /etc/resolv.conf &#10;[root@localhost ~]# &#10;[root@localhost ~]# lsattr /etc/resolv.conf &#10;----i--------e-- /etc/resolv.conf&#10;[root@localhost ~]# &#10;[root@localhost ~]# rm -rf /etc/resolv.conf &#10;rm: cannot remove &#8216;/etc/resolv.conf&#8217;: Operation not permitted</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -245,18 +237,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/03/29/定时推送coding挣码币/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          定时推送coding挣码币
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/12/10/XtraFinder－Finder增强外挂/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">XtraFinder－Finder增强外挂</div>
+    <a href="/2017/04/07/华为2017精英软件赛参赛感受/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">华为2017精英软件赛参赛感受</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -285,7 +268,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Mac下安装破解版" data-title="Mac下安装破解版PS" data-url="http://cutoutsy.github.io/2015/12/11/Mac下安装破解版/"></div>
+	<div class="ds-thread" data-thread-key="Linux学习-lsattr、chattr命令学习" data-title="Linux学习:lsattr、chattr命令" data-url="http://cutoutsy.github.io/2017/04/10/Linux学习-lsattr、chattr命令学习/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
