@@ -1,0 +1,1012 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="matplotlib,python,画图," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon_1.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="写在前面最近在做机器学习相关的比赛，在数据探索性分析阶段，由于要画图分析数据规律，于是学习了下matplotlib画图，主要是看莫烦python的视频学习的，优酷播单地址，也欢迎大家前去观看学习，下面是我在学习的时候在jupter notebook上跟着做的笔记。    
+12import matplotlib.pyplot as plt import numpy as np
+12345x = n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="matplotlib画图学习笔记">
+<meta property="og:url" content="http://cutoutsy.github.io/2018/01/13/matplotlib画图学习/index.html">
+<meta property="og:site_name" content="cutoutsy">
+<meta property="og:description" content="写在前面最近在做机器学习相关的比赛，在数据探索性分析阶段，由于要画图分析数据规律，于是学习了下matplotlib画图，主要是看莫烦python的视频学习的，优酷播单地址，也欢迎大家前去观看学习，下面是我在学习的时候在jupter notebook上跟着做的笔记。    
+12import matplotlib.pyplot as plt import numpy as np
+12345x = n">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/output_1_0.png">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/output_3_0.png">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/output_3_1.png">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/output_5_1.png">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/output_6_1.png">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/output_8_1.png">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/output_10_0.png">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/output_12_0.png">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/output_14_0.png">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/output_16_0.png">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/output_18_0.png">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/output_20_0.png">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/output_22_0.png">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/output_24_0.png">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/output_26_0.png">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/output_28_0.png">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/output_30_0.png">
+<meta property="og:updated_time" content="2018-01-13T09:07:30.175Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="matplotlib画图学习笔记">
+<meta name="twitter:description" content="写在前面最近在做机器学习相关的比赛，在数据探索性分析阶段，由于要画图分析数据规律，于是学习了下matplotlib画图，主要是看莫烦python的视频学习的，优酷播单地址，也欢迎大家前去观看学习，下面是我在学习的时候在jupter notebook上跟着做的笔记。    
+12import matplotlib.pyplot as plt import numpy as np
+12345x = n">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cutoutsy.github.io/2018/01/13/matplotlib画图学习/"/>
+
+
+
+
+
+  <title>matplotlib画图学习笔记 | cutoutsy</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ab57c5ebd589cbce77ec63b4ecbd5d25";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">cutoutsy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Happy Code, Happy Life</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cutoutsy.github.io/2018/01/13/matplotlib画图学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cutoutsy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://7oxhal.com1.z0.glb.clouddn.com/cat_avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cutoutsy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">matplotlib画图学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-13T16:56:38+08:00">
+                2018-01-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/13/matplotlib画图学习/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/01/13/matplotlib画图学习/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/01/13/matplotlib画图学习/" class="leancloud_visitors" data-flag-title="matplotlib画图学习笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="写在前面">写在前面</h2><p>最近在做机器学习相关的比赛，在数据探索性分析阶段，由于要画图分析数据规律，于是学习了下matplotlib画图，主要是看莫烦python的视频学习的，<a href="http://v.youku.com/v_show/id_XMTcxNTk3NTQ2NA==.html?spm=a2hzp.8253876.0.0&amp;f=28097045" target="_blank" rel="external">优酷播单地址</a>，也欢迎大家前去观看学习，下面是我在学习的时候在jupter notebook上跟着做的笔记。    </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt </span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x = np.linspace(-<span class="number">1</span>, <span class="number">1</span>, <span class="number">50</span>)</span><br><span class="line"><span class="comment"># y = 2*x + 1</span></span><br><span class="line">y = x**<span class="number">2</span></span><br><span class="line">plt.plot(x, y)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/output_1_0.png" alt="png"></p>
+<a id="more"></a>
+<h2 id="figure_图像">figure 图像</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">x = np.linspace(-<span class="number">3</span>, <span class="number">3</span>, <span class="number">50</span>)</span><br><span class="line">y1 = <span class="number">2</span>*x + <span class="number">1</span></span><br><span class="line">y2 = x**<span class="number">2</span></span><br><span class="line">plt.figure()</span><br><span class="line">plt.plot(x, y1)</span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">8</span>,<span class="number">5</span>))</span><br><span class="line">plt.plot(x, y2)</span><br><span class="line">plt.plot(x, y1, color=<span class="string">'red'</span>, linewidth=<span class="number">2.0</span>, linestyle=<span class="string">'--'</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/output_3_0.png" alt="png"></p>
+<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/output_3_1.png" alt="png"></p>
+<h2 id="坐标轴设置">坐标轴设置</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">x = np.linspace(-<span class="number">3</span>, <span class="number">3</span>, <span class="number">50</span>)</span><br><span class="line">y1 = <span class="number">2</span>*x + <span class="number">1</span></span><br><span class="line">y2 = x**<span class="number">2</span></span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">8</span>,<span class="number">5</span>))</span><br><span class="line">plt.plot(x, y2)</span><br><span class="line">plt.plot(x, y1, color=<span class="string">'red'</span>, linewidth=<span class="number">1.0</span>, linestyle=<span class="string">'--'</span>)</span><br><span class="line"><span class="comment"># 设置x,y轴取值范围</span></span><br><span class="line">plt.xlim((-<span class="number">1</span>, <span class="number">2</span>))</span><br><span class="line">plt.ylim((-<span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line">plt.xlabel(<span class="string">'I am X'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'I am Y'</span>)</span><br><span class="line"></span><br><span class="line">new_ticks = np.linspace(-<span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>)</span><br><span class="line"><span class="keyword">print</span> new_ticks</span><br><span class="line">plt.xticks(new_ticks)</span><br><span class="line"></span><br><span class="line">plt.yticks([-<span class="number">2</span>, -<span class="number">1.8</span>, -<span class="number">1</span>, <span class="number">1.22</span>, <span class="number">3</span>],</span><br><span class="line">          [<span class="string">r'$really\ bad$'</span>, <span class="string">r'$bad\alpha$'</span>, <span class="string">r'$nomal$'</span>, <span class="string">r'$good$'</span>, <span class="string">r'$really\ good$'</span>])</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<pre><code>[-<span class="number">1.</span>   -<span class="number">0.25</span>  <span class="number">0.5</span>   <span class="number">1.25</span>  <span class="number">2.</span>  ]
+</code></pre><p><img src="http://7oxhal.com1.z0.glb.clouddn.com/output_5_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">x = np.linspace(-<span class="number">3</span>, <span class="number">3</span>, <span class="number">50</span>)</span><br><span class="line">y1 = <span class="number">2</span>*x + <span class="number">1</span></span><br><span class="line">y2 = x**<span class="number">2</span></span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">8</span>,<span class="number">5</span>))</span><br><span class="line">plt.plot(x, y2)</span><br><span class="line">plt.plot(x, y1, color=<span class="string">'red'</span>, linewidth=<span class="number">1.0</span>, linestyle=<span class="string">'--'</span>)</span><br><span class="line"><span class="comment"># 设置x,y轴取值范围</span></span><br><span class="line">plt.xlim((-<span class="number">1</span>, <span class="number">2</span>))</span><br><span class="line">plt.ylim((-<span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line">plt.xlabel(<span class="string">'I am X'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'I am Y'</span>)</span><br><span class="line"></span><br><span class="line">new_ticks = np.linspace(-<span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>)</span><br><span class="line"><span class="keyword">print</span> new_ticks</span><br><span class="line">plt.xticks(new_ticks)</span><br><span class="line"></span><br><span class="line">plt.yticks([-<span class="number">2</span>, -<span class="number">1.8</span>, -<span class="number">1</span>, <span class="number">1.22</span>, <span class="number">3</span>],</span><br><span class="line">          [<span class="string">r'$really\ bad$'</span>, <span class="string">r'$bad\alpha$'</span>, <span class="string">r'$nomal$'</span>, <span class="string">r'$good$'</span>, <span class="string">r'$really\ good$'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># gca = 'get current axis</span></span><br><span class="line">ax = plt.gca()</span><br><span class="line">ax.spines[<span class="string">'right'</span>].set_color(<span class="string">'none'</span>)</span><br><span class="line">ax.spines[<span class="string">'top'</span>].set_color(<span class="string">'none'</span>)</span><br><span class="line">ax.xaxis.set_ticks_position(<span class="string">'bottom'</span>)</span><br><span class="line">ax.yaxis.set_ticks_position(<span class="string">'left'</span>)</span><br><span class="line">ax.spines[<span class="string">'bottom'</span>].set_position((<span class="string">'data'</span>, <span class="number">0</span>))</span><br><span class="line">ax.spines[<span class="string">'left'</span>].set_position((<span class="string">'data'</span>, <span class="number">0</span>))</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<pre><code>[-<span class="number">1.</span>   -<span class="number">0.25</span>  <span class="number">0.5</span>   <span class="number">1.25</span>  <span class="number">2.</span>  ]
+</code></pre><p><img src="http://7oxhal.com1.z0.glb.clouddn.com/output_6_1.png" alt="png"></p>
+<h2 id="Legend_图例">Legend 图例</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">x = np.linspace(-<span class="number">3</span>, <span class="number">3</span>, <span class="number">50</span>)</span><br><span class="line">y1 = <span class="number">2</span>*x + <span class="number">1</span></span><br><span class="line">y2 = x**<span class="number">2</span></span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">8</span>,<span class="number">5</span>))</span><br><span class="line"><span class="comment"># 设置x,y轴取值范围</span></span><br><span class="line">plt.xlim((-<span class="number">1</span>, <span class="number">2</span>))</span><br><span class="line">plt.ylim((-<span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line">plt.xlabel(<span class="string">'I am X'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'I am Y'</span>)</span><br><span class="line"></span><br><span class="line">new_ticks = np.linspace(-<span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>)</span><br><span class="line"><span class="keyword">print</span> new_ticks</span><br><span class="line">plt.xticks(new_ticks)</span><br><span class="line"></span><br><span class="line">plt.yticks([-<span class="number">2</span>, -<span class="number">1.8</span>, -<span class="number">1</span>, <span class="number">1.22</span>, <span class="number">3</span>],</span><br><span class="line">          [<span class="string">r'$really\ bad$'</span>, <span class="string">r'$bad\alpha$'</span>, <span class="string">r'$nomal$'</span>, <span class="string">r'$good$'</span>, <span class="string">r'$really\ good$'</span>])</span><br><span class="line">l1, = plt.plot(x, y2, label=<span class="string">'up'</span>)</span><br><span class="line">l2, = plt.plot(x, y1, color=<span class="string">'red'</span>, linewidth=<span class="number">1.0</span>, linestyle=<span class="string">'--'</span>, label=<span class="string">'down'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># plt.legend(handles=[l1, l2], labels=['aaa', 'bbb'], loc='upper right')</span></span><br><span class="line"></span><br><span class="line">plt.legend(handles=[l1,], labels=[<span class="string">'aaa'</span>,], loc=<span class="string">'best'</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<pre><code>[-<span class="number">1.</span>   -<span class="number">0.25</span>  <span class="number">0.5</span>   <span class="number">1.25</span>  <span class="number">2.</span>  ]
+</code></pre><p><img src="http://7oxhal.com1.z0.glb.clouddn.com/output_8_1.png" alt="png"></p>
+<h2 id="Annotation_标注">Annotation 标注</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">x = np.linspace(-<span class="number">3</span>, <span class="number">3</span>, <span class="number">50</span>)</span><br><span class="line">y = <span class="number">2</span>*x + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">plt.figure(num=<span class="number">1</span>, figsize=(<span class="number">8</span>,<span class="number">5</span>))</span><br><span class="line">plt.plot(x, y,)</span><br><span class="line"></span><br><span class="line">ax = plt.gca()</span><br><span class="line">ax.spines[<span class="string">'right'</span>].set_color(<span class="string">'none'</span>)</span><br><span class="line">ax.spines[<span class="string">'top'</span>].set_color(<span class="string">'none'</span>)</span><br><span class="line">ax.xaxis.set_ticks_position(<span class="string">'bottom'</span>)</span><br><span class="line">ax.yaxis.set_ticks_position(<span class="string">'left'</span>)</span><br><span class="line">ax.spines[<span class="string">'bottom'</span>].set_position((<span class="string">'data'</span>, <span class="number">0</span>))</span><br><span class="line">ax.spines[<span class="string">'left'</span>].set_position((<span class="string">'data'</span>, <span class="number">0</span>))</span><br><span class="line"></span><br><span class="line">x0 = <span class="number">1</span></span><br><span class="line">y0 = <span class="number">2</span>*x0 + <span class="number">1</span></span><br><span class="line"><span class="comment"># 指定点</span></span><br><span class="line">plt.scatter(x0, y0, s=<span class="number">50</span>, color=<span class="string">'b'</span>)</span><br><span class="line">plt.plot([x0, x0],[y0, <span class="number">0</span>], <span class="string">'k--'</span>, lw=<span class="number">2.5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># method1</span></span><br><span class="line">plt.annotate(<span class="string">r'$2x+1=%s$'</span>%y0, xy=(x0, y0), xycoords=<span class="string">'data'</span>, xytext=(+<span class="number">30</span>, -<span class="number">30</span>), textcoords=<span class="string">'offset points'</span>, fontsize=<span class="number">16</span>, </span><br><span class="line">             arrowprops=dict(arrowstyle=<span class="string">'-&gt;'</span>, connectionstyle=<span class="string">'arc3, rad=.2'</span>))</span><br><span class="line"><span class="comment"># method2</span></span><br><span class="line">plt.text(-<span class="number">3.7</span>, <span class="number">3</span>, <span class="string">r'$This\ is\ the\ some\ text.\ \mu\ \sigma_i\ \alpha_t$'</span>,</span><br><span class="line">        fontdict=&#123;<span class="string">'size'</span>:<span class="number">16</span>, <span class="string">'color'</span>:<span class="string">'r'</span>&#125;)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/output_10_0.png" alt="png"></p>
+<h2 id="tick_能见度">tick 能见度</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">x = np.linspace(-<span class="number">3</span>, <span class="number">3</span>, <span class="number">50</span>)</span><br><span class="line">y = <span class="number">0.1</span>*x</span><br><span class="line"></span><br><span class="line">plt.figure()</span><br><span class="line">plt.plot(x, y, linewidth=<span class="number">10</span>)</span><br><span class="line">plt.ylim(-<span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">ax = plt.gca()</span><br><span class="line">ax.spines[<span class="string">'right'</span>].set_color(<span class="string">'none'</span>)</span><br><span class="line">ax.spines[<span class="string">'top'</span>].set_color(<span class="string">'none'</span>)</span><br><span class="line">ax.xaxis.set_ticks_position(<span class="string">'bottom'</span>)</span><br><span class="line">ax.yaxis.set_ticks_position(<span class="string">'left'</span>)</span><br><span class="line">ax.spines[<span class="string">'bottom'</span>].set_position((<span class="string">'data'</span>, <span class="number">0</span>))</span><br><span class="line">ax.spines[<span class="string">'left'</span>].set_position((<span class="string">'data'</span>, <span class="number">0</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> label <span class="keyword">in</span> ax.get_xticklabels() + ax.get_yticklabels():</span><br><span class="line">    label.set_fontsize(<span class="number">12</span>)</span><br><span class="line">    label.set_bbox(dict(facecolor=<span class="string">'red'</span>, edgecolor=<span class="string">'None'</span>, alpha=<span class="number">0.7</span>))</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/output_12_0.png" alt="png"></p>
+<h2 id="散点图">散点图</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">n = <span class="number">1024</span></span><br><span class="line">X = np.random.normal(<span class="number">0</span>, <span class="number">1</span>, n)</span><br><span class="line">Y = np.random.normal(<span class="number">0</span>, <span class="number">1</span>, n)</span><br><span class="line">T = np.arctan2(Y, X) <span class="comment"># for color value</span></span><br><span class="line"></span><br><span class="line">plt.scatter(X, Y, s=<span class="number">75</span>, c=T, alpha=<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line">plt.xlim(-<span class="number">1.5</span>, <span class="number">1.5</span>)</span><br><span class="line">plt.ylim(-<span class="number">1.5</span>, <span class="number">1.5</span>)</span><br><span class="line"></span><br><span class="line">plt.xticks(())</span><br><span class="line">plt.yticks(())</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/output_14_0.png" alt="png"></p>
+<h2 id="柱状图">柱状图</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">n = <span class="number">12</span></span><br><span class="line">X = np.arange(n)</span><br><span class="line">Y1 = (<span class="number">1</span> - X/float(n)) * np.random.uniform(<span class="number">0.5</span>, <span class="number">1.0</span>, n)</span><br><span class="line">Y2 = (<span class="number">1</span> - X/float(n)) * np.random.uniform(<span class="number">0.5</span>, <span class="number">1.0</span>, n)</span><br><span class="line"></span><br><span class="line">plt.bar(X, +Y1, facecolor=<span class="string">'#9999ff'</span>, edgecolor=<span class="string">'white'</span>)</span><br><span class="line">plt.bar(X, -Y2, facecolor=<span class="string">'#ff9999'</span>, edgecolor=<span class="string">'white'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x, y <span class="keyword">in</span> zip(X, Y1):</span><br><span class="line">    <span class="comment"># ha: horizontal alignment</span></span><br><span class="line">    plt.text(x, y + <span class="number">0.05</span>, <span class="string">'%.2f'</span>% y, ha=<span class="string">'center'</span>, va=<span class="string">'bottom'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x, y <span class="keyword">in</span> zip(X, Y2):</span><br><span class="line">    plt.text(x, -y - <span class="number">0.05</span>, <span class="string">'-%.2f'</span>% y, ha=<span class="string">'center'</span>, va=<span class="string">'top'</span>)</span><br><span class="line">    </span><br><span class="line">plt.xlim(-<span class="number">.5</span>, n)</span><br><span class="line">plt.xticks(())</span><br><span class="line">plt.ylim(-<span class="number">1.25</span>, <span class="number">1.25</span>)</span><br><span class="line">plt.yticks(())</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/output_16_0.png" alt="png"></p>
+<h2 id="contours_等高线图">contours 等高线图</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x, y)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> (<span class="number">1</span> - x/<span class="number">2</span> + x**<span class="number">5</span> + y**<span class="number">3</span>) * np.exp(-x**<span class="number">2</span>-y**<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">n = <span class="number">256</span></span><br><span class="line">x = np.linspace(-<span class="number">3</span>, <span class="number">3</span>, n)</span><br><span class="line">y = np.linspace(-<span class="number">3</span>, <span class="number">3</span>, n)</span><br><span class="line"></span><br><span class="line">X, Y = np.meshgrid(x, y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 填充颜色</span></span><br><span class="line">plt.contourf(X, Y, f(X, Y), <span class="number">8</span>, alpha=<span class="number">0.75</span>, cmap=plt.cm.hot)</span><br><span class="line"></span><br><span class="line">C = plt.contour(X, Y, f(X, Y), <span class="number">8</span>, colors=<span class="string">'black'</span>)</span><br><span class="line"></span><br><span class="line">plt.clabel(C, inline=<span class="keyword">True</span>, fontsize=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">plt.xticks(())</span><br><span class="line">plt.yticks(())</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/output_18_0.png" alt="png"></p>
+<h2 id="image_图片">image 图片</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([<span class="number">0.313660827978</span>, <span class="number">0.365348418405</span>, <span class="number">0.423733120134</span>,</span><br><span class="line">              <span class="number">0.365348418405</span>, <span class="number">0.439599930621</span>, <span class="number">0.525083754405</span>,</span><br><span class="line">              <span class="number">0.423733120134</span>, <span class="number">0.525083754405</span>, <span class="number">0.651536351379</span>]).reshape(<span class="number">3</span>,<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">plt.imshow(a, interpolation=<span class="string">'nearest'</span>, cmap=<span class="string">'bone'</span>, origin=<span class="string">'lower'</span>)</span><br><span class="line">plt.colorbar(shrink=<span class="number">0.9</span>)</span><br><span class="line">plt.xticks(())</span><br><span class="line">plt.yticks(())</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/output_20_0.png" alt="png"></p>
+<h2 id="3D_数据">3D 数据</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mpl_toolkits.mplot3d <span class="keyword">import</span> Axes3D</span><br><span class="line"></span><br><span class="line">fig = plt.figure()</span><br><span class="line">ax = Axes3D(fig)</span><br><span class="line"></span><br><span class="line">X = np.arange(-<span class="number">4</span>, <span class="number">4</span>, <span class="number">0.25</span>)</span><br><span class="line">Y = np.arange(-<span class="number">4</span>, <span class="number">4</span>, <span class="number">0.25</span>)</span><br><span class="line">X, Y = np.meshgrid(X, Y)</span><br><span class="line">R = np.sqrt(X ** <span class="number">2</span> + Y ** <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">Z = np.sin(R)</span><br><span class="line"></span><br><span class="line">ax.plot_surface(X, Y, Z, rstride=<span class="number">1</span>, cstride=<span class="number">1</span>, cmap=plt.get_cmap(<span class="string">'rainbow'</span>))</span><br><span class="line">ax.contourf(X, Y, Z, zdir=<span class="string">'z'</span>, offset=-<span class="number">2</span>, cmap=<span class="string">'rainbow'</span>)</span><br><span class="line">ax.set_zlim(-<span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/output_22_0.png" alt="png"></p>
+<h2 id="subplot_多合一显示">subplot 多合一显示</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">plt.figure()</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line">plt.plot([<span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line">plt.plot([<span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">plt.plot([<span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">2</span>, <span class="number">2</span>, <span class="number">4</span>)</span><br><span class="line">plt.plot([<span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/output_24_0.png" alt="png"></p>
+<h2 id="图中图">图中图</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">fig = plt.figure()</span><br><span class="line">x = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>]</span><br><span class="line">y = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">6</span>]</span><br><span class="line"></span><br><span class="line">left, bottom, width, height = <span class="number">0.1</span>,<span class="number">0.1</span>,<span class="number">0.8</span>,<span class="number">0.8</span></span><br><span class="line">ax1 = fig.add_axes([left, bottom, width, height])</span><br><span class="line"></span><br><span class="line">ax1.plot(x, y, <span class="string">'r'</span>)</span><br><span class="line">ax1.set_xlabel(<span class="string">'x'</span>)</span><br><span class="line">ax1.set_ylabel(<span class="string">'y'</span>)</span><br><span class="line">ax1.set_title(<span class="string">'title'</span>)</span><br><span class="line"></span><br><span class="line">left, bottom, width, height = <span class="number">0.2</span>,<span class="number">0.6</span>,<span class="number">0.25</span>,<span class="number">0.25</span></span><br><span class="line">ax2 = fig.add_axes([left, bottom, width, height])</span><br><span class="line"></span><br><span class="line">ax2.plot(x, y, <span class="string">'b'</span>)</span><br><span class="line">ax2.set_xlabel(<span class="string">'x'</span>)</span><br><span class="line">ax2.set_ylabel(<span class="string">'y'</span>)</span><br><span class="line">ax2.set_title(<span class="string">'title inside 1'</span>)</span><br><span class="line"></span><br><span class="line">plt.axes([<span class="number">.6</span>, <span class="number">0.2</span>, <span class="number">0.25</span>, <span class="number">0.25</span>])</span><br><span class="line">plt.plot(y[::-<span class="number">1</span>], x, <span class="string">'g'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'x'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'y'</span>)</span><br><span class="line">plt.title(<span class="string">'title inside 2'</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/output_26_0.png" alt="png"></p>
+<h2 id="次坐标轴">次坐标轴</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">x = np.arange(<span class="number">0</span>, <span class="number">10</span>, <span class="number">0.1</span>)</span><br><span class="line">y1 = <span class="number">0.05</span> * x ** <span class="number">2</span></span><br><span class="line">y2 = -<span class="number">1</span> * y1</span><br><span class="line"></span><br><span class="line">fig, ax1 = plt.subplots()</span><br><span class="line">ax2 = ax1.twinx()</span><br><span class="line">ax1.plot(x, y1, <span class="string">'g-'</span>)</span><br><span class="line">ax2.plot(x, y2, <span class="string">'b--'</span>)</span><br><span class="line"></span><br><span class="line">ax1.set_xlabel(<span class="string">'X data'</span>)</span><br><span class="line">ax1.set_ylabel(<span class="string">'Y1'</span>, color=<span class="string">'g'</span>)</span><br><span class="line">ax2.set_ylabel(<span class="string">'Y2'</span>, color=<span class="string">'b'</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/output_28_0.png" alt="png"></p>
+<h2 id="animation_动画">animation 动画</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> animation</span><br><span class="line"></span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line"></span><br><span class="line">x = np.arange(<span class="number">0</span>, <span class="number">2</span> * np.pi, <span class="number">0.01</span>)</span><br><span class="line">line, = ax.plot(x, np.sin(x))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">animate</span><span class="params">(i)</span>:</span></span><br><span class="line">    line.set_ydata(np.sin(x + i/<span class="number">100</span>))</span><br><span class="line">    <span class="keyword">return</span> line,</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">init</span><span class="params">()</span>:</span></span><br><span class="line">    line.set_ydata(np.sin(x))</span><br><span class="line">    <span class="keyword">return</span> line,</span><br><span class="line"></span><br><span class="line">ani = animation.FuncAnimation(fig=fig, func=animate, frames=<span class="number">100</span>, init_func=init, interval=<span class="number">20</span>, blit=<span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/output_30_0.png" alt="png"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="cutoutsy WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpeg" alt="cutoutsy Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/matplotlib/" rel="tag"># matplotlib</a>
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/画图/" rel="tag"># 画图</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/30/两个图形算法题/" rel="next" title="两个图形算法题">
+                <i class="fa fa-chevron-left"></i> 两个图形算法题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7oxhal.com1.z0.glb.clouddn.com/cat_avatar.jpeg"
+               alt="cutoutsy" />
+          <p class="site-author-name" itemprop="name">cutoutsy</p>
+           
+              <p class="site-description motion-element" itemprop="description">Happy Code, Happy Life</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">65</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/cutoutsy" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/cutoutsy" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#figure_图像"><span class="nav-number">2.</span> <span class="nav-text">figure 图像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#坐标轴设置"><span class="nav-number">3.</span> <span class="nav-text">坐标轴设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Legend_图例"><span class="nav-number">4.</span> <span class="nav-text">Legend 图例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Annotation_标注"><span class="nav-number">5.</span> <span class="nav-text">Annotation 标注</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tick_能见度"><span class="nav-number">6.</span> <span class="nav-text">tick 能见度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#散点图"><span class="nav-number">7.</span> <span class="nav-text">散点图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#柱状图"><span class="nav-number">8.</span> <span class="nav-text">柱状图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#contours_等高线图"><span class="nav-number">9.</span> <span class="nav-text">contours 等高线图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#image_图片"><span class="nav-number">10.</span> <span class="nav-text">image 图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3D_数据"><span class="nav-number">11.</span> <span class="nav-text">3D 数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#subplot_多合一显示"><span class="nav-number">12.</span> <span class="nav-text">subplot 多合一显示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图中图"><span class="nav-number">13.</span> <span class="nav-text">图中图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#次坐标轴"><span class="nav-number">14.</span> <span class="nav-text">次坐标轴</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#animation_动画"><span class="nav-number">15.</span> <span class="nav-text">animation 动画</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cutoutsy</span>
+</div>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cutoutsy-blog.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cutoutsy.github.io/2018/01/13/matplotlib画图学习/';
+          this.page.identifier = '2018/01/13/matplotlib画图学习/';
+          this.page.title = 'matplotlib画图学习笔记';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cutoutsy-blog.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("txpmAniKv6Tutui9em19RNso-gzGzoHsz", "Bc1LOAB4q3R91COjQggBvOTB");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
