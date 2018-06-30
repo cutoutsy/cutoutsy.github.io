@@ -7,7 +7,7 @@
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -167,7 +167,7 @@
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
-  </script>
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
@@ -181,7 +181,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -474,7 +474,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 <li>移除序列s中任意一个右括号，保证操作之后s还是一个合法的括号序列。</li>
 </ol>
 <p>东东现在想知道使用上述的移除操作有多少种方案可以把序列s变为空。</p>
-<p>如果两个方案中有一次移除操作移除的是不同的右括号就认为是不同的方案。<br>例如: s = “()()()()()”，输出1，因为每次都只能选择被移除的左括号所相邻的右括号。<br>s = “(((())))”，输出24，第一次有4种情况，第二次有3种情况，… ，依次类推，4 <em> 3 </em> 2 * 1 = 24。<br><strong>输入描述：</strong><br>输入包括一行，一个合法的括号序列s，序列长度length(2 ≤ length ≤ 20)。</p>
+<p>如果两个方案中有一次移除操作移除的是不同的右括号就认为是不同的方案。<br>例如: s = “()()()()()”，输出1，因为每次都只能选择被移除的左括号所相邻的右括号。<br>s = “(((())))”，输出24，第一次有4种情况，第二次有3种情况，… ，依次类推，4 <em> 3 </em> 2 <em> 1 = 24。<br><em>*输入描述：</em></em><br>输入包括一行，一个合法的括号序列s，序列长度length(2 ≤ length ≤ 20)。</p>
 <p><strong>输出描述：</strong><br>输出一个整数，表示方案数。</p>
 <p><strong>示例：</strong><br>输入<br>(((())))<br>输出<br>24</p>
 <p><strong>解题思路：</strong><br>从右往左遍历，遇到左括号看左括号右边右括号数量与左括号数量的差，并将这些差乘起来，即为方案数。</p>
@@ -672,7 +672,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -694,7 +694,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -777,7 +777,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">39.1k</span>
+    <span title="Site words total count">39.3k</span>
   
 </div>
 
@@ -1010,6 +1010,26 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

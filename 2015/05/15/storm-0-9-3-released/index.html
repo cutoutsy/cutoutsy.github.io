@@ -7,7 +7,7 @@
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -167,7 +167,7 @@
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
-  </script>
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
@@ -181,7 +181,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -417,7 +417,7 @@
 <h2 id="Kafka整合"><a href="#Kafka整合" class="headerlink" title="Kafka整合"></a>Kafka整合</h2><p>Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本在Kafka整和带来大量的更新，包括可以往一台或者一个集群写入数据<br>现在Storm和Kafka整合使得读写都不将受到限制,Storm使用者可以把Kafka作为消息流的源头或者消息源的目的地。这样允许内在topology交流，topology链,将基本的spout、bolt和基本Trident数据流结合，甚至和任何外部支持从Kafka获取数据的系统整合.<br>更多关于Storm的Kafka整合的信息可以在<a href="https://github.com/apache/storm/blob/v0.9.3/external/storm-kafka/README.md" target="_blank" rel="noopener">storm-kafka project documentation</a>找到。<br><a id="more"></a></p>
 <h2 id="HDFS整合"><a href="#HDFS整合" class="headerlink" title="HDFS整合"></a>HDFS整合</h2><p>许多的流处理用HDFS来存储数据，以便离线分析处理。Apache Storm的HDFS整合包含几个bolt和Trident状态继承让storm开发者更容易的从任何topology向HDFS写入数据。<br>更多关于Storm的HDFS整合的信息可以在<a href="https://github.com/apache/storm/tree/v0.9.3/external/storm-hdfs" target="_blank" rel="noopener">storm-hdfs project documentation</a>找到。</p>
 <h2 id="HBase整合"><a href="#HBase整合" class="headerlink" title="HBase整合"></a>HBase整合</h2><p>Apacge Storm的HBase整合包含一系列的组件，允许topologies实时向HBase写入和查询数据。许多组织使用HBase作为他们大数据批处理、交互、实时工作流策略的一部分。Storm HBase的整合允许使用者利用数据作为流的查询，也作为流计算结果的目的地。<br>更多关于Storm的HBase整合的信息可以在<a href="https://github.com/apache/storm/tree/v0.9.3/external/storm-hbase" target="_blank" rel="noopener">storm-hbase project documentation</a>找到。</p>
-<h2 id="减少依赖冲突"><a href="#减少依赖冲突" class="headerlink" title="减少依赖冲突"></a>减少依赖冲突</h2><p>在Storm以前的版本中，很常见用户自己拓扑的依赖和Storm自己的依赖产生冲突。在Storm 0.9.3中几个常见的包冲突已经迁移（隐藏）来避免这种情况。开发者可以更自由的使用Storm打包的版本，或者自己提供的版本。<br>下面的表格列举了依赖包的迁移：<br>|依赖|原来的包|Storm包<br>|–|–|–|<br>|Apache Thrift| org.apache.thrift|org.apache.thrift7|<br>|Netty|org.jboss.netty|org.apache.storm.netty|<br>|Google Guava|org.google.common|org.apache.storm.guava|<br>|            |org.google.thirfparty|org.apache.storm.guava.thirdparty|<br>|Apache HTTPClient|org.apache.http|org.apache.storm.http|<br>|Apache Zookeeper|org.apache.zookeeper|org.apache.storm.zookeeper|<br>|Apache Curator|org.apache.curator|org.apache.storm.curator|</p>
+<h2 id="减少依赖冲突"><a href="#减少依赖冲突" class="headerlink" title="减少依赖冲突"></a>减少依赖冲突</h2><p>在Storm以前的版本中，很常见用户自己拓扑的依赖和Storm自己的依赖产生冲突。在Storm 0.9.3中几个常见的包冲突已经迁移（隐藏）来避免这种情况。开发者可以更自由的使用Storm打包的版本，或者自己提供的版本。<br>下面的表格列举了依赖包的迁移：<br>|依赖|原来的包|Storm包<br>|—|—|—|<br>|Apache Thrift| org.apache.thrift|org.apache.thrift7|<br>|Netty|org.jboss.netty|org.apache.storm.netty|<br>|Google Guava|org.google.common|org.apache.storm.guava|<br>|            |org.google.thirfparty|org.apache.storm.guava.thirdparty|<br>|Apache HTTPClient|org.apache.http|org.apache.storm.http|<br>|Apache Zookeeper|org.apache.zookeeper|org.apache.storm.zookeeper|<br>|Apache Curator|org.apache.curator|org.apache.storm.curator|</p>
 <h2 id="多语言改善"><a href="#多语言改善" class="headerlink" title="多语言改善"></a>多语言改善</h2><p>Apache Storm 0.9.3增加了Node.js,允许开发者可以用JavaScript来编写spouts和bolts。<br>除了增加了Node.js的实现，这多语言协议也从实质上得到改善，更加稳健和错误处理能力。<br>所以，这多语言API不是向下兼容的。有多语言拓扑的使用者在升级之前看看Python，Ruby,和JavaScript的多语言例子来判断升级的影响。</p>
 <h2 id="完成的更新"><a href="#完成的更新" class="headerlink" title="完成的更新"></a>完成的更新</h2><blockquote>
 <ul>
@@ -704,7 +704,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -726,7 +726,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -809,7 +809,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">39.1k</span>
+    <span title="Site words total count">39.3k</span>
   
 </div>
 
@@ -1042,6 +1042,26 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

@@ -7,7 +7,7 @@
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -172,7 +172,7 @@
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
-  </script>
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
@@ -186,7 +186,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -381,7 +381,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,852
+                  3,834
                 </span>
               
 
@@ -438,7 +438,8 @@
 <p>步骤 5:全部L个512位数据块处理完毕后，输出160位消息摘要。</p>
 <h4 id="3-3-SHA-1碰撞"><a href="#3-3-SHA-1碰撞" class="headerlink" title="3.3 SHA-1碰撞"></a>3.3 SHA-1碰撞</h4><p>1990 年 MD4 算法提出，但是很快发现了严重的安全问题，在1992年被MD5算法取代，MD5算法在之后的十几年内被软件行业广泛使用，但之后也被破解。随后开始使用SHA-1。</p>
 <p>关于寻找哈希函数碰撞的难度和一般方法，SHA-1输出长度为160bit。如果SHA-1本身没有漏洞，而攻击者想要找到一组碰撞的话，最显然的方法是选取$2^{160}$ 组不同的数据，依次计算它们的哈希结果。根据著名的抽屉原理，必然会出现一组数据，使得其哈希结果相同。 此攻击方法需要调用$2^{160}$次 SHA-1，即计算量级大约为$2^{160}$。这样的计算代价是巨大的，实际操作根本不可能。</p>
-<p>上面的方法可以通过放宽条件，用概率的方法寻找，能降低一定的计算量。 一个屋子里必须有366个人(一年有365天，不考虑闰年的情况)才能保证有两个人的生日是同一天。<br>但假设现在有23个人，根据概率论:第2个人和第1个人生日不同概率为1-$\frac{1}{365}$，第3个人和前两个人生日不同的概率为$(1−\frac{1}{365})(1−\frac{1}{364})$ ，第4个人和前三个人生日都不相同的概率为$(1−\frac{1}{365})(1−\frac{1}{364})(1−\frac{1}{363})$，依次类推，第23个人和前22个人生日都不相同的概率为$$\prod_{i=1}^{23}(1-\frac{1}{365-i+1})$$，上述事件同时发生时，23个人生日才会各不相同。因此23个人中存在2个人生日相同的概率为:<br>$$1−\frac{365!}{(365-23)!365^{23}} ≈ 50\% $$。所以在寻找哈希碰撞时，选择大约$\sqrt{2^{160}}=2^{80}$组不同的数据并计算哈希结果，则有50%的概率有2个哈希结果相同。此方法的数量级远优于前一种方法，但是引入的代价是成功率变为50%。密码学上认为，如果能找到一种方法，能在计算时间小于$2^{80}的情况下，有超过生日攻击概率下找到一组碰撞，则认为这个哈希函数就不安全了。</p>
+<p>上面的方法可以通过放宽条件，用概率的方法寻找，能降低一定的计算量。 一个屋子里必须有366个人(一年有365天，不考虑闰年的情况)才能保证有两个人的生日是同一天。<br>但假设现在有23个人，根据概率论:第2个人和第1个人生日不同概率为1-$\frac{1}{365}$，第3个人和前两个人生日不同的概率为$(1−\frac{1}{365})(1−\frac{1}{364})$ ，第4个人和前三个人生日都不相同的概率为$(1−\frac{1}{365})(1−\frac{1}{364})(1−\frac{1}{363})$，依次类推，第23个人和前22个人生日都不相同的概率为<script type="math/tex">\prod_{i=1}^{23}(1-\frac{1}{365-i+1})</script>，上述事件同时发生时，23个人生日才会各不相同。因此23个人中存在2个人生日相同的概率为:</p>
+<p><script type="math/tex">1−\frac{365!}{(365-23)!365^{23}} ≈ 50\%</script>。所以在寻找哈希碰撞时，选择大约$\sqrt{2^{160}}=2^{80}$组不同的数据并计算哈希结果，则有50%的概率有2个哈希结果相同。此方法的数量级远优于前一种方法，但是引入的代价是成功率变为50%。密码学上认为，如果能找到一种方法，能在计算时间小于$2^{80}的情况下，有超过生日攻击概率下找到一组碰撞，则认为这个哈希函数就不安全了。</p>
 <p>SHA-1自提出后，学者们一直认为它是安全的，并没有找到计算时间小于$2^{80}$攻击方法。 我国著名密码学家王小云教授所在的团队提出了一种寻找SHA-1碰撞的，相对快速的攻击方法。此攻击方法的计算量级为269，这标志着SHA-1存在漏洞。NIST不得不选择新的哈希函数，因此才有了SHA-256、SHA-384、SHA-512等。</p>
 <p>王小云教授的开创性工作让进一步破解SHA-1成为了可能。然而，王小云教授的方法 仅可破解SHA-1的广义抗碰撞性，且计算时间相对较长。在计算发杂度上也很高，具体操 作上可行度并不是很高。这表明SHA-1在一段时间内还是可以使用的。后来Stevens提出了 一种攻击方法，可以在$2^{61}$计算量级内找到一组哈希碰撞。</p>
 <p>上述方法都是使用纯CPU计算的方法。Stevens等人在2016年提出了新的攻击方法， 把显卡(即GPU)引入破解工作，使用大规模并行处理，进行并行计算，则计算量级会进一步降低到$2^{57.5}$。这样使得具体的破解成为了可能，本次Google的破解工作也使用了类似的方法。</p>
@@ -629,7 +630,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -651,7 +652,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -734,7 +735,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">39.1k</span>
+    <span title="Site words total count">39.3k</span>
   
 </div>
 
@@ -967,6 +968,26 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

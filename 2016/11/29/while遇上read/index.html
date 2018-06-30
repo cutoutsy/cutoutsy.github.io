@@ -7,7 +7,7 @@
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -169,7 +169,7 @@
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
-  </script>
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
@@ -183,7 +183,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -418,7 +418,7 @@
         <p>前不久在公司修改一个脚本的时候，把两个值写入到一个文件中，然后在另一个shell读取这个文件然后赋值给两个变量，shell脚本大概是这样写的：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"></span><br><span class="line">count=1</span><br><span class="line">cat ./test.data | while read line</span><br><span class="line">do</span><br><span class="line">        if [ $count -eq 1 ]</span><br><span class="line">        then</span><br><span class="line">                s1=$line</span><br><span class="line">                echo $s1</span><br><span class="line">        else</span><br><span class="line">                s2=$line</span><br><span class="line">                echo $s2</span><br><span class="line">        fi</span><br><span class="line">        count=$[ $count+1 ]</span><br><span class="line">done</span><br><span class="line">echo $s1</span><br><span class="line">echo $s2</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
 <p>test.data里面是两行值，比如：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">aaa</span><br><span class="line">bbb</span><br></pre></td></tr></table></figure></p>
-<p>当我在后面的脚本中使用这两个值时，却发现没有值。<br>通过echo我们可以看到在while循环里面，\$s1和$s2是有值的，只是在循环外面没有值。</p>
+<p>当我在后面的脚本中使用这两个值时，却发现没有值。<br>通过echo我们可以看到在while循环里面，$s1和$s2是有值的，只是在循环外面没有值。</p>
 <p>最初我认为是变量作用范围的问题，所以我们先来看看linux shell的变量作用域，shell脚本变量主要分为环境变量和用户变量以及反引号赋值的变量。shell维护着一组环境变量，用来记录特定的系统信息。比如系统的名称，登陆到系统上的用户的名称，用户的系统ID等。除了环境变量，shell脚本还允许在脚本中定义和使用自己的变量。定义变量允许临时存储数据并在整个脚本中使用。在脚本的整个生命周期里，shell脚本中定义的变量会一直保持它们的值，直到脚本完成时删除掉。也可以通过反引号把命令的输出赋值给变量。比如:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test=`date`</span><br></pre></td></tr></table></figure></p>
 <p>linux shell也是有函数的概念的，但是在函数里面定义的变量并不像C语言里面似的是局部变量，在里面同样能改变外部变量的值，里面的变量也能在外面输出。比如下面这个脚本：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/sh</span><br><span class="line"></span><br><span class="line">var1="hello"</span><br><span class="line">myfunc() &#123;</span><br><span class="line">        var1="one two three"</span><br><span class="line">        for x in $var1</span><br><span class="line">        do</span><br><span class="line">                echo $x &gt; /dev/null</span><br><span class="line">        done</span><br><span class="line">&#125;</span><br><span class="line">myfunc</span><br><span class="line">echo $var1 $x</span><br></pre></td></tr></table></figure></p>
 <p>输出：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">one two three three</span><br></pre></td></tr></table></figure></p>
@@ -429,7 +429,7 @@
 <p><img src="http://7oxhal.com1.z0.glb.clouddn.com/shell.PNG" alt="bash-shell"></p>
 <p>这个时候可以发现，管道两边是子进程，也就是子shell，这应该是因为管道两边的命令是同时运行的。所以在里面的赋值，在父shell里面是不存在的，即使export也不起作用。稍稍修改一下前面的脚本就可以正确运行了，修改后的脚本：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"></span><br><span class="line">count=1</span><br><span class="line">while read line</span><br><span class="line">do</span><br><span class="line">        if [ $count -eq 1 ]</span><br><span class="line">        then</span><br><span class="line">                s1=$line</span><br><span class="line">                echo $s1</span><br><span class="line">        else</span><br><span class="line">                s2=$line</span><br><span class="line">                echo $s2</span><br><span class="line">        fi</span><br><span class="line">        count=$[ $count+1 ]</span><br><span class="line">done &lt; test.data</span><br><span class="line">echo $s1</span><br><span class="line">echo $s2</span><br></pre></td></tr></table></figure></p>
 <p>输出<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">aaa</span><br><span class="line">bbb</span><br><span class="line">aaa</span><br><span class="line">bbb</span><br></pre></td></tr></table></figure></p>
-<p>这种方式并不会开启子shell，所以变量\$s1和$s2在while外面是存在的。</p>
+<p>这种方式并不会开启子shell，所以变量$s1和$s2在while外面是存在的。</p>
 <p>通过这个问题我们来深入了解一下变量在父进程、子进程中作用域的问题以及export、source的使用。</p>
 <ol>
 <li>当打开一个子shell时，父shell里面中的系统环境变量会被复制到子shell中（用export定义的变量才是系统环境变量）；</li>
@@ -611,7 +611,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -633,7 +633,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -700,7 +700,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">39.1k</span>
+    <span title="Site words total count">39.3k</span>
   
 </div>
 
@@ -933,6 +933,26 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
