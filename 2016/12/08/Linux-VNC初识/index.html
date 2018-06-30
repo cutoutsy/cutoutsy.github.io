@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
@@ -10,6 +10,10 @@
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
 
 
 
@@ -18,6 +22,7 @@
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
+
 
 
 
@@ -71,7 +76,22 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Linux,VNC," />
@@ -83,21 +103,16 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon_1.ico?v=5.1.1" />
 
 
-
-
-
-
-<meta name="description" content="最近在公司做安装测试，有一种方式是GUI安装，不过我们的Server都是类*unix无界面的，所以就需要用到VNC来进行界面的安装，本来服务器上都安装好了，直接使用就可以了，不过在使用的过程中遇到了问题，于是就了解了一下VNC，在此做个记录。
-我们一般连接服务器是使用SSH，进行的是文字界面的连接。而VNC是图形界面的连接，要想达到这一目的，首先需要在服务器上安装VNC Server，以我使用的C">
+<meta name="description" content="最近在公司做安装测试，有一种方式是GUI安装，不过我们的Server都是类*unix无界面的，所以就需要用到VNC来进行界面的安装，本来服务器上都安装好了，直接使用就可以了，不过在使用的过程中遇到了问题，于是就了解了一下VNC，在此做个记录。 我们一般连接服务器是使用SSH，进行的是文字界面的连接。而VNC是图形界面的连接，要想达到这一目的，首先需要在服务器上安装VNC Server，以我使用的C">
+<meta name="keywords" content="Linux,VNC">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux:VNC初识">
 <meta property="og:url" content="http://cutoutsy.github.io/2016/12/08/Linux-VNC初识/index.html">
 <meta property="og:site_name" content="cutoutsy">
-<meta property="og:description" content="最近在公司做安装测试，有一种方式是GUI安装，不过我们的Server都是类*unix无界面的，所以就需要用到VNC来进行界面的安装，本来服务器上都安装好了，直接使用就可以了，不过在使用的过程中遇到了问题，于是就了解了一下VNC，在此做个记录。
-我们一般连接服务器是使用SSH，进行的是文字界面的连接。而VNC是图形界面的连接，要想达到这一目的，首先需要在服务器上安装VNC Server，以我使用的C">
+<meta property="og:description" content="最近在公司做安装测试，有一种方式是GUI安装，不过我们的Server都是类*unix无界面的，所以就需要用到VNC来进行界面的安装，本来服务器上都安装好了，直接使用就可以了，不过在使用的过程中遇到了问题，于是就了解了一下VNC，在此做个记录。 我们一般连接服务器是使用SSH，进行的是文字界面的连接。而VNC是图形界面的连接，要想达到这一目的，首先需要在服务器上安装VNC Server，以我使用的C">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/vncserver_start.PNG">
 <meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/tightVNC_client.PNG">
 <meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/connect_success.PNG">
@@ -105,8 +120,8 @@
 <meta property="og:updated_time" content="2016-12-08T00:38:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux:VNC初识">
-<meta name="twitter:description" content="最近在公司做安装测试，有一种方式是GUI安装，不过我们的Server都是类*unix无界面的，所以就需要用到VNC来进行界面的安装，本来服务器上都安装好了，直接使用就可以了，不过在使用的过程中遇到了问题，于是就了解了一下VNC，在此做个记录。
-我们一般连接服务器是使用SSH，进行的是文字界面的连接。而VNC是图形界面的连接，要想达到这一目的，首先需要在服务器上安装VNC Server，以我使用的C">
+<meta name="twitter:description" content="最近在公司做安装测试，有一种方式是GUI安装，不过我们的Server都是类*unix无界面的，所以就需要用到VNC来进行界面的安装，本来服务器上都安装好了，直接使用就可以了，不过在使用的过程中遇到了问题，于是就了解了一下VNC，在此做个记录。 我们一般连接服务器是使用SSH，进行的是文字界面的连接。而VNC是图形界面的连接，要想达到这一目的，首先需要在服务器上安装VNC Server，以我使用的C">
+<meta name="twitter:image" content="http://7oxhal.com1.z0.glb.clouddn.com/vncserver_start.PNG">
 
 
 
@@ -115,9 +130,11 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -141,10 +158,6 @@
 
 
   <title>Linux:VNC初识 | cutoutsy</title>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
   
 
 
@@ -164,19 +177,16 @@
 
 
 
+</head>
 
-
-
-
-
-
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -192,7 +202,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">Happy Code, Happy Life</p>
+        <h1 class="site-subtitle" itemprop="description">Happy Code, Happy Life</h1>
       
   </div>
 
@@ -222,8 +232,28 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
+          <a href="/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -233,31 +263,11 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
           </a>
         </li>
       
@@ -289,7 +299,11 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cutoutsy.github.io/2016/12/08/Linux-VNC初识/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -307,7 +321,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Linux:VNC初识</h1>
+          <h2 class="post-title" itemprop="name headline">Linux:VNC初识</h2>
         
 
         <div class="post-meta">
@@ -348,20 +362,45 @@
 
           
           
-             <span id="/2016/12/08/Linux-VNC初识/" class="leancloud_visitors" data-flag-title="Linux:VNC初识">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  812
+                </span>
+              
 
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
           
 
           
@@ -370,6 +409,9 @@
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -379,7 +421,7 @@
         <p>最近在公司做安装测试，有一种方式是GUI安装，不过我们的Server都是类*unix无界面的，所以就需要用到VNC来进行界面的安装，本来服务器上都安装好了，直接使用就可以了，不过在使用的过程中遇到了问题，于是就了解了一下VNC，在此做个记录。</p>
 <p>我们一般连接服务器是使用SSH，进行的是文字界面的连接。而VNC是图形界面的连接，要想达到这一目的，首先需要在服务器上安装VNC Server，以我使用的Centos 7.2为例，只需执行：</p>
 <a id="more"></a>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install tigervnc-server</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install tigervnc-server</span><br></pre></td></tr></table></figure>
 <p>安装就ok了。VNC Server会在服务器端监听一个端口，一般是在5901~5910之间，当用户端启动TightVNC Viewer连接到服务器开放的端口后，VNC Server将一堆预定设定好的X client透过这个端口发送到用户端上，最终就能在用户端显示服务器的图形界面了。</p>
 <p>VNC Server一般不需要长期开启（像sshd似的），一般都是独立提供给一个用户来连接的，当你要使用VNC时，在连接到服务器上去，启动VNC server，手动启动，使用完毕后，再将VNC Server关闭即可。</p>
 <p>下面看一下具体的操作：<br>在服务器上开启vncserver<br><img src="http://7oxhal.com1.z0.glb.clouddn.com/vncserver_start.PNG" alt="vncserver_start"><br>我们将VNC Server的端口开在5902端口，要注意输入的密码至少需要6个字符。生成的密码会放在~/.vnc/passwd下，如果已经存在，则不会存在输入密码的界面。如果要修改密码的话直接使用vncpasswd就可以了。</p>
@@ -387,12 +429,12 @@
 <p><img src="http://7oxhal.com1.z0.glb.clouddn.com/tightVNC_client.PNG" alt="tightvnc_client"></p>
 <p>输入服务器的地址（IP或者域名）,然后输入开启的端口，点击connect.输入你刚才设置的密码，就可以得到如下的界面：</p>
 <p><img src="http://7oxhal.com1.z0.glb.clouddn.com/connect_success.PNG" alt="connect_success"></p>
-<p>在server上<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setenv DISPLAY hostname/ip:2 &#25110;&#32773;&#10;export DISPLAY=hostname/ip:2</span><br></pre></td></tr></table></figure></p>
+<p>在server上<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setenv DISPLAY hostname/ip:2 或者</span><br><span class="line">export DISPLAY=hostname/ip:2</span><br></pre></td></tr></table></figure></p>
 <p>然后在server打开gedit，就可以得到gedit的编辑界面：</p>
 <p><img src="http://7oxhal.com1.z0.glb.clouddn.com/vnc_gedit.PNG" alt="vnc_gedit"></p>
 <p>当然你也可以打开其他一些需要界面的程序。</p>
 <p>除此之外，vnc还可以这样使用，比如下面这种场景：<br>服务器A安装了VNC Server，服务器B没有安装VNC Server，但是服务器A，B互相可以ssh无密码登陆，这时如果我们想在服务器B上运行带界面的程序，然后通过TightVNC Viewer显示出来。</p>
-<p>我们可以在服务器B上执行同样的命令：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setenv DISPLAY server A:2 &#25110;&#32773;&#10;export DISPLAY=server A:2</span><br></pre></td></tr></table></figure></p>
+<p>我们可以在服务器B上执行同样的命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setenv DISPLAY server A:2 或者</span><br><span class="line">export DISPLAY=server A:2</span><br></pre></td></tr></table></figure></p>
 <p>然后用TightVNC Viewer连接服务器A及相应端口，在服务器B上执行需要界面的程序，在TightVNC Viewer上就可以显示出来。</p>
 <p>下面说下我在使用时遇到的问题，我使用的场景是上面这种，当我执行需要界面的程序是，报错如下：<br>Xlib: connection to “tzedek:2.0” refused by server<br>Xlib: No protocol specified</p>
 <p>(gedit:12646): Gtk-WARNING **: cannot open display:</p>
@@ -401,48 +443,62 @@
 
       
     </div>
+    
+    
+    
 
-    <div>
-      
-        
+    
 
-      
-    </div>
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
 
-    <div>
-      
-        
-  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-    <div>您的支持将鼓励我继续创作！</div>
-    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-      <span>赏</span>
-    </button>
-    <div id="QR" style="display: none;">
-      
-        <div id="wechat" style="display: inline-block">
-          <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="cutoutsy WeChat Pay"/>
-          <p>微信打赏</p>
-        </div>
-      
-      
-        <div id="alipay" style="display: inline-block">
-          <img id="alipay_qr" src="/images/alipay.jpeg" alt="cutoutsy Alipay"/>
-          <p>支付宝打赏</p>
-        </div>
-      
-    </div>
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="cutoutsy 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpeg" alt="cutoutsy 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
   </div>
+</div>
 
+      </div>
+    
 
-      
-    </div>
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    cutoutsy
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cutoutsy.github.io/2016/12/08/Linux-VNC初识/" title="Linux:VNC初识">http://cutoutsy.github.io/2016/12/08/Linux-VNC初识/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
 
-    <div>
-      
-        
-
-      
-    </div>
+      </div>
+    
 
     <footer class="post-footer">
       
@@ -456,7 +512,7 @@
       
 
       
-        
+      
       
 
       
@@ -484,6 +540,10 @@
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -499,16 +559,19 @@
 
 
           
-  <div class="comments" id="comments">
-    
+
+  
+    <div class="comments" id="comments">
       <div id="disqus_thread">
         <noscript>
           Please enable JavaScript to view the
           <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
         </noscript>
       </div>
-    
-  </div>
+    </div>
+
+  
+
 
 
         </div>
@@ -524,92 +587,91 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="http://7oxhal.com1.z0.glb.clouddn.com/cat_avatar.jpeg"
-               alt="cutoutsy" />
-          <p class="site-author-name" itemprop="name">cutoutsy</p>
-           
-              <p class="site-description motion-element" itemprop="description">Happy Code, Happy Life</p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">31</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image"
+                src="http://7oxhal.com1.z0.glb.clouddn.com/cat_avatar.jpeg"
+                alt="cutoutsy" />
             
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">4</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
+              <p class="site-author-name" itemprop="name">cutoutsy</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
 
-          
+          <nav class="site-state motion-element">
+
             
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">67</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/cutoutsy" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
-              </span>
+              </div>
             
-              <span class="links-of-author-item">
-                <a href="http://www.zhihu.com/people/cutoutsy" target="_blank" title="知乎">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  知乎
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
                 </a>
-              </span>
+              </div>
             
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/cutoutsy" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.zhihu.com/people/cutoutsy" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-globe"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -626,15 +688,35 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2015 - 
-  <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">cutoutsy</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">39.1k</span>
+  
 </div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
 
 
 
@@ -644,20 +726,26 @@
 
   
     <span class="site-uv">
-      访客数
+      <i class="fa fa-user"></i>
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      人次
+      次
     </span>
   
 
   
     <span class="site-pv">
-      总访问量
+      <i class="fa fa-eye"></i>
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
       次
     </span>
   
 </div>
+
+
+
+
+
+
 
 
         
@@ -669,6 +757,8 @@
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -692,8 +782,6 @@
   
 
 
-  
-
 
 
 
@@ -705,56 +793,65 @@
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-  
-  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
-
-
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
 
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -798,16 +895,10 @@
 
 
 
-  
 
 
 
 
-
-
-
-
-  
 
 
 
@@ -815,116 +906,37 @@
 
   
 
+
+
+
+
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("txpmAniKv6Tutui9em19RNso-gzGzoHsz", "Bc1LOAB4q3R91COjQggBvOTB");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
 
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
+  
 
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
     }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
     }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
 
 
   
+  
 
   
+  
+
 
   
 

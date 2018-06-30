@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
@@ -10,6 +10,10 @@
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
 
 
 
@@ -18,6 +22,7 @@
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
+
 
 
 
@@ -71,66 +76,49 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Google面试题,俄罗斯套娃,最长递增子序列," />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
 
 
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
 
 
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
 
 
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon_1.ico?v=5.1.1" />
-
-
-
-
-
-
-<meta name="description" content="MathJax.Hub.Config({
-tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)&apos;]]}
-});
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
 
 
 
 
 
-写在前面本篇文章源于牛客网在9月13号晚上左神（左程云）的直播内容，在这对里面的俄罗斯套娃信封问题做一个课后总结，也对这个思路及代码做一个梳理。
-题目题目在leetcode354上也有描述，也是Google面试题。下面我进行中文的描述：
-见">
+  <meta name="keywords" content="俄罗斯套娃,最长递增子序列,Google面试题," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="MathJax.Hub.Config({ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)&apos;]]} });      写在前面本篇文章源于牛客网在9月13号晚上左神（左程云）的直播内容，在这对里面的俄罗斯套娃信封问题做一个课后总结，也对这个思路及代码做一个梳理。 题目题目在leetcode354上也有描述，也是Google面试题。下面我进行中文的描述：">
+<meta name="keywords" content="俄罗斯套娃,最长递增子序列,Google面试题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="俄罗斯套娃信封问题">
 <meta property="og:url" content="http://cutoutsy.github.io/2017/09/15/俄罗斯套娃信封问题/index.html">
 <meta property="og:site_name" content="cutoutsy">
-<meta property="og:description" content="MathJax.Hub.Config({
-tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)&apos;]]}
-});
-
-
-
-
-
-写在前面本篇文章源于牛客网在9月13号晚上左神（左程云）的直播内容，在这对里面的俄罗斯套娃信封问题做一个课后总结，也对这个思路及代码做一个梳理。
-题目题目在leetcode354上也有描述，也是Google面试题。下面我进行中文的描述：
-见">
+<meta property="og:description" content="MathJax.Hub.Config({ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)&apos;]]} });      写在前面本篇文章源于牛客网在9月13号晚上左神（左程云）的直播内容，在这对里面的俄罗斯套娃信封问题做一个课后总结，也对这个思路及代码做一个梳理。 题目题目在leetcode354上也有描述，也是Google面试题。下面我进行中文的描述：">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/blog_russian_doll_envelopes_1.jpg">
 <meta property="og:updated_time" content="2017-09-15T04:28:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="俄罗斯套娃信封问题">
-<meta name="twitter:description" content="MathJax.Hub.Config({
-tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)&apos;]]}
-});
-
-
-
-
-
-写在前面本篇文章源于牛客网在9月13号晚上左神（左程云）的直播内容，在这对里面的俄罗斯套娃信封问题做一个课后总结，也对这个思路及代码做一个梳理。
-题目题目在leetcode354上也有描述，也是Google面试题。下面我进行中文的描述：
-见">
+<meta name="twitter:description" content="MathJax.Hub.Config({ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)&apos;]]} });      写在前面本篇文章源于牛客网在9月13号晚上左神（左程云）的直播内容，在这对里面的俄罗斯套娃信封问题做一个课后总结，也对这个思路及代码做一个梳理。 题目题目在leetcode354上也有描述，也是Google面试题。下面我进行中文的描述：">
+<meta name="twitter:image" content="http://7oxhal.com1.z0.glb.clouddn.com/blog_russian_doll_envelopes_1.jpg">
 
 
 
@@ -139,9 +127,11 @@ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -165,10 +155,6 @@ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)
 
 
   <title>俄罗斯套娃信封问题 | cutoutsy</title>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
   
 
 
@@ -188,19 +174,16 @@ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)
 
 
 
+</head>
 
-
-
-
-
-
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -216,7 +199,7 @@ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)
       </a>
     </div>
       
-        <p class="site-subtitle">Happy Code, Happy Life</p>
+        <h1 class="site-subtitle" itemprop="description">Happy Code, Happy Life</h1>
       
   </div>
 
@@ -246,8 +229,28 @@ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
+          <a href="/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -257,31 +260,11 @@ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
           </a>
         </li>
       
@@ -313,7 +296,11 @@ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cutoutsy.github.io/2017/09/15/俄罗斯套娃信封问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -331,7 +318,7 @@ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)
 
         
         
-          <h1 class="post-title" itemprop="name headline">俄罗斯套娃信封问题</h1>
+          <h2 class="post-title" itemprop="name headline">俄罗斯套娃信封问题</h2>
         
 
         <div class="post-meta">
@@ -394,20 +381,45 @@ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)
 
           
           
-             <span id="/2017/09/15/俄罗斯套娃信封问题/" class="leancloud_visitors" data-flag-title="俄罗斯套娃信封问题">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,213
+                </span>
+              
 
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
           
 
           
@@ -416,6 +428,9 @@ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -431,21 +446,21 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
-<h3 id="写在前面">写在前面</h3><p>本篇文章源于牛客网在9月13号晚上左神（左程云）的直播内容，在这对里面的俄罗斯套娃信封问题做一个课后总结，也对这个思路及代码做一个梳理。</p>
-<h3 id="题目">题目</h3><p>题目在<a href="https://leetcode.com/problems/russian-doll-envelopes/description/" target="_blank" rel="external">leetcode354</a>上也有描述，也是Google面试题。下面我进行中文的描述：</p>
+<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>本篇文章源于牛客网在9月13号晚上左神（左程云）的直播内容，在这对里面的俄罗斯套娃信封问题做一个课后总结，也对这个思路及代码做一个梳理。</p>
+<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>题目在<a href="https://leetcode.com/problems/russian-doll-envelopes/description/" target="_blank" rel="noopener">leetcode354</a>上也有描述，也是Google面试题。下面我进行中文的描述：</p>
 <p>见过俄罗斯套娃吗？如图所示，大的娃娃可以套在小的外面，这样就可以把多个娃娃套在一起。</p>
 <p><img src="http://7oxhal.com1.z0.glb.clouddn.com/blog_russian_doll_envelopes_1.jpg" alt="俄罗斯套娃"><br><a id="more"></a><br>现在有很多信封，每个信封有宽度和高度[w,h]，只有宽度和高度都比其他信封大的时候才能够套在别的信封的外面。那么最多多少个信封可以像俄罗斯套娃那样套在一起？</p>
-<h4 id="例子">例子</h4><p>给你信封<br>envelopes = [[5, 4], [6, 4], [6, 7], [2, 3]],<br>则最多可以向俄罗斯套娃那样套在一起的信封数为3。([2, 3] =&gt; [5, 4] =&gt; [6, 7]).</p>
-<h3 id="算法分析">算法分析</h3><p>首先我们从两种情况来讨论这个问题:</p>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><p>给你信封<br>envelopes = [[5, 4], [6, 4], [6, 7], [2, 3]],<br>则最多可以向俄罗斯套娃那样套在一起的信封数为3。([2, 3] =&gt; [5, 4] =&gt; [6, 7]).</p>
+<h3 id="算法分析"><a href="#算法分析" class="headerlink" title="算法分析"></a>算法分析</h3><p>首先我们从两种情况来讨论这个问题:</p>
 <blockquote>
 <ul>
 <li>w无重复值（即信封的宽度每个信封都不一样）</li>
 <li>w可以重复（即信封的宽度存在一样的，题目就是这种情况）</li>
 </ul>
 </blockquote>
-<h4 id="针对情况I">针对情况I</h4><p>当每个信封的宽度和高度不一样时，我们可以对信封按照宽度从小到大进行排序，比如针对信封[[3,2],[2, 4],[4,3],[5, 6],[6,5]排序后变为<br>w: 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; 6<br>h: 4 -&gt; 2 -&gt; 3 -&gt; 6 -&gt; 5</p>
-<p>此时，因为信封的宽度w已经是从小到大排列了，要想信封可以套，这要求关于信封高度h的数组[4, 2, 3, 6, 5]是的子序列是递增的，且要求是最长的（题目要求的是最多的信封），所以可以转化为另一个问题：给定数组，求它的最长递增子序列（也称最长上升子序列）。关于这个问题在<a href="https://leetcode.com/problems/longest-increasing-subsequence/description/" target="_blank" rel="external">leetcode300</a>有具体描述。</p>
-<h5 id="最长递增子序列">最长递增子序列</h5><p>比如给的数组arr = [3, 1, 2, 5, 4, 6]。<br>得到的最长递增子序列长度为4，即[1, 2, 5, 6]或[1, 2, 4, 6]。<br>这个问题的解法是动态规划，给一个相同长度的数组dp，dp[i]表示以arr[i]结尾的最长递增子序列，初始化都为1(本身构成最长递增子序列)，即dp[i] = 1, 这个的动态转移方程（递推式）为，j从0到i - 1，如果arr[i] &gt; arr[j], 这dp[i] = max(dp[i], dp[j] + 1)。<br>具体代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 求最长递增子序列方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] lis1(<span class="keyword">int</span>[] arr) &#123;</span><br><span class="line">	<span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length == <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span>[] dp = getdp1(arr);</span><br><span class="line">	<span class="keyword">return</span> generateLIS(arr, dp);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 动态规划</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] getdp1(<span class="keyword">int</span>[] arr) &#123;</span><br><span class="line">	<span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[arr.length];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">		dp[i] = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (arr[i] &gt; arr[j]) &#123;</span><br><span class="line">				dp[i] = Math.max(dp[i], dp[j] + <span class="number">1</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> dp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回一个最长递增子序列（由动态规划产生的dp数组）</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] generateLIS(<span class="keyword">int</span>[] arr, <span class="keyword">int</span>[] dp) &#123;</span><br><span class="line">	<span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; dp.length; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (dp[i] &gt; len) &#123;</span><br><span class="line">			len = dp[i];</span><br><span class="line">			index = i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span>[] lis = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line">	lis[--len] = arr[index];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = index; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">		<span class="keyword">if</span> (arr[i] &lt; arr[index] &amp;&amp; dp[i] == dp[index] - <span class="number">1</span>) &#123;</span><br><span class="line">			lis[--len] = arr[i];</span><br><span class="line">			index = i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> lis;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="针对情况I"><a href="#针对情况I" class="headerlink" title="针对情况I"></a>针对情况I</h4><p>当每个信封的宽度和高度不一样时，我们可以对信封按照宽度从小到大进行排序，比如针对信封[[3,2],[2, 4],[4,3],[5, 6],[6,5]排序后变为<br>w: 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; 6<br>h: 4 -&gt; 2 -&gt; 3 -&gt; 6 -&gt; 5</p>
+<p>此时，因为信封的宽度w已经是从小到大排列了，要想信封可以套，这要求关于信封高度h的数组[4, 2, 3, 6, 5]是的子序列是递增的，且要求是最长的（题目要求的是最多的信封），所以可以转化为另一个问题：给定数组，求它的最长递增子序列（也称最长上升子序列）。关于这个问题在<a href="https://leetcode.com/problems/longest-increasing-subsequence/description/" target="_blank" rel="noopener">leetcode300</a>有具体描述。</p>
+<h5 id="最长递增子序列"><a href="#最长递增子序列" class="headerlink" title="最长递增子序列"></a>最长递增子序列</h5><p>比如给的数组arr = [3, 1, 2, 5, 4, 6]。<br>得到的最长递增子序列长度为4，即[1, 2, 5, 6]或[1, 2, 4, 6]。<br>这个问题的解法是动态规划，给一个相同长度的数组dp，dp[i]表示以arr[i]结尾的最长递增子序列，初始化都为1(本身构成最长递增子序列)，即dp[i] = 1, 这个的动态转移方程（递推式）为，j从0到i - 1，如果arr[i] &gt; arr[j], 这dp[i] = max(dp[i], dp[j] + 1)。<br>具体代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 求最长递增子序列方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] lis1(<span class="keyword">int</span>[] arr) &#123;</span><br><span class="line">	<span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length == <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span>[] dp = getdp1(arr);</span><br><span class="line">	<span class="keyword">return</span> generateLIS(arr, dp);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 动态规划</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] getdp1(<span class="keyword">int</span>[] arr) &#123;</span><br><span class="line">	<span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[arr.length];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">		dp[i] = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (arr[i] &gt; arr[j]) &#123;</span><br><span class="line">				dp[i] = Math.max(dp[i], dp[j] + <span class="number">1</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> dp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回一个最长递增子序列（由动态规划产生的dp数组）</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] generateLIS(<span class="keyword">int</span>[] arr, <span class="keyword">int</span>[] dp) &#123;</span><br><span class="line">	<span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; dp.length; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (dp[i] &gt; len) &#123;</span><br><span class="line">			len = dp[i];</span><br><span class="line">			index = i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span>[] lis = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line">	lis[--len] = arr[index];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = index; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">		<span class="keyword">if</span> (arr[i] &lt; arr[index] &amp;&amp; dp[i] == dp[index] - <span class="number">1</span>) &#123;</span><br><span class="line">			lis[--len] = arr[i];</span><br><span class="line">			index = i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> lis;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>上面这种算法的最差情况下的算法复杂度是O($n^2$)。下面介绍一种优化的方式。</p>
 <p>除了数组dp，即dp[i]表示以arr[i]结尾的最长递增子序列长度。再引入一个数组ends，初始长度和arr相等。ends[i]表示长度为i + 1的所有递增子序列的最小结尾。<br>举个栗子：<br>arr: [3, 1, 2, 4, 3]</p>
 <ol>
@@ -459,73 +474,87 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 <p>具体代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] lis2(<span class="keyword">int</span>[] arr) &#123;</span><br><span class="line">	<span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length == <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span>[] dp = getdp2(arr);</span><br><span class="line">	<span class="keyword">return</span> generateLIS(arr, dp);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] getdp2(<span class="keyword">int</span>[] arr) &#123;</span><br><span class="line">	<span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[arr.length];</span><br><span class="line">	<span class="keyword">int</span>[] ends = <span class="keyword">new</span> <span class="keyword">int</span>[arr.length];</span><br><span class="line">	ends[<span class="number">0</span>] = arr[<span class="number">0</span>];</span><br><span class="line">	dp[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> right = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> l = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> r = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> m = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">		l = <span class="number">0</span>;</span><br><span class="line">		r = right;</span><br><span class="line">		<span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">			m = (l + r) / <span class="number">2</span>;</span><br><span class="line">			<span class="keyword">if</span> (arr[i] &gt; ends[m]) &#123;</span><br><span class="line">				l = m + <span class="number">1</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				r = m - <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		right = Math.max(right, l);</span><br><span class="line">		ends[l] = arr[i];</span><br><span class="line">		dp[i] = l + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> dp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这种方式的最坏情况的时间复杂度为$O(n\log n)$。</p>
 <p>解决了最长递增子序列的问题，那么这种情况基本就解决了，具体代码就不贴出来了。</p>
-<h4 id="针对情况Ⅱ">针对情况Ⅱ</h4><p>对于情况Ⅱ，我们首先像情况I一样考虑，对信封的宽度w按从小到大排序，那么此时面临一个问题，对于相同宽度的信封的高h怎么进行排序，如果我们也按照从小到大排序，那么此时按照信封高求出来的最长递增子序列有可能存在宽度w相同的情况。<br>举个栗子：<br>当宽度w = 1时， 此时有3个信封，h = 2, 3, 4<br>当宽度w = 2时，此时有两个信封，h = 3, 6<br>按照上面的排序方式排序后，<br>w: 1 -&gt; 1 -&gt; 1 -&gt; 2 -&gt; 2<br>h: 2 -&gt; 3 -&gt; 4 -&gt; 3 -&gt; 6<br>此时数组h的最长递增子序列为[2, 3, 4, 6]显然不符合条件。所以这种排序方式是错误的。</p>
+<h4 id="针对情况Ⅱ"><a href="#针对情况Ⅱ" class="headerlink" title="针对情况Ⅱ"></a>针对情况Ⅱ</h4><p>对于情况Ⅱ，我们首先像情况I一样考虑，对信封的宽度w按从小到大排序，那么此时面临一个问题，对于相同宽度的信封的高h怎么进行排序，如果我们也按照从小到大排序，那么此时按照信封高求出来的最长递增子序列有可能存在宽度w相同的情况。<br>举个栗子：<br>当宽度w = 1时， 此时有3个信封，h = 2, 3, 4<br>当宽度w = 2时，此时有两个信封，h = 3, 6<br>按照上面的排序方式排序后，<br>w: 1 -&gt; 1 -&gt; 1 -&gt; 2 -&gt; 2<br>h: 2 -&gt; 3 -&gt; 4 -&gt; 3 -&gt; 6<br>此时数组h的最长递增子序列为[2, 3, 4, 6]显然不符合条件。所以这种排序方式是错误的。</p>
 <p>那么正确的排序方式是什么样的呢，就是当w相同时，h逆序，从大到小排列，这样你可以想一下，针对h求出来的最长递增子序列不会存在w相等，而h递增的情况，因为w相同的时候，右边的数总是小于等于左边的数，不会出现在最长递增子序列里面。<br>还是上面那个栗子排序后：<br>w: 1 -&gt; 1 -&gt; 1 -&gt; 2 -&gt; 2<br>h: 4 -&gt; 3 -&gt; 2 -&gt; 6 -&gt; 3<br>此时数组h的最长递增子序列长度为2（[4, 6]或[3, 6]或者其他），即最多有两个信封可以套。<br>具体代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RussianDollEnvelopes</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Dot</span> </span>&#123;</span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">int</span> w;</span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">int</span> h;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">Dot</span><span class="params">(<span class="keyword">int</span> weight, <span class="keyword">int</span> hight)</span> </span>&#123;</span><br><span class="line">			w = weight;</span><br><span class="line">			h = hight;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">DotComparator</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">Dot</span>&gt; </span>&#123;</span><br><span class="line">		<span class="annotation">@Override</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Dot arg0, Dot arg1)</span> </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (arg0.w != arg1.w) &#123;</span><br><span class="line">				<span class="keyword">return</span> arg0.w - arg1.w;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">return</span> arg1.h - arg0.h;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">maxEnvelopes</span><span class="params">(<span class="keyword">int</span>[][] es)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (es == <span class="keyword">null</span> || es.length == <span class="number">0</span> || es[<span class="number">0</span>] == <span class="keyword">null</span> || es[<span class="number">0</span>].length != <span class="number">2</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		Dot[] dots = <span class="keyword">new</span> Dot[es.length];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; es.length; i++) &#123;</span><br><span class="line">			dots[i] = <span class="keyword">new</span> Dot(es[i][<span class="number">0</span>], es[i][<span class="number">1</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">		Arrays.sort(dots, <span class="keyword">new</span> DotComparator());</span><br><span class="line">		<span class="keyword">int</span>[] ends = <span class="keyword">new</span> <span class="keyword">int</span>[es.length];</span><br><span class="line">		ends[<span class="number">0</span>] = dots[<span class="number">0</span>].h;</span><br><span class="line">		<span class="keyword">int</span> right = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> l = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> r = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> m = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; dots.length; i++) &#123;</span><br><span class="line">			l = <span class="number">0</span>;</span><br><span class="line">			r = right;</span><br><span class="line">			<span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">				m = (l + r) / <span class="number">2</span>;</span><br><span class="line">				<span class="keyword">if</span> (dots[i].h &gt; ends[m]) &#123;</span><br><span class="line">					l = m + <span class="number">1</span>;</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					r = m - <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			right = Math.max(right, l);</span><br><span class="line">			ends[l] = dots[i].h;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> right + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[][] test = &#123; &#123; <span class="number">4</span>, <span class="number">3</span> &#125;, &#123; <span class="number">1</span>, <span class="number">2</span> &#125;, &#123; <span class="number">5</span>, <span class="number">7</span> &#125;, &#123; <span class="number">5</span>, <span class="number">3</span> &#125;, &#123; <span class="number">1</span>, <span class="number">1</span> &#125;, &#123; <span class="number">4</span>, <span class="number">9</span> &#125; &#125;;</span><br><span class="line">		System.out.println(maxEnvelopes(test));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RussianDollEnvelopes</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Dot</span> </span>&#123;</span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">int</span> w;</span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">int</span> h;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">Dot</span><span class="params">(<span class="keyword">int</span> weight, <span class="keyword">int</span> hight)</span> </span>&#123;</span><br><span class="line">			w = weight;</span><br><span class="line">			h = hight;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">DotComparator</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">Dot</span>&gt; </span>&#123;</span><br><span class="line">		<span class="meta">@Override</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Dot arg0, Dot arg1)</span> </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (arg0.w != arg1.w) &#123;</span><br><span class="line">				<span class="keyword">return</span> arg0.w - arg1.w;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">return</span> arg1.h - arg0.h;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">maxEnvelopes</span><span class="params">(<span class="keyword">int</span>[][] es)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (es == <span class="keyword">null</span> || es.length == <span class="number">0</span> || es[<span class="number">0</span>] == <span class="keyword">null</span> || es[<span class="number">0</span>].length != <span class="number">2</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		Dot[] dots = <span class="keyword">new</span> Dot[es.length];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; es.length; i++) &#123;</span><br><span class="line">			dots[i] = <span class="keyword">new</span> Dot(es[i][<span class="number">0</span>], es[i][<span class="number">1</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">		Arrays.sort(dots, <span class="keyword">new</span> DotComparator());</span><br><span class="line">		<span class="keyword">int</span>[] ends = <span class="keyword">new</span> <span class="keyword">int</span>[es.length];</span><br><span class="line">		ends[<span class="number">0</span>] = dots[<span class="number">0</span>].h;</span><br><span class="line">		<span class="keyword">int</span> right = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> l = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> r = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> m = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; dots.length; i++) &#123;</span><br><span class="line">			l = <span class="number">0</span>;</span><br><span class="line">			r = right;</span><br><span class="line">			<span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">				m = (l + r) / <span class="number">2</span>;</span><br><span class="line">				<span class="keyword">if</span> (dots[i].h &gt; ends[m]) &#123;</span><br><span class="line">					l = m + <span class="number">1</span>;</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					r = m - <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			right = Math.max(right, l);</span><br><span class="line">			ends[l] = dots[i].h;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> right + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[][] test = &#123; &#123; <span class="number">4</span>, <span class="number">3</span> &#125;, &#123; <span class="number">1</span>, <span class="number">2</span> &#125;, &#123; <span class="number">5</span>, <span class="number">7</span> &#125;, &#123; <span class="number">5</span>, <span class="number">3</span> &#125;, &#123; <span class="number">1</span>, <span class="number">1</span> &#125;, &#123; <span class="number">4</span>, <span class="number">9</span> &#125; &#125;;</span><br><span class="line">		System.out.println(maxEnvelopes(test));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>至此，俄罗斯套娃信封问题就解决了。</p>
-<h3 id="总结一下">总结一下</h3><p>这个问题主要在两个地方，一个是最长递增子序列的优化，二是当信封宽度相同时，信封高度h逆序排列。需要好好体会学习下。</p>
+<h3 id="总结一下"><a href="#总结一下" class="headerlink" title="总结一下"></a>总结一下</h3><p>这个问题主要在两个地方，一个是最长递增子序列的优化，二是当信封宽度相同时，信封高度h逆序排列。需要好好体会学习下。</p>
 <p>欢迎大家交流和批评指正！</p>
 
       
     </div>
+    
+    
+    
 
-    <div>
-      
-        
+    
 
-      
-    </div>
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
 
-    <div>
-      
-        
-  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-    <div>您的支持将鼓励我继续创作！</div>
-    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-      <span>赏</span>
-    </button>
-    <div id="QR" style="display: none;">
-      
-        <div id="wechat" style="display: inline-block">
-          <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="cutoutsy WeChat Pay"/>
-          <p>微信打赏</p>
-        </div>
-      
-      
-        <div id="alipay" style="display: inline-block">
-          <img id="alipay_qr" src="/images/alipay.jpeg" alt="cutoutsy Alipay"/>
-          <p>支付宝打赏</p>
-        </div>
-      
-    </div>
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="cutoutsy 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpeg" alt="cutoutsy 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
   </div>
+</div>
 
+      </div>
+    
 
-      
-    </div>
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    cutoutsy
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cutoutsy.github.io/2017/09/15/俄罗斯套娃信封问题/" title="俄罗斯套娃信封问题">http://cutoutsy.github.io/2017/09/15/俄罗斯套娃信封问题/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
 
-    <div>
-      
-        
-
-      
-    </div>
+      </div>
+    
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/Google面试题/" rel="tag"># Google面试题</a>
-          
             <a href="/tags/俄罗斯套娃/" rel="tag"># 俄罗斯套娃</a>
           
             <a href="/tags/最长递增子序列/" rel="tag"># 最长递增子序列</a>
+          
+            <a href="/tags/Google面试题/" rel="tag"># Google面试题</a>
           
         </div>
       
 
       
-        
+      
       
 
       
@@ -553,6 +582,10 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -568,16 +601,19 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
 
           
-  <div class="comments" id="comments">
-    
+
+  
+    <div class="comments" id="comments">
       <div id="disqus_thread">
         <noscript>
           Please enable JavaScript to view the
           <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
         </noscript>
       </div>
-    
-  </div>
+    </div>
+
+  
+
 
 
         </div>
@@ -593,101 +629,100 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
             站点概览
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="http://7oxhal.com1.z0.glb.clouddn.com/cat_avatar.jpeg"
-               alt="cutoutsy" />
-          <p class="site-author-name" itemprop="name">cutoutsy</p>
-           
-              <p class="site-description motion-element" itemprop="description">Happy Code, Happy Life</p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">31</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image"
+                src="http://7oxhal.com1.z0.glb.clouddn.com/cat_avatar.jpeg"
+                alt="cutoutsy" />
             
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">4</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
+              <p class="site-author-name" itemprop="name">cutoutsy</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
 
-          
+          <nav class="site-state motion-element">
+
             
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">67</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/cutoutsy" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
-              </span>
+              </div>
             
-              <span class="links-of-author-item">
-                <a href="http://www.zhihu.com/people/cutoutsy" target="_blank" title="知乎">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  知乎
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
                 </a>
-              </span>
+              </div>
             
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/cutoutsy" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.zhihu.com/people/cutoutsy" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-globe"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -720,15 +755,35 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2015 - 
-  <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">cutoutsy</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">39.1k</span>
+  
 </div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
 
 
 
@@ -738,20 +793,26 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
   
     <span class="site-uv">
-      访客数
+      <i class="fa fa-user"></i>
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      人次
+      次
     </span>
   
 
   
     <span class="site-pv">
-      总访问量
+      <i class="fa fa-eye"></i>
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
       次
     </span>
   
 </div>
+
+
+
+
+
+
 
 
         
@@ -763,6 +824,8 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -786,8 +849,6 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
   
 
 
-  
-
 
 
 
@@ -799,56 +860,65 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-  
-  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
-
-
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
 
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -892,16 +962,10 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
 
 
-  
 
 
 
 
-
-
-
-
-  
 
 
 
@@ -909,116 +973,37 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
   
 
+
+
+
+
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("txpmAniKv6Tutui9em19RNso-gzGzoHsz", "Bc1LOAB4q3R91COjQggBvOTB");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
 
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
+  
 
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
     }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
     }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
 
 
   
+  
 
   
+  
+
 
   
 

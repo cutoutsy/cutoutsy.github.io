@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
@@ -10,6 +10,10 @@
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
 
 
 
@@ -18,6 +22,7 @@
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
+
 
 
 
@@ -71,19 +76,29 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Ant,Ivy,Java," />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
 
 
 
 
 
+  <meta name="keywords" content="Java,Ant,Ivy," />
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon_1.ico?v=5.1.1" />
+
 
 
 
@@ -91,11 +106,13 @@
 
 
 <meta name="description" content="最近一段时间在IBM实习，做的是QA的工作，所用的测试工程是用Ant和Ivy来进行项目的依赖管理，所以有必要学习一下Ant和Ivy，有一个基本的了解。因此本篇博客不会介绍Ant和Ivy深入的知识和技术，只是对Ant和Ivy的基本介绍。">
+<meta name="keywords" content="Java,Ant,Ivy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="初识Ant和Ivy">
 <meta property="og:url" content="http://cutoutsy.github.io/2016/08/10/konw-ant-ivy/index.html">
 <meta property="og:site_name" content="cutoutsy">
 <meta property="og:description" content="最近一段时间在IBM实习，做的是QA的工作，所用的测试工程是用Ant和Ivy来进行项目的依赖管理，所以有必要学习一下Ant和Ivy，有一个基本的了解。因此本篇博客不会介绍Ant和Ivy深入的知识和技术，只是对Ant和Ivy的基本介绍。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-08-09T16:25:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初识Ant和Ivy">
@@ -108,9 +125,11 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -134,10 +153,6 @@
 
 
   <title>初识Ant和Ivy | cutoutsy</title>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
   
 
 
@@ -157,19 +172,16 @@
 
 
 
+</head>
 
-
-
-
-
-
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -185,7 +197,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">Happy Code, Happy Life</p>
+        <h1 class="site-subtitle" itemprop="description">Happy Code, Happy Life</h1>
       
   </div>
 
@@ -215,8 +227,28 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
+          <a href="/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -226,31 +258,11 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
           </a>
         </li>
       
@@ -282,7 +294,11 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cutoutsy.github.io/2016/08/10/konw-ant-ivy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -300,7 +316,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">初识Ant和Ivy</h1>
+          <h2 class="post-title" itemprop="name headline">初识Ant和Ivy</h2>
         
 
         <div class="post-meta">
@@ -341,20 +357,45 @@
 
           
           
-             <span id="/2016/08/10/konw-ant-ivy/" class="leancloud_visitors" data-flag-title="初识Ant和Ivy">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,192
+                </span>
+              
 
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
           
 
           
@@ -363,6 +404,9 @@
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -370,80 +414,94 @@
 
       
         <p>最近一段时间在IBM实习，做的是QA的工作，所用的测试工程是用Ant和Ivy来进行项目的依赖管理，所以有必要学习一下Ant和Ivy，有一个基本的了解。因此本篇博客不会介绍Ant和Ivy深入的知识和技术，只是对Ant和Ivy的基本介绍。<br><a id="more"></a><br>之前在学习Java的过程中，就听说过Ant和Ivy，当时还没有用工具来管理项目依赖的觉悟，一般的做法是需要什么Jar包，首先去官网或者其他地方下载下来， 然后在IDE中添加进去，相信现在大多数初学Java的同学还是这样做的。后面通过Maven了解到java的项目依赖管理，就把Maven作为项目管理构建工具，就没再去了解Ant和Ivy了。后面也会写一系列针对Maven的介绍和使用的文章。</p>
-<h3 id="Ant">Ant</h3><p>首先通过官网上来看，Ant是用Java编写的，现在发行最新的版本是1.9.7。Ant的主要用途是构建Java程序，内置一系列的编译、连接、测试和运行任务。同样也是可以高效的构建非Java程序，比如C或者C++程序。</p>
+<h3 id="Ant"><a href="#Ant" class="headerlink" title="Ant"></a>Ant</h3><p>首先通过官网上来看，Ant是用Java编写的，现在发行最新的版本是1.9.7。Ant的主要用途是构建Java程序，内置一系列的编译、连接、测试和运行任务。同样也是可以高效的构建非Java程序，比如C或者C++程序。</p>
 <p>安装Ant<br>（1）首先需要确保你安装了Java环境，并设置了环境变量。<br>（2）然后在官网上下载二进制版本。<br>（3）解压到安装的位置，然后设置环境变量ANT_HOME伟你解压的安装位置，并添加${ANT_HOME}/bin(Unix)或者%ANT_HOME%/bin到PATH中。<br>（4）打开cmd或者bash，输入ant –version，显示正确的Ant信息即安装成功。</p>
 <p>Ant构建项目，主要是通过一个build.xml的文件来执行构建的。下面通过官网提供的一个简单的build.xml文件来大概分析下Buildfile的基本属性。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">project</span> <span class="attribute">name</span>=<span class="value">"MyProject"</span> <span class="attribute">default</span>=<span class="value">"dist"</span> <span class="attribute">basedir</span>=<span class="value">"."</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">description</span>&gt;</span></span><br><span class="line">    simple example build file</span><br><span class="line">  <span class="tag">&lt;/<span class="title">description</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- set global properties for this build --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"src"</span> <span class="attribute">location</span>=<span class="value">"src"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"build"</span> <span class="attribute">location</span>=<span class="value">"build"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"dist"</span> <span class="attribute">location</span>=<span class="value">"dist"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="title">target</span> <span class="attribute">name</span>=<span class="value">"init"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Create the time stamp --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">tstamp</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Create the build directory structure used by compile --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">mkdir</span> <span class="attribute">dir</span>=<span class="value">"$&#123;build&#125;"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">target</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="title">target</span> <span class="attribute">name</span>=<span class="value">"compile"</span> <span class="attribute">depends</span>=<span class="value">"init"</span></span><br><span class="line">        <span class="attribute">description</span>=<span class="value">"compile the source"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Compile the java code from $&#123;src&#125; into $&#123;build&#125; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">javac</span> <span class="attribute">srcdir</span>=<span class="value">"$&#123;src&#125;"</span> <span class="attribute">destdir</span>=<span class="value">"$&#123;build&#125;"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">target</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="title">target</span> <span class="attribute">name</span>=<span class="value">"dist"</span> <span class="attribute">depends</span>=<span class="value">"compile"</span></span><br><span class="line">        <span class="attribute">description</span>=<span class="value">"generate the distribution"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Create the distribution directory --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">mkdir</span> <span class="attribute">dir</span>=<span class="value">"$&#123;dist&#125;/lib"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Put everything in $&#123;build&#125; into the MyProject-$&#123;DSTAMP&#125;.jar file --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">jar</span> <span class="attribute">jarfile</span>=<span class="value">"$&#123;dist&#125;/lib/MyProject-$&#123;DSTAMP&#125;.jar"</span> <span class="attribute">basedir</span>=<span class="value">"$&#123;build&#125;"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">target</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="title">target</span> <span class="attribute">name</span>=<span class="value">"clean"</span></span><br><span class="line">        <span class="attribute">description</span>=<span class="value">"clean up"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Delete the $&#123;build&#125; and $&#123;dist&#125; directory trees --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">delete</span> <span class="attribute">dir</span>=<span class="value">"$&#123;build&#125;"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">delete</span> <span class="attribute">dir</span>=<span class="value">"$&#123;dist&#125;"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">target</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">name</span>=<span class="string">"MyProject"</span> <span class="attr">default</span>=<span class="string">"dist"</span> <span class="attr">basedir</span>=<span class="string">"."</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">description</span>&gt;</span></span><br><span class="line">    simple example build file</span><br><span class="line">  <span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- set global properties for this build --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"src"</span> <span class="attr">location</span>=<span class="string">"src"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"build"</span> <span class="attr">location</span>=<span class="string">"build"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dist"</span> <span class="attr">location</span>=<span class="string">"dist"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"init"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Create the time stamp --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tstamp</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Create the build directory structure used by compile --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mkdir</span> <span class="attr">dir</span>=<span class="string">"$&#123;build&#125;"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"compile"</span> <span class="attr">depends</span>=<span class="string">"init"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">description</span>=<span class="string">"compile the source"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Compile the java code from $&#123;src&#125; into $&#123;build&#125; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">javac</span> <span class="attr">srcdir</span>=<span class="string">"$&#123;src&#125;"</span> <span class="attr">destdir</span>=<span class="string">"$&#123;build&#125;"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"dist"</span> <span class="attr">depends</span>=<span class="string">"compile"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">description</span>=<span class="string">"generate the distribution"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Create the distribution directory --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mkdir</span> <span class="attr">dir</span>=<span class="string">"$&#123;dist&#125;/lib"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Put everything in $&#123;build&#125; into the MyProject-$&#123;DSTAMP&#125;.jar file --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">jar</span> <span class="attr">jarfile</span>=<span class="string">"$&#123;dist&#125;/lib/MyProject-$&#123;DSTAMP&#125;.jar"</span> <span class="attr">basedir</span>=<span class="string">"$&#123;build&#125;"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"clean"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">description</span>=<span class="string">"clean up"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Delete the $&#123;build&#125; and $&#123;dist&#125; directory trees --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">delete</span> <span class="attr">dir</span>=<span class="string">"$&#123;build&#125;"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">delete</span> <span class="attr">dir</span>=<span class="string">"$&#123;dist&#125;"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>由文件可看出，一个build.xml文件是由根标签project和众多的target标签组成的，一个Project有三个属性：name,default,basedir。name就不用说了，项目的名字，basedir表示项目的基准目录，default表示默认的运行目标，即指定默认的target（即任务）。</p>
 <p><target>标签<br>一个项目下可以有一个或者多个target标签。一个target标签可以依赖其他的target标签，depend后面填写所依赖的target名字就好了。<br>build.xml文件里面还有一些其他的标签，比如<mkdir>标签，表示创建一个目录，<jar>标签表示生成一个JAR文件。<javac>标签用于编译一个或一组java文件。<delete>标签用于删除一个或一组文件。</delete></javac></jar></mkdir></target></p>
-<h3 id="Ivy">Ivy</h3><p>从Ivy的官方文档可以看出Ivy是一个灵活的且可配置的项目依赖管理工具，且和Apache Ant紧紧结合在一起。在使用Ivy前，需要安装Ant 1.6.0以上版本和JDK。Ivy默认使用maven 2的仓库来解决依赖。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">ivy-module</span> <span class="attribute">version</span>=<span class="value">"2.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">info</span> <span class="attribute">organisation</span>=<span class="value">"org.apache"</span> <span class="attribute">module</span>=<span class="value">"hello-ivy"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">dependency</span> <span class="attribute">org</span>=<span class="value">"commons-lang"</span> <span class="attribute">name</span>=<span class="value">"commons-lang"</span> <span class="attribute">rev</span>=<span class="value">"2.0"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">dependency</span> <span class="attribute">org</span>=<span class="value">"commons-cli"</span> <span class="attribute">name</span>=<span class="value">"commons-cli"</span> <span class="attribute">rev</span>=<span class="value">"1.0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">ivy-module</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Ivy"><a href="#Ivy" class="headerlink" title="Ivy"></a>Ivy</h3><p>从Ivy的官方文档可以看出Ivy是一个灵活的且可配置的项目依赖管理工具，且和Apache Ant紧紧结合在一起。在使用Ivy前，需要安装Ant 1.6.0以上版本和JDK。Ivy默认使用maven 2的仓库来解决依赖。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ivy-module</span> <span class="attr">version</span>=<span class="string">"2.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">info</span> <span class="attr">organisation</span>=<span class="string">"org.apache"</span> <span class="attr">module</span>=<span class="string">"hello-ivy"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span> <span class="attr">org</span>=<span class="string">"commons-lang"</span> <span class="attr">name</span>=<span class="string">"commons-lang"</span> <span class="attr">rev</span>=<span class="string">"2.0"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span> <span class="attr">org</span>=<span class="string">"commons-cli"</span> <span class="attr">name</span>=<span class="string">"commons-cli"</span> <span class="attr">rev</span>=<span class="string">"1.0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ivy-module</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这个根节点ivy-module是表示使用的Ivy版本是2.0。<br>info标签表示我们定义的是那个模块的依赖。这儿定义了组织名为org.apache和项目模块名字hello-ivy。接下来就是定义依赖，这儿这个模块依赖两个jar:commons-lang和commons-cli。Ivy使用标签org和name来表示这个jar的组织名和模块名，rev表示需要的版本。对于Maven来说配置如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>commons-lang<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>commons-lang<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">version</span>&gt;</span>2.0<span class="tag">&lt;/<span class="title">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-lang<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-lang<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>我们不难发现，其实Ivy的配置和Maven是类似的，如果要把Maven的配置转换为Ivy的配置，只需把groupId换成org,artifactId换成name，version换成rev就可以了。</p>
-<h3 id="Ant和Ivy的关系">Ant和Ivy的关系</h3><p>简单来说，Ivy主要是解决Java项目的依赖JAR的问题，而Ant是来解决项目的构建、部署等问题。</p>
+<h3 id="Ant和Ivy的关系"><a href="#Ant和Ivy的关系" class="headerlink" title="Ant和Ivy的关系"></a>Ant和Ivy的关系</h3><p>简单来说，Ivy主要是解决Java项目的依赖JAR的问题，而Ant是来解决项目的构建、部署等问题。</p>
 <p>在Ant和Ivy配合使用时，一定要把Ivy的jar放到Ant的lib目录下，不然执行Ant时会报错。</p>
 
       
     </div>
+    
+    
+    
 
-    <div>
-      
-        
+    
 
-      
-    </div>
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
 
-    <div>
-      
-        
-  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-    <div>您的支持将鼓励我继续创作！</div>
-    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-      <span>赏</span>
-    </button>
-    <div id="QR" style="display: none;">
-      
-        <div id="wechat" style="display: inline-block">
-          <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="cutoutsy WeChat Pay"/>
-          <p>微信打赏</p>
-        </div>
-      
-      
-        <div id="alipay" style="display: inline-block">
-          <img id="alipay_qr" src="/images/alipay.jpeg" alt="cutoutsy Alipay"/>
-          <p>支付宝打赏</p>
-        </div>
-      
-    </div>
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="cutoutsy 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpeg" alt="cutoutsy 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
   </div>
+</div>
 
+      </div>
+    
 
-      
-    </div>
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    cutoutsy
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cutoutsy.github.io/2016/08/10/konw-ant-ivy/" title="初识Ant和Ivy">http://cutoutsy.github.io/2016/08/10/konw-ant-ivy/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
 
-    <div>
-      
-        
-
-      
-    </div>
+      </div>
+    
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
             <a href="/tags/Ant/" rel="tag"># Ant</a>
           
             <a href="/tags/Ivy/" rel="tag"># Ivy</a>
-          
-            <a href="/tags/Java/" rel="tag"># Java</a>
           
         </div>
       
 
       
-        
+      
       
 
       
@@ -471,6 +529,10 @@
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -486,16 +548,19 @@
 
 
           
-  <div class="comments" id="comments">
-    
+
+  
+    <div class="comments" id="comments">
       <div id="disqus_thread">
         <noscript>
           Please enable JavaScript to view the
           <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
         </noscript>
       </div>
-    
-  </div>
+    </div>
+
+  
+
 
 
         </div>
@@ -511,101 +576,100 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
             站点概览
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="http://7oxhal.com1.z0.glb.clouddn.com/cat_avatar.jpeg"
-               alt="cutoutsy" />
-          <p class="site-author-name" itemprop="name">cutoutsy</p>
-           
-              <p class="site-description motion-element" itemprop="description">Happy Code, Happy Life</p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">31</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image"
+                src="http://7oxhal.com1.z0.glb.clouddn.com/cat_avatar.jpeg"
+                alt="cutoutsy" />
             
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">4</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
+              <p class="site-author-name" itemprop="name">cutoutsy</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
 
-          
+          <nav class="site-state motion-element">
+
             
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">67</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/cutoutsy" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
-              </span>
+              </div>
             
-              <span class="links-of-author-item">
-                <a href="http://www.zhihu.com/people/cutoutsy" target="_blank" title="知乎">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  知乎
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
                 </a>
-              </span>
+              </div>
             
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/cutoutsy" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.zhihu.com/people/cutoutsy" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-globe"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -638,15 +702,35 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2015 - 
-  <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">cutoutsy</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">39.1k</span>
+  
 </div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
 
 
 
@@ -656,20 +740,26 @@
 
   
     <span class="site-uv">
-      访客数
+      <i class="fa fa-user"></i>
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      人次
+      次
     </span>
   
 
   
     <span class="site-pv">
-      总访问量
+      <i class="fa fa-eye"></i>
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
       次
     </span>
   
 </div>
+
+
+
+
+
+
 
 
         
@@ -681,6 +771,8 @@
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -704,8 +796,6 @@
   
 
 
-  
-
 
 
 
@@ -717,56 +807,65 @@
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-  
-  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
-
-
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
 
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -810,16 +909,10 @@
 
 
 
-  
 
 
 
 
-
-
-
-
-  
 
 
 
@@ -827,116 +920,37 @@
 
   
 
+
+
+
+
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("txpmAniKv6Tutui9em19RNso-gzGzoHsz", "Bc1LOAB4q3R91COjQggBvOTB");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
 
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
+  
 
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
     }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
     }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
 
 
   
+  
 
   
+  
+
 
   
 

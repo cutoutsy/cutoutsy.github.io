@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
@@ -10,6 +10,10 @@
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
 
 
 
@@ -18,6 +22,7 @@
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
+
 
 
 
@@ -71,38 +76,47 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="bigdata,storm," />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
 
 
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
 
 
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
 
 
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon_1.ico?v=5.1.1" />
-
-
-
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
 
 
 
-<meta name="description" content="此版本发布于2014年11月25日
-Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本在Kafka整和带来大量的更新，包括可以往一台或者一个集群写入数据现在Storm和Kafka整合使得读写都不将受到限制,Storm使用者可以把Kafka作为消息流的源头或者消息源的目的地。这样允许内在topology交流，topology链,将基本的spo">
+
+
+  <meta name="keywords" content="storm,bigdata," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="此版本发布于2014年11月25日 Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本在Kafka整和带来大量的更新，包括可以往一台或者一个集群写入数据现在Storm和Kafka整合使得读写都不将受到限制,Storm使用者可以把Kafka作为消息流的源头或者消息源的目的地。这样允许内在topology交流，topology链,将基本的spo">
+<meta name="keywords" content="storm,bigdata">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Storm 0.9.3 released">
 <meta property="og:url" content="http://cutoutsy.github.io/2015/05/15/storm-0-9-3-released/index.html">
 <meta property="og:site_name" content="cutoutsy">
-<meta property="og:description" content="此版本发布于2014年11月25日
-Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本在Kafka整和带来大量的更新，包括可以往一台或者一个集群写入数据现在Storm和Kafka整合使得读写都不将受到限制,Storm使用者可以把Kafka作为消息流的源头或者消息源的目的地。这样允许内在topology交流，topology链,将基本的spo">
+<meta property="og:description" content="此版本发布于2014年11月25日 Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本在Kafka整和带来大量的更新，包括可以往一台或者一个集群写入数据现在Storm和Kafka整合使得读写都不将受到限制,Storm使用者可以把Kafka作为消息流的源头或者消息源的目的地。这样允许内在topology交流，topology链,将基本的spo">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2015-09-20T13:55:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Storm 0.9.3 released">
-<meta name="twitter:description" content="此版本发布于2014年11月25日
-Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本在Kafka整和带来大量的更新，包括可以往一台或者一个集群写入数据现在Storm和Kafka整合使得读写都不将受到限制,Storm使用者可以把Kafka作为消息流的源头或者消息源的目的地。这样允许内在topology交流，topology链,将基本的spo">
+<meta name="twitter:description" content="此版本发布于2014年11月25日 Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本在Kafka整和带来大量的更新，包括可以往一台或者一个集群写入数据现在Storm和Kafka整合使得读写都不将受到限制,Storm使用者可以把Kafka作为消息流的源头或者消息源的目的地。这样允许内在topology交流，topology链,将基本的spo">
 
 
 
@@ -111,9 +125,11 @@ Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本�
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -137,10 +153,6 @@ Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本�
 
 
   <title>Storm 0.9.3 released | cutoutsy</title>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
   
 
 
@@ -160,19 +172,16 @@ Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本�
 
 
 
+</head>
 
-
-
-
-
-
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -188,7 +197,7 @@ Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本�
       </a>
     </div>
       
-        <p class="site-subtitle">Happy Code, Happy Life</p>
+        <h1 class="site-subtitle" itemprop="description">Happy Code, Happy Life</h1>
       
   </div>
 
@@ -218,8 +227,28 @@ Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本�
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
+          <a href="/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -229,31 +258,11 @@ Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本�
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
           </a>
         </li>
       
@@ -285,7 +294,11 @@ Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本�
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cutoutsy.github.io/2015/05/15/storm-0-9-3-released/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -303,7 +316,7 @@ Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本�
 
         
         
-          <h1 class="post-title" itemprop="name headline">Storm 0.9.3 released</h1>
+          <h2 class="post-title" itemprop="name headline">Storm 0.9.3 released</h2>
         
 
         <div class="post-meta">
@@ -344,20 +357,45 @@ Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本�
 
           
           
-             <span id="/2015/05/15/storm-0-9-3-released/" class="leancloud_visitors" data-flag-title="Storm 0.9.3 released">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,839
+                </span>
+              
 
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
           
 
           
@@ -366,6 +404,9 @@ Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本�
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -373,12 +414,12 @@ Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本�
 
       
         <p>此版本发布于2014年11月25日</p>
-<h2 id="Kafka整合">Kafka整合</h2><p>Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本在Kafka整和带来大量的更新，包括可以往一台或者一个集群写入数据<br>现在Storm和Kafka整合使得读写都不将受到限制,Storm使用者可以把Kafka作为消息流的源头或者消息源的目的地。这样允许内在topology交流，topology链,将基本的spout、bolt和基本Trident数据流结合，甚至和任何外部支持从Kafka获取数据的系统整合.<br>更多关于Storm的Kafka整合的信息可以在<a href="https://github.com/apache/storm/blob/v0.9.3/external/storm-kafka/README.md" target="_blank" rel="external">storm-kafka project documentation</a>找到。<br><a id="more"></a></p>
-<h2 id="HDFS整合">HDFS整合</h2><p>许多的流处理用HDFS来存储数据，以便离线分析处理。Apache Storm的HDFS整合包含几个bolt和Trident状态继承让storm开发者更容易的从任何topology向HDFS写入数据。<br>更多关于Storm的HDFS整合的信息可以在<a href="https://github.com/apache/storm/tree/v0.9.3/external/storm-hdfs" target="_blank" rel="external">storm-hdfs project documentation</a>找到。</p>
-<h2 id="HBase整合">HBase整合</h2><p>Apacge Storm的HBase整合包含一系列的组件，允许topologies实时向HBase写入和查询数据。许多组织使用HBase作为他们大数据批处理、交互、实时工作流策略的一部分。Storm HBase的整合允许使用者利用数据作为流的查询，也作为流计算结果的目的地。<br>更多关于Storm的HBase整合的信息可以在<a href="https://github.com/apache/storm/tree/v0.9.3/external/storm-hbase" target="_blank" rel="external">storm-hbase project documentation</a>找到。</p>
-<h2 id="减少依赖冲突">减少依赖冲突</h2><p>在Storm以前的版本中，很常见用户自己拓扑的依赖和Storm自己的依赖产生冲突。在Storm 0.9.3中几个常见的包冲突已经迁移（隐藏）来避免这种情况。开发者可以更自由的使用Storm打包的版本，或者自己提供的版本。<br>下面的表格列举了依赖包的迁移：<br>|依赖|原来的包|Storm包<br>|–|–|–|<br>|Apache Thrift| org.apache.thrift|org.apache.thrift7|<br>|Netty|org.jboss.netty|org.apache.storm.netty|<br>|Google Guava|org.google.common|org.apache.storm.guava|<br>|            |org.google.thirfparty|org.apache.storm.guava.thirdparty|<br>|Apache HTTPClient|org.apache.http|org.apache.storm.http|<br>|Apache Zookeeper|org.apache.zookeeper|org.apache.storm.zookeeper|<br>|Apache Curator|org.apache.curator|org.apache.storm.curator|</p>
-<h2 id="多语言改善">多语言改善</h2><p>Apache Storm 0.9.3增加了Node.js,允许开发者可以用JavaScript来编写spouts和bolts。<br>除了增加了Node.js的实现，这多语言协议也从实质上得到改善，更加稳健和错误处理能力。<br>所以，这多语言API不是向下兼容的。有多语言拓扑的使用者在升级之前看看Python，Ruby,和JavaScript的多语言例子来判断升级的影响。</p>
-<h2 id="完成的更新">完成的更新</h2><blockquote>
+<h2 id="Kafka整合"><a href="#Kafka整合" class="headerlink" title="Kafka整合"></a>Kafka整合</h2><p>Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本在Kafka整和带来大量的更新，包括可以往一台或者一个集群写入数据<br>现在Storm和Kafka整合使得读写都不将受到限制,Storm使用者可以把Kafka作为消息流的源头或者消息源的目的地。这样允许内在topology交流，topology链,将基本的spout、bolt和基本Trident数据流结合，甚至和任何外部支持从Kafka获取数据的系统整合.<br>更多关于Storm的Kafka整合的信息可以在<a href="https://github.com/apache/storm/blob/v0.9.3/external/storm-kafka/README.md" target="_blank" rel="noopener">storm-kafka project documentation</a>找到。<br><a id="more"></a></p>
+<h2 id="HDFS整合"><a href="#HDFS整合" class="headerlink" title="HDFS整合"></a>HDFS整合</h2><p>许多的流处理用HDFS来存储数据，以便离线分析处理。Apache Storm的HDFS整合包含几个bolt和Trident状态继承让storm开发者更容易的从任何topology向HDFS写入数据。<br>更多关于Storm的HDFS整合的信息可以在<a href="https://github.com/apache/storm/tree/v0.9.3/external/storm-hdfs" target="_blank" rel="noopener">storm-hdfs project documentation</a>找到。</p>
+<h2 id="HBase整合"><a href="#HBase整合" class="headerlink" title="HBase整合"></a>HBase整合</h2><p>Apacge Storm的HBase整合包含一系列的组件，允许topologies实时向HBase写入和查询数据。许多组织使用HBase作为他们大数据批处理、交互、实时工作流策略的一部分。Storm HBase的整合允许使用者利用数据作为流的查询，也作为流计算结果的目的地。<br>更多关于Storm的HBase整合的信息可以在<a href="https://github.com/apache/storm/tree/v0.9.3/external/storm-hbase" target="_blank" rel="noopener">storm-hbase project documentation</a>找到。</p>
+<h2 id="减少依赖冲突"><a href="#减少依赖冲突" class="headerlink" title="减少依赖冲突"></a>减少依赖冲突</h2><p>在Storm以前的版本中，很常见用户自己拓扑的依赖和Storm自己的依赖产生冲突。在Storm 0.9.3中几个常见的包冲突已经迁移（隐藏）来避免这种情况。开发者可以更自由的使用Storm打包的版本，或者自己提供的版本。<br>下面的表格列举了依赖包的迁移：<br>|依赖|原来的包|Storm包<br>|–|–|–|<br>|Apache Thrift| org.apache.thrift|org.apache.thrift7|<br>|Netty|org.jboss.netty|org.apache.storm.netty|<br>|Google Guava|org.google.common|org.apache.storm.guava|<br>|            |org.google.thirfparty|org.apache.storm.guava.thirdparty|<br>|Apache HTTPClient|org.apache.http|org.apache.storm.http|<br>|Apache Zookeeper|org.apache.zookeeper|org.apache.storm.zookeeper|<br>|Apache Curator|org.apache.curator|org.apache.storm.curator|</p>
+<h2 id="多语言改善"><a href="#多语言改善" class="headerlink" title="多语言改善"></a>多语言改善</h2><p>Apache Storm 0.9.3增加了Node.js,允许开发者可以用JavaScript来编写spouts和bolts。<br>除了增加了Node.js的实现，这多语言协议也从实质上得到改善，更加稳健和错误处理能力。<br>所以，这多语言API不是向下兼容的。有多语言拓扑的使用者在升级之前看看Python，Ruby,和JavaScript的多语言例子来判断升级的影响。</p>
+<h2 id="完成的更新"><a href="#完成的更新" class="headerlink" title="完成的更新"></a>完成的更新</h2><blockquote>
 <ul>
 <li>将”swap!”变成”reset!”，修复任务版本在supervisor上的bug。</li>
 <li>Storm json回复编码设为UTF-8</li>
@@ -484,62 +525,76 @@ Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本�
 
       
     </div>
+    
+    
+    
 
-    <div>
-      
-        
+    
 
-      
-    </div>
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
 
-    <div>
-      
-        
-  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-    <div>您的支持将鼓励我继续创作！</div>
-    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-      <span>赏</span>
-    </button>
-    <div id="QR" style="display: none;">
-      
-        <div id="wechat" style="display: inline-block">
-          <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="cutoutsy WeChat Pay"/>
-          <p>微信打赏</p>
-        </div>
-      
-      
-        <div id="alipay" style="display: inline-block">
-          <img id="alipay_qr" src="/images/alipay.jpeg" alt="cutoutsy Alipay"/>
-          <p>支付宝打赏</p>
-        </div>
-      
-    </div>
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="cutoutsy 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpeg" alt="cutoutsy 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
   </div>
+</div>
 
+      </div>
+    
 
-      
-    </div>
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    cutoutsy
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cutoutsy.github.io/2015/05/15/storm-0-9-3-released/" title="Storm 0.9.3 released">http://cutoutsy.github.io/2015/05/15/storm-0-9-3-released/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
 
-    <div>
-      
-        
-
-      
-    </div>
+      </div>
+    
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/bigdata/" rel="tag"># bigdata</a>
-          
             <a href="/tags/storm/" rel="tag"># storm</a>
+          
+            <a href="/tags/bigdata/" rel="tag"># bigdata</a>
           
         </div>
       
 
       
-        
+      
       
 
       
@@ -567,6 +622,10 @@ Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本�
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -582,16 +641,19 @@ Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本�
 
 
           
-  <div class="comments" id="comments">
-    
+
+  
+    <div class="comments" id="comments">
       <div id="disqus_thread">
         <noscript>
           Please enable JavaScript to view the
           <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
         </noscript>
       </div>
-    
-  </div>
+    </div>
+
+  
+
 
 
         </div>
@@ -607,101 +669,100 @@ Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本�
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
             站点概览
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="http://7oxhal.com1.z0.glb.clouddn.com/cat_avatar.jpeg"
-               alt="cutoutsy" />
-          <p class="site-author-name" itemprop="name">cutoutsy</p>
-           
-              <p class="site-description motion-element" itemprop="description">Happy Code, Happy Life</p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">31</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image"
+                src="http://7oxhal.com1.z0.glb.clouddn.com/cat_avatar.jpeg"
+                alt="cutoutsy" />
             
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">4</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
+              <p class="site-author-name" itemprop="name">cutoutsy</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
 
-          
+          <nav class="site-state motion-element">
+
             
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">67</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/cutoutsy" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
-              </span>
+              </div>
             
-              <span class="links-of-author-item">
-                <a href="http://www.zhihu.com/people/cutoutsy" target="_blank" title="知乎">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  知乎
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
                 </a>
-              </span>
+              </div>
             
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/cutoutsy" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.zhihu.com/people/cutoutsy" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-globe"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -734,15 +795,35 @@ Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本�
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2015 - 
-  <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">cutoutsy</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">39.1k</span>
+  
 </div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
 
 
 
@@ -752,20 +833,26 @@ Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本�
 
   
     <span class="site-uv">
-      访客数
+      <i class="fa fa-user"></i>
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      人次
+      次
     </span>
   
 
   
     <span class="site-pv">
-      总访问量
+      <i class="fa fa-eye"></i>
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
       次
     </span>
   
 </div>
+
+
+
+
+
+
 
 
         
@@ -777,6 +864,8 @@ Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本�
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -800,8 +889,6 @@ Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本�
   
 
 
-  
-
 
 
 
@@ -813,56 +900,65 @@ Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本�
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-  
-  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
-
-
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
 
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -906,16 +1002,10 @@ Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本�
 
 
 
-  
 
 
 
 
-
-
-
-
-  
 
 
 
@@ -923,116 +1013,37 @@ Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本�
 
   
 
+
+
+
+
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("txpmAniKv6Tutui9em19RNso-gzGzoHsz", "Bc1LOAB4q3R91COjQggBvOTB");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
 
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
+  
 
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
     }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
     }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
 
 
   
+  
 
   
+  
+
 
   
 

@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
@@ -10,6 +10,10 @@
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
 
 
 
@@ -18,6 +22,7 @@
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
+
 
 
 
@@ -71,7 +76,22 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Java,京东,校招,编程题," />
@@ -83,47 +103,20 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon_1.ico?v=5.1.1" />
 
 
-
-
-
-
-<meta name="description" content="MathJax.Hub.Config({
-tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)&apos;]]}
-});
-
-
-
-
-
-写在前面本篇博客主要是解答这次校招中京东的笔试编程题，这次京东的笔试编程题比较难，涉及KMP算法、manacher算法等。文中的解法也是在观看了左神（左程云）9月20号在牛客网的直播后，自己花时间写出来的。本篇博客不涉及算法的具体分析，主要">
+<meta name="description" content="MathJax.Hub.Config({ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)&apos;]]} });      写在前面本篇博客主要是解答这次校招中京东的笔试编程题，这次京东的笔试编程题比较难，涉及KMP算法、manacher算法等。文中的解法也是在观看了左神（左程云）9月20号在牛客网的直播后，自己花时间写出来的。本篇博客不涉及算法的具体分析，主">
+<meta name="keywords" content="Java,京东,校招,编程题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="京东2018校招编程题解答（Java）">
 <meta property="og:url" content="http://cutoutsy.github.io/2017/09/21/京东2018校招编程题解答（Java）/index.html">
 <meta property="og:site_name" content="cutoutsy">
-<meta property="og:description" content="MathJax.Hub.Config({
-tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)&apos;]]}
-});
-
-
-
-
-
-写在前面本篇博客主要是解答这次校招中京东的笔试编程题，这次京东的笔试编程题比较难，涉及KMP算法、manacher算法等。文中的解法也是在观看了左神（左程云）9月20号在牛客网的直播后，自己花时间写出来的。本篇博客不涉及算法的具体分析，主要">
+<meta property="og:description" content="MathJax.Hub.Config({ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)&apos;]]} });      写在前面本篇博客主要是解答这次校招中京东的笔试编程题，这次京东的笔试编程题比较难，涉及KMP算法、manacher算法等。文中的解法也是在观看了左神（左程云）9月20号在牛客网的直播后，自己花时间写出来的。本篇博客不涉及算法的具体分析，主">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-09-21T09:03:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="京东2018校招编程题解答（Java）">
-<meta name="twitter:description" content="MathJax.Hub.Config({
-tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)&apos;]]}
-});
-
-
-
-
-
-写在前面本篇博客主要是解答这次校招中京东的笔试编程题，这次京东的笔试编程题比较难，涉及KMP算法、manacher算法等。文中的解法也是在观看了左神（左程云）9月20号在牛客网的直播后，自己花时间写出来的。本篇博客不涉及算法的具体分析，主要">
+<meta name="twitter:description" content="MathJax.Hub.Config({ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)&apos;]]} });      写在前面本篇博客主要是解答这次校招中京东的笔试编程题，这次京东的笔试编程题比较难，涉及KMP算法、manacher算法等。文中的解法也是在观看了左神（左程云）9月20号在牛客网的直播后，自己花时间写出来的。本篇博客不涉及算法的具体分析，主">
 
 
 
@@ -132,9 +125,11 @@ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -158,10 +153,6 @@ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)
 
 
   <title>京东2018校招编程题解答（Java） | cutoutsy</title>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
   
 
 
@@ -181,19 +172,16 @@ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)
 
 
 
+</head>
 
-
-
-
-
-
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -209,7 +197,7 @@ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)
       </a>
     </div>
       
-        <p class="site-subtitle">Happy Code, Happy Life</p>
+        <h1 class="site-subtitle" itemprop="description">Happy Code, Happy Life</h1>
       
   </div>
 
@@ -239,8 +227,28 @@ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
+          <a href="/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -250,31 +258,11 @@ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
           </a>
         </li>
       
@@ -306,7 +294,11 @@ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cutoutsy.github.io/2017/09/21/京东2018校招编程题解答（Java）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -324,7 +316,7 @@ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)
 
         
         
-          <h1 class="post-title" itemprop="name headline">京东2018校招编程题解答（Java）</h1>
+          <h2 class="post-title" itemprop="name headline">京东2018校招编程题解答（Java）</h2>
         
 
         <div class="post-meta">
@@ -387,20 +379,45 @@ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)
 
           
           
-             <span id="/2017/09/21/京东2018校招编程题解答（Java）/" class="leancloud_visitors" data-flag-title="京东2018校招编程题解答（Java）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,987
+                </span>
+              
 
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
           
 
           
@@ -409,6 +426,9 @@ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -424,27 +444,27 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
-<h3 id="写在前面">写在前面</h3><p>本篇博客主要是解答这次校招中京东的笔试编程题，这次京东的笔试编程题比较难，涉及KMP算法、manacher算法等。文中的解法也是在观看了左神（左程云）9月20号在<a href="https://www.nowcoder.com/" target="_blank" rel="external">牛客网</a>的直播后，自己花时间写出来的。本篇博客不涉及算法的具体分析，主要是解题代码及简单的思路，关于其中的一些算法我会在后面的博客中详细介绍。</p>
-<h3 id="题目及解答">题目及解答</h3><h4 id="题目一">题目一</h4><p><strong>题目描述：</strong><br>东东从京京那里了解到有一个无限长的数字序列: 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, …(数字k在该序列中正好出现k次)。东东想知道这个数字序列的第n项是多少，你能帮帮他么。</p>
+<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>本篇博客主要是解答这次校招中京东的笔试编程题，这次京东的笔试编程题比较难，涉及KMP算法、manacher算法等。文中的解法也是在观看了左神（左程云）9月20号在<a href="https://www.nowcoder.com/" target="_blank" rel="noopener">牛客网</a>的直播后，自己花时间写出来的。本篇博客不涉及算法的具体分析，主要是解题代码及简单的思路，关于其中的一些算法我会在后面的博客中详细介绍。</p>
+<h3 id="题目及解答"><a href="#题目及解答" class="headerlink" title="题目及解答"></a>题目及解答</h3><h4 id="题目一"><a href="#题目一" class="headerlink" title="题目一"></a>题目一</h4><p><strong>题目描述：</strong><br>东东从京京那里了解到有一个无限长的数字序列: 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, …(数字k在该序列中正好出现k次)。东东想知道这个数字序列的第n项是多少，你能帮帮他么。</p>
 <a id="more"></a>
 <p><strong>输入描述：</strong><br>输入包括一个整数n(1 ≤ n ≤ $10^{18}$) 。</p>
 <p><strong>输出描述：</strong><br>输出一个整数，即数字序列的第n项。</p>
 <p><strong>示例：</strong><br>输入<br>169<br>输出<br>18</p>
 <p><strong>解题思路：</strong><br>这个主要是等差数列的求和，假设给的输入为k，则<br>$n(n-1)/2 &lt; k &lt; n(n+1)/2$，化简得到$\frac{1+\sqrt{1+8k}}{2} &gt; 0$，即求上式满足时的最小正整数。同时此题要注意数的范围。</p>
 <p><strong>具体代码：</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">findNum</span><span class="params">(<span class="keyword">long</span> input)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">long</span>)Math.ceil((Math.sqrt(<span class="number">1</span> + <span class="number">8</span> * input) -<span class="number">1</span>)/<span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="题目二">题目二</h4><p><strong>题目描述：</strong><br>东东在一本古籍上看到有一种神奇数，如果能够将一个数的数字分成两组，其中一组数字的和等于另一组数字的和，我们就将这个数称为神奇数。例如242就是一个神奇数，我们能够将这个数的数字分成两组,分别是{2,2}以及{4},而且这两组数的和都是4。东东现在需要统计给定区间中有多少个神奇数，即给定区间[l, r]，统计这个区间中有多少个神奇数，请你来帮助他。</p>
+<h4 id="题目二"><a href="#题目二" class="headerlink" title="题目二"></a>题目二</h4><p><strong>题目描述：</strong><br>东东在一本古籍上看到有一种神奇数，如果能够将一个数的数字分成两组，其中一组数字的和等于另一组数字的和，我们就将这个数称为神奇数。例如242就是一个神奇数，我们能够将这个数的数字分成两组,分别是{2,2}以及{4},而且这两组数的和都是4。东东现在需要统计给定区间中有多少个神奇数，即给定区间[l, r]，统计这个区间中有多少个神奇数，请你来帮助他。</p>
 <p><strong>输入描述：</strong><br>输入包括一行，，一行中两个整数l和r(1 ≤ l，r ≤ $10^9$，0 ≤ r - l ≤ $10^6$)，以空格分割。</p>
 <p><strong>输出描述：</strong><br>输出一个整数，即区间内的神奇数个数。</p>
 <p><strong>示例：</strong><br>输入<br>1 50<br>输出<br>4</p>
 <p><strong>解题思路：</strong><br>这个题主要是判断一个数是不是神奇数，且时间复杂度尽量低。一个数判断神奇数的问题其实是一个背包问题，比如242这个数，就是数组arr[2,2,4]中每个数可以用也可以不用，是否能组成sum(arr) = 8的一半，能则是神奇数，反之则不能。还有如果和为奇数则也不能。</p>
 <p><strong>具体代码：</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMagicNumber</span><span class="params">(<span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span>[] digitals = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">boolean</span>[] dp = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">9</span> * <span class="number">9</span>];</span><br><span class="line">    Arrays.fill(digitals, -<span class="number">1</span>);</span><br><span class="line">    Arrays.fill(dp, <span class="keyword">false</span>);</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = start; i &lt;= end; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> num = i;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (num &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> temp = num % <span class="number">10</span>;</span><br><span class="line">        digitals[index++] = temp;</span><br><span class="line">            sum += temp;</span><br><span class="line">            num = num / <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 当各位数字和为偶数时，才存在神奇数</span></span><br><span class="line">        <span class="keyword">if</span> ((sum &amp; <span class="number">1</span>) == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; digitals.length &amp;&amp; digitals[j] != -<span class="number">1</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k = sum; k &gt;= <span class="number">0</span>; k--) &#123;</span><br><span class="line">                    <span class="comment">// 用一维数组进行更新</span></span><br><span class="line">                        dp[k] = dp[k] || j == <span class="number">0</span> ? sum == digitals[j] : (k - digitals[j] &lt; <span class="number">0</span> ? <span class="keyword">false</span> : dp[k-digitals[j]]);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(dp[sum / <span class="number">2</span>]) &#123;</span><br><span class="line">                    ans++;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.fill(digitals, -<span class="number">1</span>);</span><br><span class="line">        Arrays.fill(dp, <span class="keyword">false</span>);</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="题目三">题目三</h4><p><strong>题目描述：</strong><br>给定一个字符串s，请计算输出含有连续两个s作为子串的最短字符串。注意两个s可能有重叠部分。例如，”ababa”含有两个”aba”。</p>
+<h4 id="题目三"><a href="#题目三" class="headerlink" title="题目三"></a>题目三</h4><p><strong>题目描述：</strong><br>给定一个字符串s，请计算输出含有连续两个s作为子串的最短字符串。注意两个s可能有重叠部分。例如，”ababa”含有两个”aba”。</p>
 <p><strong>输入描述：</strong><br>输入包括一个字符串s，字符串长度length(1 ≤ length ≤ 50)，s中每个字符都是小写字母。</p>
 <p><strong>输出描述：</strong><br>输出一个字符串，即含有连续两个s作为子串的最短字符串。</p>
 <p><strong>示例：</strong><br>输入<br>abracadabra<br>输出<br>abracadabracada</p>
 <p><strong>解题思路：</strong><br>这个题目是关于KMP算法中求next数组的问题，我们只需求出字符串最后一个字符后一位的next值。这个能算出来这个题目就解决了。</p>
 <p><strong>具体代码：</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">shortestRepeatString</span><span class="params">(String str)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] next = <span class="keyword">new</span> <span class="keyword">int</span>[str.length() + <span class="number">1</span>];</span><br><span class="line">    Arrays.fill(ne    xt, <span class="number">0</span>);</span><br><span class="line">    next[<span class="number">0</span>] = -<span class="number">1</span>;</span><br><span class="line">    next[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; next.length; i++) &#123;</span><br><span class="line">        <span class="keyword">char</span> pre = str.charAt(i - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> k = next[i - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">while</span> (k != -<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span> (str.charAt(k) == pre) &#123;</span><br><span class="line">                next[i] = next[i - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            k = next[k];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> str + str.substring(next[str.length()]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="题目四">题目四</h4><p><strong>题目描述：</strong><br>合法的括号匹配序列被定义为:</p>
+<h4 id="题目四"><a href="#题目四" class="headerlink" title="题目四"></a>题目四</h4><p><strong>题目描述：</strong><br>合法的括号匹配序列被定义为:</p>
 <ol>
 <li>空串””是合法的括号序列。</li>
 <li>如果”X”和”Y”是合法的序列，那么”XY”也是一个合法的括号序列。</li>
@@ -454,12 +474,12 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 <li>移除序列s中任意一个右括号，保证操作之后s还是一个合法的括号序列。</li>
 </ol>
 <p>东东现在想知道使用上述的移除操作有多少种方案可以把序列s变为空。</p>
-<p>如果两个方案中有一次移除操作移除的是不同的右括号就认为是不同的方案。<br>例如: s = “()()()()()”，输出1，因为每次都只能选择被移除的左括号所相邻的右括号。<br>s = “(((())))”，输出24，第一次有4种情况，第二次有3种情况，… ，依次类推，4 <em> 3 </em> 2 <em> 1 = 24。<br><em>*输入描述：</em></em><br>输入包括一行，一个合法的括号序列s，序列长度length(2 ≤ length ≤ 20)。</p>
+<p>如果两个方案中有一次移除操作移除的是不同的右括号就认为是不同的方案。<br>例如: s = “()()()()()”，输出1，因为每次都只能选择被移除的左括号所相邻的右括号。<br>s = “(((())))”，输出24，第一次有4种情况，第二次有3种情况，… ，依次类推，4 <em> 3 </em> 2 * 1 = 24。<br><strong>输入描述：</strong><br>输入包括一行，一个合法的括号序列s，序列长度length(2 ≤ length ≤ 20)。</p>
 <p><strong>输出描述：</strong><br>输出一个整数，表示方案数。</p>
 <p><strong>示例：</strong><br>输入<br>(((())))<br>输出<br>24</p>
 <p><strong>解题思路：</strong><br>从右往左遍历，遇到左括号看左括号右边右括号数量与左括号数量的差，并将这些差乘起来，即为方案数。</p>
 <p><strong>具体代码：</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeSolutions</span><span class="params">(String str)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = str.length() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">if</span> (str.charAt(i) == <span class="string">')'</span>) &#123;</span><br><span class="line">            count++;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ans *= count;</span><br><span class="line">            count--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="题目五">题目五</h4><p><strong>题目描述：</strong><br>京京和东东是好朋友。东东很喜欢回文。回文是指从前往后读和从后往前读是一样的词语。京京准备给东东一个惊喜，先取定一个字符串s，然后在后面附上0个或者更多个字母形成回文，京京希望这个回文越短越好。请帮助京京计算他能够得到的最短的回文长度。</p>
+<h4 id="题目五"><a href="#题目五" class="headerlink" title="题目五"></a>题目五</h4><p><strong>题目描述：</strong><br>京京和东东是好朋友。东东很喜欢回文。回文是指从前往后读和从后往前读是一样的词语。京京准备给东东一个惊喜，先取定一个字符串s，然后在后面附上0个或者更多个字母形成回文，京京希望这个回文越短越好。请帮助京京计算他能够得到的最短的回文长度。</p>
 <p><strong>输入描述：</strong><br>输入包括一个字符串s，字符串s长度length(1 ≤ length ≤ 50)。</p>
 <p><strong>输出描述：</strong><br>输出一个整数，表示京京能够得到的最短的回文长度。</p>
 <p><strong>示例：</strong><br>输入<br>abab<br>输出<br>5</p>
@@ -469,48 +489,62 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
       
     </div>
+    
+    
+    
 
-    <div>
-      
-        
+    
 
-      
-    </div>
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
 
-    <div>
-      
-        
-  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-    <div>您的支持将鼓励我继续创作！</div>
-    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-      <span>赏</span>
-    </button>
-    <div id="QR" style="display: none;">
-      
-        <div id="wechat" style="display: inline-block">
-          <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="cutoutsy WeChat Pay"/>
-          <p>微信打赏</p>
-        </div>
-      
-      
-        <div id="alipay" style="display: inline-block">
-          <img id="alipay_qr" src="/images/alipay.jpeg" alt="cutoutsy Alipay"/>
-          <p>支付宝打赏</p>
-        </div>
-      
-    </div>
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="cutoutsy 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpeg" alt="cutoutsy 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
   </div>
+</div>
 
+      </div>
+    
 
-      
-    </div>
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    cutoutsy
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cutoutsy.github.io/2017/09/21/京东2018校招编程题解答（Java）/" title="京东2018校招编程题解答（Java）">http://cutoutsy.github.io/2017/09/21/京东2018校招编程题解答（Java）/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
 
-    <div>
-      
-        
-
-      
-    </div>
+      </div>
+    
 
     <footer class="post-footer">
       
@@ -528,7 +562,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
       
 
       
-        
+      
       
 
       
@@ -556,6 +590,10 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -571,16 +609,19 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
 
           
-  <div class="comments" id="comments">
-    
+
+  
+    <div class="comments" id="comments">
       <div id="disqus_thread">
         <noscript>
           Please enable JavaScript to view the
           <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
         </noscript>
       </div>
-    
-  </div>
+    </div>
+
+  
+
 
 
         </div>
@@ -596,101 +637,100 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
             站点概览
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="http://7oxhal.com1.z0.glb.clouddn.com/cat_avatar.jpeg"
-               alt="cutoutsy" />
-          <p class="site-author-name" itemprop="name">cutoutsy</p>
-           
-              <p class="site-description motion-element" itemprop="description">Happy Code, Happy Life</p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">31</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image"
+                src="http://7oxhal.com1.z0.glb.clouddn.com/cat_avatar.jpeg"
+                alt="cutoutsy" />
             
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">4</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
+              <p class="site-author-name" itemprop="name">cutoutsy</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
 
-          
+          <nav class="site-state motion-element">
+
             
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">67</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/cutoutsy" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
-              </span>
+              </div>
             
-              <span class="links-of-author-item">
-                <a href="http://www.zhihu.com/people/cutoutsy" target="_blank" title="知乎">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  知乎
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
                 </a>
-              </span>
+              </div>
             
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/cutoutsy" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.zhihu.com/people/cutoutsy" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-globe"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -723,15 +763,35 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2015 - 
-  <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">cutoutsy</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">39.1k</span>
+  
 </div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
 
 
 
@@ -741,20 +801,26 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
   
     <span class="site-uv">
-      访客数
+      <i class="fa fa-user"></i>
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      人次
+      次
     </span>
   
 
   
     <span class="site-pv">
-      总访问量
+      <i class="fa fa-eye"></i>
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
       次
     </span>
   
 </div>
+
+
+
+
+
+
 
 
         
@@ -766,6 +832,8 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -789,8 +857,6 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
   
 
 
-  
-
 
 
 
@@ -802,56 +868,65 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-  
-  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
-
-
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
 
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -895,16 +970,10 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
 
 
-  
 
 
 
 
-
-
-
-
-  
 
 
 
@@ -912,116 +981,37 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
   
 
+
+
+
+
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("txpmAniKv6Tutui9em19RNso-gzGzoHsz", "Bc1LOAB4q3R91COjQggBvOTB");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
 
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
+  
 
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
     }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
     }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
 
 
   
+  
 
   
+  
+
 
   
 
