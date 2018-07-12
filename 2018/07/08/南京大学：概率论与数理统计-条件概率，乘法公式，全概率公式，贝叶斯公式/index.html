@@ -113,7 +113,7 @@
 <meta property="og:site_name" content="cutoutsy">
 <meta property="og:description" content="条件概率我们平常所遇到的绝大多数概率都是有条件的。定义：设有两个事件A、B，$P(B) \neq 0$，那么在给定B发生的条件下A发生的概率记为$P(A|B)$。计算公式：$P(A|B) = \frac{P(AB)}{P(B)}$理解：试验有N个结果（等可能的）A: $M_{1}$个B: $M_{2}$个AB: 共有$M_{12}$个若Bf发生，则现在新的样本空间为$M_{2}$个，则：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-10T01:53:46.187Z">
+<meta property="og:updated_time" content="2018-07-11T12:18:29.821Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="南京大学：概率论与数理统计-条件概率，乘法公式，全概率公式，贝叶斯公式">
 <meta name="twitter:description" content="条件概率我们平常所遇到的绝大多数概率都是有条件的。定义：设有两个事件A、B，$P(B) \neq 0$，那么在给定B发生的条件下A发生的概率记为$P(A|B)$。计算公式：$P(A|B) = \frac{P(AB)}{P(B)}$理解：试验有N个结果（等可能的）A: $M_{1}$个B: $M_{2}$个AB: 共有$M_{12}$个若Bf发生，则现在新的样本空间为$M_{2}$个，则：">
@@ -408,7 +408,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  235
+                  300
                 </span>
               
 
@@ -448,7 +448,8 @@
         <h3 id="条件概率"><a href="#条件概率" class="headerlink" title="条件概率"></a>条件概率</h3><p>我们平常所遇到的绝大多数概率都是有条件的。<br>定义：设有两个事件A、B，$P(B) \neq 0$，那么在给定B发生的条件下A发生的概率记为$P(A|B)$。<br>计算公式：$P(A|B) = \frac{P(AB)}{P(B)}$<br>理解：试验有N个结果（等可能的）<br>A: $M_{1}$个<br>B: $M_{2}$个<br>AB: 共有$M_{12}$个<br>若Bf发生，则现在新的样本空间为$M_{2}$个，则：<br><a id="more"></a></p>
 <script type="math/tex; mode=display">P = \frac{M_{12}/N}{M_{2}/N} = \frac{M_{12}}{M_{2}} = \frac{P(AB)}{P(B)}</script><p>可以在老的样本空间进行处理，或者从新的样本空间角度进行处理<br>条件概率也可以推广到几何概型中。<br>以m(A),m(B),m(AB),$m(\Omega)$表示A, B, AB, $\Omega$所对应的测度，且m(B) &gt; 0，则</p>
 <script type="math/tex; mode=display">P(A|B) = \frac{m(AB)}{m(B)} = \frac{m(AB)/m(\Omega)}{m(B)/m(\Omega)} = \frac{P(AB)}{P(B)}</script><p>若P(B) &gt; 0，满足公理化三条定理<br>(1) $0 \leq P(A|B) \leq 1$<br>(2) $P(\Omega|B) = 1$<br>(3) 若$A_{1}, A_{2},…$互不相容，则$P(\cupA_{i}|B) =\sum_{i=1}^{\infty}P(A_{i}|B)$</p>
-
+<p>$P(B) &gt; 0时$，$P(A|B) = \frac{P(AB)}{P(B)}\Rightarrow P(AB) = P(B)\cdot P(A|B)$，后面这个公式称乘法公式<br>推广到三个事件：<br>设$A_{1}, A_{2}, A_{3}$是试验E的三个事件，若$P(A_{1}A_{2}A_{3})&gt;0$，则</p>
+<script type="math/tex; mode=display">P(A_{1}A_{2}A_{3}) = P(A_{1})\frac{P(A_{1}A_{2})}{P(A_{1})}\frac{P(A_{1}A_{2}A_{3})}{P(A_{1}A_{2})} = P(A_{1})P(A_{2}|A_{1})P(A_{3}|A_{1}A_{2})</script>
       
     </div>
     
@@ -632,7 +633,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -751,7 +752,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">46.7k</span>
+    <span title="Site words total count">47.5k</span>
   
 </div>
 
