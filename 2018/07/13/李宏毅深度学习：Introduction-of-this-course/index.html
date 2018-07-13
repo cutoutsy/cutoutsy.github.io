@@ -94,7 +94,7 @@
 
 
 
-  <meta name="keywords" content="深度学习,李宏毅," />
+  <meta name="keywords" content="李宏毅,深度学习," />
 
 
 
@@ -105,18 +105,18 @@
 
 
 
-<meta name="description" content="深度学习三部曲第一步：神经网络是简单函数的组合（线性函数+激活函数）  我们设计网络结构，让机器从数据中找到参数第二步：利用损失函数来评估参数的好坏损失函数是基于具体的任务的，不同的任务的损失函数是不同的，因为各个任务关注的点不同，比如有的任务需要准确度，而有的任务比如样本类别不均衡时，需要同时关注准确率和召回率，即F1值。第三步：找到最好的函数，找到最好的函数即是找到最好的函数参数（在神经网络中">
-<meta name="keywords" content="深度学习,李宏毅">
+<meta name="description" content="深度学习三部曲第一步：神经网络是简单函数的组合（线性函数+激活函数）  我们设计网络结构，让机器从数据中找到参数  第二步：利用损失函数来评估参数的好坏  损失函数是基于具体的任务的，不同的任务的损失函数是不同的，因为各个任务关注的点不同，比如有的任务需要准确度，而有的任务比如样本类别不均衡时，需要同时关注准确率和召回率，即F1值。  第三步：找到最好的函数，找到最好的函数即是找到最好的函数参数（">
+<meta name="keywords" content="李宏毅,深度学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="李宏毅深度学习：Introduction of this course">
 <meta property="og:url" content="http://cutoutsy.github.io/2018/07/13/李宏毅深度学习：Introduction-of-this-course/index.html">
 <meta property="og:site_name" content="cutoutsy">
-<meta property="og:description" content="深度学习三部曲第一步：神经网络是简单函数的组合（线性函数+激活函数）  我们设计网络结构，让机器从数据中找到参数第二步：利用损失函数来评估参数的好坏损失函数是基于具体的任务的，不同的任务的损失函数是不同的，因为各个任务关注的点不同，比如有的任务需要准确度，而有的任务比如样本类别不均衡时，需要同时关注准确率和召回率，即F1值。第三步：找到最好的函数，找到最好的函数即是找到最好的函数参数（在神经网络中">
+<meta property="og:description" content="深度学习三部曲第一步：神经网络是简单函数的组合（线性函数+激活函数）  我们设计网络结构，让机器从数据中找到参数  第二步：利用损失函数来评估参数的好坏  损失函数是基于具体的任务的，不同的任务的损失函数是不同的，因为各个任务关注的点不同，比如有的任务需要准确度，而有的任务比如样本类别不均衡时，需要同时关注准确率和召回率，即F1值。  第三步：找到最好的函数，找到最好的函数即是找到最好的函数参数（">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-13T03:04:27.357Z">
+<meta property="og:updated_time" content="2018-07-13T06:54:57.301Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="李宏毅深度学习：Introduction of this course">
-<meta name="twitter:description" content="深度学习三部曲第一步：神经网络是简单函数的组合（线性函数+激活函数）  我们设计网络结构，让机器从数据中找到参数第二步：利用损失函数来评估参数的好坏损失函数是基于具体的任务的，不同的任务的损失函数是不同的，因为各个任务关注的点不同，比如有的任务需要准确度，而有的任务比如样本类别不均衡时，需要同时关注准确率和召回率，即F1值。第三步：找到最好的函数，找到最好的函数即是找到最好的函数参数（在神经网络中">
+<meta name="twitter:description" content="深度学习三部曲第一步：神经网络是简单函数的组合（线性函数+激活函数）  我们设计网络结构，让机器从数据中找到参数  第二步：利用损失函数来评估参数的好坏  损失函数是基于具体的任务的，不同的任务的损失函数是不同的，因为各个任务关注的点不同，比如有的任务需要准确度，而有的任务比如样本类别不均衡时，需要同时关注准确率和召回率，即F1值。  第三步：找到最好的函数，找到最好的函数即是找到最好的函数参数（">
 
 
 
@@ -408,7 +408,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  196
+                  216
                 </span>
               
 
@@ -447,8 +447,16 @@
       
         <h3 id="深度学习三部曲"><a href="#深度学习三部曲" class="headerlink" title="深度学习三部曲"></a>深度学习三部曲</h3><p>第一步：神经网络是简单函数的组合（线性函数+激活函数）</p>
 <blockquote>
-<p>我们设计网络结构，让机器从数据中找到参数<br>第二步：利用损失函数来评估参数的好坏<br>损失函数是基于具体的任务的，不同的任务的损失函数是不同的，因为各个任务关注的点不同，比如有的任务需要准确度，而有的任务比如样本类别不均衡时，需要同时关注准确率和召回率，即F1值。<br>第三步：找到最好的函数，找到最好的函数即是找到最好的函数参数（在神经网络中的那些权重）。（例如使用随机梯度下降）<br><a id="more"></a></p>
+<p>我们设计网络结构，让机器从数据中找到参数</p>
 </blockquote>
+<p>第二步：利用损失函数来评估参数的好坏</p>
+<blockquote>
+<p>损失函数是基于具体的任务的，不同的任务的损失函数是不同的，因为各个任务关注的点不同，比如有的任务需要准确度，而有的任务比如样本类别不均衡时，需要同时关注准确率和召回率，即F1值。</p>
+</blockquote>
+<p>第三步：找到最好的函数，找到最好的函数即是找到最好的函数参数（在神经网络中的那些权重）。（例如使用随机梯度下降）<br><a id="more"></a></p>
+<h3 id="基础结构"><a href="#基础结构" class="headerlink" title="基础结构"></a>基础结构</h3><p>1、全连接层</p>
+<p>2、循环结构</p>
+<p>3、卷积/池化层</p>
 
       
     </div>
@@ -513,9 +521,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/深度学习/" rel="tag"># 深度学习</a>
-          
             <a href="/tags/李宏毅/" rel="tag"># 李宏毅</a>
+          
+            <a href="/tags/深度学习/" rel="tag"># 深度学习</a>
           
         </div>
       
@@ -712,7 +720,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#深度学习三部曲"><span class="nav-number">1.</span> <span class="nav-text">深度学习三部曲</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#深度学习三部曲"><span class="nav-number">1.</span> <span class="nav-text">深度学习三部曲</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础结构"><span class="nav-number">2.</span> <span class="nav-text">基础结构</span></a></li></ol></div>
             
 
           </div>
@@ -746,7 +754,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">48.6k</span>
+    <span title="Site words total count">48.7k</span>
   
 </div>
 
