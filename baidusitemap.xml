@@ -4,6 +4,76 @@
 
     
   <url>
+    <loc>https://fengxc.me/Centos7%E4%B8%8B%E6%94%AF%E6%8C%81%E6%8C%82%E8%BD%BDexFAT%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F.html</loc>
+    <lastmod>2018-07-16T07:20:33.555Z</lastmod>
+    <data>
+        <display>
+        <title>Centos7下支持挂载exFAT文件系统</title>
+        <pubTime>2018-07-16T06:49:53.000Z</pubTime>
+        
+        <tag>Centos</tag>
+         
+        <tag>exFAT</tag>
+         
+        <tag>挂载</tag>
+         
+         
+           
+             
+              <breadCrumb title="杂记" url="https://fengxc.me/categories/%E6%9D%82%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://fengxc.me/CS224N-Assignment-1.html</loc>
+    <lastmod>2018-07-14T12:12:48.918Z</lastmod>
+    <data>
+        <display>
+        <title>CS224N Assignment 1</title>
+        <pubTime>2018-07-14T08:22:24.000Z</pubTime>
+        
+        <tag>算法</tag>
+         
+        <tag>nlp</tag>
+         
+        <tag>CS224N</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://fengxc.me/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9AIntroduction-of-Machine-Learning.html</loc>
+    <lastmod>2018-07-14T12:11:16.702Z</lastmod>
+    <data>
+        <display>
+        <title>李宏毅机器学习：Introduction of Machine Learning</title>
+        <pubTime>2018-07-13T08:24:25.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>李宏毅</tag>
+         
+         
+           
+             
+              <breadCrumb title="学习笔记" url="https://fengxc.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://fengxc.me/%E5%BB%BA%E7%AB%99%E6%97%A5%E5%BF%97.html</loc>
     <lastmod>2018-07-14T06:59:44.472Z</lastmod>
     <data>
@@ -41,28 +111,6 @@
            
              
               <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://fengxc.me/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9AIntroduction-of-Machine-Learning.html</loc>
-    <lastmod>2018-07-13T09:15:25.808Z</lastmod>
-    <data>
-        <display>
-        <title>李宏毅机器学习：Introduction of Machine Learning</title>
-        <pubTime>2018-07-13T08:24:25.000Z</pubTime>
-        
-        <tag>机器学习</tag>
-         
-        <tag>李宏毅</tag>
-         
-         
-           
-             
-              <breadCrumb title="学习笔记" url="https://fengxc.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
           
         </display>
     </data>
