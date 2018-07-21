@@ -4,6 +4,52 @@
 
     
   <url>
+    <loc>https://fengxc.me/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9AIntroduction-of-Machine-Learning.html</loc>
+    <lastmod>2018-07-21T07:46:09.139Z</lastmod>
+    <data>
+        <display>
+        <title>李宏毅机器学习：Introduction of Machine Learning</title>
+        <pubTime>2018-07-13T08:24:25.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>李宏毅</tag>
+         
+         
+           
+             
+              <breadCrumb title="学习笔记" url="https://fengxc.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://fengxc.me/%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%EF%BC%9A%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1-%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87%EF%BC%8C%E4%B9%98%E6%B3%95%E5%85%AC%E5%BC%8F%EF%BC%8C%E5%85%A8%E6%A6%82%E7%8E%87%E5%85%AC%E5%BC%8F%EF%BC%8C%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%85%AC%E5%BC%8F.html</loc>
+    <lastmod>2018-07-19T09:17:36.084Z</lastmod>
+    <data>
+        <display>
+        <title>南京大学：概率论与数理统计-条件概率，乘法公式，全概率公式，贝叶斯公式</title>
+        <pubTime>2018-07-08T07:53:13.000Z</pubTime>
+        
+        <tag>概率论</tag>
+         
+        <tag>数学</tag>
+         
+        <tag>统计学</tag>
+         
+         
+           
+             
+              <breadCrumb title="学习笔记" url="https://fengxc.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://fengxc.me/Centos7%E4%B8%8B%E6%94%AF%E6%8C%81%E6%8C%82%E8%BD%BDexFAT%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F.html</loc>
     <lastmod>2018-07-16T07:20:33.555Z</lastmod>
     <data>
@@ -45,28 +91,6 @@
            
              
               <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://fengxc.me/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9AIntroduction-of-Machine-Learning.html</loc>
-    <lastmod>2018-07-14T12:11:16.702Z</lastmod>
-    <data>
-        <display>
-        <title>李宏毅机器学习：Introduction of Machine Learning</title>
-        <pubTime>2018-07-13T08:24:25.000Z</pubTime>
-        
-        <tag>机器学习</tag>
-         
-        <tag>李宏毅</tag>
-         
-         
-           
-             
-              <breadCrumb title="学习笔记" url="https://fengxc.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
           
         </display>
     </data>
@@ -181,30 +205,6 @@
            
              
               <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://fengxc.me/%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%EF%BC%9A%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1-%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87%EF%BC%8C%E4%B9%98%E6%B3%95%E5%85%AC%E5%BC%8F%EF%BC%8C%E5%85%A8%E6%A6%82%E7%8E%87%E5%85%AC%E5%BC%8F%EF%BC%8C%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%85%AC%E5%BC%8F.html</loc>
-    <lastmod>2018-07-12T12:32:53.196Z</lastmod>
-    <data>
-        <display>
-        <title>南京大学：概率论与数理统计-条件概率，乘法公式，全概率公式，贝叶斯公式</title>
-        <pubTime>2018-07-08T07:53:13.000Z</pubTime>
-        
-        <tag>概率论</tag>
-         
-        <tag>数学</tag>
-         
-        <tag>统计学</tag>
-         
-         
-           
-             
-              <breadCrumb title="学习笔记" url="https://fengxc.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
           
         </display>
     </data>

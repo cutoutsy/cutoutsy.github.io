@@ -114,7 +114,7 @@
 <meta property="og:description" content="人工智能不是个新词，早在1950年就存在了，希望机器和人一样聪明。是我们想达成的目标。之前我们并不知道如何来达成这个目标，直到机器学习的出现，机器学习是一种达到人工智能的手段。而深度学习是机器学习的一种。机器学习包含很多算法，比如逻辑回归、SVM、决策树等。不过现在来看深度学习这种算法发挥出的作用远远大于机器学习中的其他算法，导致很多将深度学习等同于机器学习，但其实不是这样的，深度学习是机器学习的">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.commitstrip.com/wp-content/uploads/2017/06/Strip-IA-construite-de-IF-english650-final.jpg">
-<meta property="og:updated_time" content="2018-07-14T12:11:16.702Z">
+<meta property="og:updated_time" content="2018-07-21T07:46:09.139Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="李宏毅机器学习：Introduction of Machine Learning">
 <meta name="twitter:description" content="人工智能不是个新词，早在1950年就存在了，希望机器和人一样聪明。是我们想达成的目标。之前我们并不知道如何来达成这个目标，直到机器学习的出现，机器学习是一种达到人工智能的手段。而深度学习是机器学习的一种。机器学习包含很多算法，比如逻辑回归、SVM、决策树等。不过现在来看深度学习这种算法发挥出的作用远远大于机器学习中的其他算法，导致很多将深度学习等同于机器学习，但其实不是这样的，深度学习是机器学习的">
@@ -419,7 +419,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  696
+                  925
                 </span>
               
 
@@ -435,7 +435,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -472,19 +472,27 @@
 <ul>
 <li>定义一个函数集合</li>
 <li>损失函数</li>
-<li>从函数集合中找到最好的函数<br>和把大象塞进冰箱只需要三个步骤一样（打开冰箱门-&gt;把大象赶进去-&gt;关上冰箱门）</li>
+<li>从函数集合中找到最好的函数</li>
 </ul>
 </blockquote>
-<h3 id="学习路线"><a href="#学习路线" class="headerlink" title="学习路线"></a>学习路线</h3><blockquote>
+<p>和把大象塞进冰箱只需要三个步骤一样（打开冰箱门-&gt;把大象赶进去-&gt;关上冰箱门）</p>
+<h3 id="学习路线"><a href="#学习路线" class="headerlink" title="学习路线"></a>学习路线</h3><p>从学习情景来分：<br>这是根据训练数据来决定的，比如你没有带标签的数据，那么你就不能做监督学习。</p>
+<blockquote>
 <ul>
-<li>监督学习</li>
-<li>非监督学习</li>
-<li>半监督学习</li>
-<li>迁移学习</li>
+<li>监督学习<br>有标签数据</li>
+<li>非监督学习<br>没有标签数据</li>
+<li>半监督学习<br>大量没有标签的数据，少量有标签的数据</li>
+<li>迁移学习<br>数据和任务不相关，但是可以迁移过来</li>
+<li>增强学习（Reinforcement Learning）</li>
 </ul>
 </blockquote>
+<p>从任务上来分（也可以说从输出结果来分）：</p>
 <h4 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h4><p>输出值是一个标量<br>需要大量的训练数据</p>
 <h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><p>二分类和多分类，类似于选择题<br>邮件分类<br>文章新闻分类</p>
+<h4 id="结构学习"><a href="#结构学习" class="headerlink" title="结构学习"></a>结构学习</h4><p>语音识别<br>机器翻译</p>
+<p>关于监督学习与增强学习：监督学习类似于有个老师，从老师处学习，而增强学习是从评价中学习。<br>Alpha Go是监督学习加增强学习。</p>
+<p>出现新工作：AI训练师<br>需要有经验的AI训练师。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>林轩田老师的课程是比较有趣的，中间会举很多有意思的例子，大多数是和动漫有关的。</p>
 
       
     </div>
@@ -752,7 +760,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#机器学习是什么"><span class="nav-number">1.</span> <span class="nav-text">机器学习是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#框架"><span class="nav-number">2.</span> <span class="nav-text">框架</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#三个步骤"><span class="nav-number">2.1.</span> <span class="nav-text">三个步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学习路线"><span class="nav-number">3.</span> <span class="nav-text">学习路线</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#回归"><span class="nav-number">3.1.</span> <span class="nav-text">回归</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分类"><span class="nav-number">3.2.</span> <span class="nav-text">分类</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#机器学习是什么"><span class="nav-number">1.</span> <span class="nav-text">机器学习是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#框架"><span class="nav-number">2.</span> <span class="nav-text">框架</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#三个步骤"><span class="nav-number">2.1.</span> <span class="nav-text">三个步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学习路线"><span class="nav-number">3.</span> <span class="nav-text">学习路线</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#回归"><span class="nav-number">3.1.</span> <span class="nav-text">回归</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分类"><span class="nav-number">3.2.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结构学习"><span class="nav-number">3.3.</span> <span class="nav-text">结构学习</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a></li></ol></div>
             
 
           </div>
@@ -786,7 +794,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">50.7k</span>
+    <span title="Site words total count">50.9k</span>
   
 </div>
 
