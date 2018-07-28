@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习,nlp,面试题," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="写在前面本篇博客收集一些机器学习的常见面试题，题目主要为机器学习和自然语言处理相关，不包括计算机视觉。并附上个人答案，持续更新，直到今年秋招结束。欢迎大家在评论去贡献题目和讨论答案。">
+<meta name="keywords" content="机器学习,nlp,面试题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习常见面试点(持续更新中...)">
+<meta property="og:url" content="https://fengxc.me/机器学习常见面试点-持续更新中.html">
+<meta property="og:site_name" content="小川">
+<meta property="og:description" content="写在前面本篇博客收集一些机器学习的常见面试题，题目主要为机器学习和自然语言处理相关，不包括计算机视觉。并附上个人答案，持续更新，直到今年秋招结束。欢迎大家在评论去贡献题目和讨论答案。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-28T08:39:42.859Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习常见面试点(持续更新中...)">
+<meta name="twitter:description" content="写在前面本篇博客收集一些机器学习的常见面试题，题目主要为机器学习和自然语言处理相关，不包括计算机视觉。并附上个人答案，持续更新，直到今年秋招结束。欢迎大家在评论去贡献题目和讨论答案。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://fengxc.me/机器学习常见面试点-持续更新中.html"/>
+
+
+
+
+
+  <title>机器学习常见面试点(持续更新中...) | 小川</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122351842-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a4f22e1e9cbbfd498ecb004941dd74f6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小川</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">I hear and I forget. I see and I remember. I do and I understand</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于博主
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-booklist">
+          <a href="/booklist/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            我的书单
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/机器学习常见面试点-持续更新中.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小川">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/cat_avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小川">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">机器学习常见面试点(持续更新中...)</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-28T14:48:53+08:00">
+                2018-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/机器学习常见面试点-持续更新中.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="机器学习常见面试点-持续更新中.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,332
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>本篇博客收集一些机器学习的常见面试题，题目主要为机器学习和自然语言处理相关，不包括计算机视觉。并附上个人答案，持续更新，直到今年秋招结束。欢迎大家在评论去贡献题目和讨论答案。</p>
+<a id="more"></a>
+<ul>
+<li><strong>监督学习与非监督学习区别，非监督学习举例</strong></li>
+</ul>
+<p>主要是训练数据上的区别，监督学习的数据是有标记的，非监督学习的数据是没有标记的。<br>非监督学习举例：新闻聚类，用户人群分类</p>
+<ul>
+<li><strong>特征工程你一般怎么做</strong></li>
+</ul>
+<p>数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已。<br>特征工程的目的是获取更好的训练数据，把原始数据转变成特征。从数学的角度来看，特征工程就是人工的去设计输入变量X。<br>特征构建 -&gt; 特征提取 -&gt; 特征选择<br>特征构建<br>指从原始数据中人工的构建新的特征。<br>特征提取<br>自动的构建新的特征，将原始特征转换为一组有明显统计意义的特征。</p>
+<blockquote>
+<ul>
+<li>PCA(Principal component analysis, 主成分分析)</li>
+<li>ICA(Independent component analysis, 独立成分分析)</li>
+<li>LDA(Linear Discriminant Analysis, 线性判别分析)</li>
+</ul>
+</blockquote>
+<p>特征选择<br>从给定的特征集合中选择出相关特征子集的过程，称为特征选择。<br>原因：</p>
+<blockquote>
+<ul>
+<li>维数灾难</li>
+<li>去除不相关的特征往往会降低学习任务的难度</li>
+</ul>
+</blockquote>
+<p>主要选择方式</p>
+<blockquote>
+<ul>
+<li>过滤式选择</li>
+<li>包裹式选择</li>
+<li>嵌入式选择与L1正则化</li>
+</ul>
+</blockquote>
+<ul>
+<li><strong>什么是数据标准化，为什么要进行数据标准化？</strong></li>
+</ul>
+<p>数据标准化时预处理步骤，将数据标准化到一个特定的范围能够在反向传播中保证更好的收敛。一般来说，是将该值去平均值后再除以标准差。如果不进行标准化，有些特征值（值很大）将会对损失函数影响更大（即使这个特征改变很小）。因此数据标准化可以使得每个特征的重要性更加均衡。</p>
+<ul>
+<li><strong>机器学习中对样本数据不平衡的情况有哪些解决办法</strong></li>
+</ul>
+<p>假设正样本&lt;&lt;负样本<br>对数据进行重采样<br>(1) 对正样本的数据样本进行采样来增加正样本的数据样本个数，即过采样（over-sampling, 采样的次数大于改类样本个数）<br>(2) 对负样本的数据样本进行采样来减少该类数据样本的个数，即欠采样（under-sampling, 采样的次数少于该类样本的个数）<br>阈值移动<br>原来学习器在决策过程中假设真实正、反例可能性相同。<br>可以进行“再缩放”，改变学习器的评价标准，学习器的预测几率高于观测几率。</p>
+<ul>
+<li><strong>解释什么是降维，在哪里会用到降维，它的好处是什么？</strong></li>
+</ul>
+<p>降维是指通过保留一些比较重要的特征，去除一些冗余的特征，减少数据特征的维度。而特征的重要性取决于该特征能够表达多少数据集的信息，也取决于使用什么方法进行降维。使用哪种降维方法则是通过反复的试验和每种方法在该数据集上的效果。一般情况会先使用线性降维方法再使用非线性的降维方法。<br>好处：<br>(1) 节省存储空间<br>(2) 加速计算速度，维度越少，计算量越少，并且能够使用那些不适合高维度的算法<br>(3) 去除一些冗余特征，比如降维后使得数据不会即保存平方米又保存平方英里的表示地形大小的特征<br>(4) 将数据维度降到2维或者3维使之能可视化，便于观察和挖掘信息<br>(5) 特征太多或者太复杂会使得模型过拟合</p>
+<ul>
+<li><strong>如何处理缺失值</strong></li>
+</ul>
+<p>处理方法有两种，一种是删除整行或者整列的数据，另一种则是使用其他值去填充。</p>
+<ul>
+<li><strong>过拟合如何解决</strong></li>
+</ul>
+<blockquote>
+<ul>
+<li>获取更多的数据，数据越多越接近整体</li>
+<li>使用简单的模型</li>
+<li>训练时间，提前结束训练（Early stopping）</li>
+<li>正则化（限制权值）</li>
+</ul>
+</blockquote>
+<ul>
+<li><p><strong>AUC是什么</strong><br>AUC(Area Under ROC Curve)，即在ROC曲线下的面积。ROC曲线就是根据学习器的预测结果对样例进行排序，按此顺序逐个把样本作为正例进行预测，每次计算出两个重要的量，一个是真正例率，一个是假正例率，真正例率作为纵轴，假正例率作为横轴，作图，就得到ROC曲线。</p>
+</li>
+<li><p><strong>解释k-means原理</strong></p>
+</li>
+</ul>
+<p>k均值算法针对聚类所得的簇划分最小化平方误差。<br>找到最优解需考察样本集D所有可能的簇划分，这是一个NP难问题。所有k-means采用了贪心策略，通过迭代优化来近似求解。</p>
+<blockquote>
+<ol>
+<li>从D中随机选择k个样本作为初始均值向量，类别k是人为设定的。</li>
+<li>计算各个样本与各个均值向量的距离，根据距离最近的均值向量确定样本的簇标记，并化入相应的簇。</li>
+<li>更新均值向量，如果新的均值向量不等于之前的均值向量，则更新均值向量，否则保持不变。</li>
+<li>重复2~3，直到当前均值向量均未更新，得到最终的簇划分。</li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>Random forest原理</strong></li>
+</ul>
+<p>是Bagging的一个扩展变体。以决策树为基学习器。在决策树的训练过程中引入了随机属性选择。</p>
+<blockquote>
+<ol>
+<li>假如m个训练样本，自助采样一个训练集</li>
+<li>当每个样本有d个属性，在决策树的每个节点需要分裂时，随机从这d个属性中选取出k个属性，满足条件k &lt;&lt; d。推荐值$k = log_{2}d$ ，再从这个k个属性值中采取某种策略（比如说信息增益）来选择一个属性作为该节点的分裂属性。</li>
+<li>决策树形成过程的每个节点都要按照步骤2来分裂，一直到不能够再分裂位置。整个决策树形成过程没有剪枝。</li>
+<li>按照步骤1~3建立大量的决策树，这样就构成了随机森林。</li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>常见的激活函数有哪些</strong></li>
+</ul>
+<p>加入激活函数是用来加入非线性因素的，解决线性模型所不能解决的问题。<br>(1) sigmoid<br>函数表达式：$f(x) = \frac {1}{1 + e^{-x}}$<br>存在梯度消失的问题<br>(2) tanh<br>函数表达式：$f(x) =\frac {e^{x} - e^{-x}}{e^{x} + e^{-x}} =\frac{1 - e^{-2x}}{1 + e^{-2x}}$<br>收敛速度比sigmoid快<br>(3) ReLU<br>函数表达式：$ f(x) = max(0, x)$<br>能够有效缓解梯度消失问题。<br>提供神经网络的稀疏表达能力。<br>ReLU在$x &lt; 0$时，权重无法更新，会导致“神经元死亡”。<br>(4) Leaky-ReLu<br>函数表达式：</p>
+<script type="math/tex; mode=display">f(x) = ax (x < 0)</script><script type="math/tex; mode=display">f(x) = x (x >= 0)</script><p>(5) PReLU(parametric ReLU)<br>对于Leaky ReLU中的<script type="math/tex">\alpha</script>作为一个参数进行训练。<br>如何选择<br>首先尝试ReLU</p>
+<ul>
+<li><strong>凸函数的定义，sigmoid是凸函数吗</strong></li>
+</ul>
+<p>对区间[a, b]上定义的函数f ，若它对区间中任意两点$x1,x2$均有$f(\frac{x1+x2}{2}\leq \frac{f(x1)+f(x2)}{2})$，则称$f$为区间[a, b]上的凸函数。对实数集上的函数，可以通过求二阶导数来判别，若二阶导数在区间上非负，则称为凸函数，若二阶导数在区间上恒大于0，则称为严格凸函数。</p>
+<p>sigmoid不是凸函数，没有全局最小值。</p>
+<ul>
+<li><strong>softmax与cross entropy区别</strong></li>
+</ul>
+<p>Softmax函数，或称归一化指数函数，将一个含任意实数的K维向量$z$压缩到另一个k维实向量$softmax(z)$，使得每一个元素的范围都在(0, 1)之间，并且所有元素的和为1。</p>
+<script type="math/tex; mode=display">S_{i} = \frac{e^i}{\sum_{j}{}e^j}</script><p>主要应用于基于概率的多分类问题。</p>
+<p>cross entropy为交叉熵代价函数。具体形式如下</p>
+<script type="math/tex; mode=display">l(\hat y, y) = - \sum_{i=1}^{C}y^(i)log(\hat y^{(i)})</script><p>所以，这两个是不同的，但是经常联合起来使用。在softmax + 交叉熵组合的情况下，导数的形式非常简洁。</p>
+<ul>
+<li><strong>为什么实现分类的CNN中需要进行Max-pooling?</strong></li>
+</ul>
+<p>Max-pooling可以将特征维度变小，使得减小计算时间，同时，不会损失太多重要的信息，因为我们是保存最大值，这个最大值可以理解为该窗口下的最重要信息。同时Max-pooling也对CNN具有平移不变性提供了很多理论支撑。</p>
+<ul>
+<li><strong>RNN为什么会梯度消失，LSTM是怎么避免梯度消失的</strong></li>
+</ul>
+<p>可以参考我的另一博客<a href="https://fengxc.me/%E5%90%B4%E6%81%A9%E8%BE%BE%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B%EF%BC%9A%E5%BE%AA%E7%8E%AF%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B.html#more">吴恩达序列模型：循环序列模型</a></p>
+<ul>
+<li><strong>nlp中未登录词怎么处理</strong></li>
+</ul>
+<p>未登录词就是未在词表中出现的词。可以使用标记<unk>表示未登录词，在表示词向量时，可以将未登录词进行标准初始化。</unk></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="小川 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpeg" alt="小川 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    小川
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://fengxc.me/机器学习常见面试点-持续更新中.html" title="机器学习常见面试点(持续更新中...)">https://fengxc.me/机器学习常见面试点-持续更新中.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/nlp/" rel="tag"># nlp</a>
+          
+            <a href="/tags/面试题/" rel="tag"># 面试题</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Leetcode-654-Maximum-Binary-Tree.html" rel="next" title="Leetcode 654: Maximum Binary Tree">
+                <i class="fa fa-chevron-left"></i> Leetcode 654: Maximum Binary Tree
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/cat_avatar.jpeg"
+                alt="小川" />
+            
+              <p class="site-author-name" itemprop="name">小川</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">106</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/cutoutsy" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.zhihu.com/people/cutoutsy" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-globe"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://windmgc.me" title="windmgc" target="_blank">windmgc</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小川</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">57.7k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cutoutsy-blog.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://fengxc.me/机器学习常见面试点-持续更新中.html';
+          this.page.identifier = '机器学习常见面试点-持续更新中.html';
+          this.page.title = '机器学习常见面试点(持续更新中...)';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cutoutsy-blog.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
