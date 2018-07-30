@@ -2,15 +2,27 @@
 
 
 
+
+
+
+
+
+
+
+
+
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-CN">
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
+
+
+
 
 
 
@@ -37,10 +49,6 @@
 
 
 
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -76,46 +84,25 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="java,storm,big data,大数据,前端,linux,开发者,程序猿极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3" />
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
 
 
 
 
 
 
-
-
-
-
-<meta name="description" content="Happy Code, Happy Life">
-<meta name="keywords" content="java,机器学习,big data,大数据,深度学习,linux,开发者,程序猿极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3">
-<meta property="og:type" content="website">
-<meta property="og:title" content="小川">
-<meta property="og:url" content="https://fengxc.me/page/5/index.html">
-<meta property="og:site_name" content="小川">
-<meta property="og:description" content="Happy Code, Happy Life">
-<meta property="og:locale" content="zh-Hans">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小川">
-<meta name="twitter:description" content="Happy Code, Happy Life">
 
 
 
@@ -124,15 +111,13 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '5.1.4',
+    version: '6.3.0',
     sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -144,12 +129,37 @@
 </script>
 
 
+  
+
+
+
+
+  <meta name="description" content="Happy Code, Happy Life">
+<meta name="keywords" content="java,机器学习,big data,大数据,深度学习,linux,开发者,程序猿极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3">
+<meta property="og:type" content="website">
+<meta property="og:title" content="小川">
+<meta property="og:url" content="https://fengxc.me/page/5/index.html">
+<meta property="og:site_name" content="小川">
+<meta property="og:description" content="Happy Code, Happy Life">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="小川">
+<meta name="twitter:description" content="Happy Code, Happy Life">
+
+
+
+
+
 
   <link rel="canonical" href="https://fengxc.me/page/5/"/>
 
 
 
-
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>小川</title>
   
@@ -157,14 +167,15 @@
 
 
 
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-122351842-1"></script>
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-122351842-1', 'auto');
-  ga('send', 'pageview');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-122351842-1');
 </script>
+
 
 
   <script type="text/javascript">
@@ -175,14 +186,41 @@
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
-  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </script>
 
 
 
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -199,19 +237,21 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">小川</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <h1 class="site-subtitle" itemprop="description">I hear and I forget. I see and I remember. I do and I understand</h1>
       
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -219,75 +259,66 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于博主
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-booklist">
-          <a href="/booklist/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            我的书单
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-booklist">
+    <a href="/booklist/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />booklist</a>
+  </li>
 
       
+      
     </ul>
+  
+
   
 
   
@@ -295,12 +326,23 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
+            
+
+          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
@@ -313,6 +355,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -322,7 +366,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小川">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Happy Code, Happy Life">
       <meta itemprop="image" content="/images/cat_avatar.jpeg">
     </span>
 
@@ -337,11 +381,21 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/京东2018校招编程题解答（Java）.html" itemprop="url">京东2018校招编程题解答（Java）</a></h2>
+                <a class="post-title-link" href="/京东2018校招编程题解答（Java）.html" itemprop="url">
+                  京东2018校招编程题解答（Java）
+                </a>
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -349,13 +403,18 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-21T15:50:46+08:00">
-                2017-09-21
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2017-09-21 15:50:46 / 修改时间：17:03:18" itemprop="dateCreated datePublished" datetime="2017-09-21T15:50:46+08:00">2017-09-21</time>
             
 
             
+              
 
+              
             
           </span>
 
@@ -371,11 +430,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
 
                 
                 
@@ -391,6 +446,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/京东2018校招编程题解答（Java）.html#comments" itemprop="discussionUrl">
+                
                   <span class="post-comments-count disqus-comment-count"
                         data-disqus-identifier="京东2018校招编程题解答（Java）.html" itemprop="commentCount"></span>
                 </a>
@@ -404,18 +460,17 @@
           
 
           
-            <div class="post-wordcount">
+            <div class="post-symbolscount">
               
-                
+
+              
                 <span class="post-meta-item-icon">
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">字数统计&#58;</span>
+                  <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="字数统计">
-                  1,987
-                </span>
+                <span title="本文字数">5.3k</span>
               
 
               
@@ -429,9 +484,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">
-                  8
-                </span>
+                <span title="阅读时长">5 分钟</span>
               
             </div>
           
@@ -473,6 +526,9 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
         
       
     </div>
+
+    
+
     
     
     
@@ -511,6 +567,8 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -520,7 +578,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小川">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Happy Code, Happy Life">
       <meta itemprop="image" content="/images/cat_avatar.jpeg">
     </span>
 
@@ -535,11 +593,21 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/俄罗斯套娃信封问题.html" itemprop="url">俄罗斯套娃信封问题</a></h2>
+                <a class="post-title-link" href="/俄罗斯套娃信封问题.html" itemprop="url">
+                  俄罗斯套娃信封问题
+                </a>
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -547,13 +615,18 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-15T12:17:07+08:00">
-                2017-09-15
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2017-09-15 12:17:07 / 修改时间：12:28:33" itemprop="dateCreated datePublished" datetime="2017-09-15T12:17:07+08:00">2017-09-15</time>
             
 
             
+              
 
+              
             
           </span>
 
@@ -569,11 +642,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
 
                 
                 
@@ -589,6 +658,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/俄罗斯套娃信封问题.html#comments" itemprop="discussionUrl">
+                
                   <span class="post-comments-count disqus-comment-count"
                         data-disqus-identifier="俄罗斯套娃信封问题.html" itemprop="commentCount"></span>
                 </a>
@@ -602,18 +672,17 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
           
 
           
-            <div class="post-wordcount">
+            <div class="post-symbolscount">
               
-                
+
+              
                 <span class="post-meta-item-icon">
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">字数统计&#58;</span>
+                  <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="字数统计">
-                  2,213
-                </span>
+                <span title="本文字数">5.7k</span>
               
 
               
@@ -627,9 +696,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">
-                  10
-                </span>
+                <span title="阅读时长">5 分钟</span>
               
             </div>
           
@@ -673,6 +740,9 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
         
       
     </div>
+
+    
+
     
     
     
@@ -711,6 +781,8 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -720,7 +792,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小川">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Happy Code, Happy Life">
       <meta itemprop="image" content="/images/cat_avatar.jpeg">
     </span>
 
@@ -735,11 +807,21 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/关于二叉搜索树（BST）的了解.html" itemprop="url">关于二叉搜索树（BST）的了解</a></h2>
+                <a class="post-title-link" href="/关于二叉搜索树（BST）的了解.html" itemprop="url">
+                  关于二叉搜索树（BST）的了解
+                </a>
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -747,13 +829,18 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-10T21:01:14+08:00">
-                2017-09-10
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2017-09-10 21:01:14 / 修改时间：22:25:34" itemprop="dateCreated datePublished" datetime="2017-09-10T21:01:14+08:00">2017-09-10</time>
             
 
             
+              
 
+              
             
           </span>
 
@@ -769,11 +856,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
 
                 
                 
@@ -789,6 +872,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/关于二叉搜索树（BST）的了解.html#comments" itemprop="discussionUrl">
+                
                   <span class="post-comments-count disqus-comment-count"
                         data-disqus-identifier="关于二叉搜索树（BST）的了解.html" itemprop="commentCount"></span>
                 </a>
@@ -802,18 +886,17 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
           
 
           
-            <div class="post-wordcount">
+            <div class="post-symbolscount">
               
-                
+
+              
                 <span class="post-meta-item-icon">
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">字数统计&#58;</span>
+                  <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="字数统计">
-                  883
-                </span>
+                <span title="本文字数">2.4k</span>
               
 
               
@@ -827,9 +910,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">
-                  4
-                </span>
+                <span title="阅读时长">2 分钟</span>
               
             </div>
           
@@ -863,6 +944,9 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
         
       
     </div>
+
+    
+
     
     
     
@@ -901,6 +985,8 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -910,7 +996,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小川">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Happy Code, Happy Life">
       <meta itemprop="image" content="/images/cat_avatar.jpeg">
     </span>
 
@@ -925,11 +1011,21 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/thoughtworks结对编程体验.html" itemprop="url">thoughtworks结对编程体验</a></h2>
+                <a class="post-title-link" href="/thoughtworks结对编程体验.html" itemprop="url">
+                  thoughtworks结对编程体验
+                </a>
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -937,13 +1033,30 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-09T10:40:45+08:00">
-                2017-06-09
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2017-06-09 10:40:45" itemprop="dateCreated datePublished" datetime="2017-06-09T10:40:45+08:00">2017-06-09</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2017-06-10 10:28:26" itemprop="dateModified" datetime="2017-06-10T10:28:26+08:00">2017-06-10</time>
+              
             
           </span>
 
@@ -959,11 +1072,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/杂记/" itemprop="url" rel="index">
-                    <span itemprop="name">杂记</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/杂记/" itemprop="url" rel="index"><span itemprop="name">杂记</span></a></span>
 
                 
                 
@@ -979,6 +1088,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/thoughtworks结对编程体验.html#comments" itemprop="discussionUrl">
+                
                   <span class="post-comments-count disqus-comment-count"
                         data-disqus-identifier="thoughtworks结对编程体验.html" itemprop="commentCount"></span>
                 </a>
@@ -992,18 +1102,17 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
           
 
           
-            <div class="post-wordcount">
+            <div class="post-symbolscount">
               
-                
+
+              
                 <span class="post-meta-item-icon">
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">字数统计&#58;</span>
+                  <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="字数统计">
-                  1,354
-                </span>
+                <span title="本文字数">1.6k</span>
               
 
               
@@ -1017,9 +1126,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">
-                  5
-                </span>
+                <span title="阅读时长">1 分钟</span>
               
             </div>
           
@@ -1052,6 +1159,9 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
         
       
     </div>
+
+    
+
     
     
     
@@ -1090,6 +1200,8 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -1099,7 +1211,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小川">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Happy Code, Happy Life">
       <meta itemprop="image" content="/images/cat_avatar.jpeg">
     </span>
 
@@ -1114,11 +1226,21 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Maven、IDEA构建SSH基本项目结构.html" itemprop="url">Maven、IDEA构建SSH基本项目结构</a></h2>
+                <a class="post-title-link" href="/Maven、IDEA构建SSH基本项目结构.html" itemprop="url">
+                  Maven、IDEA构建SSH基本项目结构
+                </a>
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1126,13 +1248,30 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-26T21:49:53+08:00">
-                2017-05-26
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2017-05-26 21:49:53" itemprop="dateCreated datePublished" datetime="2017-05-26T21:49:53+08:00">2017-05-26</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2017-05-27 17:05:21" itemprop="dateModified" datetime="2017-05-27T17:05:21+08:00">2017-05-27</time>
+              
             
           </span>
 
@@ -1148,11 +1287,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java-学习/" itemprop="url" rel="index">
-                    <span itemprop="name">Java 学习</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java-学习/" itemprop="url" rel="index"><span itemprop="name">Java 学习</span></a></span>
 
                 
                 
@@ -1168,6 +1303,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/Maven、IDEA构建SSH基本项目结构.html#comments" itemprop="discussionUrl">
+                
                   <span class="post-comments-count disqus-comment-count"
                         data-disqus-identifier="Maven、IDEA构建SSH基本项目结构.html" itemprop="commentCount"></span>
                 </a>
@@ -1181,18 +1317,17 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
           
 
           
-            <div class="post-wordcount">
+            <div class="post-symbolscount">
               
-                
+
+              
                 <span class="post-meta-item-icon">
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">字数统计&#58;</span>
+                  <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="字数统计">
-                  2,542
-                </span>
+                <span title="本文字数">13k</span>
               
 
               
@@ -1206,9 +1341,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">
-                  12
-                </span>
+                <span title="阅读时长">11 分钟</span>
               
             </div>
           
@@ -1240,6 +1373,9 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
         
       
     </div>
+
+    
+
     
     
     
@@ -1278,6 +1414,8 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -1287,7 +1425,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小川">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Happy Code, Happy Life">
       <meta itemprop="image" content="/images/cat_avatar.jpeg">
     </span>
 
@@ -1302,11 +1440,21 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Linux学习-lsattr、chattr命令学习.html" itemprop="url">Linux学习:lsattr、chattr命令</a></h2>
+                <a class="post-title-link" href="/Linux学习-lsattr、chattr命令学习.html" itemprop="url">
+                  Linux学习:lsattr、chattr命令
+                </a>
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1314,13 +1462,18 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-10T09:12:54+08:00">
-                2017-04-10
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2017-04-10 09:12:54 / 修改时间：10:01:10" itemprop="dateCreated datePublished" datetime="2017-04-10T09:12:54+08:00">2017-04-10</time>
             
 
             
+              
 
+              
             
           </span>
 
@@ -1334,6 +1487,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/Linux学习-lsattr、chattr命令学习.html#comments" itemprop="discussionUrl">
+                
                   <span class="post-comments-count disqus-comment-count"
                         data-disqus-identifier="Linux学习-lsattr、chattr命令学习.html" itemprop="commentCount"></span>
                 </a>
@@ -1347,18 +1501,17 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
           
 
           
-            <div class="post-wordcount">
+            <div class="post-symbolscount">
               
-                
+
+              
                 <span class="post-meta-item-icon">
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">字数统计&#58;</span>
+                  <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="字数统计">
-                  907
-                </span>
+                <span title="本文字数">1.7k</span>
               
 
               
@@ -1372,9 +1525,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">
-                  3
-                </span>
+                <span title="阅读时长">2 分钟</span>
               
             </div>
           
@@ -1407,6 +1558,9 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
         
       
     </div>
+
+    
+
     
     
     
@@ -1445,6 +1599,8 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -1454,7 +1610,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小川">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Happy Code, Happy Life">
       <meta itemprop="image" content="/images/cat_avatar.jpeg">
     </span>
 
@@ -1469,11 +1625,21 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/华为2017精英软件赛参赛感受.html" itemprop="url">华为2017精英软件赛参赛感受</a></h2>
+                <a class="post-title-link" href="/华为2017精英软件赛参赛感受.html" itemprop="url">
+                  华为2017精英软件赛参赛感受
+                </a>
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1481,13 +1647,30 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-07T23:35:31+08:00">
-                2017-04-07
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2017-04-07 23:35:31" itemprop="dateCreated datePublished" datetime="2017-04-07T23:35:31+08:00">2017-04-07</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2017-04-09 19:33:04" itemprop="dateModified" datetime="2017-04-09T19:33:04+08:00">2017-04-09</time>
+              
             
           </span>
 
@@ -1501,6 +1684,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/华为2017精英软件赛参赛感受.html#comments" itemprop="discussionUrl">
+                
                   <span class="post-comments-count disqus-comment-count"
                         data-disqus-identifier="华为2017精英软件赛参赛感受.html" itemprop="commentCount"></span>
                 </a>
@@ -1514,18 +1698,17 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
           
 
           
-            <div class="post-wordcount">
+            <div class="post-symbolscount">
               
-                
+
+              
                 <span class="post-meta-item-icon">
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">字数统计&#58;</span>
+                  <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="字数统计">
-                  3,122
-                </span>
+                <span title="本文字数">3.6k</span>
               
 
               
@@ -1539,9 +1722,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">
-                  11
-                </span>
+                <span title="阅读时长">3 分钟</span>
               
             </div>
           
@@ -1575,6 +1756,9 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
         
       
     </div>
+
+    
+
     
     
     
@@ -1613,6 +1797,8 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -1622,7 +1808,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小川">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Happy Code, Happy Life">
       <meta itemprop="image" content="/images/cat_avatar.jpeg">
     </span>
 
@@ -1637,11 +1823,21 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/SHA-1的简单探究.html" itemprop="url">SHA-1的简单探究</a></h2>
+                <a class="post-title-link" href="/SHA-1的简单探究.html" itemprop="url">
+                  SHA-1的简单探究
+                </a>
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1649,13 +1845,18 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-25T10:24:16+08:00">
-                2017-03-25
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2017-03-25 10:24:16 / 修改时间：12:59:36" itemprop="dateCreated datePublished" datetime="2017-03-25T10:24:16+08:00">2017-03-25</time>
             
 
             
+              
 
+              
             
           </span>
 
@@ -1669,6 +1870,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/SHA-1的简单探究.html#comments" itemprop="discussionUrl">
+                
                   <span class="post-comments-count disqus-comment-count"
                         data-disqus-identifier="SHA-1的简单探究.html" itemprop="commentCount"></span>
                 </a>
@@ -1682,18 +1884,17 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
           
 
           
-            <div class="post-wordcount">
+            <div class="post-symbolscount">
               
-                
+
+              
                 <span class="post-meta-item-icon">
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">字数统计&#58;</span>
+                  <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="字数统计">
-                  3,834
-                </span>
+                <span title="本文字数">5.3k</span>
               
 
               
@@ -1707,9 +1908,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">
-                  14
-                </span>
+                <span title="阅读时长">5 分钟</span>
               
             </div>
           
@@ -1742,6 +1941,9 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
         
       
     </div>
+
+    
+
     
     
     
@@ -1776,15 +1978,12 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
 
           </div>
-          
-
-
           
 
         </div>
@@ -1816,63 +2015,291 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
                 alt="小川" />
             
               <p class="site-author-name" itemprop="name">小川</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">Happy Code, Happy Life</p>
           </div>
 
-          <nav class="site-state motion-element">
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">59</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
 
-            
-              <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
               
-                  <span class="site-state-item-count">59</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
 
-            
               
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">106</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
               
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">106</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
+            </nav>
+          
 
           
 
           
             <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/cutoutsy" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="http://www.zhihu.com/people/cutoutsy" target="_blank" title="知乎">
-                      
-                        <i class="fa fa-fw fa-globe"></i>知乎</a>
-                  </span>
-                
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/cutoutsy" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:cutoutsy@gmail.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
             </div>
           
 
@@ -1897,6 +2324,9 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
           
 
           
+            
+          
+          
 
         </div>
       </section>
@@ -1915,8 +2345,8 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">小川</span>
@@ -1927,14 +2357,25 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
       <i class="fa fa-area-chart"></i>
     </span>
     
-      <span class="post-meta-item-text">Site words total count&#58;</span>
+    <span title="站点总字数">141k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
     
-    <span title="Site words total count">57.7k</span>
+    <span title="站点阅读时长">2:08</span>
   
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
 
 
 
@@ -1942,31 +2383,12 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Pisces</a> v6.3.0</div>
 
 
 
 
         
-<div class="busuanzi-count">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="site-uv">
-      <i class="fa fa-user"></i>
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      次
-    </span>
-  
-
-  
-    <span class="site-pv">
-      <i class="fa fa-eye"></i>
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      次
-    </span>
-  
-</div>
 
 
 
@@ -1987,7 +2409,10 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
     
 
     
+	
+    
 
+    
   </div>
 
   
@@ -2006,7 +2431,11 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
 
 
-  
+
+
+
+
+
 
 
 
@@ -2026,16 +2455,6 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
   
   
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
     <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
@@ -2044,18 +2463,13 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
 
 
 
@@ -2063,9 +2477,9 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
   
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
 
 
 
@@ -2074,100 +2488,100 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://cutoutsy-blog.disqus.com/count.js" async></script>
+  
+
+  
+
+
+
+
+
+
+
+
+
 
 
 
   
 
 
+
+
+
   
 
+  
+
+  
+
+  
+  
+
+  
+  
     
-      <script id="dsq-count-scr" src="https://cutoutsy-blog.disqus.com/count.js" async></script>
+      
     
-
+      
     
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
   
 
   
-
-  
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
 </script>
 
-
-  
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
         for (i=0; i < all.length; i += 1) {
           all[i].SourceElement().parentNode.className += ' has-jax';
         }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    });
+</script>
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
   
 
+
+  
+  
+
+  
+
+  
+
+  
 
   
 
