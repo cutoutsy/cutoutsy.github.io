@@ -1333,7 +1333,7 @@ pre .javascript .function {
   visibility: visible;
 }
 .posts-expand .post-body ul li {
-  list-style: circle;
+  list-style: disc;
 }
 .posts-expand .post-body img {
   box-sizing: border-box;
@@ -1621,7 +1621,7 @@ pre .javascript .function {
 .posts-expand .post-eof {
   display: block;
   margin: 80px auto 60px;
-  width: 8%;
+  width: 100%;
   height: 1px;
   background: #ccc;
   text-align: center;
@@ -1985,7 +1985,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #1bd220;
+  background: #5c7dd7;
 }
 .links-of-blogroll {
   font-size: 13px;
