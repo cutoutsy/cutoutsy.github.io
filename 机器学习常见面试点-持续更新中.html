@@ -142,7 +142,7 @@
 <meta property="og:site_name" content="小川">
 <meta property="og:description" content="写在前面本篇博客收集一些机器学习的常见面试题，题目主要为机器学习和自然语言处理相关，不包括计算机视觉。并附上个人答案，持续更新，直到今年秋招结束。欢迎大家在评论去贡献题目和讨论答案。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-01T09:07:15.899Z">
+<meta property="og:updated_time" content="2018-08-03T09:54:06.024Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习常见面试题(持续更新中...)">
 <meta name="twitter:description" content="写在前面本篇博客收集一些机器学习的常见面试题，题目主要为机器学习和自然语言处理相关，不包括计算机视觉。并附上个人答案，持续更新，直到今年秋招结束。欢迎大家在评论去贡献题目和讨论答案。">
@@ -421,7 +421,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-01 17:07:15" itemprop="dateModified" datetime="2018-08-01T17:07:15+08:00">2018-08-01</time>
+                <time title="修改时间：2018-08-03 17:54:06" itemprop="dateModified" datetime="2018-08-03T17:54:06+08:00">2018-08-03</time>
               
             
           </span>
@@ -478,7 +478,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">5.6k</span>
+                <span title="本文字数">6.8k</span>
               
 
               
@@ -492,7 +492,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">5 分钟</span>
+                <span title="阅读时长">6 分钟</span>
               
             </div>
           
@@ -540,22 +540,10 @@
 </ul>
 </blockquote>
 <h3 id="什么是数据标准化，为什么要进行数据标准化？"><a href="#什么是数据标准化，为什么要进行数据标准化？" class="headerlink" title="什么是数据标准化，为什么要进行数据标准化？"></a>什么是数据标准化，为什么要进行数据标准化？</h3><p>数据标准化时预处理步骤，将数据标准化到一个特定的范围能够在反向传播中保证更好的收敛。一般来说，是将该值去平均值后再除以标准差。如果不进行标准化，有些特征值（值很大）将会对损失函数影响更大（即使这个特征改变很小）。因此数据标准化可以使得每个特征的重要性更加均衡。</p>
-<ul>
-<li><strong>机器学习中对样本数据不平衡的情况有哪些解决办法</strong></li>
-</ul>
-<p>假设正样本&lt;&lt;负样本<br>对数据进行重采样<br>(1) 对正样本的数据样本进行采样来增加正样本的数据样本个数，即过采样（over-sampling, 采样的次数大于改类样本个数）<br>(2) 对负样本的数据样本进行采样来减少该类数据样本的个数，即欠采样（under-sampling, 采样的次数少于该类样本的个数）<br>阈值移动<br>原来学习器在决策过程中假设真实正、反例可能性相同。<br>可以进行“再缩放”，改变学习器的评价标准，学习器的预测几率高于观测几率。</p>
-<ul>
-<li><strong>解释什么是降维，在哪里会用到降维，它的好处是什么？</strong></li>
-</ul>
-<p>降维是指通过保留一些比较重要的特征，去除一些冗余的特征，减少数据特征的维度。而特征的重要性取决于该特征能够表达多少数据集的信息，也取决于使用什么方法进行降维。使用哪种降维方法则是通过反复的试验和每种方法在该数据集上的效果。一般情况会先使用线性降维方法再使用非线性的降维方法。<br>好处：<br>(1) 节省存储空间<br>(2) 加速计算速度，维度越少，计算量越少，并且能够使用那些不适合高维度的算法<br>(3) 去除一些冗余特征，比如降维后使得数据不会即保存平方米又保存平方英里的表示地形大小的特征<br>(4) 将数据维度降到2维或者3维使之能可视化，便于观察和挖掘信息<br>(5) 特征太多或者太复杂会使得模型过拟合</p>
-<ul>
-<li><strong>如何处理缺失值</strong></li>
-</ul>
-<p>处理方法有两种，一种是删除整行或者整列的数据，另一种则是使用其他值去填充。</p>
-<ul>
-<li><strong>过拟合如何解决</strong></li>
-</ul>
-<blockquote>
+<h3 id="机器学习中对样本数据不平衡的情况有哪些解决办法"><a href="#机器学习中对样本数据不平衡的情况有哪些解决办法" class="headerlink" title="机器学习中对样本数据不平衡的情况有哪些解决办法"></a>机器学习中对样本数据不平衡的情况有哪些解决办法</h3><p>假设正样本&lt;&lt;负样本<br>对数据进行重采样<br>(1) 对正样本的数据样本进行采样来增加正样本的数据样本个数，即过采样（over-sampling, 采样的次数大于改类样本个数）<br>(2) 对负样本的数据样本进行采样来减少该类数据样本的个数，即欠采样（under-sampling, 采样的次数少于该类样本的个数）<br>阈值移动<br>原来学习器在决策过程中假设真实正、反例可能性相同。<br>可以进行“再缩放”，改变学习器的评价标准，学习器的预测几率高于观测几率。</p>
+<h3 id="解释什么是降维，在哪里会用到降维，它的好处是什么？"><a href="#解释什么是降维，在哪里会用到降维，它的好处是什么？" class="headerlink" title="解释什么是降维，在哪里会用到降维，它的好处是什么？"></a>解释什么是降维，在哪里会用到降维，它的好处是什么？</h3><p>降维是指通过保留一些比较重要的特征，去除一些冗余的特征，减少数据特征的维度。而特征的重要性取决于该特征能够表达多少数据集的信息，也取决于使用什么方法进行降维。使用哪种降维方法则是通过反复的试验和每种方法在该数据集上的效果。一般情况会先使用线性降维方法再使用非线性的降维方法。<br>好处：<br>(1) 节省存储空间<br>(2) 加速计算速度，维度越少，计算量越少，并且能够使用那些不适合高维度的算法<br>(3) 去除一些冗余特征，比如降维后使得数据不会即保存平方米又保存平方英里的表示地形大小的特征<br>(4) 将数据维度降到2维或者3维使之能可视化，便于观察和挖掘信息<br>(5) 特征太多或者太复杂会使得模型过拟合</p>
+<h3 id="如何处理缺失值"><a href="#如何处理缺失值" class="headerlink" title="如何处理缺失值"></a>如何处理缺失值</h3><p>处理方法有两种，一种是删除整行或者整列的数据，另一种则是使用其他值去填充。</p>
+<h3 id="过拟合如何解决"><a href="#过拟合如何解决" class="headerlink" title="过拟合如何解决"></a>过拟合如何解决</h3><blockquote>
 <ul>
 <li>获取更多的数据，数据越多越接近整体</li>
 <li>使用简单的模型</li>
@@ -563,7 +551,7 @@
 <li>正则化（限制权值）</li>
 </ul>
 </blockquote>
-<h3 id="AUC是什么"><a href="#AUC是什么" class="headerlink" title="AUC是什么"></a>AUC是什么</h3><p>AUC(Area Under ROC Curve)，即在ROC曲线下的面积。ROC曲线就是根据学习器的预测结果对样例进行排序，按此顺序逐个把样本作为正例进行预测，每次计算出两个重要的量，一个是真正例率，一个是假正例率，真正例率作为纵轴，假正例率作为横轴，作图，就得到ROC曲线。</p>
+<h3 id="AUC是什么"><a href="#AUC是什么" class="headerlink" title="AUC是什么"></a>AUC是什么</h3><p>AUC(Area Under ROC Curve)，即在ROC曲线下的面积。ROC曲线就是根据学习器的预测结果对样例进行排序，按此顺序逐个把样本作为正例进行预测，每次计算出两个重要的量，一个是真正例率，一个是假正例率(假例中预测为正例的比率)，真正例率(正例中预测为正例的比率)作为纵轴，假正例率作为横轴，作图，就得到ROC曲线。</p>
 <h3 id="解释k-means原理"><a href="#解释k-means原理" class="headerlink" title="解释k-means原理"></a>解释k-means原理</h3><p>k均值算法针对聚类所得的簇划分最小化平方误差。<br>找到最优解需考察样本集D所有可能的簇划分，这是一个NP难问题。所有k-means采用了贪心策略，通过迭代优化来近似求解。</p>
 <blockquote>
 <ol>
@@ -590,21 +578,40 @@
 <li>密度可达：对$x_{i}$与$x_{j}$，若存在样本序列$p_{1},p_{2},…,p_{n}$，其中$p_{1} = x_{i}$, $p_{n} = x_{j}$且$p_{i+1}$由$p_{i}$密度直达，则称$x_{j}$由$x_{i}$密度可达。</li>
 </ul>
 <p>“簇”定义为：由密度可达关系导出的最大密度相连样本集合。</p>
-<h3 id="EM算法推导"><a href="#EM算法推导" class="headerlink" title="EM算法推导"></a>EM算法推导</h3><h3 id="集成学习介绍-boosting、bagging、stacking原理"><a href="#集成学习介绍-boosting、bagging、stacking原理" class="headerlink" title="集成学习介绍(boosting、bagging、stacking原理)"></a>集成学习介绍(boosting、bagging、stacking原理)</h3><p>集成学习器通过构建并结合多个学习器（弱学习器）来完成学习任务，常可获得比单一学习器显著优越的泛化性能。<br>主要集成学习方法可以分为两大类：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">个体学习器之间存在强依赖关系，必须串行生成序列化方法。(Boosting)</span><br><span class="line">个体学习器间不存在强依赖关系，可同时生成的并行化算法。(Bagging和Random Forest)</span><br></pre></td></tr></table></figure></p>
+<h3 id="EM算法推导"><a href="#EM算法推导" class="headerlink" title="EM算法推导"></a>EM算法推导</h3><h3 id="LR和SVM的异同"><a href="#LR和SVM的异同" class="headerlink" title="LR和SVM的异同"></a>LR和SVM的异同</h3><p>相同点：</p>
+<ul>
+<li>LR和SVM都是分类算法</li>
+<li>如果不考虑核函数，他们的决策面都是线性的。</li>
+<li>LR和SVM都是监督学习算法</li>
+<li>LR和SVM都是判别模型</li>
+<li>LR和SVM在学术界都广为认知并且应用广泛</li>
+</ul>
+<p>不同点：</p>
+<ul>
+<li>本质上其loss function不同。不同的loss function代表不同的前提假设，也就代表不同的分类原理。简单来说，逻辑回归方法是基于概率理论，假设样本为1的概率可以用sigmoid函数来表示，然后通过极大似然的方法可以估计出参数的值。支持向量则是基于几何间隔最大的原理，认为存在最大几何间隔的分类为最优分类面。</li>
+<li>支持向量只考虑局部边界线附近的点，而逻辑回归考虑全局。从这一点可以得知：线性SVM不直接依赖于数据分布，分类平面不受一类点影响；LR则受所有数据点的影响，如果数据不同类别strongly unbalance，一般需要先对数据做balancing。</li>
+<li>在解决非线性问题时，支持向量机采用核函数的机制，而LR通常不采用核函数的方法。这个问题理解起来非常简单。分类模型的结果就是计算决策面，模型训练的过程就是决策面的计算过程。通过上面的第二点可以了解，在计算决策面时，SVM算法里只有少数几个代表支持向量的样本参与计算，也就是只有少数几个样本需要参与核计算（即keranal machine解的系数是稀疏的）。然而，LR算法里，每个样本点都必须参与决策面的计算过程，也就是说，假设在LR里也运用核函数的原理，那么每个样本点都必须参与核计算，这带来的计算复杂度是相当高的。所以，在具体应用时，LR很少运用核函数机制。</li>
+<li>线性SVM依赖数据表达的距离测量，所以需要对数据先做normalization，LR不受其影响。</li>
+<li>SVM的损失函数自带正则项，这就是问什么SVM是结构风险最小化算法的原因。而LR必须在损失函数上添加正则项。</li>
+</ul>
+<h3 id="集成学习介绍-boosting、bagging、stacking原理"><a href="#集成学习介绍-boosting、bagging、stacking原理" class="headerlink" title="集成学习介绍(boosting、bagging、stacking原理)"></a>集成学习介绍(boosting、bagging、stacking原理)</h3><p>集成学习器通过构建并结合多个学习器（弱学习器）来完成学习任务，常可获得比单一学习器显著优越的泛化性能。<br>主要集成学习方法可以分为两大类：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">个体学习器之间存在强依赖关系，必须串行生成序列化方法。(Boosting)</span><br><span class="line">个体学习器间不存在强依赖关系，可同时生成的并行化算法。(Bagging和Random Forest)</span><br></pre></td></tr></table></figure></p>
 <p><strong>Boosting</strong><br>先从初始训练集训练出一个基学习器，再根据基学习器的表现对样本分布进行调整，使得先前基学习做错的训练样本在后续受到更多的关注，然后基于调整后的样本分布来训练下一个基学习器；如此反复进行，直到基学习器数目达到事先指定的值T，最终将这个T个基学习器进行加权组合。</p>
 <p><strong>Bagging</strong><br>基于自助采样法（booststrap sampling）。<br>采样出T个含m个训练样本的采样集，然后基于每个采样集训练出一个基学习器，在将这些基学习器进行结合。结合时分类任务常使用简单投票法，回归任务使用简单平均法。</p>
 <p><strong>Stacking</strong><br>Stacking其实是一种结合策略（本身也是一种著名的集成学习算法），即基学习器的结合策略。把个体学习器成为初级学习器，用于结合的学习器称为次级学习器或元学习器。<br>Stacking先从初始数据集训练出初级学习器，然后生成一个新的数据集用于训练次级学习器，初级学习器的输出被当做样例特征，而初始样本的标记仍被当作样例标记。<br>使用交叉验证或者留一法，用初级学习器为使用的样本来产生次级学习器的训练样本。<br>次级学习算法一般使用多响应线性回归效果较好。</p>
+<h3 id="随机梯度下降法和牛顿法的区别和定义"><a href="#随机梯度下降法和牛顿法的区别和定义" class="headerlink" title="随机梯度下降法和牛顿法的区别和定义"></a>随机梯度下降法和牛顿法的区别和定义</h3><p>随机梯度下降是使用的一阶导，实现简单。当目标函数是凸函数时，梯度下降法的解是全局最优解，一般情况下，其解不保证是全局最优解。收敛速度未必是很快的。<br>牛顿法和拟牛顿法有收敛速度快的优点。需要求解目标函数的海赛矩阵的逆矩阵，计算比较复杂。拟牛顿法通过正定矩阵近似海赛矩阵的逆矩阵或海赛矩阵，简化了这一计算过程。<br>主要是使用二阶导数。</p>
 <h3 id="xgboost原理，怎么防止过拟合"><a href="#xgboost原理，怎么防止过拟合" class="headerlink" title="xgboost原理，怎么防止过拟合"></a>xgboost原理，怎么防止过拟合</h3><p>XGBoost可以看做是对GradientBoost的优化。其原理还是基于GradientBoost，创新之处是用了二阶导数和正则项。</p>
 <h3 id="GDBT推导"><a href="#GDBT推导" class="headerlink" title="GDBT推导"></a>GDBT推导</h3><p>包含两个概念：GB(Gradient Boosting)和DT(Decision Tree)。因此，GBDT使用的弱分类器就是Decision Tree，而融合的方法叫做Gradient Boosting。<br>Gradient Boosting是一个Boosting框架，将梯度下降的思想引入Boosting算法，能处理不同的损失函数，较为实用。<br>本质是，每一次建立模型是在之前建立模型损失函数的梯度下降方向。</p>
+<h3 id="L1-L2正则化的区别"><a href="#L1-L2正则化的区别" class="headerlink" title="L1 L2正则化的区别"></a>L1 L2正则化的区别</h3><p>正则化定义：对学习算法的修改，旨在减少泛化误差而不是训练误差。<br>L2正则化是各个参数的平方和。<br>L1正则化时各个参数的绝对值之和。<br>相同点</p>
 <ul>
-<li><strong>常见的激活函数有哪些</strong></li>
+<li>都是用于避免过拟合</li>
 </ul>
-<p>加入激活函数是用来加入非线性因素的，解决线性模型所不能解决的问题。<br>(1) sigmoid<br>函数表达式：$f(x) = \frac {1}{1 + e^{-x}}$<br>存在梯度消失的问题<br>(2) tanh<br>函数表达式：$f(x) =\frac {e^{x} - e^{-x}}{e^{x} + e^{-x}} =\frac{1 - e^{-2x}}{1 + e^{-2x}}$<br>收敛速度比sigmoid快<br>(3) ReLU<br>函数表达式：$ f(x) = max(0, x)$<br>能够有效缓解梯度消失问题。<br>提供神经网络的稀疏表达能力。<br>ReLU在$x &lt; 0$时，权重无法更新，会导致“神经元死亡”。<br>(4) Leaky-ReLu<br>函数表达式：</p>
+<p>不同点：</p>
+<ul>
+<li>L1可以让一部分特征的系数缩小到0，从而间接实现特征选择。所以L1适用于特征之间有关联的情况。L2让所有特征的系数都缩小，但是不会减为0，它会使优化求解稳定快速。所以L2适用于特征之间没有关联的情况。</li>
+</ul>
+<h3 id="常见的激活函数有哪些"><a href="#常见的激活函数有哪些" class="headerlink" title="常见的激活函数有哪些"></a>常见的激活函数有哪些</h3><p>加入激活函数是用来加入非线性因素的，解决线性模型所不能解决的问题。<br>(1) sigmoid<br>函数表达式：$f(x) = \frac {1}{1 + e^{-x}}$<br>存在梯度消失的问题<br>(2) tanh<br>函数表达式：$f(x) =\frac {e^{x} - e^{-x}}{e^{x} + e^{-x}} =\frac{1 - e^{-2x}}{1 + e^{-2x}}$<br>收敛速度比sigmoid快<br>(3) ReLU<br>函数表达式：$ f(x) = max(0, x)$<br>能够有效缓解梯度消失问题。<br>提供神经网络的稀疏表达能力。<br>ReLU在$x &lt; 0$时，权重无法更新，会导致“神经元死亡”。<br>(4) Leaky-ReLu<br>函数表达式：</p>
 <script type="math/tex; mode=display">f(x) = ax (x < 0)</script><script type="math/tex; mode=display">f(x) = x (x >= 0)</script><p>(5) PReLU(parametric ReLU)<br>对于Leaky ReLU中的<script type="math/tex">\alpha</script>作为一个参数进行训练。<br>如何选择<br>首先尝试ReLU</p>
-<ul>
-<li><strong>凸函数的定义，sigmoid是凸函数吗</strong></li>
-</ul>
-<p>对区间[a, b]上定义的函数f ，若它对区间中任意两点$x1,x2$均有$f(\frac{x1+x2}{2}\leq \frac{f(x1)+f(x2)}{2})$，则称$f$为区间[a, b]上的凸函数。对实数集上的函数，可以通过求二阶导数来判别，若二阶导数在区间上非负，则称为凸函数，若二阶导数在区间上恒大于0，则称为严格凸函数。</p>
+<h3 id="凸函数的定义，sigmoid是凸函数吗"><a href="#凸函数的定义，sigmoid是凸函数吗" class="headerlink" title="凸函数的定义，sigmoid是凸函数吗"></a>凸函数的定义，sigmoid是凸函数吗</h3><p>对区间[a, b]上定义的函数f ，若它对区间中任意两点$x1,x2$均有$f(\frac{x1+x2}{2}\leq \frac{f(x1)+f(x2)}{2})$，则称$f$为区间[a, b]上的凸函数。对实数集上的函数，可以通过求二阶导数来判别，若二阶导数在区间上非负，则称为凸函数，若二阶导数在区间上恒大于0，则称为严格凸函数。</p>
 <p>sigmoid不是凸函数，没有全局最小值。</p>
 <h3 id="softmax与cross-entropy区别"><a href="#softmax与cross-entropy区别" class="headerlink" title="softmax与cross entropy区别"></a>softmax与cross entropy区别</h3><p>Softmax函数，或称归一化指数函数，将一个含任意实数的K维向量$z$压缩到另一个k维实向量$softmax(z)$，使得每一个元素的范围都在(0, 1)之间，并且所有元素的和为1。</p>
 <script type="math/tex; mode=display">S_{i} = \frac{e^i}{\sum_{j}{}e^j}</script><p>主要应用于基于概率的多分类问题。</p>
@@ -1128,7 +1135,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监督学习与非监督学习区别，非监督学习举例"><span class="nav-number">2.</span> <span class="nav-text">监督学习与非监督学习区别，非监督学习举例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#统计（传统）机器学习和深度学习的区别"><span class="nav-number">3.</span> <span class="nav-text">统计（传统）机器学习和深度学习的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征工程你一般怎么做"><span class="nav-number">4.</span> <span class="nav-text">特征工程你一般怎么做</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是数据标准化，为什么要进行数据标准化？"><span class="nav-number">5.</span> <span class="nav-text">什么是数据标准化，为什么要进行数据标准化？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AUC是什么"><span class="nav-number">6.</span> <span class="nav-text">AUC是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解释k-means原理"><span class="nav-number">7.</span> <span class="nav-text">解释k-means原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Random-forest原理"><span class="nav-number">8.</span> <span class="nav-text">Random forest原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DBSCAN推导"><span class="nav-number">9.</span> <span class="nav-text">DBSCAN推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EM算法推导"><span class="nav-number">10.</span> <span class="nav-text">EM算法推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集成学习介绍-boosting、bagging、stacking原理"><span class="nav-number">11.</span> <span class="nav-text">集成学习介绍(boosting、bagging、stacking原理)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xgboost原理，怎么防止过拟合"><span class="nav-number">12.</span> <span class="nav-text">xgboost原理，怎么防止过拟合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GDBT推导"><span class="nav-number">13.</span> <span class="nav-text">GDBT推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#softmax与cross-entropy区别"><span class="nav-number">14.</span> <span class="nav-text">softmax与cross entropy区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adam算法"><span class="nav-number">15.</span> <span class="nav-text">Adam算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么实现分类的CNN中需要进行Max-pooling"><span class="nav-number">16.</span> <span class="nav-text">为什么实现分类的CNN中需要进行Max-pooling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RNN为什么会梯度消失，LSTM是怎么避免梯度消失的"><span class="nav-number">17.</span> <span class="nav-text">RNN为什么会梯度消失，LSTM是怎么避免梯度消失的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nlp中未登录词怎么处理"><span class="nav-number">18.</span> <span class="nav-text">nlp中未登录词怎么处理</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监督学习与非监督学习区别，非监督学习举例"><span class="nav-number">2.</span> <span class="nav-text">监督学习与非监督学习区别，非监督学习举例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#统计（传统）机器学习和深度学习的区别"><span class="nav-number">3.</span> <span class="nav-text">统计（传统）机器学习和深度学习的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征工程你一般怎么做"><span class="nav-number">4.</span> <span class="nav-text">特征工程你一般怎么做</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是数据标准化，为什么要进行数据标准化？"><span class="nav-number">5.</span> <span class="nav-text">什么是数据标准化，为什么要进行数据标准化？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#机器学习中对样本数据不平衡的情况有哪些解决办法"><span class="nav-number">6.</span> <span class="nav-text">机器学习中对样本数据不平衡的情况有哪些解决办法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解释什么是降维，在哪里会用到降维，它的好处是什么？"><span class="nav-number">7.</span> <span class="nav-text">解释什么是降维，在哪里会用到降维，它的好处是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何处理缺失值"><span class="nav-number">8.</span> <span class="nav-text">如何处理缺失值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过拟合如何解决"><span class="nav-number">9.</span> <span class="nav-text">过拟合如何解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AUC是什么"><span class="nav-number">10.</span> <span class="nav-text">AUC是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解释k-means原理"><span class="nav-number">11.</span> <span class="nav-text">解释k-means原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Random-forest原理"><span class="nav-number">12.</span> <span class="nav-text">Random forest原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DBSCAN推导"><span class="nav-number">13.</span> <span class="nav-text">DBSCAN推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EM算法推导"><span class="nav-number">14.</span> <span class="nav-text">EM算法推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LR和SVM的异同"><span class="nav-number">15.</span> <span class="nav-text">LR和SVM的异同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集成学习介绍-boosting、bagging、stacking原理"><span class="nav-number">16.</span> <span class="nav-text">集成学习介绍(boosting、bagging、stacking原理)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#随机梯度下降法和牛顿法的区别和定义"><span class="nav-number">17.</span> <span class="nav-text">随机梯度下降法和牛顿法的区别和定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xgboost原理，怎么防止过拟合"><span class="nav-number">18.</span> <span class="nav-text">xgboost原理，怎么防止过拟合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GDBT推导"><span class="nav-number">19.</span> <span class="nav-text">GDBT推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#L1-L2正则化的区别"><span class="nav-number">20.</span> <span class="nav-text">L1 L2正则化的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见的激活函数有哪些"><span class="nav-number">21.</span> <span class="nav-text">常见的激活函数有哪些</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#凸函数的定义，sigmoid是凸函数吗"><span class="nav-number">22.</span> <span class="nav-text">凸函数的定义，sigmoid是凸函数吗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#softmax与cross-entropy区别"><span class="nav-number">23.</span> <span class="nav-text">softmax与cross entropy区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adam算法"><span class="nav-number">24.</span> <span class="nav-text">Adam算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么实现分类的CNN中需要进行Max-pooling"><span class="nav-number">25.</span> <span class="nav-text">为什么实现分类的CNN中需要进行Max-pooling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RNN为什么会梯度消失，LSTM是怎么避免梯度消失的"><span class="nav-number">26.</span> <span class="nav-text">RNN为什么会梯度消失，LSTM是怎么避免梯度消失的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nlp中未登录词怎么处理"><span class="nav-number">27.</span> <span class="nav-text">nlp中未登录词怎么处理</span></a></li></ol></div>
             
 
           </div>
@@ -1160,7 +1167,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">147k</span>
+    <span title="站点总字数">148k</span>
   
 
   
@@ -1169,7 +1176,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">2:14</span>
+    <span title="站点阅读时长">2:15</span>
   
 </div>
 
