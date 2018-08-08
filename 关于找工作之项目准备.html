@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="写在前面又到了一年一度秋招的时候，这个时候我们通常会做简历，然后在简历上写上项目。如何准备简历上的项目以及如何让自己简历上的项目有亮点，有可说的。这就是这篇博客准备讲的。本篇博客主要来自于听了牛客网上叶神讲的应届生项目那点事。推荐准备找工作的同学以及正在找工作的同学都可以去看看，相信会有一定的收获。">
+<meta name="keywords" content="秋招,工作,项目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于找工作之项目准备">
+<meta property="og:url" content="https://fengxc.me/关于找工作之项目准备.html">
+<meta property="og:site_name" content="小川">
+<meta property="og:description" content="写在前面又到了一年一度秋招的时候，这个时候我们通常会做简历，然后在简历上写上项目。如何准备简历上的项目以及如何让自己简历上的项目有亮点，有可说的。这就是这篇博客准备讲的。本篇博客主要来自于听了牛客网上叶神讲的应届生项目那点事。推荐准备找工作的同学以及正在找工作的同学都可以去看看，相信会有一定的收获。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-08T03:33:56.896Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于找工作之项目准备">
+<meta name="twitter:description" content="写在前面又到了一年一度秋招的时候，这个时候我们通常会做简历，然后在简历上写上项目。如何准备简历上的项目以及如何让自己简历上的项目有亮点，有可说的。这就是这篇博客准备讲的。本篇博客主要来自于听了牛客网上叶神讲的应届生项目那点事。推荐准备找工作的同学以及正在找工作的同学都可以去看看，相信会有一定的收获。">
+
+
+
+
+
+
+  <link rel="canonical" href="https://fengxc.me/关于找工作之项目准备.html"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>关于找工作之项目准备 | 小川</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-122351842-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-122351842-1');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a4f22e1e9cbbfd498ecb004941dd74f6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小川</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">I hear and I forget. I see and I remember. I do and I understand</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-booklist">
+    <a href="/booklist/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />我的书单</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/关于找工作之项目准备.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小川">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+      <meta itemprop="image" content="/images/cat_avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小川">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">关于找工作之项目准备
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-08 10:24:35 / 修改时间：11:33:56" itemprop="dateCreated datePublished" datetime="2018-08-08T10:24:35+08:00">2018-08-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/关于找工作之项目准备.html#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="关于找工作之项目准备.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">2k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">2 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>又到了一年一度秋招的时候，这个时候我们通常会做简历，然后在简历上写上项目。如何准备简历上的项目以及如何让自己简历上的项目有亮点，有可说的。这就是这篇博客准备讲的。<br>本篇博客主要来自于听了牛客网上叶神讲的<a href="https://www.nowcoder.com/live/5" target="_blank" rel="noopener">应届生项目那点事</a>。推荐准备找工作的同学以及正在找工作的同学都可以去看看，相信会有一定的收获。<br><a id="more"></a><br>首先整体的流程主要是：项目挑选—-&gt;项目实践—&gt;项目总结—&gt;项目面试。</p>
+<h3 id="项目挑选"><a href="#项目挑选" class="headerlink" title="项目挑选"></a>项目挑选</h3><p>我们可以从多个维度来进行我们项目的挑选。比如语言/框架，协议/模式，工具，产品/职位等。一般情况下我们都是把这些结合起来的，比如我们想找一个Java开发工程师的职位，那我们可以用Spring框架来做一个网站，可以用工具git来进行版本控制，可以用数据库Mysql来进行数据存储，当然在开发过程中还会接触到一些协议，比如http协议等。<br>常见的一些项目:</p>
+<ul>
+<li>游戏，编辑器</li>
+<li>网站，APP</li>
+<li>爬虫，库</li>
+</ul>
+<p>对于项目，我们要循序渐进，从简单到复杂，并且最好基于自己的兴趣，这样做着才有动力，项目要有一定的创新，避免重复造轮子。</p>
+<p>比如我准备找自然语言处理相关的工作，我准备做一个智能聊天的项目来放在我的简历上面。</p>
+<h3 id="项目实践"><a href="#项目实践" class="headerlink" title="项目实践"></a>项目实践</h3><p><strong>新手上路</strong><br>对于新手，最开始很难从整体上进行把握，可以先尝试做一些点，然后再考虑把点串起来，形成面。<br>新手从头做一个东西，往往不知道从哪下手，也不知道怎么做，这个时候我们可以先找个相似的项目进行模仿，然后再基于此进行自己的修改和创新。<br><strong>老司机</strong><br>对于已经做过一些项目的老司机来说，首先要分析出这个项目的核心难点在哪，先把核心难点解决，比如先把核心难点的代码写出来并进行验证。之后，我们要思考怎么整个项目的架构，模块怎么组合。</p>
+<p>对于代码编写，我们可以尝试先编写整体框架，先写好函数定义而不写具体的函数体，将整体框架搭建起来后，再去编写函数体，并针对每个函数进行测试。最后编写完所有的代码，进行整体的测试。</p>
+<p>在做项目的过程中，我们肯定会遇到很多问题。如何查找资料并解决问题：</p>
+<ul>
+<li>官方文档，RFC，权威书籍</li>
+<li>Google，StackOverflow</li>
+<li>博客</li>
+</ul>
+<p>首先去官方网站上查找，官方文档上的资料是最权威的，这样理解得也更加深刻，当然也推荐去阅读一些源代码，这样在面试的时候会给面试官留下不一样的印象。</p>
+<h3 id="项目总结"><a href="#项目总结" class="headerlink" title="项目总结"></a>项目总结</h3><p>许多同学写完代码后，就觉得项目做完了。其实项目总结很重要，且对面试时讲解项目有很大帮助。<br><strong>核心难点和结果</strong></p>
+<ul>
+<li>核心算法</li>
+<li>SDK、框架</li>
+<li>并发量，准确率</li>
+</ul>
+<p><strong>扩展和深入</strong></p>
+<ul>
+<li>单机—&gt;网络</li>
+<li>多线程</li>
+</ul>
+<p>扩展和深入是很关键的，最开始的项目是比较简单，随着扩展和深入，你的项目会显得有深度，且你在和面试官讲项目时，也可以从简单当复杂，可以说的东西很多。<br>赶紧看看你的项目，有没有什么可以扩展和深入的地方。加上去吧，少年！</p>
+<p>比如我的简历中写了个项目：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">通用信息采集平台的开发 | 技术栈:Java, Spider</span><br><span class="line">• 基于流式数据处理框架 Apache Storm，爬虫集群部署，通过配置部署爬取任务</span><br><span class="line">• 开发网页通用信息抽取器，基于规则进行信息抽取</span><br></pre></td></tr></table></figure></p>
+<p>那我准备对这个项目进行一个扩展和深入，比如我准备在存储用上hbase，然后了解下hadoop那一套东西。并准备加上数据分析，这样就可以和我找的算法结合起来。形成一个比较整体的项目。这样讲的东西就多了。</p>
+<p><strong>资料总结</strong><br>首先总结是第二次创作，总结可以让你梳理项目，总结知识，掌握得更好。<br>总结可以以博客的形式，每个IT技术人员都应该有个自己的博客，找工作时可以写在简历上，也可以做平时记录。非常有用。</p>
+<h3 id="项目面试"><a href="#项目面试" class="headerlink" title="项目面试"></a>项目面试</h3><p>每个面试官肯定都见过很多项目，怎么体现出自己的项目，这就显得很重要了。<br>首先面试想了解的是每个应聘者的能力和潜力。<br><strong>能力</strong></p>
+<ul>
+<li>你了解哪些部分</li>
+<li>你深入了解哪些</li>
+<li>你横向了解哪些</li>
+</ul>
+<p>对于一个项目，我们一定要准备一个深入了解的方面，如果之前没有，那么在找工作之前，一定要去深入了解某个方面，因为面试官往往会深入问你。</p>
+<p>对于横向了解，很多同学可能不关注。可能我们在做项目的时候不会关注，但是我们在面试前，一定要去横向了解下项目中的技术。这样讲项目的时候，可以增加内容。也可以说出自己对这些技术的一个总结和理解。</p>
+<p><strong>潜力</strong></p>
+<ul>
+<li>你怎么解决问题</li>
+<li>你如何举一反三</li>
+<li>你怎么优化项目</li>
+<li>你如何快速学习</li>
+</ul>
+<h4 id="项目讲解"><a href="#项目讲解" class="headerlink" title="项目讲解"></a>项目讲解</h4><p>总的来说，在讲项目时，切勿夸夸其谈，其实面试官都是老司机，一眼就能看出你说的真的假的。<br>还有就是要真诚有理有据，这个就需要好好对项目进行总结，可以提交对项目做个草稿。</p>
+<h4 id="博客网站"><a href="#博客网站" class="headerlink" title="博客网站"></a>博客网站</h4><ul>
+<li>权限控制管理</li>
+<li>数据库安全</li>
+</ul>
+<h4 id="APP"><a href="#APP" class="headerlink" title="APP"></a>APP</h4><ul>
+<li>SDK细节</li>
+<li>自定义控件优化</li>
+<li>方案对比</li>
+</ul>
+<h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4><ul>
+<li>坑和解决思路</li>
+<li>灵感来源，融会贯通</li>
+</ul>
+<h3 id="小结一下"><a href="#小结一下" class="headerlink" title="小结一下"></a>小结一下</h3><p>面试中项目是很重要的一个部分，我们要好好准备，但是不必追求数量，要追求质量。要让自己的项目有深度，和其他同学的项目有差异性。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="小川 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpeg" alt="小川 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>小川</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://fengxc.me/关于找工作之项目准备.html" title="关于找工作之项目准备">https://fengxc.me/关于找工作之项目准备.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/秋招/" rel="tag"># 秋招</a>
+          
+            <a href="/tags/工作/" rel="tag"># 工作</a>
+          
+            <a href="/tags/项目/" rel="tag"># 项目</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/论文阅读：Learning-Deep-Structured-Semantic-Models-for-Web-Search-using-Clickthrough-Data.html" rel="next" title="论文阅读：Learning Deep Structured Semantic Models for Web Search using Clickthrough Data">
+                <i class="fa fa-chevron-left"></i> 论文阅读：Learning Deep Structured Semantic Models for Web Search using Clickthrough Data
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/cat_avatar.jpeg"
+                alt="小川" />
+            
+              <p class="site-author-name" itemprop="name">小川</p>
+              <p class="site-description motion-element" itemprop="description">Happy Code, Happy Life</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">65</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">117</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/cutoutsy" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:cutoutsy@gmail.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://windmgc.me" title="windmgc" target="_blank">windmgc</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目挑选"><span class="nav-number">2.</span> <span class="nav-text">项目挑选</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目实践"><span class="nav-number">3.</span> <span class="nav-text">项目实践</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目总结"><span class="nav-number">4.</span> <span class="nav-text">项目总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目面试"><span class="nav-number">5.</span> <span class="nav-text">项目面试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#项目讲解"><span class="nav-number">5.1.</span> <span class="nav-text">项目讲解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#博客网站"><span class="nav-number">5.2.</span> <span class="nav-text">博客网站</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#APP"><span class="nav-number">5.3.</span> <span class="nav-text">APP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法"><span class="nav-number">5.4.</span> <span class="nav-text">算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结一下"><span class="nav-number">6.</span> <span class="nav-text">小结一下</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小川</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">153k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">2:19</span>
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Pisces</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://cutoutsy-blog.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://fengxc.me/关于找工作之项目准备.html';
+        this.page.identifier = '关于找工作之项目准备.html';
+        this.page.title = '关于找工作之项目准备';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cutoutsy-blog.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

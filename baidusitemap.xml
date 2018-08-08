@@ -4,8 +4,32 @@
 
     
   <url>
+    <loc>https://fengxc.me/%E5%85%B3%E4%BA%8E%E6%89%BE%E5%B7%A5%E4%BD%9C%E4%B9%8B%E9%A1%B9%E7%9B%AE%E5%87%86%E5%A4%87.html</loc>
+    <lastmod>2018-08-08T03:33:56.896Z</lastmod>
+    <data>
+        <display>
+        <title>关于找工作之项目准备</title>
+        <pubTime>2018-08-08T02:24:35.000Z</pubTime>
+        
+        <tag>秋招</tag>
+         
+        <tag>工作</tag>
+         
+        <tag>项目</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://fengxc.me/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ALearning-Deep-Structured-Semantic-Models-for-Web-Search-using-Clickthrough-Data.html</loc>
-    <lastmod>2018-08-07T15:14:37.624Z</lastmod>
+    <lastmod>2018-08-08T03:15:37.639Z</lastmod>
     <data>
         <display>
         <title>论文阅读：Learning Deep Structured Semantic Models for Web Search using Clickthrough Data</title>
@@ -18,7 +42,7 @@
          
            
              
-              <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
+              <breadCrumb title="论文" url="https://fengxc.me/categories/%E8%AE%BA%E6%96%87/"/>
           
         </display>
     </data>
