@@ -4,6 +4,30 @@
 
     
   <url>
+    <loc>https://fengxc.me/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html</loc>
+    <lastmod>2018-08-15T11:55:58.260Z</lastmod>
+    <data>
+        <display>
+        <title>卷积神经网络</title>
+        <pubTime>2018-08-10T12:49:34.000Z</pubTime>
+        
+        <tag>卷积神经网络</tag>
+         
+        <tag>吴恩达</tag>
+         
+        <tag>深度学习</tag>
+         
+         
+           
+             
+              <breadCrumb title="深度学习" url="https://fengxc.me/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://fengxc.me/%E7%99%BE%E5%BA%A6%E4%BD%9C%E4%B8%9A%E5%B8%AE%E6%8F%90%E5%89%8D%E6%89%B9%EF%BC%9A%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88%E4%B8%80%E9%9D%A2%E9%9D%A2%E7%BB%8F.html</loc>
     <lastmod>2018-08-14T09:34:39.107Z</lastmod>
     <data>
@@ -226,9 +250,9 @@
         <title>机器学习常见面试题(持续更新中...)</title>
         <pubTime>2018-07-28T06:48:53.000Z</pubTime>
         
-        <tag>nlp</tag>
-         
         <tag>机器学习</tag>
+         
+        <tag>nlp</tag>
          
         <tag>面试题</tag>
          
@@ -276,11 +300,11 @@
         <title>百度SRE提前批智能平台研发工程师面试经历</title>
         <pubTime>2018-07-07T07:33:17.000Z</pubTime>
         
-        <tag>面经</tag>
-         
         <tag>百度</tag>
          
         <tag>SRE</tag>
+         
+        <tag>面经</tag>
          
          
            
@@ -418,9 +442,9 @@
         <title>吴恩达序列模型：循环序列模型</title>
         <pubTime>2018-07-23T12:18:06.000Z</pubTime>
         
-        <tag>深度学习</tag>
-         
         <tag>吴恩达</tag>
+         
+        <tag>深度学习</tag>
          
         <tag>循环</tag>
          

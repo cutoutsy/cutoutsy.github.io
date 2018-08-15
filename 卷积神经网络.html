@@ -134,27 +134,37 @@
 
 
 
-  <meta name="description" content="如果你在学习机器学习，那么你肯定对MNIST数据集不陌生，很多机器学习例子以及很多人都拿MNIST当做例子。MNIST是手写数字图片数据集，包含60000张训练样本和10000张测试样本。">
-<meta name="keywords" content="机器学习,数据集">
+  <meta name="description" content="写在前面卷积神经网络来源于图像处理，计算机视觉中要面临一个挑战，就是数据的输入可能会非常大。因为图像是像素点，且彩色图片有3个RGB通道。如果直接使用全连接网络的话，会导致参数数量巨大。在参数如此大量的情况下，难以获得足够的数据来防止神经网络发生过拟合（参数越多，拟合能力越强）和竞争需求，而且这么多的参数需要的内存也让人接受不了。">
+<meta name="keywords" content="卷积神经网络,吴恩达,深度学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MNIST数据集介绍">
-<meta property="og:url" content="https://fengxc.me/MNIST数据集介绍.html">
+<meta property="og:title" content="卷积神经网络">
+<meta property="og:url" content="https://fengxc.me/卷积神经网络.html">
 <meta property="og:site_name" content="小川">
-<meta property="og:description" content="如果你在学习机器学习，那么你肯定对MNIST数据集不陌生，很多机器学习例子以及很多人都拿MNIST当做例子。MNIST是手写数字图片数据集，包含60000张训练样本和10000张测试样本。">
+<meta property="og:description" content="写在前面卷积神经网络来源于图像处理，计算机视觉中要面临一个挑战，就是数据的输入可能会非常大。因为图像是像素点，且彩色图片有3个RGB通道。如果直接使用全连接网络的话，会导致参数数量巨大。在参数如此大量的情况下，难以获得足够的数据来防止神经网络发生过拟合（参数越多，拟合能力越强）和竞争需求，而且这么多的参数需要的内存也让人接受不了。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://camo.githubusercontent.com/b06741b45df8ffe29c7de999ab2ec4ff6b2965ba/687474703a2f2f6e657572616c6e6574776f726b73616e64646565706c6561726e696e672e636f6d2f696d616765732f6d6e6973745f3130305f6469676974732e706e67">
-<meta property="og:updated_time" content="2018-07-13T10:26:40.563Z">
+<meta property="og:image" content="http://www.ai-start.com/dl2017/images/7099a5373f2281626aa8ddd47a180571.png">
+<meta property="og:image" content="http://www.ai-start.com/dl2017/images/d6ecaeb7228172a00bc3948e8b214a27.png">
+<meta property="og:image" content="http://www.ai-start.com/dl2017/images/5f9c10d0986f003e5bd6fa87a9ffe04b.png">
+<meta property="og:image" content="http://www.ai-start.com/dl2017/images/50836692632e32453f0eefcbbf58551b.png">
+<meta property="og:image" content="http://www.ai-start.com/dl2017/images/9b0b0e9062f8814a6a462ea64449f89e.png">
+<meta property="og:image" content="http://www.ai-start.com/dl2017/images/53d04d8ee616c7468e5b92da95c0e22b.png">
+<meta property="og:image" content="http://www.ai-start.com/dl2017/images/02028431085fb7974b76156dd4974b68.png">
+<meta property="og:image" content="http://www.ai-start.com/dl2017/images/6bd58a754152e7f5cf55a8c5bbac3100.png">
+<meta property="og:image" content="http://www.ai-start.com/dl2017/images/445418bf9cd2eaa5a83f31c1f40757dc.png">
+<meta property="og:image" content="http://www.ai-start.com/dl2017/images/f00469a1fbea2ace64f1280849f9cd7d.png">
+<meta property="og:image" content="http://www.ai-start.com/dl2017/images/c6894969e33cfc84b16267b752baf644.png">
+<meta property="og:updated_time" content="2018-08-15T11:55:58.260Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MNIST数据集介绍">
-<meta name="twitter:description" content="如果你在学习机器学习，那么你肯定对MNIST数据集不陌生，很多机器学习例子以及很多人都拿MNIST当做例子。MNIST是手写数字图片数据集，包含60000张训练样本和10000张测试样本。">
-<meta name="twitter:image" content="https://camo.githubusercontent.com/b06741b45df8ffe29c7de999ab2ec4ff6b2965ba/687474703a2f2f6e657572616c6e6574776f726b73616e64646565706c6561726e696e672e636f6d2f696d616765732f6d6e6973745f3130305f6469676974732e706e67">
+<meta name="twitter:title" content="卷积神经网络">
+<meta name="twitter:description" content="写在前面卷积神经网络来源于图像处理，计算机视觉中要面临一个挑战，就是数据的输入可能会非常大。因为图像是像素点，且彩色图片有3个RGB通道。如果直接使用全连接网络的话，会导致参数数量巨大。在参数如此大量的情况下，难以获得足够的数据来防止神经网络发生过拟合（参数越多，拟合能力越强）和竞争需求，而且这么多的参数需要的内存也让人接受不了。">
+<meta name="twitter:image" content="http://www.ai-start.com/dl2017/images/7099a5373f2281626aa8ddd47a180571.png">
 
 
 
 
 
 
-  <link rel="canonical" href="https://fengxc.me/MNIST数据集介绍.html"/>
+  <link rel="canonical" href="https://fengxc.me/卷积神经网络.html"/>
 
 
 
@@ -164,7 +174,7 @@
   };
 </script>
 
-  <title>MNIST数据集介绍 | 小川</title>
+  <title>卷积神经网络 | 小川</title>
   
 
 
@@ -364,7 +374,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://fengxc.me/MNIST数据集介绍.html">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/卷积神经网络.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小川">
@@ -381,7 +391,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">MNIST数据集介绍
+          <h2 class="post-title" itemprop="name headline">卷积神经网络
               
             
           </h2>
@@ -406,12 +416,24 @@
                 
               
 
-              <time title="创建时间：2018-07-13 17:18:49 / 修改时间：18:26:40" itemprop="dateCreated datePublished" datetime="2018-07-13T17:18:49+08:00">2018-07-13</time>
+              <time title="创建时间：2018-08-10 20:49:34" itemprop="dateCreated datePublished" datetime="2018-08-10T20:49:34+08:00">2018-08-10</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-08-15 19:55:58" itemprop="dateModified" datetime="2018-08-15T19:55:58+08:00">2018-08-15</time>
               
             
           </span>
@@ -428,7 +450,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/深度学习/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a></span>
 
                 
                 
@@ -443,10 +465,10 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/MNIST数据集介绍.html#comments" itemprop="discussionUrl">
+                <a href="/卷积神经网络.html#comments" itemprop="discussionUrl">
                 
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="MNIST数据集介绍.html" itemprop="commentCount"></span>
+                        data-disqus-identifier="卷积神经网络.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -468,7 +490,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">1.1k</span>
+                <span title="本文字数">5.3k</span>
               
 
               
@@ -482,7 +504,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">1 分钟</span>
+                <span title="阅读时长">5 分钟</span>
               
             </div>
           
@@ -502,19 +524,73 @@
       
 
       
-        <p>如果你在学习机器学习，那么你肯定对MNIST数据集不陌生，很多机器学习例子以及很多人都拿MNIST当做例子。<br>MNIST是手写数字图片数据集，包含60000张训练样本和10000张测试样本。</p>
-<p><img src="https://camo.githubusercontent.com/b06741b45df8ffe29c7de999ab2ec4ff6b2965ba/687474703a2f2f6e657572616c6e6574776f726b73616e64646565706c6561726e696e672e636f6d2f696d616765732f6d6e6973745f3130305f6469676974732e706e67" alt="MNIST"></p>
-<a id="more"></a>
-<p>MNIST数据集来自美国国家标准与技术研究所，National Institute of Standards and Technology(NIST)。现在你是不是知道这个数据集名字的由来了。M是Modified的缩写。训练集是由来自250个不同人手写的数字构成，其中50%是高中学生，50%来自人口普查局的工作人员。测试集也是同样比例的手写数字数据。每张图片有28x28个像素点构成，每个像素点用一个灰度值表示，这里是将28x28的像素展开为一个一维的行向量（每行784个值）。图片标签为one-hot编码：0-9。</p>
-<p>MNIST数据集可在<a href="http://yann.lecun.com/exdb/mnist/" target="_blank" rel="noopener">http://yann.lecun.com/exdb/mnist/</a>处获取，包含4个部分</p>
+        <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>卷积神经网络来源于图像处理，计算机视觉中要面临一个挑战，就是数据的输入可能会非常大。因为图像是像素点，且彩色图片有3个RGB通道。如果直接使用全连接网络的话，会导致参数数量巨大。在参数如此大量的情况下，难以获得足够的数据来防止神经网络发生过拟合（参数越多，拟合能力越强）和竞争需求，而且这么多的参数需要的内存也让人接受不了。<br><a id="more"></a></p>
+<h3 id="卷积运算"><a href="#卷积运算" class="headerlink" title="卷积运算"></a>卷积运算</h3><p>卷积运算是卷积神经网络最基本的组成部分。<br>用一个例子来讲，下图是一个6x6的灰度图像，是一个6x6x1的矩阵。为了检测图像中的垂直边缘，可以构造一个3x3的矩阵，称为过滤器或者卷积核。<br><img src="http://www.ai-start.com/dl2017/images/7099a5373f2281626aa8ddd47a180571.png" alt="卷积例子"></p>
+<p>卷积运算就是用卷积核在图像上进行滑动，然后进行元素乘法(element-wise products)，每次将得到的值进行相加。</p>
+<p><img src="http://www.ai-start.com/dl2017/images/d6ecaeb7228172a00bc3948e8b214a27.png" alt="计算"></p>
+<p>比如我们要计算第一个值，那么进行元素乘法并相加为：</p>
+<script type="math/tex; mode=display">3\times 1 + 1\times 1 + 2\times 1 + 0\times 0 + 5\times 0 + 7\times 0 + 1\times (-1) + 8\times (-1) + 2\times (-1) = -5</script><p>所以得到的右边矩阵的第一个值就为-5，计算完第一个将卷积核向右移动一格，计算第二个值，在第一行计算完后，向下移动一格，计算第二行的值，直到全部计算完毕，得到下面的值：<br><img src="http://www.ai-start.com/dl2017/images/5f9c10d0986f003e5bd6fa87a9ffe04b.png" alt="计算结果"></p>
+<p>左边矩阵是一张图片，中间这个被理解为卷积核，右边的图片我们可以理解为另一张图片。<br>在编程语言中实现卷积运算：</p>
 <ul>
-<li>train-images-idx3-ubyte.gz:  training set images (9912422 bytes) </li>
-<li>train-labels-idx1-ubyte.gz:  training set labels (28881 bytes) </li>
-<li>t10k-images-idx3-ubyte.gz:   test set images (1648877 bytes) </li>
-<li>t10k-labels-idx1-ubyte.gz:   test set labels (4542 bytes)</li>
+<li>tensorflow: tf.nn.conv2d()</li>
+<li>keras: Conv2D()</li>
 </ul>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>通过TensorFlow来使用，代码如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow.examples.tutorials.mnist <span class="keyword">import</span> input_data</span><br><span class="line">mnist = input_data.read_data_sets(<span class="string">"MNIST_data"</span>, one_hot=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure></p>
-<p>这个代码将会把数据下载到当前目录下的MNIST_data目录下，如果你想下载到其他目录，可以更改这个参数。当然你也可以提前下载好，然后放在某个目录，这样上面的代码就不会去下载了。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">X_train = mnist.train.images    <span class="comment"># (55000, 784)</span></span><br><span class="line">Y_train = mnist.train.labels    <span class="comment"># (55000, 10)</span></span><br><span class="line">X_test = mnist.test.images      <span class="comment"># (10000, 784)</span></span><br><span class="line">Y_test = mnist.test.labels      <span class="comment"># (10000, 10)</span></span><br><span class="line"></span><br><span class="line">batch_X, batch_Y = mnist.train.next_batch(<span class="number">64</span>)</span><br></pre></td></tr></table></figure></p>
+<p>为什么这个可以进行垂直边缘检测呢？看下面这个例子：<br><img src="http://www.ai-start.com/dl2017/images/50836692632e32453f0eefcbbf58551b.png" alt="垂直边缘检测"></p>
+<p>左边这个灰度图像，像素值10是比较亮的像素值，所以左边图像的右边比较暗，左边比较亮，在中间类似有一条垂线。<br>在经过卷积核卷积运算后，可以看出右边的图像中间要亮些。表示图像中间有一个明显的垂直边缘。</p>
+<p>除了可以进行垂直边缘检测的卷积核，还有进行水平边缘检测的卷积核。当然还有许多其他的卷积核。<br>但是随着深度学习的发展，我们可以把卷积核中的9个数字当成参数，使用反向传播算法去学习这9个参数。这样会学习出很多卷积核，有的可能我们都不知道它的作用，但是在实践中是有效的。</p>
+<p>将这9个数字当成参数的思想，已经成为计算机视觉中最为有效的思想之一。</p>
+<h3 id="Padding"><a href="#Padding" class="headerlink" title="Padding"></a>Padding</h3><p>Padding是卷积的一个基本操作，这是为了构建深度神经网络。<br>在之前，我们用一个3x3的卷积核去卷积一个6x6的图像，得到是一个4x4的输出。<br>如果我们有一个nxn的图像，用fxf的卷积核做卷积，那么输出的维度就是(n-f+1)x(n-f+1)。<br>这样做存在两个缺点:</p>
+<ul>
+<li>每次做卷积操作图像就会缩小，可能会缩小到1x1的大小。使得图像的部分信息丢失了。</li>
+<li>角落边缘的像素点只被一个输出所触碰或者使用。</li>
+</ul>
+<p>为了解决这个问题，我们可以沿着图像边缘再填充一层像素。这样6x6的图像就被填充成一个8x8的图像，这个时候再用3x3的图像对这个8x8的图像卷积，你得到的输出就不是4x4的，而是6x6的图像，这样就和原始图像6x6相同大小。</p>
+<p>习惯上，用0去填充，如果p是填充的数量，在这个案例中，p=1，这样输出就变成了(n+2p-f+1)x(n+2p-f+1)，这样来的话输出的图像一样大，而且角落边缘的像素点也不止被一个格子所影响。</p>
+<p>当然我们也可以填充两个像素点，即p=2。</p>
+<p>选择填充多少像素，通常有两个选择，分别叫做<strong>Valid卷积</strong>和<strong>Same卷积</strong>。<br>Valid卷积意味着不填充，如果你有一个nxn的图像，用一个fxf的卷积核，它将会给你一个(n-f+1)x(n-f+1)维的输出。这就像我们前面的例子似的。<br>Same卷积意味着填充后，你的输出和输入大小是一样的。根据公式n-f+1，当你填充p个像素点，n就变成了n+2p，最后公式变为n+2p-f+1，因此如果你想让输出和输入大小相等的话，那么即n = n + 2p -f + 1，那么$p = \frac{f-1}{2}$，所以当f是奇数时，只要选择相应的填充尺寸，那么就能确保得到和输入相同尺寸的输出。</p>
+<p>习惯上，在计算机视觉中，f通常是奇数。</p>
+<p>不使用偶数的原因有两个：</p>
+<ul>
+<li>如果f是一个偶数，那么你只能使用一些不对称的填充。只有f是奇数的情况，Same卷积才会有自然的填充。</li>
+<li>当你有一个奇数过滤器，比如3x3或者5x5，它就有一个中心点。这样便于指出过滤器的位置。</li>
+</ul>
+<h3 id="卷积步长"><a href="#卷积步长" class="headerlink" title="卷积步长"></a>卷积步长</h3><p>卷积中的步幅是另一个卷积神经网络的基本操作。</p>
+<p>上面的步幅是1，我们也可以把步幅设置成2，即让过滤器每次跳过2个步长。假设步长s = 2，那么输出公式为：$(\frac{n+2p -f}{s} + 1)\times (\frac{n+2p-f}{s} + 1)$。<br>这个时候有个问题，如果商不是整数怎么办，在这种情况下，我们向下取整。</p>
+<h3 id="三维卷积"><a href="#三维卷积" class="headerlink" title="三维卷积"></a>三维卷积</h3><p>上面的是对二维图像做卷积，现在我们来对三维图像做卷积。</p>
+<p>假设你现在想检测的是彩色图像的特征，彩色图像是6x6x3的，这里的3是3个颜色通道。这时原来的3x3的卷积核要变为3x3x3，卷积核也对应有3层。这时候输出是一个4x4的图像。</p>
+<p><img src="http://www.ai-start.com/dl2017/images/9b0b0e9062f8814a6a462ea64449f89e.png" alt="三维卷积"></p>
+<p>我们可以同时使用多个卷积核（每个卷积核检测不同的特征），这样可以得到的输出维度和卷积核个数有关。比如上面我们使用两个3x3x3的卷积核，那么我们的得到的输出是4x4x2的。<br>我们用公式来总结一下立体卷积核的维度，假设输入维度是$n\times n\times n_{c}$，$n_{c}$为通道数目，卷积核大小为$f\times f\times $n_{c}$，那么输出就是<br>$(n-f+1)\times (n-f+1)\times n_{c^{‘}}$，这里的$n_{c^{‘}$其实是下一层的通道数，它等于使用的卷积核的个数。这里默认使用的是步幅为1，且未使用padding，如果你使用不同的步幅和Padding，那么n-f+1数值会发生变化，变化方式我们上面已经讲过了。</p>
+<h3 id="单层卷积神经网络"><a href="#单层卷积神经网络" class="headerlink" title="单层卷积神经网络"></a>单层卷积神经网络</h3><p>对于一层的卷积，首先是运用线性函数在加上偏差，然后应用激活函数ReLU，这样就通过神经网络的一层把一个6x6x3维度转变为一个4x4x2维度的输出。</p>
+<p>如果我们将卷积核增加到10个，那么输出就为4x4x10。</p>
+<p>我们来计算一下参数，对于一个3x3x3的卷积核，有27个参数，再加上一个偏差，用参数b表示，那么一个卷积核的参数就是28个。如果是10个卷积核的话，参数就是280，和输入图像的维度是没关的。这样我们可以知道参数相对直接应用神经网络来说是很少的，所以这样可以避免过拟合。</p>
+<p>总结一下卷积神经网络中的一层（以l层为例）：</p>
+<p><img src="http://www.ai-start.com/dl2017/images/53d04d8ee616c7468e5b92da95c0e22b.png" alt="单层卷积网络"></p>
+<p>将上面的单层神经网络堆叠起来，就会构成深度卷积神经网络。</p>
+<h3 id="简单神经网络示例"><a href="#简单神经网络示例" class="headerlink" title="简单神经网络示例"></a>简单神经网络示例</h3><p>一个典型的卷积神经网络通常有三层，一个是卷积层，常常用Conv来标注，一个是池化层，用POOL来标注，最后一个是全连接层，用FC表示。池化层和全连接层比卷积层更容易设计。<br>卷积神经网络设计的一个趋势，高度和宽度会在一段时间内保持一致，然后随着网络深度的加深而逐渐减小，而通道数量往往在增加。</p>
+<p><img src="http://www.ai-start.com/dl2017/images/02028431085fb7974b76156dd4974b68.png" alt="卷积网络层类型"></p>
+<p>虽然仅用卷积层也有可能构建出很好的神经网络，但是大部分情况下还是要添加池化层和全连接层。</p>
+<h3 id="池化层"><a href="#池化层" class="headerlink" title="池化层"></a>池化层</h3><p>除了卷积层，卷积网络也经常使用池化层来缩减模型的大小，提高计算速度，同时提高所提取特征的鲁棒性。</p>
+<p>人们使用最大池化的主要原因是此方法在很多实验中效果都很好。</p>
+<p>池化层有一组超参数（f, s），但并没有参数需要学习。上面计算卷积的公式也同样适用于计算池化输出大小：$\frac{n+2p-f}{s} + 1$。<br>如果输入是3维的，那么输出也是三维的。比如，输入是5x5x2，那么输出是3x3x2，分别对每个通道进行计算。</p>
+<p>池化最常用的是最大池化：选取每个过滤器的最大值，还有一种类型的池化，平均池化：选取的不是每个过滤器的最大值，而是平均值。</p>
+<p>总结一下，池化的超级参数包括过滤器大小f和步幅s，常用的参数值为f=2，s=2，应用频率非常高。根据公式可以看出效果相当于高度和宽度缩减一半。<br>超参数padding是很少使用的，最常用的p的值是0.</p>
+<p><img src="http://www.ai-start.com/dl2017/images/6bd58a754152e7f5cf55a8c5bbac3100.png" alt="池化层"></p>
+<p>最大池化只是计算神经网络某一层的静态属性，不需要学习。</p>
+<h3 id="卷积网络示例"><a href="#卷积网络示例" class="headerlink" title="卷积网络示例"></a>卷积网络示例</h3><p>假设我们来实现一个手写数字识别，输入图片大小是32x32x3。<br>我们构建的网络模型和经典网络LeNet-5非常相似。<br>第一层使用的过滤器大小为5x5，步幅是1，padding是0，过滤器个数为6。那么输出为28x28x6。将这层标记为CON1，用了6个卷积核，增加了偏差，应用了非线性函数（ReLU）。<br>然后构建一个池化层，参数f=2， s=2。所以输出为14x14x6。将该层记为POOL1。</p>
+<p><img src="http://www.ai-start.com/dl2017/images/445418bf9cd2eaa5a83f31c1f40757dc.png" alt="layer1"></p>
+<p>这儿我们将一个卷积层和一个池化层一起作为一层，比如上面的记为Layer1。</p>
+<p>再构建一个卷积层，卷积核大小为5x5，步幅为1，使用16个卷积核，输出为10x10x10的矩阵，标记为CONV2。<br>然后做最大池化，超参数为f=2, s=2。那么输出结果为5x5x16，标记为POOL2。<br>上面整体作为神经网络的第二层，即Layer2。</p>
+<p><img src="http://www.ai-start.com/dl2017/images/f00469a1fbea2ace64f1280849f9cd7d.png" alt="layer2"></p>
+<p>5x5x16矩阵包含400个元素，将POOL2平整化为一个大小为400的一维向量，利用这400个单元构建下一层，下一层包含120个单元，这就是我们第一个全连接层，标记为FC3。是一个标准的神经网络，维度为120x400。全连接的意思就是这400个单元与这120个单元的每一项连接，还有一个偏差参数。</p>
+<p>然后我们在对这120个单元再添加一个全连接层，含有84个单元。标记为FC4。</p>
+<p>最后我们用着84个单元填充一个softmax单元，如果我们想识别0-9这10个手写数字，这个softmax就会有10个输出。</p>
+<p><img src="http://www.ai-start.com/dl2017/images/c6894969e33cfc84b16267b752baf644.png" alt="arch"></p>
+<p>这儿我用keras实现了上面的卷积神经网络结构，代码如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lenet_5</span><span class="params">(input_shape=<span class="params">(<span class="number">32</span>, <span class="number">32</span>, <span class="number">1</span>)</span>, classes=<span class="number">10</span>)</span>:</span></span><br><span class="line">    X_input = Input(input_shape)</span><br><span class="line">    <span class="comment"># Layer1</span></span><br><span class="line">    X = Conv2D(<span class="number">6</span>, (<span class="number">5</span>, <span class="number">5</span>), strides=(<span class="number">1</span>, <span class="number">1</span>), padding=<span class="string">'valid'</span>, name=<span class="string">'conv1'</span>)(X)</span><br><span class="line">    X = Activation(<span class="string">'tanh'</span>)(X)</span><br><span class="line">    X = MaxPool2D((<span class="number">2</span>, <span class="number">2</span>), strides=(<span class="number">2</span>, <span class="number">2</span>), name=<span class="string">'pool1'</span>)(X)</span><br><span class="line">    <span class="comment"># Layer2</span></span><br><span class="line">    X = Conv2D(<span class="number">16</span>, (<span class="number">5</span>, <span class="number">5</span>), strides=(<span class="number">1</span>, <span class="number">1</span>), padding=<span class="string">'valid'</span>, name=<span class="string">'Conv2'</span>)(X)</span><br><span class="line">    X = Activation(<span class="string">'tanh'</span>)(X)</span><br><span class="line">    X = MaxPool2D((<span class="number">2</span>, <span class="number">2</span>), strides=(<span class="number">2</span>, <span class="number">2</span>))(X)</span><br><span class="line">    <span class="comment"># FC3</span></span><br><span class="line">    X = Flatten()(X)</span><br><span class="line">    X = Dense(<span class="number">120</span>, activation=<span class="string">'tanh'</span>, name=<span class="string">'fc3'</span>)(X)</span><br><span class="line">    <span class="comment"># FC4</span></span><br><span class="line">    X = Dense(<span class="number">84</span>, activation=<span class="string">'tanh'</span>, name=<span class="string">'fc4'</span>)(X)</span><br><span class="line">    <span class="comment"># softmax</span></span><br><span class="line">    X = Dense(classes, activation=<span class="string">'softmax'</span>)(X)</span><br><span class="line"></span><br><span class="line">    model = Model(inputs=X_input, outputs = X, name=<span class="string">'lenet_5'</span>)</span><br><span class="line">    <span class="keyword">return</span> model</span><br><span class="line"></span><br><span class="line">model = lenet_5(input_shape=(<span class="number">32</span>, <span class="number">32</span>, <span class="number">1</span>), classes=<span class="number">10</span>)</span><br><span class="line">adam = optimizers.Adam()</span><br><span class="line">model.compile(optimizer=adam, loss=<span class="string">'categorical_crossentropy'</span>, metrics=[<span class="string">'accuracy'</span>])</span><br><span class="line">model.fit(X_train, Y_train, epochs=<span class="number">3</span>, batch_size=<span class="number">16</span>, verbose=<span class="number">0</span>)</span><br></pre></td></tr></table></figure></p>
+<p>一个卷积神经网络包括卷积层、池化层和全连接层。许多计算机视觉研究正在探索如何把这些基本模块整合起来，构建高效的神经网络，整合这些基本模块需要深入的理解。<br>找到整合基本构造模块的最好方法就是大量阅读别人的案例。</p>
+<h3 id="为什么使用卷积"><a href="#为什么使用卷积" class="headerlink" title="为什么使用卷积"></a>为什么使用卷积</h3><p>和只用全连接层相比，卷积层的两个主要优势在于参数共享和稀疏连接。</p>
+<p>参数共享：观察发现，特征检测如垂直边缘检测如果适用于图片的某个区域，那么它也可能适用于图片的其他区域。<br>稀疏连接：在每一层，每个输出值只依赖于很小一部分输入。比如3x3的卷积，只依赖于这个3x3的输入的单元格。</p>
+<p>卷积神经网络可以通过这两种机制减少参数，防止过拟合。</p>
+<p>卷积神经网络善于捕捉平移不变，通过观察发现，向右移动两个像素，图片中的猫依然清晰可见，因为卷积神经网络的卷积结构使得即使移动几个像素，这张图片依然具有非常相似的特征，应该属于同样的输出标记。</p>
 
       
     </div>
@@ -565,7 +641,7 @@
     <strong>本文作者： </strong>小川</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://fengxc.me/MNIST数据集介绍.html" title="MNIST数据集介绍">https://fengxc.me/MNIST数据集介绍.html</a>
+    <a href="https://fengxc.me/卷积神经网络.html" title="卷积神经网络">https://fengxc.me/卷积神经网络.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
@@ -578,9 +654,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+            <a href="/tags/卷积神经网络/" rel="tag"># 卷积神经网络</a>
           
-            <a href="/tags/数据集/" rel="tag"># 数据集</a>
+            <a href="/tags/吴恩达/" rel="tag"># 吴恩达</a>
+          
+            <a href="/tags/深度学习/" rel="tag"># 深度学习</a>
           
         </div>
       
@@ -593,8 +671,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/李宏毅机器学习：Introduction-of-Machine-Learning.html" rel="next" title="李宏毅机器学习：Introduction of Machine Learning">
-                <i class="fa fa-chevron-left"></i> 李宏毅机器学习：Introduction of Machine Learning
+              <a href="/Leetcode-856-Score-of-Parenthese.html" rel="next" title="Leetcode 856: Score of Parenthese">
+                <i class="fa fa-chevron-left"></i> Leetcode 856: Score of Parenthese
               </a>
             
           </div>
@@ -603,8 +681,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/CS224N-Assignment-1.html" rel="prev" title="CS224N Assignment 1">
-                CS224N Assignment 1 <i class="fa fa-chevron-right"></i>
+              <a href="/Leetcode-508-Most-Frequent-Subtree-Sum.html" rel="prev" title="Leetcode 508: Most Frequent Subtree Sum">
+                Leetcode 508: Most Frequent Subtree Sum <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1061,7 +1139,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">1.</span> <span class="nav-text">使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#卷积运算"><span class="nav-number">2.</span> <span class="nav-text">卷积运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Padding"><span class="nav-number">3.</span> <span class="nav-text">Padding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#卷积步长"><span class="nav-number">4.</span> <span class="nav-text">卷积步长</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三维卷积"><span class="nav-number">5.</span> <span class="nav-text">三维卷积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单层卷积神经网络"><span class="nav-number">6.</span> <span class="nav-text">单层卷积神经网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单神经网络示例"><span class="nav-number">7.</span> <span class="nav-text">简单神经网络示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#池化层"><span class="nav-number">8.</span> <span class="nav-text">池化层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#卷积网络示例"><span class="nav-number">9.</span> <span class="nav-text">卷积网络示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么使用卷积"><span class="nav-number">10.</span> <span class="nav-text">为什么使用卷积</span></a></li></ol></div>
             
 
           </div>
@@ -1241,9 +1319,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'https://fengxc.me/MNIST数据集介绍.html';
-        this.page.identifier = 'MNIST数据集介绍.html';
-        this.page.title = 'MNIST数据集介绍';
+        this.page.url = 'https://fengxc.me/卷积神经网络.html';
+        this.page.identifier = '卷积神经网络.html';
+        this.page.title = '卷积神经网络';
         };
       function loadComments () {
         var d = document, s = d.createElement('script');
