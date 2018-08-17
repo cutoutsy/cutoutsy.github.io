@@ -4,6 +4,30 @@
 
     
   <url>
+    <loc>https://fengxc.me/GBDT%E8%AF%A6%E8%A7%A3.html</loc>
+    <lastmod>2018-08-17T09:29:16.944Z</lastmod>
+    <data>
+        <display>
+        <title>GBDT与Xgboost详解</title>
+        <pubTime>2018-08-16T12:55:32.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>GBDT</tag>
+         
+        <tag>xgboost</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://fengxc.me/%E9%98%BF%E9%87%8C2018%E7%BC%96%E7%A8%8B%E6%B5%8B%E9%AA%8C%E9%A2%98.html</loc>
     <lastmod>2018-08-17T01:53:54.500Z</lastmod>
     <data>
@@ -35,9 +59,9 @@
         <title>机器学习常见面试题(持续更新中...)</title>
         <pubTime>2018-07-28T06:48:53.000Z</pubTime>
         
-        <tag>nlp</tag>
-         
         <tag>机器学习</tag>
+         
+        <tag>nlp</tag>
          
         <tag>面试题</tag>
          
@@ -59,11 +83,11 @@
         <title>卷积神经网络</title>
         <pubTime>2018-08-10T12:49:34.000Z</pubTime>
         
-        <tag>卷积神经网络</tag>
+        <tag>深度学习</tag>
          
         <tag>吴恩达</tag>
          
-        <tag>深度学习</tag>
+        <tag>卷积神经网络</tag>
          
          
            
@@ -324,11 +348,11 @@
         <title>百度SRE提前批智能平台研发工程师面试经历</title>
         <pubTime>2018-07-07T07:33:17.000Z</pubTime>
         
+        <tag>面经</tag>
+         
         <tag>百度</tag>
          
         <tag>SRE</tag>
-         
-        <tag>面经</tag>
          
          
            
@@ -466,9 +490,9 @@
         <title>吴恩达序列模型：循环序列模型</title>
         <pubTime>2018-07-23T12:18:06.000Z</pubTime>
         
-        <tag>吴恩达</tag>
-         
         <tag>深度学习</tag>
+         
+        <tag>吴恩达</tag>
          
         <tag>循环</tag>
          
@@ -702,9 +726,9 @@
         <title>2017校招京东：进制均值</title>
         <pubTime>2018-07-13T01:14:53.000Z</pubTime>
         
-        <tag>2017校招</tag>
-         
         <tag>算法</tag>
+         
+        <tag>2017校招</tag>
          
         <tag>京东</tag>
          
@@ -751,9 +775,9 @@
         <title>2017校招-京东：采购单</title>
         <pubTime>2018-07-12T01:48:58.000Z</pubTime>
         
-        <tag>2017校招</tag>
-         
         <tag>算法</tag>
+         
+        <tag>2017校招</tag>
          
         <tag>京东</tag>
          
@@ -775,9 +799,9 @@
         <title>2017校招-京东：集合</title>
         <pubTime>2018-07-11T01:19:46.000Z</pubTime>
         
-        <tag>2017校招</tag>
-         
         <tag>算法</tag>
+         
+        <tag>2017校招</tag>
          
         <tag>京东</tag>
          
@@ -823,9 +847,9 @@
         <title>2017校招-今日头条：String Shifting</title>
         <pubTime>2018-07-08T03:23:52.000Z</pubTime>
         
-        <tag>2017校招</tag>
-         
         <tag>算法</tag>
+         
+        <tag>2017校招</tag>
          
         <tag>今日头条</tag>
          
@@ -895,9 +919,9 @@
         <title>2017校招-腾讯：素数对</title>
         <pubTime>2018-07-05T01:57:24.000Z</pubTime>
         
-        <tag>2017校招</tag>
-         
         <tag>算法</tag>
+         
+        <tag>2017校招</tag>
          
         <tag>腾讯</tag>
          
@@ -919,9 +943,9 @@
         <title>2017校招-网易：买苹果</title>
         <pubTime>2018-07-04T01:41:27.000Z</pubTime>
         
-        <tag>2017校招</tag>
-         
         <tag>算法</tag>
+         
+        <tag>2017校招</tag>
          
         <tag>网易</tag>
          
@@ -943,9 +967,9 @@
         <title>2017校招-好未来：n个数里出现次数大于等于n/2的数</title>
         <pubTime>2018-07-02T01:29:26.000Z</pubTime>
         
-        <tag>2017校招</tag>
-         
         <tag>算法</tag>
+         
+        <tag>2017校招</tag>
          
         <tag>好未来</tag>
          
@@ -967,9 +991,9 @@
         <title>2017校招-网易：下厨房</title>
         <pubTime>2018-07-01T01:24:28.000Z</pubTime>
         
-        <tag>2017校招</tag>
-         
         <tag>算法</tag>
+         
+        <tag>2017校招</tag>
          
         <tag>网易</tag>
          
@@ -1039,9 +1063,9 @@
         <title>2017校招-网易：数字翻转</title>
         <pubTime>2018-06-30T02:02:32.000Z</pubTime>
         
-        <tag>2017校招</tag>
-         
         <tag>算法</tag>
+         
+        <tag>2017校招</tag>
          
         <tag>网易</tag>
          
@@ -1115,9 +1139,9 @@
         <title>京东2018校招编程题解答（Java）</title>
         <pubTime>2017-09-21T07:50:46.000Z</pubTime>
         
-        <tag>京东</tag>
-         
         <tag>Java</tag>
+         
+        <tag>京东</tag>
          
         <tag>校招</tag>
          
