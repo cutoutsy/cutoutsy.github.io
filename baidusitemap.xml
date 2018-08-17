@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://fengxc.me/GBDT%E8%AF%A6%E8%A7%A3.html</loc>
-    <lastmod>2018-08-17T09:29:16.944Z</lastmod>
+    <lastmod>2018-08-17T09:51:36.468Z</lastmod>
     <data>
         <display>
         <title>GBDT与Xgboost详解</title>
@@ -83,11 +83,11 @@
         <title>卷积神经网络</title>
         <pubTime>2018-08-10T12:49:34.000Z</pubTime>
         
-        <tag>深度学习</tag>
+        <tag>卷积神经网络</tag>
          
         <tag>吴恩达</tag>
          
-        <tag>卷积神经网络</tag>
+        <tag>深度学习</tag>
          
          
            
@@ -348,11 +348,11 @@
         <title>百度SRE提前批智能平台研发工程师面试经历</title>
         <pubTime>2018-07-07T07:33:17.000Z</pubTime>
         
-        <tag>面经</tag>
-         
         <tag>百度</tag>
          
         <tag>SRE</tag>
+         
+        <tag>面经</tag>
          
          
            
@@ -490,9 +490,9 @@
         <title>吴恩达序列模型：循环序列模型</title>
         <pubTime>2018-07-23T12:18:06.000Z</pubTime>
         
-        <tag>深度学习</tag>
-         
         <tag>吴恩达</tag>
+         
+        <tag>深度学习</tag>
          
         <tag>循环</tag>
          
