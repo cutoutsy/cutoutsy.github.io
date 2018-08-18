@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://fengxc.me/EM%E7%AE%97%E6%B3%95.html</loc>
+    <lastmod>2018-08-18T04:48:41.334Z</lastmod>
+    <data>
+        <display>
+        <title>EM算法</title>
+        <pubTime>2018-08-18T01:47:15.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>EM</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://fengxc.me/GBDT%E8%AF%A6%E8%A7%A3.html</loc>
     <lastmod>2018-08-17T09:51:36.468Z</lastmod>
     <data>
@@ -348,11 +370,11 @@
         <title>百度SRE提前批智能平台研发工程师面试经历</title>
         <pubTime>2018-07-07T07:33:17.000Z</pubTime>
         
+        <tag>面经</tag>
+         
         <tag>百度</tag>
          
         <tag>SRE</tag>
-         
-        <tag>面经</tag>
          
          
            
