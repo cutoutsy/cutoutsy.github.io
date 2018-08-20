@@ -142,7 +142,7 @@
 <meta property="og:site_name" content="小川">
 <meta property="og:description" content="写在前面本篇博客收集一些机器学习的常见面试题，题目主要为机器学习和自然语言处理相关，不包括计算机视觉。并附上个人答案，持续更新，直到今年秋招结束。欢迎大家在评论去贡献题目和讨论答案。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-16T12:24:32.214Z">
+<meta property="og:updated_time" content="2018-08-19T07:15:40.432Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习常见面试题(持续更新中...)">
 <meta name="twitter:description" content="写在前面本篇博客收集一些机器学习的常见面试题，题目主要为机器学习和自然语言处理相关，不包括计算机视觉。并附上个人答案，持续更新，直到今年秋招结束。欢迎大家在评论去贡献题目和讨论答案。">
@@ -421,7 +421,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-16 20:24:32" itemprop="dateModified" datetime="2018-08-16T20:24:32+08:00">2018-08-16</time>
+                <time title="修改时间：2018-08-19 15:15:40" itemprop="dateModified" datetime="2018-08-19T15:15:40+08:00">2018-08-19</time>
               
             
           </span>
@@ -478,7 +478,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">6.8k</span>
+                <span title="本文字数">7.2k</span>
               
 
               
@@ -492,7 +492,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">6 分钟</span>
+                <span title="阅读时长">7 分钟</span>
               
             </div>
           
@@ -515,7 +515,7 @@
         <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>本篇博客收集一些机器学习的常见面试题，题目主要为机器学习和自然语言处理相关，不包括计算机视觉。并附上个人答案，持续更新，直到今年秋招结束。欢迎大家在评论去贡献题目和讨论答案。</p>
 <a id="more"></a>
 <h3 id="监督学习与非监督学习区别，非监督学习举例"><a href="#监督学习与非监督学习区别，非监督学习举例" class="headerlink" title="监督学习与非监督学习区别，非监督学习举例"></a>监督学习与非监督学习区别，非监督学习举例</h3><p>主要是训练数据上的区别，监督学习的数据是有标记的，非监督学习的数据是没有标记的。<br>非监督学习举例：新闻聚类，用户人群分类</p>
-<h3 id="统计（传统）机器学习和深度学习的区别"><a href="#统计（传统）机器学习和深度学习的区别" class="headerlink" title="统计（传统）机器学习和深度学习的区别"></a>统计（传统）机器学习和深度学习的区别</h3><p>传统机器学习需要人工设计特征，特征工程很重要。<br>深度学习可以自动学习特征，特别是在图像、语音、文本方面，这些数据都有局部和整体的关系，DL能发挥很大作用。但是调参也是一个繁琐的事情。</p>
+<h3 id="统计（传统）机器学习和深度学习的区别与联系"><a href="#统计（传统）机器学习和深度学习的区别与联系" class="headerlink" title="统计（传统）机器学习和深度学习的区别与联系"></a>统计（传统）机器学习和深度学习的区别与联系</h3><p>传统机器学习需要人工设计特征，特征工程很重要。<br>深度学习可以自动学习特征，特别是在图像、语音、文本方面，这些数据都有局部和整体的关系，DL能发挥很大作用。但是调参也是一个繁琐的事情。<br>联系：深度学习是一种实现机器学习的技术。</p>
 <h3 id="特征工程你一般怎么做"><a href="#特征工程你一般怎么做" class="headerlink" title="特征工程你一般怎么做"></a>特征工程你一般怎么做</h3><p>数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已。<br>特征工程的目的是获取更好的训练数据，把原始数据转变成特征。从数学的角度来看，特征工程就是人工的去设计输入变量X。<br>特征构建 -&gt; 特征提取 -&gt; 特征选择<br>特征构建<br>指从原始数据中人工的构建新的特征。<br>特征提取<br>自动的构建新的特征，将原始特征转换为一组有明显统计意义的特征。</p>
 <blockquote>
 <ul>
@@ -600,7 +600,7 @@
 <p><strong>Stacking</strong><br>Stacking其实是一种结合策略（本身也是一种著名的集成学习算法），即基学习器的结合策略。把个体学习器成为初级学习器，用于结合的学习器称为次级学习器或元学习器。<br>Stacking先从初始数据集训练出初级学习器，然后生成一个新的数据集用于训练次级学习器，初级学习器的输出被当做样例特征，而初始样本的标记仍被当作样例标记。<br>使用交叉验证或者留一法，用初级学习器为使用的样本来产生次级学习器的训练样本。<br>次级学习算法一般使用多响应线性回归效果较好。</p>
 <h3 id="随机梯度下降法和牛顿法的区别和定义"><a href="#随机梯度下降法和牛顿法的区别和定义" class="headerlink" title="随机梯度下降法和牛顿法的区别和定义"></a>随机梯度下降法和牛顿法的区别和定义</h3><p>随机梯度下降是使用的一阶导，实现简单。当目标函数是凸函数时，梯度下降法的解是全局最优解，一般情况下，其解不保证是全局最优解。收敛速度未必是很快的。<br>牛顿法和拟牛顿法有收敛速度快的优点。需要求解目标函数的海赛矩阵的逆矩阵，计算比较复杂。拟牛顿法通过正定矩阵近似海赛矩阵的逆矩阵或海赛矩阵，简化了这一计算过程。<br>主要是使用二阶导数。</p>
 <h3 id="xgboost原理，怎么防止过拟合"><a href="#xgboost原理，怎么防止过拟合" class="headerlink" title="xgboost原理，怎么防止过拟合"></a>xgboost原理，怎么防止过拟合</h3><p>XGBoost可以看做是对GradientBoost的优化。其原理还是基于GradientBoost，创新之处是用了二阶导数和正则项。</p>
-<h3 id="GBDT推导"><a href="#GBDT推导" class="headerlink" title="GBDT推导"></a>GBDT推导</h3><p>包含两个概念：GB(Gradient Boosting)和DT(Decision Tree)。因此，GBDT使用的弱分类器就是Decision Tree，而融合的方法叫做Gradient Boosting。<br>Gradient Boosting是一个Boosting框架，将梯度下降的思想引入Boosting算法，能处理不同的损失函数，较为实用。<br>本质是，每一次建立模型是在之前建立模型损失函数的梯度下降方向。</p>
+<h3 id="SVM与感知机的区别"><a href="#SVM与感知机的区别" class="headerlink" title="SVM与感知机的区别"></a>SVM与感知机的区别</h3><h3 id="GBDT推导"><a href="#GBDT推导" class="headerlink" title="GBDT推导"></a>GBDT推导</h3><p>包含两个概念：GB(Gradient Boosting)和DT(Decision Tree)。因此，GBDT使用的弱分类器就是Decision Tree，而融合的方法叫做Gradient Boosting。<br>Gradient Boosting是一个Boosting框架，将梯度下降的思想引入Boosting算法，能处理不同的损失函数，较为实用。<br>本质是，每一次建立模型是在之前建立模型损失函数的梯度下降方向。</p>
 <h3 id="L1-L2正则化的区别"><a href="#L1-L2正则化的区别" class="headerlink" title="L1 L2正则化的区别"></a>L1 L2正则化的区别</h3><p>正则化定义：对学习算法的修改，旨在减少泛化误差而不是训练误差。<br>L2正则化是各个参数的平方和。<br>L1正则化时各个参数的绝对值之和。<br>相同点</p>
 <ul>
 <li>都是用于避免过拟合</li>
@@ -624,6 +624,13 @@
 <li>用于数值稳定的小常数$\delta$(建议默认为：$10^{-8}$)</li>
 <li>初始参数$\theta$<br>初始化一阶和二阶矩变量$s = 0, r= 0$<br>初始化时间步t = 0<br>从训练集中采包含$m$个样本{$x^{(1)}, x^{(2)},…,x^{(m)}$}的小批量，对于目标为$y^{(i)}$<br>计算梯度：<script type="math/tex; mode=display">g = \frac{1}{m}\bigtriangledown _{\theta}\sum_{i}L(f(x^{(i)};\theta), y^{(i)})</script>更新有偏一阶矩估计：<script type="math/tex; mode=display">s = \rho_{1}s + (1-\rho_{1})g</script>更新有偏二阶矩估计：<script type="math/tex; mode=display">r = \rho_{2}r + (1-\rho_{2})g\odot g</script>修正一阶矩的偏差：<script type="math/tex; mode=display">\hat s \leftarrow \frac{s}{1-\rho_{1}^t}</script>修正二阶矩的偏差：<script type="math/tex; mode=display">\hat r \leftarrow \frac{r}{1-\rho_{1}^t}</script>计算更新：<script type="math/tex; mode=display">\bigtriangledown_{\theta} = -\epsilon\frac{\hat s}{\sqrt{\hat r}+\delta}</script>应用更新：<script type="math/tex; mode=display">\theta \leftarrow \theta + \bigtriangledown_{\theta}</script></li>
 </ul>
+<h3 id="反向传播，梯度检验怎么做？"><a href="#反向传播，梯度检验怎么做？" class="headerlink" title="反向传播，梯度检验怎么做？"></a>反向传播，梯度检验怎么做？</h3><p>对于一个函数来说，通常有两种计算梯度的方式：</p>
+<ul>
+<li>数值梯度</li>
+<li>解析梯度<br>神经网络算法使用反向传播计算目标函数关于每个参数的梯度，由于神经网络中函数都是可导的，所以求的是解析梯度。由于计算过程中涉及到的参数很多，反向传播计算的梯度很容易出现误差。</li>
+</ul>
+<p>为了确认代码中反向传播计算的梯度是否正确，可以采用梯度检验(gradient check)的方法。通过计算数值梯度，得到梯度的近似值，然后和反向传播算法进行比较，若两者相差很小的话则证明反向传播的代码是正确的。<br>数值梯度：</p>
+<script type="math/tex; mode=display">\frac{d}{d\theta}J(\theta) = \frac{J(\theta + \epsilon ) - J(\theta + \epsilon )}{2\epsilon}</script><p>$epsilon$是一个很小的值，比如$10^{(-4)}$。<br>所以我们可以通过计算损失函数的数值梯度来检验解析梯度，如果二者很接近的话，则验证解析方法得到的梯度是正确的。</p>
 <h3 id="为什么实现分类的CNN中需要进行Max-pooling"><a href="#为什么实现分类的CNN中需要进行Max-pooling" class="headerlink" title="为什么实现分类的CNN中需要进行Max-pooling"></a>为什么实现分类的CNN中需要进行Max-pooling</h3><p>Max-pooling可以将特征维度变小，使得减小计算时间，同时，不会损失太多重要的信息，因为我们是保存最大值，这个最大值可以理解为该窗口下的最重要信息。同时Max-pooling也对CNN具有平移不变性提供了很多理论支撑。</p>
 <h3 id="RNN为什么会梯度消失，LSTM是怎么避免梯度消失的"><a href="#RNN为什么会梯度消失，LSTM是怎么避免梯度消失的" class="headerlink" title="RNN为什么会梯度消失，LSTM是怎么避免梯度消失的"></a>RNN为什么会梯度消失，LSTM是怎么避免梯度消失的</h3><p>可以参考我的另一博客<a href="https://fengxc.me/%E5%90%B4%E6%81%A9%E8%BE%BE%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B%EF%BC%9A%E5%BE%AA%E7%8E%AF%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B.html#more">吴恩达序列模型：循环序列模型</a></p>
 <h3 id="nlp中未登录词怎么处理"><a href="#nlp中未登录词怎么处理" class="headerlink" title="nlp中未登录词怎么处理"></a>nlp中未登录词怎么处理</h3><p>未登录词就是未在词表中出现的词。可以使用标记<unk>表示未登录词，在表示词向量时，可以将未登录词进行标准初始化。</unk></p>
@@ -803,7 +810,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">75</span>
+                    <span class="site-state-item-count">77</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1123,7 +1130,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">133</span>
+                      
+                    
+                    <span class="site-state-item-count">136</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1187,7 +1196,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监督学习与非监督学习区别，非监督学习举例"><span class="nav-number">2.</span> <span class="nav-text">监督学习与非监督学习区别，非监督学习举例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#统计（传统）机器学习和深度学习的区别"><span class="nav-number">3.</span> <span class="nav-text">统计（传统）机器学习和深度学习的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征工程你一般怎么做"><span class="nav-number">4.</span> <span class="nav-text">特征工程你一般怎么做</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是数据标准化，为什么要进行数据标准化？"><span class="nav-number">5.</span> <span class="nav-text">什么是数据标准化，为什么要进行数据标准化？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#机器学习中对样本数据不平衡的情况有哪些解决办法"><span class="nav-number">6.</span> <span class="nav-text">机器学习中对样本数据不平衡的情况有哪些解决办法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解释什么是降维，在哪里会用到降维，它的好处是什么？"><span class="nav-number">7.</span> <span class="nav-text">解释什么是降维，在哪里会用到降维，它的好处是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何处理缺失值"><span class="nav-number">8.</span> <span class="nav-text">如何处理缺失值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过拟合如何解决"><span class="nav-number">9.</span> <span class="nav-text">过拟合如何解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AUC是什么"><span class="nav-number">10.</span> <span class="nav-text">AUC是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解释k-means原理"><span class="nav-number">11.</span> <span class="nav-text">解释k-means原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Random-forest原理"><span class="nav-number">12.</span> <span class="nav-text">Random forest原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DBSCAN推导"><span class="nav-number">13.</span> <span class="nav-text">DBSCAN推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EM算法推导"><span class="nav-number">14.</span> <span class="nav-text">EM算法推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LR和SVM的异同"><span class="nav-number">15.</span> <span class="nav-text">LR和SVM的异同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集成学习介绍-boosting、bagging、stacking原理"><span class="nav-number">16.</span> <span class="nav-text">集成学习介绍(boosting、bagging、stacking原理)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#随机梯度下降法和牛顿法的区别和定义"><span class="nav-number">17.</span> <span class="nav-text">随机梯度下降法和牛顿法的区别和定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xgboost原理，怎么防止过拟合"><span class="nav-number">18.</span> <span class="nav-text">xgboost原理，怎么防止过拟合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GBDT推导"><span class="nav-number">19.</span> <span class="nav-text">GBDT推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#L1-L2正则化的区别"><span class="nav-number">20.</span> <span class="nav-text">L1 L2正则化的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见的激活函数有哪些"><span class="nav-number">21.</span> <span class="nav-text">常见的激活函数有哪些</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#凸函数的定义，sigmoid是凸函数吗"><span class="nav-number">22.</span> <span class="nav-text">凸函数的定义，sigmoid是凸函数吗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#softmax与cross-entropy区别"><span class="nav-number">23.</span> <span class="nav-text">softmax与cross entropy区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adam算法"><span class="nav-number">24.</span> <span class="nav-text">Adam算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么实现分类的CNN中需要进行Max-pooling"><span class="nav-number">25.</span> <span class="nav-text">为什么实现分类的CNN中需要进行Max-pooling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RNN为什么会梯度消失，LSTM是怎么避免梯度消失的"><span class="nav-number">26.</span> <span class="nav-text">RNN为什么会梯度消失，LSTM是怎么避免梯度消失的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nlp中未登录词怎么处理"><span class="nav-number">27.</span> <span class="nav-text">nlp中未登录词怎么处理</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监督学习与非监督学习区别，非监督学习举例"><span class="nav-number">2.</span> <span class="nav-text">监督学习与非监督学习区别，非监督学习举例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#统计（传统）机器学习和深度学习的区别与联系"><span class="nav-number">3.</span> <span class="nav-text">统计（传统）机器学习和深度学习的区别与联系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征工程你一般怎么做"><span class="nav-number">4.</span> <span class="nav-text">特征工程你一般怎么做</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是数据标准化，为什么要进行数据标准化？"><span class="nav-number">5.</span> <span class="nav-text">什么是数据标准化，为什么要进行数据标准化？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#机器学习中对样本数据不平衡的情况有哪些解决办法"><span class="nav-number">6.</span> <span class="nav-text">机器学习中对样本数据不平衡的情况有哪些解决办法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解释什么是降维，在哪里会用到降维，它的好处是什么？"><span class="nav-number">7.</span> <span class="nav-text">解释什么是降维，在哪里会用到降维，它的好处是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何处理缺失值"><span class="nav-number">8.</span> <span class="nav-text">如何处理缺失值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过拟合如何解决"><span class="nav-number">9.</span> <span class="nav-text">过拟合如何解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AUC是什么"><span class="nav-number">10.</span> <span class="nav-text">AUC是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解释k-means原理"><span class="nav-number">11.</span> <span class="nav-text">解释k-means原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Random-forest原理"><span class="nav-number">12.</span> <span class="nav-text">Random forest原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DBSCAN推导"><span class="nav-number">13.</span> <span class="nav-text">DBSCAN推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EM算法推导"><span class="nav-number">14.</span> <span class="nav-text">EM算法推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LR和SVM的异同"><span class="nav-number">15.</span> <span class="nav-text">LR和SVM的异同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集成学习介绍-boosting、bagging、stacking原理"><span class="nav-number">16.</span> <span class="nav-text">集成学习介绍(boosting、bagging、stacking原理)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#随机梯度下降法和牛顿法的区别和定义"><span class="nav-number">17.</span> <span class="nav-text">随机梯度下降法和牛顿法的区别和定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xgboost原理，怎么防止过拟合"><span class="nav-number">18.</span> <span class="nav-text">xgboost原理，怎么防止过拟合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SVM与感知机的区别"><span class="nav-number">19.</span> <span class="nav-text">SVM与感知机的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GBDT推导"><span class="nav-number">20.</span> <span class="nav-text">GBDT推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#L1-L2正则化的区别"><span class="nav-number">21.</span> <span class="nav-text">L1 L2正则化的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见的激活函数有哪些"><span class="nav-number">22.</span> <span class="nav-text">常见的激活函数有哪些</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#凸函数的定义，sigmoid是凸函数吗"><span class="nav-number">23.</span> <span class="nav-text">凸函数的定义，sigmoid是凸函数吗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#softmax与cross-entropy区别"><span class="nav-number">24.</span> <span class="nav-text">softmax与cross entropy区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adam算法"><span class="nav-number">25.</span> <span class="nav-text">Adam算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反向传播，梯度检验怎么做？"><span class="nav-number">26.</span> <span class="nav-text">反向传播，梯度检验怎么做？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么实现分类的CNN中需要进行Max-pooling"><span class="nav-number">27.</span> <span class="nav-text">为什么实现分类的CNN中需要进行Max-pooling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RNN为什么会梯度消失，LSTM是怎么避免梯度消失的"><span class="nav-number">28.</span> <span class="nav-text">RNN为什么会梯度消失，LSTM是怎么避免梯度消失的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nlp中未登录词怎么处理"><span class="nav-number">29.</span> <span class="nav-text">nlp中未登录词怎么处理</span></a></li></ol></div>
             
 
           </div>
@@ -1219,7 +1228,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">187k</span>
+    <span title="站点总字数">194k</span>
   
 
   
@@ -1228,7 +1237,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">2:50</span>
+    <span title="站点阅读时长">2:56</span>
   
 </div>
 
