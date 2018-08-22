@@ -3,6 +3,29 @@
 
 
     
+    
+  <url>
+    <loc>https://fengxc.me/Leetcode-313-Super-Ugly-Number.html</loc>
+    <lastmod>2018-08-22T02:41:07.025Z</lastmod>
+    <data>
+        <display>
+        <title>Leetcode 313: Super Ugly Number</title>
+        <pubTime>2018-08-22T02:14:13.000Z</pubTime>
+        
+        <tag>Leetcode</tag>
+         
+        <tag>313</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
   <url>
     <loc>https://fengxc.me/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95.html</loc>
     <lastmod>2018-08-20T09:13:00.651Z</lastmod>
@@ -57,9 +80,9 @@
         <title>机器学习常见面试题(持续更新中...)</title>
         <pubTime>2018-07-28T06:48:53.000Z</pubTime>
         
-        <tag>机器学习</tag>
-         
         <tag>nlp</tag>
+         
+        <tag>机器学习</tag>
          
         <tag>面试题</tag>
          
@@ -151,11 +174,11 @@
         <title>卷积神经网络</title>
         <pubTime>2018-08-10T12:49:34.000Z</pubTime>
         
+        <tag>深度学习</tag>
+         
         <tag>卷积神经网络</tag>
          
         <tag>吴恩达</tag>
-         
-        <tag>深度学习</tag>
          
          
            
@@ -238,7 +261,6 @@
     </data>
     </url>
 
-    
     
   <url>
     <loc>https://fengxc.me/2018%E7%BD%91%E6%98%93%E7%AC%94%E8%AF%95%E9%A2%98%E5%8F%8A%E8%A7%A3%E7%AD%94-Java.html</loc>
@@ -416,11 +438,11 @@
         <title>百度SRE提前批智能平台研发工程师面试经历</title>
         <pubTime>2018-07-07T07:33:17.000Z</pubTime>
         
+        <tag>面经</tag>
+         
         <tag>百度</tag>
          
         <tag>SRE</tag>
-         
-        <tag>面经</tag>
          
          
            
@@ -558,9 +580,9 @@
         <title>吴恩达序列模型：循环序列模型</title>
         <pubTime>2018-07-23T12:18:06.000Z</pubTime>
         
-        <tag>吴恩达</tag>
-         
         <tag>深度学习</tag>
+         
+        <tag>吴恩达</tag>
          
         <tag>循环</tag>
          
@@ -724,9 +746,9 @@
         <title>CS224N Assignment 1</title>
         <pubTime>2018-07-14T08:22:24.000Z</pubTime>
         
-        <tag>算法</tag>
-         
         <tag>nlp</tag>
+         
+        <tag>算法</tag>
          
         <tag>CS224N</tag>
          
