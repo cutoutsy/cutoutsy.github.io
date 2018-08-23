@@ -134,18 +134,18 @@
 
 
 
-  <meta name="description" content="难度：Medium 题目描述编写一段程序来查找第n个超级丑数。超级丑数是指其所有质因数都是长度为k的质数列表primes中的正整数。">
+  <meta name="description" content="难度：Medium相似题目：  264. Ugly Number II  题目描述编写一段程序来查找第n个超级丑数。超级丑数是指其所有质因数都是长度为k的质数列表primes中的正整数。">
 <meta name="keywords" content="Leetcode,313">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Leetcode 313: Super Ugly Number">
 <meta property="og:url" content="https://fengxc.me/Leetcode-313-Super-Ugly-Number.html">
 <meta property="og:site_name" content="小川">
-<meta property="og:description" content="难度：Medium 题目描述编写一段程序来查找第n个超级丑数。超级丑数是指其所有质因数都是长度为k的质数列表primes中的正整数。">
+<meta property="og:description" content="难度：Medium相似题目：  264. Ugly Number II  题目描述编写一段程序来查找第n个超级丑数。超级丑数是指其所有质因数都是长度为k的质数列表primes中的正整数。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-22T02:41:07.025Z">
+<meta property="og:updated_time" content="2018-08-23T02:23:03.954Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode 313: Super Ugly Number">
-<meta name="twitter:description" content="难度：Medium 题目描述编写一段程序来查找第n个超级丑数。超级丑数是指其所有质因数都是长度为k的质数列表primes中的正整数。">
+<meta name="twitter:description" content="难度：Medium相似题目：  264. Ugly Number II  题目描述编写一段程序来查找第n个超级丑数。超级丑数是指其所有质因数都是长度为k的质数列表primes中的正整数。">
 
 
 
@@ -404,12 +404,24 @@
                 
               
 
-              <time title="创建时间：2018-08-22 10:14:13 / 修改时间：10:41:07" itemprop="dateCreated datePublished" datetime="2018-08-22T10:14:13+08:00">2018-08-22</time>
+              <time title="创建时间：2018-08-22 10:14:13" itemprop="dateCreated datePublished" datetime="2018-08-22T10:14:13+08:00">2018-08-22</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-08-23 10:23:03" itemprop="dateModified" datetime="2018-08-23T10:23:03+08:00">2018-08-23</time>
               
             
           </span>
@@ -500,7 +512,10 @@
       
 
       
-        <p><strong>难度：Medium</strong></p>
+        <p><strong>难度：Medium</strong><br>相似题目：</p>
+<ul>
+<li><a href="https://leetcode.com/problems/ugly-number-ii/description/" target="_blank" rel="noopener">264. Ugly Number II</a></li>
+</ul>
 <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>编写一段程序来查找第n个超级丑数。<br>超级丑数是指其所有质因数都是长度为k的质数列表primes中的正整数。<br><a id="more"></a></p>
 <h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: n = 12, primes = [2,7,13,19]</span><br><span class="line">输出: 32 </span><br><span class="line">解释: 给定长度为4的质数列表primes = [2,7,13,19]，前12个超级丑数序列为：[1,2,4,7,8,13,14,16,19,26,28,32]。</span><br></pre></td></tr></table></figure>
 <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ul>
@@ -515,6 +530,7 @@
 <p>比如我们现在来求ugly[1]，<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">primes[0] * ugly[index[0]] = 2</span><br><span class="line">primes[1] * ugly[index[1]] = 7</span><br><span class="line">primes[2] * ugly[index[2]] = 13</span><br><span class="line">primes[3] * ugly[index[3]] = 19</span><br></pre></td></tr></table></figure></p>
 <p>我们可以看到最小值是2，则ugly[1] = 2，同时index[0]++，因为后面素数2要乘以ugly下标为1的数，下标为0的数已经计算过了。比如再求一个ugly[2],<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">primes[0] * ugly[index[0]] = 4</span><br><span class="line">primes[1] * ugly[index[1]] = 7</span><br><span class="line">primes[2] * ugly[index[2]] = 13</span><br><span class="line">primes[3] * ugly[index[3]] = 19</span><br></pre></td></tr></table></figure></p>
 <p>最小值是4，所以ugly[2] = 4, 同时index[0]++。<br>按照上面的计算过程，可能存在和前一个值相等的情况，此时我们需要把对应下标加到大于前一个数之后，再进行计算。</p>
+<p><strong>这个解法也是可以解决相似题目的。</strong></p>
 <p>也可以看下讨论区相似的题解<a href="https://leetcode.com/problems/super-ugly-number/discuss/76292/Java-solution21ms" target="_blank" rel="noopener">Java solution，21ms，详细的中文解释</a></p>
 <h3 id="解题代码"><a href="#解题代码" class="headerlink" title="解题代码"></a>解题代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">nthSuperUglyNumber</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span>[] primes)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] index = <span class="keyword">new</span> <span class="keyword">int</span>[primes.length];</span><br><span class="line">        <span class="keyword">int</span>[] ugly = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">        ugly[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> min = Integer.MAX_VALUE;</span><br><span class="line">            <span class="keyword">int</span> tempIndex = -<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; primes.length; j++) &#123;</span><br><span class="line">                <span class="keyword">while</span> ((primes[j] * ugly[index[j]]) &lt;= ugly[i-<span class="number">1</span>]) &#123;</span><br><span class="line">                    index[j]++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> ((primes[j] * ugly[index[j]]) &lt; min) &#123;</span><br><span class="line">                    min = primes[j] * ugly[index[j]];</span><br><span class="line">                    tempIndex = j;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            index[tempIndex]++;</span><br><span class="line">            ugly[i] = min;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ugly[n-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1109,7 +1125,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">195k</span>
+    <span title="站点总字数">196k</span>
   
 
   

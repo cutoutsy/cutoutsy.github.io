@@ -3,10 +3,9 @@
 
 
     
-    
   <url>
     <loc>https://fengxc.me/Leetcode-313-Super-Ugly-Number.html</loc>
-    <lastmod>2018-08-22T02:41:07.025Z</lastmod>
+    <lastmod>2018-08-23T02:23:03.954Z</lastmod>
     <data>
         <display>
         <title>Leetcode 313: Super Ugly Number</title>
@@ -28,7 +27,7 @@
     
   <url>
     <loc>https://fengxc.me/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95.html</loc>
-    <lastmod>2018-08-20T09:13:00.651Z</lastmod>
+    <lastmod>2018-08-22T13:12:03.714Z</lastmod>
     <data>
         <display>
         <title>深度学习中的优化算法</title>
@@ -47,6 +46,7 @@
     </data>
     </url>
 
+    
     
   <url>
     <loc>https://fengxc.me/%E6%8C%87%E6%95%B0%E5%B9%B3%E6%BB%91%E6%A8%A1%E5%9E%8B.html</loc>
@@ -80,9 +80,9 @@
         <title>机器学习常见面试题(持续更新中...)</title>
         <pubTime>2018-07-28T06:48:53.000Z</pubTime>
         
-        <tag>nlp</tag>
-         
         <tag>机器学习</tag>
+         
+        <tag>nlp</tag>
          
         <tag>面试题</tag>
          
@@ -438,11 +438,11 @@
         <title>百度SRE提前批智能平台研发工程师面试经历</title>
         <pubTime>2018-07-07T07:33:17.000Z</pubTime>
         
-        <tag>面经</tag>
-         
         <tag>百度</tag>
          
         <tag>SRE</tag>
+         
+        <tag>面经</tag>
          
          
            
@@ -746,9 +746,9 @@
         <title>CS224N Assignment 1</title>
         <pubTime>2018-07-14T08:22:24.000Z</pubTime>
         
-        <tag>nlp</tag>
-         
         <tag>算法</tag>
+         
+        <tag>nlp</tag>
          
         <tag>CS224N</tag>
          

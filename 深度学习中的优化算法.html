@@ -144,7 +144,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.ai-start.com/dl2017/images/b5c07d7dec7e54bed73cdcd43e79452d.png">
 <meta property="og:image" content="http://www.ai-start.com/dl2017/images/011e9625870797d6c0695658b92f606e.png">
-<meta property="og:updated_time" content="2018-08-20T09:13:00.651Z">
+<meta property="og:updated_time" content="2018-08-22T13:12:03.714Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深度学习中的优化算法">
 <meta name="twitter:description" content="写在前面深度学习算法在很多情况下都涉及优化。 寻找神经网络上的一组参数$\theta$，它能显著地降低代价函数$J(\theta)$，该代价函数通常包括整个训练集上的性能评估和额外的正则化项。 机器学习是一个高度依赖经验的过程，伴随着大量迭代的过程，你需要训练诸多模型，才能找到合适的那一个，所以，优化算法能够帮助你快速训练模型。">
@@ -424,7 +424,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-20 17:13:00" itemprop="dateModified" datetime="2018-08-20T17:13:00+08:00">2018-08-20</time>
+                <time title="修改时间：2018-08-22 21:12:03" itemprop="dateModified" datetime="2018-08-22T21:12:03+08:00">2018-08-22</time>
               
             
           </span>
@@ -542,7 +542,7 @@
 <h3 id="Nesterov-accelerated-gradient"><a href="#Nesterov-accelerated-gradient" class="headerlink" title="Nesterov accelerated gradient"></a>Nesterov accelerated gradient</h3><p>上面的momentum梯度下降法，每一步都是由前面下降方向的一个累积和当前梯度方向组合而成。</p>
 <p>而Nesterov是按照历史梯度往前走那么一小步，按照前面一小步位置的“超前梯度”来做梯度合并。如此一来，可以先往前走一步，在靠前一点的位置看到梯度，然后按照那个位置再来修正这一步的梯度方向，有了超前的眼光。</p>
 <h4 id="算法-1"><a href="#算法-1" class="headerlink" title="算法"></a>算法</h4><p>在t次迭代的时候，</p>
-<script type="math/tex; mode=display">v_{t} = \beat v_{t-1} + \alpha\Delta_{\theta}J(\theta - \beta v_{t-1})</script><script type="math/tex; mode=display">\theta = \theta - v_{t}</script><h3 id="AdaGard"><a href="#AdaGard" class="headerlink" title="AdaGard"></a>AdaGard</h3><p>独立的适应于所有模型参数的学习率，缩放每个参数反比于其所有梯度历史平方值总和的平方根。<br>具有损失最大偏导的参数相应的有一个快速下降的学习率，而具有小偏导的参数在学习率上有相对较小的下降。净效果是在参数空间中更为平缓的倾斜方向会取得更大的进步。</p>
+<script type="math/tex; mode=display">v_{t} = \beta v_{t-1} + \alpha\Delta_{\theta}J(\theta - \beta v_{t-1})</script><script type="math/tex; mode=display">\theta = \theta - v_{t}</script><h3 id="AdaGard"><a href="#AdaGard" class="headerlink" title="AdaGard"></a>AdaGard</h3><p>独立的适应于所有模型参数的学习率，缩放每个参数反比于其所有梯度历史平方值总和的平方根。<br>具有损失最大偏导的参数相应的有一个快速下降的学习率，而具有小偏导的参数在学习率上有相对较小的下降。净效果是在参数空间中更为平缓的倾斜方向会取得更大的进步。</p>
 <h4 id="算法-2"><a href="#算法-2" class="headerlink" title="算法"></a>算法</h4><p>在t次迭代的时候，计算$dW, db$,</p>
 <script type="math/tex; mode=display">S_{dW} = S_{dW} + dW^2</script><script type="math/tex; mode=display">S_{db} = S_{db} + db^2</script><script type="math/tex; mode=display">W = W-\alpha \frac{dW}{\sqrt{S_{dW}} + \epsilon}, b = b - \alpha \frac{dv}{\sqrt{S_{db}} + \epsilon }</script><h3 id="RMSprop"><a href="#RMSprop" class="headerlink" title="RMSprop"></a>RMSprop</h3><p>全称是root mean square prop算法，它也可以加速梯度下降。和上面的AdaGrad算法类似，不过是使用了滑动平均。<br>假设纵轴代表参数$W$，横轴代表参数$b$，所以你想减缓$b$方向上的学习，同时加快横轴方向上的学习。</p>
 <h4 id="算法-3"><a href="#算法-3" class="headerlink" title="算法"></a>算法</h4><p>在t次迭代的时候，计算$dW, db$，</p>
@@ -1190,7 +1190,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">195k</span>
+    <span title="站点总字数">196k</span>
   
 
   
