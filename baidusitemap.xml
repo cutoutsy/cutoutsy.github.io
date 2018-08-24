@@ -4,6 +4,55 @@
 
     
   <url>
+    <loc>https://fengxc.me/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E7%82%B9-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.html</loc>
+    <lastmod>2018-08-24T08:39:02.654Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习常见面试题(持续更新中...)</title>
+        <pubTime>2018-07-28T06:48:53.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>nlp</tag>
+         
+        <tag>面试题</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
+    <loc>https://fengxc.me/Leetcode-56-Merge-Intervals.html</loc>
+    <lastmod>2018-08-24T03:09:07.115Z</lastmod>
+    <data>
+        <display>
+        <title>Leetcode 56: Merge Intervals</title>
+        <pubTime>2018-08-24T02:44:23.000Z</pubTime>
+        
+        <tag>leetcode</tag>
+         
+        <tag>56</tag>
+         
+        <tag>Array</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://fengxc.me/Leetcode-313-Super-Ugly-Number.html</loc>
     <lastmod>2018-08-23T02:23:03.954Z</lastmod>
     <data>
@@ -47,7 +96,6 @@
     </url>
 
     
-    
   <url>
     <loc>https://fengxc.me/%E6%8C%87%E6%95%B0%E5%B9%B3%E6%BB%91%E6%A8%A1%E5%9E%8B.html</loc>
     <lastmod>2018-08-19T08:56:50.004Z</lastmod>
@@ -61,30 +109,6 @@
         <tag>时间序列</tag>
          
         <tag>指数平滑</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://fengxc.me/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E7%82%B9-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.html</loc>
-    <lastmod>2018-08-19T07:15:40.432Z</lastmod>
-    <data>
-        <display>
-        <title>机器学习常见面试题(持续更新中...)</title>
-        <pubTime>2018-07-28T06:48:53.000Z</pubTime>
-        
-        <tag>机器学习</tag>
-         
-        <tag>nlp</tag>
-         
-        <tag>面试题</tag>
          
          
            
@@ -438,11 +462,11 @@
         <title>百度SRE提前批智能平台研发工程师面试经历</title>
         <pubTime>2018-07-07T07:33:17.000Z</pubTime>
         
+        <tag>面经</tag>
+         
         <tag>百度</tag>
          
         <tag>SRE</tag>
-         
-        <tag>面经</tag>
          
          
            
