@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://fengxc.me/python3%E4%BD%BF%E7%94%A8%E4%B8%AD%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95.html</loc>
+    <lastmod>2018-08-30T12:46:32.777Z</lastmod>
+    <data>
+        <display>
+        <title>python3使用中问题记录</title>
+        <pubTime>2018-08-29T07:16:08.000Z</pubTime>
+        
+        <tag>python3</tag>
+         
+        <tag>问题记录</tag>
+         
+         
+           
+             
+              <breadCrumb title="学习笔记" url="https://fengxc.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://fengxc.me/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E7%82%B9-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.html</loc>
     <lastmod>2018-08-27T14:13:20.452Z</lastmod>
     <data>
@@ -200,9 +222,9 @@
         
         <tag>深度学习</tag>
          
-        <tag>卷积神经网络</tag>
-         
         <tag>吴恩达</tag>
+         
+        <tag>卷积神经网络</tag>
          
          
            
