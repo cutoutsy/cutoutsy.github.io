@@ -142,7 +142,7 @@
 <meta property="og:site_name" content="小川">
 <meta property="og:description" content="写在前面本篇博客为博主在使用python3中遇到的问题以及需要记录的东西，新手在使用中有较多的问题，在这做个记录，方便查询和回顾，持续更新中…">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-30T12:46:32.777Z">
+<meta property="og:updated_time" content="2018-09-10T02:15:26.953Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python3使用中问题记录">
 <meta name="twitter:description" content="写在前面本篇博客为博主在使用python3中遇到的问题以及需要记录的东西，新手在使用中有较多的问题，在这做个记录，方便查询和回顾，持续更新中…">
@@ -421,7 +421,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-30 20:46:32" itemprop="dateModified" datetime="2018-08-30T20:46:32+08:00">2018-08-30</time>
+                <time title="修改时间：2018-09-10 10:15:26" itemprop="dateModified" datetime="2018-09-10T10:15:26+08:00">2018-09-10</time>
               
             
           </span>
@@ -478,7 +478,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">645</span>
+                <span title="本文字数">955</span>
               
 
               
@@ -517,7 +517,14 @@
 <p>更详细的应用：<a href="https://blog.csdn.net/qq_29883591/article/details/53443062" target="_blank" rel="noopener">https://blog.csdn.net/qq_29883591/article/details/53443062</a></p>
 <h3 id="python中的文件路径问题"><a href="#python中的文件路径问题" class="headerlink" title="python中的文件路径问题"></a>python中的文件路径问题</h3><p>获取当前所处文件夹的绝对路径<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">os.path.abspath(<span class="string">'.'</span>)  </span><br><span class="line">os.path.abspath(<span class="string">'..'</span>)  <span class="comment">#表示当前所处的文件夹上一级文件夹的绝对路径</span></span><br></pre></td></tr></table></figure></p>
 <p>一个python源码在运行时有个解释器自带的参数<strong>file</strong>，这个量会告诉你当前这个代码的地址<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">module_path = os.path.dirname(__file__)</span><br></pre></td></tr></table></figure></p>
+<h3 id="python数据读取"><a href="#python数据读取" class="headerlink" title="python数据读取"></a>python数据读取</h3><p>这个是在OJ的时候，如何读取题目的输入<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">line = sys.stdin.readline() <span class="comment"># 每次读取一行</span></span><br><span class="line">line = input() <span class="comment"># 使用input()也可以每次读取一行</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="多进程与多进程"><a href="#多进程与多进程" class="headerlink" title="多进程与多进程"></a>多进程与多进程</h3><p>多进程主要是使用multiprocessing模块，封装了系统的fork()方法，并达到平台移植的目的。<br>多线程主要使用threading模块，但是python解释器由于设计时有GIL全局锁，导致了多线程无法利用多核。所以python并不存在真正意义上的多线程。多线程在python中只能交替的执行。<br>可以参考<a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014319272686365ec7ceaeca33428c914edf8f70cca383000" target="_blank" rel="noopener">廖雪峰的官方网站</a></p>
+<h3 id="嵌套函数"><a href="#嵌套函数" class="headerlink" title="嵌套函数"></a>嵌套函数</h3><p>在Python中，函数是一个一等公民。这意味着，函数与任何其他对象（例如：整数、字符串、列表）一致，既可以动态地创建或销毁，也可以传递给其他函数，或作为值进行返回。<br>一般在什么情况下使用嵌套函数：</p>
+<ul>
+<li>封装-数据隐藏</li>
+<li>贯彻DRY(Don’t Repeat Yourself)原则: 指在程序设计以及计算中避免重复代码，因为这样会降低灵活性、简洁性，并且有可能导致代码之间的矛盾。</li>
+<li>闭包</li>
+</ul>
 
       
     </div>
@@ -692,7 +699,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">82</span>
+                    <span class="site-state-item-count">84</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1032,7 +1039,19 @@
                     
                       
                     
-                    <span class="site-state-item-count">143</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">147</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1096,7 +1115,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eval使用"><span class="nav-number">2.</span> <span class="nav-text">eval使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python中的文件路径问题"><span class="nav-number">3.</span> <span class="nav-text">python中的文件路径问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多进程与多进程"><span class="nav-number">4.</span> <span class="nav-text">多进程与多进程</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eval使用"><span class="nav-number">2.</span> <span class="nav-text">eval使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python中的文件路径问题"><span class="nav-number">3.</span> <span class="nav-text">python中的文件路径问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python数据读取"><span class="nav-number">4.</span> <span class="nav-text">python数据读取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多进程与多进程"><span class="nav-number">5.</span> <span class="nav-text">多进程与多进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#嵌套函数"><span class="nav-number">6.</span> <span class="nav-text">嵌套函数</span></a></li></ol></div>
             
 
           </div>
@@ -1128,7 +1147,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">203k</span>
+    <span title="站点总字数">206k</span>
   
 
   
@@ -1137,7 +1156,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">3:04</span>
+    <span title="站点阅读时长">3:07</span>
   
 </div>
 
