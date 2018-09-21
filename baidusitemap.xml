@@ -4,6 +4,76 @@
 
     
   <url>
+    <loc>https://fengxc.me/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC.html</loc>
+    <lastmod>2018-09-21T03:29:24.427Z</lastmod>
+    <data>
+        <display>
+        <title>逻辑回归公式推导</title>
+        <pubTime>2018-09-21T02:36:57.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>逻辑回归</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://fengxc.me/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E7%82%B9-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.html</loc>
+    <lastmod>2018-09-14T03:33:16.638Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习常见面试题(持续更新中...)</title>
+        <pubTime>2018-07-28T06:48:53.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>nlp</tag>
+         
+        <tag>面试题</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://fengxc.me/GBDT%E8%AF%A6%E8%A7%A3.html</loc>
+    <lastmod>2018-09-13T02:26:08.739Z</lastmod>
+    <data>
+        <display>
+        <title>GBDT与Xgboost详解</title>
+        <pubTime>2018-08-16T12:55:32.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>GBDT</tag>
+         
+        <tag>xgboost</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://fengxc.me/Leetcode-890-Find-and-Replace-Pattern.html</loc>
     <lastmod>2018-09-10T02:31:54.954Z</lastmod>
     <data>
@@ -141,30 +211,6 @@
 
     
   <url>
-    <loc>https://fengxc.me/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E7%82%B9-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.html</loc>
-    <lastmod>2018-08-27T14:13:20.452Z</lastmod>
-    <data>
-        <display>
-        <title>机器学习常见面试题(持续更新中...)</title>
-        <pubTime>2018-07-28T06:48:53.000Z</pubTime>
-        
-        <tag>机器学习</tag>
-         
-        <tag>nlp</tag>
-         
-        <tag>面试题</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://fengxc.me/Leetcode-56-Merge-Intervals.html</loc>
     <lastmod>2018-08-24T03:09:07.115Z</lastmod>
     <data>
@@ -279,30 +325,6 @@
 
     
   <url>
-    <loc>https://fengxc.me/GBDT%E8%AF%A6%E8%A7%A3.html</loc>
-    <lastmod>2018-08-17T09:51:36.468Z</lastmod>
-    <data>
-        <display>
-        <title>GBDT与Xgboost详解</title>
-        <pubTime>2018-08-16T12:55:32.000Z</pubTime>
-        
-        <tag>机器学习</tag>
-         
-        <tag>GBDT</tag>
-         
-        <tag>xgboost</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://fengxc.me/%E9%98%BF%E9%87%8C2018%E7%BC%96%E7%A8%8B%E6%B5%8B%E9%AA%8C%E9%A2%98.html</loc>
     <lastmod>2018-08-17T01:53:54.500Z</lastmod>
     <data>
@@ -336,9 +358,9 @@
         
         <tag>深度学习</tag>
          
-        <tag>卷积神经网络</tag>
-         
         <tag>吴恩达</tag>
+         
+        <tag>卷积神经网络</tag>
          
          
            
@@ -1193,9 +1215,9 @@
         <title>2017校招-好未来：n个数里出现次数大于等于n/2的数</title>
         <pubTime>2018-07-02T01:29:26.000Z</pubTime>
         
-        <tag>好未来</tag>
-         
         <tag>算法</tag>
+         
+        <tag>好未来</tag>
          
         <tag>2017校招</tag>
          
