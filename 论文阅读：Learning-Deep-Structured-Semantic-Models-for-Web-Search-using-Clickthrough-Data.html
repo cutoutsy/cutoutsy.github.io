@@ -142,12 +142,12 @@
 <meta property="og:site_name" content="小川">
 <meta property="og:description" content="摘要这篇论文是关于语义计算模型的，尽管我们可以使用词袋、word2vec、doc2vec等语义表示，但是这些都是浅层表示，我们可以基于深度学习，来进行更深层次的语义表示。通常的搜索引擎的匹配都是基于关键字的，很多时候效果是不好的。我们可以将查询语句和文档都映射到同一个低纬空间，然后通过计算距离来衡量相关性。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/dssm.png">
-<meta property="og:updated_time" content="2018-08-08T03:15:37.639Z">
+<meta property="og:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/dssm.png">
+<meta property="og:updated_time" content="2018-10-02T08:14:27.819Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文阅读：Learning Deep Structured Semantic Models for Web Search using Clickthrough Data">
 <meta name="twitter:description" content="摘要这篇论文是关于语义计算模型的，尽管我们可以使用词袋、word2vec、doc2vec等语义表示，但是这些都是浅层表示，我们可以基于深度学习，来进行更深层次的语义表示。通常的搜索引擎的匹配都是基于关键字的，很多时候效果是不好的。我们可以将查询语句和文档都映射到同一个低纬空间，然后通过计算距离来衡量相关性。">
-<meta name="twitter:image" content="http://7oxhal.com1.z0.glb.clouddn.com/dssm.png">
+<meta name="twitter:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/dssm.png">
 
 
 
@@ -423,7 +423,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-08 11:15:37" itemprop="dateModified" datetime="2018-08-08T11:15:37+08:00">2018-08-08</time>
+                <time title="修改时间：2018-10-02 16:14:27" itemprop="dateModified" datetime="2018-10-02T16:14:27+08:00">2018-10-02</time>
               
             
           </span>
@@ -525,7 +525,7 @@
 </ul>
 <h4 id="深度学习"><a href="#深度学习" class="headerlink" title="深度学习"></a>深度学习</h4><p>自编码<br>问题：<br>优化方式是通过重建，而不是比较相关性<br>性能较差，只能处理2000词汇表</p>
 <h3 id="针对网页的DSSM"><a href="#针对网页的DSSM" class="headerlink" title="针对网页的DSSM"></a>针对网页的DSSM</h3><h4 id="针对语义特征计算的DNN"><a href="#针对语义特征计算的DNN" class="headerlink" title="针对语义特征计算的DNN"></a>针对语义特征计算的DNN</h4><p>网络结构图如下：</p>
-<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/dssm.png" alt="DSSM"></p>
+<p><img src="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/dssm.png" alt="DSSM"></p>
 <p>图中的计算公式如下：</p>
 <script type="math/tex; mode=display">l_{1} = W_{1}x</script><script type="math/tex; mode=display">l_{i} = f(W_{i}l_{i-1}+b_{i}), i=2,...,N-1</script><script type="math/tex; mode=display">y = f(W_{N-1} + b_{N})</script><p>激活函数使用tanh</p>
 <script type="math/tex; mode=display">R(Q, D) = cosine(y_{Q}, y_{D}) = \frac{y_{Q}^Ty_{D}}{||y_{Q}||||y_{D}||}</script><p>总体来说， 网络结构还是比较简单的。</p>

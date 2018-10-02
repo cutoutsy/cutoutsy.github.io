@@ -142,12 +142,12 @@
 <meta property="og:site_name" content="小川">
 <meta property="og:description" content="写在前面题目来自于阿里2018编程测验中的算法题，时间是30分钟。其实要在30分钟内做出这道题，还是有一定难度的，由于有整体有几道算法题，这里记录下自己见到的题目。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/ali_problem1.png">
-<meta property="og:updated_time" content="2018-08-17T01:53:54.500Z">
+<meta property="og:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/ali_problem1.png">
+<meta property="og:updated_time" content="2018-10-02T08:14:11.520Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="阿里2018编程测验算法题">
 <meta name="twitter:description" content="写在前面题目来自于阿里2018编程测验中的算法题，时间是30分钟。其实要在30分钟内做出这道题，还是有一定难度的，由于有整体有几道算法题，这里记录下自己见到的题目。">
-<meta name="twitter:image" content="http://7oxhal.com1.z0.glb.clouddn.com/ali_problem1.png">
+<meta name="twitter:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/ali_problem1.png">
 
 
 
@@ -406,12 +406,24 @@
                 
               
 
-              <time title="创建时间：2018-08-17 09:16:06 / 修改时间：09:53:54" itemprop="dateCreated datePublished" datetime="2018-08-17T09:16:06+08:00">2018-08-17</time>
+              <time title="创建时间：2018-08-17 09:16:06" itemprop="dateCreated datePublished" datetime="2018-08-17T09:16:06+08:00">2018-08-17</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-02 16:14:11" itemprop="dateModified" datetime="2018-10-02T16:14:11+08:00">2018-10-02</time>
               
             
           </span>
@@ -503,7 +515,7 @@
 
       
         <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>题目来自于阿里2018编程测验中的算法题，时间是30分钟。其实要在30分钟内做出这道题，还是有一定难度的，由于有整体有几道算法题，这里记录下自己见到的题目。<br><a id="more"></a></p>
-<h3 id="题目一-物流派送员送快递最短路径问题"><a href="#题目一-物流派送员送快递最短路径问题" class="headerlink" title="题目一:物流派送员送快递最短路径问题"></a>题目一:物流派送员送快递最短路径问题</h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>如下图，某物流派送员p，需要给 a、b、c、d. 4个快递点派送包裹，请问派送员需要选择什么样的路线，才能完成最短路程的派送。假设如图派送员的起点坐标(0,0)，派送路线只能沿着图中的方格边行驶，每个小格都是正方形，且边长为1，如p到d的距离就是4。随机输入n个派送点坐标，求输出最短派送路线值（从起点开始完成n个点派送并回到起始点的距离）。<br><img src="http://7oxhal.com1.z0.glb.clouddn.com/ali_problem1.png" alt="problem1"></p>
+<h3 id="题目一-物流派送员送快递最短路径问题"><a href="#题目一-物流派送员送快递最短路径问题" class="headerlink" title="题目一:物流派送员送快递最短路径问题"></a>题目一:物流派送员送快递最短路径问题</h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>如下图，某物流派送员p，需要给 a、b、c、d. 4个快递点派送包裹，请问派送员需要选择什么样的路线，才能完成最短路程的派送。假设如图派送员的起点坐标(0,0)，派送路线只能沿着图中的方格边行驶，每个小格都是正方形，且边长为1，如p到d的距离就是4。随机输入n个派送点坐标，求输出最短派送路线值（从起点开始完成n个点派送并回到起始点的距离）。<br><img src="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/ali_problem1.png" alt="problem1"></p>
 <h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p>输入<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">4</span><br><span class="line">2,2</span><br><span class="line">2,8</span><br><span class="line">4,4</span><br><span class="line">7,2</span><br></pre></td></tr></table></figure></p>
 <p>输出<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">30</span><br></pre></td></tr></table></figure></p>
 <h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><p>这道题按照暴力的解法的话，可以算出送货点路径的全排列，然后再取最小值就可以了。所以这题的关键在于给定一个数组，计算它的全排列。</p>
