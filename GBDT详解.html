@@ -142,13 +142,13 @@
 <meta property="og:site_name" content="小川">
 <meta property="og:description" content="写在前面GBDT是一个系列算法，具有很好的性能，可以用于回归、分类、排序的机器学习任务，也是机器学习面试时常考的一个知识点，在这写下个人的一些理解，也当做个笔记。 GBDT分为两部分，GB: Gradient Boosting和DT: Decision tree。 GBDT算法是属于Boosting算法族的一部分，可将弱学习器提升为强学习器的算法，属于集成学习的范畴。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/blog_xgboost.png">
-<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/blog_gdbt_pic2.png">
-<meta property="og:updated_time" content="2018-09-13T02:26:08.739Z">
+<meta property="og:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_xgboost.png">
+<meta property="og:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_gdbt_pic2.png">
+<meta property="og:updated_time" content="2018-10-02T08:17:59.074Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GBDT与Xgboost详解">
 <meta name="twitter:description" content="写在前面GBDT是一个系列算法，具有很好的性能，可以用于回归、分类、排序的机器学习任务，也是机器学习面试时常考的一个知识点，在这写下个人的一些理解，也当做个笔记。 GBDT分为两部分，GB: Gradient Boosting和DT: Decision tree。 GBDT算法是属于Boosting算法族的一部分，可将弱学习器提升为强学习器的算法，属于集成学习的范畴。">
-<meta name="twitter:image" content="http://7oxhal.com1.z0.glb.clouddn.com/blog_xgboost.png">
+<meta name="twitter:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_xgboost.png">
 
 
 
@@ -424,7 +424,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-13 10:26:08" itemprop="dateModified" datetime="2018-09-13T10:26:08+08:00">2018-09-13</time>
+                <time title="修改时间：2018-10-02 16:17:59" itemprop="dateModified" datetime="2018-10-02T16:17:59+08:00">2018-10-02</time>
               
             
           </span>
@@ -573,7 +573,7 @@
 <h3 id="XGBOOST-eXtreme-Gradient-Boosting"><a href="#XGBOOST-eXtreme-Gradient-Boosting" class="headerlink" title="XGBOOST(eXtreme Gradient Boosting)"></a>XGBOOST(eXtreme Gradient Boosting)</h3><p>xgboost模型：和上面的GBDT模型是一致的，假设有K棵树</p>
 <script type="math/tex; mode=display">\hat y_{i} = \sum_{k=1}^K f_{k}(x_{i}), f_{k}\in F</script><p>目标函数也基本一致，不过添加了正则项：</p>
 <script type="math/tex; mode=display">L(\phi ) = \sum_{i} l(\hat y_{i}, y_{i}) + \sum_{k}\Omega (f_{k})</script><p>同样使用前向分步算法进行学习。<br>所以在t轮我们可以得到：</p>
-<script type="math/tex; mode=display">Obj^{(t)} = \sum_{i=1}^nl(y_{i}, \hat y_{i}^{(t-1)}+f_{t}(x_{i})) + \Omega(f_{t}) + constant</script><p>对误差函数进行二阶泰勒展开：<br><img src="http://7oxhal.com1.z0.glb.clouddn.com/blog_xgboost.png" alt="xgboost_taylor"><br>为什么这里要这样展开，这就是xgboost的特点了，通过这种近似，你可以自定义一些损失函数（只要保证二阶可导）。树分裂的打分函数是基于$g_{i},h_{i}$计算的。</p>
+<script type="math/tex; mode=display">Obj^{(t)} = \sum_{i=1}^nl(y_{i}, \hat y_{i}^{(t-1)}+f_{t}(x_{i})) + \Omega(f_{t}) + constant</script><p>对误差函数进行二阶泰勒展开：<br><img src="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_xgboost.png" alt="xgboost_taylor"><br>为什么这里要这样展开，这就是xgboost的特点了，通过这种近似，你可以自定义一些损失函数（只要保证二阶可导）。树分裂的打分函数是基于$g_{i},h_{i}$计算的。</p>
 <p>这样我们就得到了新的目标函数：</p>
 <script type="math/tex; mode=display">\sum_{i=1}^n[g_{i}f_{t}(x_{i}) + \frac{1}{2}h_{i}f_{t}^2(x_{i})] + \Omega(f_{t})</script><p>使用二阶导数的好处：</p>
 <ul>
@@ -582,7 +582,7 @@
 </ul>
 <p>重新定义树结构：<br>用叶子节点集合以及叶子节点得分表示。<br>每个样本都落在一个叶子节点上。<br>$q(x)$表示样本落在某个叶子节点上，$w_{q}(x)$表示该节点的打分，即该样本的模型预测值。<br><strong>定义树的复杂度项</strong></p>
 <script type="math/tex; mode=display">\Omega(f_{t}) = \gamma T + \frac{1}{2}\lambda \sum_{j=1}^Tw_{j}^2</script><p>T表示树的叶子节点数。</p>
-<p>更新目标函数：<br>求和下标由n变成了T。<br><img src="http://7oxhal.com1.z0.glb.clouddn.com/blog_gdbt_pic2.png" alt="regroup"></p>
+<p>更新目标函数：<br>求和下标由n变成了T。<br><img src="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_gdbt_pic2.png" alt="regroup"></p>
 <p>我们可以计算$w_{j}$:</p>
 <script type="math/tex; mode=display">w_{j} = -\frac{\sum_{i \in I_{j}}g_{i}}{\sum_{i \in I_{j}}h_{i} + \lambda}</script><p>这样原目标函数就变为：</p>
 <script type="math/tex; mode=display">-\frac{1}{2}\sum_{j=1}^T\frac{(\sum_{i\in I_{j}}g_{i})^2}{\sum_{i\in I_{j}}h_{i} + \lambda} + \gamma T</script><p><strong>切分点算法</strong></p>

@@ -4,6 +4,30 @@
 
     
   <url>
+    <loc>https://fengxc.me/GBDT%E8%AF%A6%E8%A7%A3.html</loc>
+    <lastmod>2018-10-02T08:17:59.074Z</lastmod>
+    <data>
+        <display>
+        <title>GBDT与Xgboost详解</title>
+        <pubTime>2018-08-16T12:55:32.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>GBDT</tag>
+         
+        <tag>xgboost</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://fengxc.me/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9ALearning-Deep-Structured-Semantic-Models-for-Web-Search-using-Clickthrough-Data.html</loc>
     <lastmod>2018-10-02T08:14:27.819Z</lastmod>
     <data>
@@ -154,30 +178,6 @@
         <tag>nlp</tag>
          
         <tag>面试题</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://fengxc.me/GBDT%E8%AF%A6%E8%A7%A3.html</loc>
-    <lastmod>2018-09-13T02:26:08.739Z</lastmod>
-    <data>
-        <display>
-        <title>GBDT与Xgboost详解</title>
-        <pubTime>2018-08-16T12:55:32.000Z</pubTime>
-        
-        <tag>机器学习</tag>
-         
-        <tag>GBDT</tag>
-         
-        <tag>xgboost</tag>
          
          
            
@@ -450,9 +450,9 @@
         
         <tag>深度学习</tag>
          
-        <tag>卷积神经网络</tag>
-         
         <tag>吴恩达</tag>
+         
+        <tag>卷积神经网络</tag>
          
          
            
