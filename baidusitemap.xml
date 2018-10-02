@@ -4,6 +4,52 @@
 
     
   <url>
+    <loc>https://fengxc.me/matplotlib%E7%94%BB%E5%9B%BE%E5%AD%A6%E4%B9%A0.html</loc>
+    <lastmod>2018-10-02T08:03:38.310Z</lastmod>
+    <data>
+        <display>
+        <title>matplotlib画图学习笔记</title>
+        <pubTime>2018-01-13T08:56:38.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>matplotlib</tag>
+         
+        <tag>画图</tag>
+         
+         
+           
+             
+              <breadCrumb title="学习笔记" url="https://fengxc.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://fengxc.me/%E5%BB%BA%E7%AB%99%E6%97%A5%E5%BF%97.html</loc>
+    <lastmod>2018-10-02T07:56:03.955Z</lastmod>
+    <data>
+        <display>
+        <title>建站日志</title>
+        <pubTime>2018-07-12T02:18:35.000Z</pubTime>
+        
+        <tag>网站</tag>
+         
+        <tag>日志</tag>
+         
+         
+           
+             
+              <breadCrumb title="网站" url="https://fengxc.me/categories/%E7%BD%91%E7%AB%99/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://fengxc.me/Leetcode-2-Add-Two-Numbers.html</loc>
     <lastmod>2018-09-25T02:31:52.065Z</lastmod>
     <data>
@@ -709,28 +755,6 @@
 
     
   <url>
-    <loc>https://fengxc.me/%E5%BB%BA%E7%AB%99%E6%97%A5%E5%BF%97.html</loc>
-    <lastmod>2018-07-30T03:30:09.505Z</lastmod>
-    <data>
-        <display>
-        <title>建站日志</title>
-        <pubTime>2018-07-12T02:18:35.000Z</pubTime>
-        
-        <tag>网站</tag>
-         
-        <tag>日志</tag>
-         
-         
-           
-             
-              <breadCrumb title="网站" url="https://fengxc.me/categories/%E7%BD%91%E7%AB%99/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://fengxc.me/Leetcode-654-Maximum-Binary-Tree.html</loc>
     <lastmod>2018-07-27T11:59:09.577Z</lastmod>
     <data>
@@ -1239,9 +1263,9 @@
         <title>2017校招-好未来：n个数里出现次数大于等于n/2的数</title>
         <pubTime>2018-07-02T01:29:26.000Z</pubTime>
         
-        <tag>算法</tag>
-         
         <tag>好未来</tag>
+         
+        <tag>算法</tag>
          
         <tag>2017校招</tag>
          
@@ -1292,30 +1316,6 @@
         <tag>数学</tag>
          
         <tag>统计学</tag>
-         
-         
-           
-             
-              <breadCrumb title="学习笔记" url="https://fengxc.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://fengxc.me/matplotlib%E7%94%BB%E5%9B%BE%E5%AD%A6%E4%B9%A0.html</loc>
-    <lastmod>2018-06-30T07:31:42.399Z</lastmod>
-    <data>
-        <display>
-        <title>matplotlib画图学习笔记</title>
-        <pubTime>2018-01-13T08:56:38.000Z</pubTime>
-        
-        <tag>python</tag>
-         
-        <tag>matplotlib</tag>
-         
-        <tag>画图</tag>
          
          
            
