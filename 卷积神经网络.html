@@ -135,7 +135,7 @@
 
 
   <meta name="description" content="写在前面卷积神经网络来源于图像处理，计算机视觉中要面临一个挑战，就是数据的输入可能会非常大。因为图像是像素点，且彩色图片有3个RGB通道。如果直接使用全连接网络的话，会导致参数数量巨大。在参数如此大量的情况下，难以获得足够的数据来防止神经网络发生过拟合（参数越多，拟合能力越强）和竞争需求，而且这么多的参数需要的内存也让人接受不了。">
-<meta name="keywords" content="深度学习,吴恩达,卷积神经网络">
+<meta name="keywords" content="深度学习,卷积神经网络,吴恩达">
 <meta property="og:type" content="article">
 <meta property="og:title" content="卷积神经网络">
 <meta property="og:url" content="https://fengxc.me/卷积神经网络.html">
@@ -153,7 +153,7 @@
 <meta property="og:image" content="http://www.ai-start.com/dl2017/images/445418bf9cd2eaa5a83f31c1f40757dc.png">
 <meta property="og:image" content="http://www.ai-start.com/dl2017/images/f00469a1fbea2ace64f1280849f9cd7d.png">
 <meta property="og:image" content="http://www.ai-start.com/dl2017/images/c6894969e33cfc84b16267b752baf644.png">
-<meta property="og:updated_time" content="2018-08-15T12:04:44.145Z">
+<meta property="og:updated_time" content="2018-10-03T08:01:28.798Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="卷积神经网络">
 <meta name="twitter:description" content="写在前面卷积神经网络来源于图像处理，计算机视觉中要面临一个挑战，就是数据的输入可能会非常大。因为图像是像素点，且彩色图片有3个RGB通道。如果直接使用全连接网络的话，会导致参数数量巨大。在参数如此大量的情况下，难以获得足够的数据来防止神经网络发生过拟合（参数越多，拟合能力越强）和竞争需求，而且这么多的参数需要的内存也让人接受不了。">
@@ -433,7 +433,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-15 20:04:44" itemprop="dateModified" datetime="2018-08-15T20:04:44+08:00">2018-08-15</time>
+                <time title="修改时间：2018-10-03 16:01:28" itemprop="dateModified" datetime="2018-10-03T16:01:28+08:00">2018-10-03</time>
               
             
           </span>
@@ -559,7 +559,7 @@
 <h3 id="三维卷积"><a href="#三维卷积" class="headerlink" title="三维卷积"></a>三维卷积</h3><p>上面的是对二维图像做卷积，现在我们来对三维图像做卷积。</p>
 <p>假设你现在想检测的是彩色图像的特征，彩色图像是6x6x3的，这里的3是3个颜色通道。这时原来的3x3的卷积核要变为3x3x3，卷积核也对应有3层。这时候输出是一个4x4的图像。</p>
 <p><img src="http://www.ai-start.com/dl2017/images/9b0b0e9062f8814a6a462ea64449f89e.png" alt="三维卷积"></p>
-<p>我们可以同时使用多个卷积核（每个卷积核检测不同的特征），这样可以得到的输出维度和卷积核个数有关。比如上面我们使用两个3x3x3的卷积核，那么我们的得到的输出是4x4x2的。<br>我们用公式来总结一下立体卷积核的维度，假设输入维度是$n\times n\times n_{c}$，$n_{c}$为通道数目，卷积核大小为$f\times f\times $n_{c}$，那么输出就是<br>$(n-f+1)\times (n-f+1)\times n_{c_{1}}$，这里的$n_{c_{1}}$其实是下一层的通道数，它等于使用的卷积核的个数。这里默认使用的是步幅为1，且未使用padding，如果你使用不同的步幅和Padding，那么n-f+1数值会发生变化，变化方式我们上面已经讲过了。</p>
+<p>我们可以同时使用多个卷积核（每个卷积核检测不同的特征），这样可以得到的输出维度和卷积核个数有关。比如上面我们使用两个3x3x3的卷积核，那么我们的得到的输出是4x4x2的。<br>我们用公式来总结一下立体卷积核的维度，假设输入维度是$n\times n\times n_{c}$，$n_{c}$为通道数目，卷积核大小为$f\times f\times $n_{c}$，那么输出就是$ (n-f+1) \times (n-f+1) \times n_{k} $，这里的$n_{k}$其实是下一层的通道数，它等于使用的卷积核的个数。这里默认使用的是步幅为1，且未使用padding，如果你使用不同的步幅和Padding，那么n-f+1数值会发生变化，变化方式我们上面已经讲过了。</p>
 <h3 id="单层卷积神经网络"><a href="#单层卷积神经网络" class="headerlink" title="单层卷积神经网络"></a>单层卷积神经网络</h3><p>对于一层的卷积，首先是运用线性函数在加上偏差，然后应用激活函数ReLU，这样就通过神经网络的一层把一个6x6x3维度转变为一个4x4x2维度的输出。</p>
 <p>如果我们将卷积核增加到10个，那么输出就为4x4x10。</p>
 <p>我们来计算一下参数，对于一个3x3x3的卷积核，有27个参数，再加上一个偏差，用参数b表示，那么一个卷积核的参数就是28个。如果是10个卷积核的话，参数就是280，和输入图像的维度是没关的。这样我们可以知道参数相对直接应用神经网络来说是很少的，所以这样可以避免过拟合。</p>
@@ -656,9 +656,9 @@
           
             <a href="/tags/深度学习/" rel="tag"># 深度学习</a>
           
-            <a href="/tags/吴恩达/" rel="tag"># 吴恩达</a>
-          
             <a href="/tags/卷积神经网络/" rel="tag"># 卷积神经网络</a>
+          
+            <a href="/tags/吴恩达/" rel="tag"># 吴恩达</a>
           
         </div>
       
