@@ -4,6 +4,30 @@
 
     
   <url>
+    <loc>https://fengxc.me/Leetcode-914-X-of-a-Kind-in-a-Deck-of-Cards.html</loc>
+    <lastmod>2018-10-14T03:06:42.561Z</lastmod>
+    <data>
+        <display>
+        <title>Leetcode 914: X of a Kind in a Deck of Cards</title>
+        <pubTime>2018-10-14T02:46:54.000Z</pubTime>
+        
+        <tag>leetcode</tag>
+         
+        <tag>914</tag>
+         
+        <tag>python3</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://fengxc.me/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E7%82%B9-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.html</loc>
     <lastmod>2018-10-11T14:34:00.543Z</lastmod>
     <data>
@@ -1263,9 +1287,9 @@
         <title>2017校招-好未来：n个数里出现次数大于等于n/2的数</title>
         <pubTime>2018-07-02T01:29:26.000Z</pubTime>
         
-        <tag>算法</tag>
-         
         <tag>好未来</tag>
+         
+        <tag>算法</tag>
          
         <tag>2017校招</tag>
          
