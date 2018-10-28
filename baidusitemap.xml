@@ -4,8 +4,30 @@
 
     
   <url>
+    <loc>https://fengxc.me/Mac%E4%B8%8BLaTeX%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA.html</loc>
+    <lastmod>2018-10-28T02:51:01.478Z</lastmod>
+    <data>
+        <display>
+        <title>Mac下LaTeX环境的搭建</title>
+        <pubTime>2018-10-24T08:50:29.000Z</pubTime>
+        
+        <tag>LaTeX</tag>
+         
+        <tag>mac</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://fengxc.me/2018%E5%B9%B4thoughtworks%E6%8F%90%E5%89%8D%E6%89%B9%EF%BC%9A%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%8E%86.html</loc>
-    <lastmod>2018-10-16T09:04:29.215Z</lastmod>
+    <lastmod>2018-10-16T09:05:38.370Z</lastmod>
     <data>
         <display>
         <title>2018年秋招thoughtworks提前批：算法面试经历</title>
@@ -36,9 +58,9 @@
         <title>机器学习常见面试题(持续更新中...)</title>
         <pubTime>2018-07-28T06:48:53.000Z</pubTime>
         
-        <tag>nlp</tag>
-         
         <tag>机器学习</tag>
+         
+        <tag>nlp</tag>
          
         <tag>面试题</tag>
          
@@ -86,9 +108,9 @@
         
         <tag>深度学习</tag>
          
-        <tag>吴恩达</tag>
-         
         <tag>卷积神经网络</tag>
+         
+        <tag>吴恩达</tag>
          
          
            
@@ -108,9 +130,9 @@
         <title>2017校招京东：进制均值</title>
         <pubTime>2018-07-13T01:14:53.000Z</pubTime>
         
-        <tag>2017校招</tag>
-         
         <tag>算法</tag>
+         
+        <tag>2017校招</tag>
          
         <tag>京东</tag>
          
@@ -1119,9 +1141,9 @@
         <title>2017校招-京东：采购单</title>
         <pubTime>2018-07-12T01:48:58.000Z</pubTime>
         
-        <tag>2017校招</tag>
-         
         <tag>算法</tag>
+         
+        <tag>2017校招</tag>
          
         <tag>京东</tag>
          
@@ -1143,9 +1165,9 @@
         <title>2017校招-京东：集合</title>
         <pubTime>2018-07-11T01:19:46.000Z</pubTime>
         
-        <tag>2017校招</tag>
-         
         <tag>算法</tag>
+         
+        <tag>2017校招</tag>
          
         <tag>京东</tag>
          
@@ -1191,9 +1213,9 @@
         <title>2017校招-今日头条：String Shifting</title>
         <pubTime>2018-07-08T03:23:52.000Z</pubTime>
         
-        <tag>2017校招</tag>
-         
         <tag>算法</tag>
+         
+        <tag>2017校招</tag>
          
         <tag>今日头条</tag>
          
@@ -1263,9 +1285,9 @@
         <title>2017校招-腾讯：素数对</title>
         <pubTime>2018-07-05T01:57:24.000Z</pubTime>
         
-        <tag>2017校招</tag>
-         
         <tag>算法</tag>
+         
+        <tag>2017校招</tag>
          
         <tag>腾讯</tag>
          
@@ -1287,9 +1309,9 @@
         <title>2017校招-网易：买苹果</title>
         <pubTime>2018-07-04T01:41:27.000Z</pubTime>
         
-        <tag>2017校招</tag>
-         
         <tag>算法</tag>
+         
+        <tag>2017校招</tag>
          
         <tag>网易</tag>
          
@@ -1311,11 +1333,11 @@
         <title>2017校招-好未来：n个数里出现次数大于等于n/2的数</title>
         <pubTime>2018-07-02T01:29:26.000Z</pubTime>
         
-        <tag>2017校招</tag>
+        <tag>好未来</tag>
          
         <tag>算法</tag>
          
-        <tag>好未来</tag>
+        <tag>2017校招</tag>
          
          
            
@@ -1335,9 +1357,9 @@
         <title>2017校招-网易：下厨房</title>
         <pubTime>2018-07-01T01:24:28.000Z</pubTime>
         
-        <tag>2017校招</tag>
-         
         <tag>算法</tag>
+         
+        <tag>2017校招</tag>
          
         <tag>网易</tag>
          
@@ -1383,9 +1405,9 @@
         <title>2017校招-网易：数字翻转</title>
         <pubTime>2018-06-30T02:02:32.000Z</pubTime>
         
-        <tag>2017校招</tag>
-         
         <tag>算法</tag>
+         
+        <tag>2017校招</tag>
          
         <tag>网易</tag>
          
@@ -1459,9 +1481,9 @@
         <title>京东2018校招编程题解答（Java）</title>
         <pubTime>2017-09-21T07:50:46.000Z</pubTime>
         
-        <tag>京东</tag>
-         
         <tag>Java</tag>
+         
+        <tag>京东</tag>
          
         <tag>校招</tag>
          
@@ -1703,9 +1725,9 @@
         <title>IBM实习经历</title>
         <pubTime>2016-10-08T12:57:34.000Z</pubTime>
         
-        <tag>IBM</tag>
-         
         <tag>实习</tag>
+         
+        <tag>IBM</tag>
          
          
            
