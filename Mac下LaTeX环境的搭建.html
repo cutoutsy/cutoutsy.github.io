@@ -146,7 +146,7 @@
 <meta property="og:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_latex_2.png">
 <meta property="og:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_latex_3.png">
 <meta property="og:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_latex_4.png">
-<meta property="og:updated_time" content="2018-11-06T13:24:29.665Z">
+<meta property="og:updated_time" content="2018-11-06T13:26:11.819Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac下LaTeX环境的搭建">
 <meta name="twitter:description" content="写在前面最近在做毕设相关的，准备用LaTeX来进行论文的编写，所以尝试在Mac下配置LaTeX的编写环境，在网上查了比较多的资料，都讲得不是很清楚，所以把我配置的过程记录下来，希望能有所帮助。 LaTeX是一种编程语言，用于电子排版，能够对文章进行十分精美的排版。根据给定的命令进行文档书写，就无需关心格式，而可以专注于内容的创作。">
@@ -426,7 +426,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-11-06 21:24:29" itemprop="dateModified" datetime="2018-11-06T21:24:29+08:00">2018-11-06</time>
+                <time title="修改时间：2018-11-06 21:26:11" itemprop="dateModified" datetime="2018-11-06T21:26:11+08:00">2018-11-06</time>
               
             
           </span>
@@ -535,7 +535,7 @@
 <li>其他就是关于这条参考文献的具体内容。</li>
 </ul>
 </blockquote>
-<p>对于上面内容的来源，我们可以选择谷歌学术上的BibTeX格式，复制粘贴到自己的bib文件中。<br>在tex源文件中我们需要在文档结束前添加<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\bibliography&#123;refer&#125;</span><br><span class="line">\bibliographystyle&#123;plain&#125;</span><br></pre></td></tr></table></figure></p>
+<p>对于上面内容的来源，我们可以选择谷歌学术上的BibTeX格式，复制粘贴到自己的bib文件中。<br>在tex源文件中我们需要在文档结束前添加<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\bibliography&#123;refer&#125;</span><br><span class="line">\bibliographystyle&#123;plain&#125;</span><br><span class="line">\end&#123;document&#125;</span><br></pre></td></tr></table></figure></p>
 <p>bibliography后面是bib文件的文件名，比如我这里是refer.bib。里面内容是：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@article&#123;yang2017big,</span><br><span class="line">  title=&#123;Big Data and cloud computing: innovation opportunities and challenges&#125;,</span><br><span class="line">  author=&#123;Yang, Chaowei and Huang, Qunying and Li, Zhenlong and Liu, Kai and Hu, Fei&#125;,</span><br><span class="line">  journal=&#123;International Journal of Digital Earth&#125;,</span><br><span class="line">  volume=&#123;10&#125;,</span><br><span class="line">  number=&#123;1&#125;,</span><br><span class="line">  pages=&#123;13--53&#125;,</span><br><span class="line">  year=&#123;2017&#125;,</span><br><span class="line">  publisher=&#123;Taylor \&amp; Francis&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>bibliographystyle这个后面是参考文献的类型，plain是标准类型。其他还有：</p>
 <blockquote>
