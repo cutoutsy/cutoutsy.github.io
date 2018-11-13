@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://fengxc.me/booklist/index.html</loc>
+    
+    <lastmod>2018-11-13T02:19:16.931Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://fengxc.me/Leetcode-938-Range-Sum-of-BST.html</loc>
     
     <lastmod>2018-11-13T02:15:44.782Z</lastmod>
@@ -40,13 +47,6 @@
     <loc>https://fengxc.me/2018%E5%B9%B4thoughtworks%E6%8F%90%E5%89%8D%E6%89%B9%EF%BC%9A%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%8E%86.html</loc>
     
     <lastmod>2018-10-16T09:05:38.370Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://fengxc.me/booklist/index.html</loc>
-    
-    <lastmod>2018-10-14T07:36:54.809Z</lastmod>
     
   </url>
   
