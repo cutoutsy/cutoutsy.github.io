@@ -3,6 +3,30 @@
 
 
     
+  <url>
+    <loc>https://fengxc.me/Leetcode-939-Minimum-Area-Rectangle.html</loc>
+    <lastmod>2018-11-15T03:30:02.642Z</lastmod>
+    <data>
+        <display>
+        <title>Leetcode 939: Minimum Area Rectangle</title>
+        <pubTime>2018-11-15T03:13:45.000Z</pubTime>
+        
+        <tag>Leetcode</tag>
+         
+        <tag>Python3</tag>
+         
+        <tag>939</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>https://fengxc.me/Leetcode-938-Range-Sum-of-BST.html</loc>
@@ -178,9 +202,9 @@
         
         <tag>leetcode</tag>
          
-        <tag>python3</tag>
-         
         <tag>914</tag>
+         
+        <tag>python3</tag>
          
          
            
