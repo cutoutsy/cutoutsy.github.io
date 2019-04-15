@@ -3,6 +3,28 @@
 
 
     
+  <url>
+    <loc>https://fengxc.me/%E6%B8%B8%E9%99%95%E8%A5%BF%E5%8D%9A%E7%89%A9%E9%A6%86.html</loc>
+    <lastmod>2019-04-15T07:33:42.814Z</lastmod>
+    <data>
+        <display>
+        <title>游陕西博物馆</title>
+        <pubTime>2019-04-15T03:23:54.000Z</pubTime>
+        
+        <tag>旅游</tag>
+         
+        <tag>陕西博物馆</tag>
+         
+         
+           
+             
+              <breadCrumb title="旅游" url="https://fengxc.me/categories/%E6%97%85%E6%B8%B8/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>https://fengxc.me/%E5%BB%BA%E7%AB%99%E6%97%A5%E5%BF%97.html</loc>
@@ -441,9 +463,9 @@
         
         <tag>leetcode</tag>
          
-        <tag>914</tag>
-         
         <tag>python3</tag>
+         
+        <tag>914</tag>
          
          
            
