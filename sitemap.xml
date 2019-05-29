@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://fengxc.me/%E7%82%BC%E4%B8%B9%E5%B7%A5%E5%85%B7%EF%BC%9ATensorFlow%E7%AE%80%E4%BB%8B.html</loc>
+    
+    <lastmod>2019-05-29T09:25:22.988Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://fengxc.me/MNIST%E6%95%B0%E6%8D%AE%E9%9B%86%E4%BB%8B%E7%BB%8D.html</loc>
+    
+    <lastmod>2019-05-20T13:59:25.773Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://fengxc.me/booklist/index.html</loc>
     
     <lastmod>2019-05-17T03:26:51.328Z</lastmod>
@@ -425,20 +439,6 @@
     <loc>https://fengxc.me/CS224N-Assignment-1.html</loc>
     
     <lastmod>2018-07-14T12:12:48.918Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://fengxc.me/MNIST%E6%95%B0%E6%8D%AE%E9%9B%86%E4%BB%8B%E7%BB%8D.html</loc>
-    
-    <lastmod>2018-07-13T10:26:40.563Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://fengxc.me/%E7%82%BC%E4%B8%B9%E5%B7%A5%E5%85%B7%EF%BC%9ATensorFlow%E7%AE%80%E4%BB%8B.html</loc>
-    
-    <lastmod>2018-07-13T01:20:11.666Z</lastmod>
     
   </url>
   

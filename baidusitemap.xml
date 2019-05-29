@@ -3,6 +3,52 @@
 
 
     
+  <url>
+    <loc>https://fengxc.me/%E7%82%BC%E4%B8%B9%E5%B7%A5%E5%85%B7%EF%BC%9ATensorFlow%E7%AE%80%E4%BB%8B.html</loc>
+    <lastmod>2019-05-29T09:25:22.988Z</lastmod>
+    <data>
+        <display>
+        <title>炼丹炉：TensorFlow简介</title>
+        <pubTime>2018-07-12T08:48:27.000Z</pubTime>
+        
+        <tag>深度学习</tag>
+         
+        <tag>Google</tag>
+         
+        <tag>TensorFlow</tag>
+         
+         
+           
+             
+              <breadCrumb title="深度学习" url="https://fengxc.me/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://fengxc.me/MNIST%E6%95%B0%E6%8D%AE%E9%9B%86%E4%BB%8B%E7%BB%8D.html</loc>
+    <lastmod>2019-05-20T13:59:25.773Z</lastmod>
+    <data>
+        <display>
+        <title>深度学习常见数据集介绍</title>
+        <pubTime>2018-07-13T09:18:49.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>数据集</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>https://fengxc.me/%E6%B8%B8%E9%99%95%E8%A5%BF%E5%8D%9A%E7%89%A9%E9%A6%86.html</loc>
@@ -155,9 +201,9 @@
         
         <tag>Leetcode</tag>
          
-        <tag>925</tag>
-         
         <tag>Python3</tag>
+         
+        <tag>925</tag>
          
          
            
@@ -179,9 +225,9 @@
         
         <tag>Leetcode</tag>
          
-        <tag>Python3</tag>
-         
         <tag>929</tag>
+         
+        <tag>Python3</tag>
          
          
            
@@ -1396,52 +1442,6 @@
 
     
   <url>
-    <loc>https://fengxc.me/MNIST%E6%95%B0%E6%8D%AE%E9%9B%86%E4%BB%8B%E7%BB%8D.html</loc>
-    <lastmod>2018-07-13T10:26:40.563Z</lastmod>
-    <data>
-        <display>
-        <title>MNIST数据集介绍</title>
-        <pubTime>2018-07-13T09:18:49.000Z</pubTime>
-        
-        <tag>机器学习</tag>
-         
-        <tag>数据集</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://fengxc.me/%E7%82%BC%E4%B8%B9%E5%B7%A5%E5%85%B7%EF%BC%9ATensorFlow%E7%AE%80%E4%BB%8B.html</loc>
-    <lastmod>2018-07-13T01:20:11.666Z</lastmod>
-    <data>
-        <display>
-        <title>炼丹炉：TensorFlow简介</title>
-        <pubTime>2018-07-12T08:48:27.000Z</pubTime>
-        
-        <tag>深度学习</tag>
-         
-        <tag>Google</tag>
-         
-        <tag>TensorFlow</tag>
-         
-         
-           
-             
-              <breadCrumb title="深度学习" url="https://fengxc.me/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://fengxc.me/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E9%99%8D%E7%BB%B4%E5%8F%8APCA%E7%AE%97%E6%B3%95.html</loc>
     <lastmod>2018-07-12T02:35:40.654Z</lastmod>
     <data>
@@ -1641,9 +1641,9 @@
         <title>2017校招-好未来：n个数里出现次数大于等于n/2的数</title>
         <pubTime>2018-07-02T01:29:26.000Z</pubTime>
         
-        <tag>好未来</tag>
-         
         <tag>算法</tag>
+         
+        <tag>好未来</tag>
          
         <tag>2017校招</tag>
          
