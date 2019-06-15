@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://fengxc.me/Cifar10%E6%95%B0%E6%8D%AE%E9%9B%86%E4%BB%8B%E7%BB%8D.html</loc>
-    <lastmod>2019-06-15T03:18:55.479Z</lastmod>
+    <lastmod>2019-06-15T07:07:50.658Z</lastmod>
     <data>
         <display>
         <title>CIFAR-10数据集介绍</title>
@@ -19,6 +19,30 @@
            
              
               <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://fengxc.me/%E6%AF%95%E4%B8%9A%E6%97%85%E8%A1%8C-%E6%88%90%E9%83%BD.html</loc>
+    <lastmod>2019-06-15T03:33:24.786Z</lastmod>
+    <data>
+        <display>
+        <title>毕业旅行-成都</title>
+        <pubTime>2019-06-15T03:31:41.000Z</pubTime>
+        
+        <tag>毕业</tag>
+         
+        <tag>旅游</tag>
+         
+        <tag>成都</tag>
+         
+         
+           
+             
+              <breadCrumb title="旅游" url="https://fengxc.me/categories/%E6%97%85%E6%B8%B8/"/>
           
         </display>
     </data>
@@ -1735,9 +1759,9 @@
         <title>2017校招-好未来：n个数里出现次数大于等于n/2的数</title>
         <pubTime>2018-07-02T01:29:26.000Z</pubTime>
         
-        <tag>算法</tag>
-         
         <tag>好未来</tag>
+         
+        <tag>算法</tag>
          
         <tag>2017校招</tag>
          
