@@ -4,30 +4,8 @@
 
     
   <url>
-    <loc>https://fengxc.me/Cifar10%E6%95%B0%E6%8D%AE%E9%9B%86%E4%BB%8B%E7%BB%8D.html</loc>
-    <lastmod>2019-06-15T07:07:50.658Z</lastmod>
-    <data>
-        <display>
-        <title>CIFAR-10数据集介绍</title>
-        <pubTime>2019-06-11T03:13:10.000Z</pubTime>
-        
-        <tag>机器学习</tag>
-         
-        <tag>数据集</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://fengxc.me/%E6%AF%95%E4%B8%9A%E6%97%85%E8%A1%8C-%E6%88%90%E9%83%BD.html</loc>
-    <lastmod>2019-06-15T03:33:24.786Z</lastmod>
+    <lastmod>2019-06-16T13:58:30.494Z</lastmod>
     <data>
         <display>
         <title>毕业旅行-成都</title>
@@ -43,6 +21,28 @@
            
              
               <breadCrumb title="旅游" url="https://fengxc.me/categories/%E6%97%85%E6%B8%B8/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://fengxc.me/Cifar10%E6%95%B0%E6%8D%AE%E9%9B%86%E4%BB%8B%E7%BB%8D.html</loc>
+    <lastmod>2019-06-15T07:07:50.658Z</lastmod>
+    <data>
+        <display>
+        <title>CIFAR-10数据集介绍</title>
+        <pubTime>2019-06-11T03:13:10.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>数据集</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
           
         </display>
     </data>
