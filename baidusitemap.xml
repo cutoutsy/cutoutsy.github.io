@@ -4,6 +4,25 @@
 
     
   <url>
+    <loc>https://fengxc.me/%E7%BD%91%E6%98%93%E5%85%A5%E8%81%8C%E5%9F%B9%E8%AE%AD.html</loc>
+    <lastmod>2019-07-14T08:19:08.315Z</lastmod>
+    <data>
+        <display>
+        <title>网易入职培训</title>
+        <pubTime>2019-07-14T08:19:08.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
     <loc>https://fengxc.me/%E5%BB%BA%E7%AB%99%E6%97%A5%E5%BF%97.html</loc>
     <lastmod>2019-06-19T03:14:32.744Z</lastmod>
     <data>
@@ -307,7 +326,6 @@
     </data>
     </url>
 
-    
     
   <url>
     <loc>https://fengxc.me/Leetcode-925-Long-Pressed-Name.html</loc>
@@ -1759,9 +1777,9 @@
         <title>2017校招-好未来：n个数里出现次数大于等于n/2的数</title>
         <pubTime>2018-07-02T01:29:26.000Z</pubTime>
         
-        <tag>算法</tag>
-         
         <tag>好未来</tag>
+         
+        <tag>算法</tag>
          
         <tag>2017校招</tag>
          
