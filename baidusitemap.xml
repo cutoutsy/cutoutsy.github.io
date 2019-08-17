@@ -3,6 +3,30 @@
 
 
     
+  <url>
+    <loc>https://fengxc.me/%E7%82%BC%E4%B8%B9%E5%B7%A5%E5%85%B7%EF%BC%9ATensorFlow%E7%AE%80%E4%BB%8B.html</loc>
+    <lastmod>2019-08-17T06:42:03.132Z</lastmod>
+    <data>
+        <display>
+        <title>炼丹炉：TensorFlow简介</title>
+        <pubTime>2018-07-12T08:48:27.000Z</pubTime>
+        
+        <tag>深度学习</tag>
+         
+        <tag>Google</tag>
+         
+        <tag>TensorFlow</tag>
+         
+         
+           
+             
+              <breadCrumb title="深度学习" url="https://fengxc.me/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>https://fengxc.me/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%A2%9E%E9%87%8F%E5%AD%A6%E4%B9%A0.html</loc>
@@ -208,30 +232,6 @@
            
              
               <breadCrumb title="工作" url="https://fengxc.me/categories/%E5%B7%A5%E4%BD%9C/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://fengxc.me/%E7%82%BC%E4%B8%B9%E5%B7%A5%E5%85%B7%EF%BC%9ATensorFlow%E7%AE%80%E4%BB%8B.html</loc>
-    <lastmod>2019-05-29T09:25:22.988Z</lastmod>
-    <data>
-        <display>
-        <title>炼丹炉：TensorFlow简介</title>
-        <pubTime>2018-07-12T08:48:27.000Z</pubTime>
-        
-        <tag>深度学习</tag>
-         
-        <tag>Google</tag>
-         
-        <tag>TensorFlow</tag>
-         
-         
-           
-             
-              <breadCrumb title="深度学习" url="https://fengxc.me/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
           
         </display>
     </data>
@@ -1353,11 +1353,11 @@
         <title>百度SRE提前批智能平台研发工程师面试经历</title>
         <pubTime>2018-07-07T07:33:17.000Z</pubTime>
         
+        <tag>面经</tag>
+         
         <tag>百度</tag>
          
         <tag>SRE</tag>
-         
-        <tag>面经</tag>
          
          
            
