@@ -4,6 +4,30 @@
 
     
   <url>
+    <loc>https://fengxc.me/%E6%B8%B8%E6%88%8F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.html</loc>
+    <lastmod>2019-08-18T06:55:12.902Z</lastmod>
+    <data>
+        <display>
+        <title>游戏基础知识</title>
+        <pubTime>2019-08-18T06:38:17.000Z</pubTime>
+        
+        <tag>游戏</tag>
+         
+        <tag>术语</tag>
+         
+        <tag>人工智能</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://fengxc.me/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://fengxc.me/%E7%82%BC%E4%B8%B9%E5%B7%A5%E5%85%B7%EF%BC%9ATensorFlow%E7%AE%80%E4%BB%8B.html</loc>
     <lastmod>2019-08-17T06:42:03.132Z</lastmod>
     <data>
@@ -106,9 +130,9 @@
         <title>毕业旅行-成都</title>
         <pubTime>2019-06-15T03:31:41.000Z</pubTime>
         
-        <tag>旅游</tag>
-         
         <tag>毕业</tag>
+         
+        <tag>旅游</tag>
          
         <tag>成都</tag>
          
@@ -1353,11 +1377,11 @@
         <title>百度SRE提前批智能平台研发工程师面试经历</title>
         <pubTime>2018-07-07T07:33:17.000Z</pubTime>
         
-        <tag>面经</tag>
-         
         <tag>百度</tag>
          
         <tag>SRE</tag>
+         
+        <tag>面经</tag>
          
          
            
@@ -1807,9 +1831,9 @@
         <title>2017校招-好未来：n个数里出现次数大于等于n/2的数</title>
         <pubTime>2018-07-02T01:29:26.000Z</pubTime>
         
-        <tag>好未来</tag>
-         
         <tag>算法</tag>
+         
+        <tag>好未来</tag>
          
         <tag>2017校招</tag>
          
