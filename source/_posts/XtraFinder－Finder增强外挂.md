@@ -1,6 +1,8 @@
 ---
 layout: post
 title: XtraFinder－Finder增强外挂
+categories: 杂记
+date: 2017-07-01 09:19:46
 tags:
 	- Mac
 	- XtraFinder
