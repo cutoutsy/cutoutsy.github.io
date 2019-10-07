@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Mac下安装破解版PS
+categories: 杂记
+date: 2017-07-11 09:19:46
 tags:
 	- Mac
 	- photoshop
