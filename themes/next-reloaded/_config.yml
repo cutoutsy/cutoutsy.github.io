@@ -124,7 +124,7 @@ menu:
   archives: /archives/ || archive
   about: /about/ || user
   booklist: /booklist/ || tags
-  video: /vedio/ || calebdar
+  video: /video/ || calebdar
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat
