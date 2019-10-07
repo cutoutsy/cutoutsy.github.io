@@ -22,6 +22,8 @@ date: 2018-07-10 11:23:29
 
 * [《国富论》](https://book.douban.com/subject/1261560/)
 
+* [《长安十二时辰》](https://book.douban.com/subject/26899537/) 
+
 ### 已读书目
 
 * [《厚积薄发》](https://book.douban.com/subject/26978753/)
