@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Working with Code Snippets in Sublime Text
+categories: 杂记
+date: 2017-06-11 09:19:46
 tags:
 	- code
 	- sublime text
