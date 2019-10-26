@@ -6,6 +6,10 @@ date: 2019-10-07 19:07:29
 
 ### 电影
 
+* [《少年的你》](https://movie.douban.com/subject/30166972/)
+
+* [《烈火英雄》](https://movie.douban.com/subject/30221757/)
+
 * [《使徒行者2：谍影行动 》](https://movie.douban.com/subject/30423193/)
 
 * [《银河补习班》](https://movie.douban.com/subject/30282387/)
