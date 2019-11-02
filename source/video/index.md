@@ -6,6 +6,8 @@ date: 2019-10-07 19:07:29
 
 ### 电影
 
+* [《决胜时刻》](https://movie.douban.com/subject/30481973/)
+
 * [《少年的你》](https://movie.douban.com/subject/30166972/)
 
 * [《烈火英雄》](https://movie.douban.com/subject/30221757/)
