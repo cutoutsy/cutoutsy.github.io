@@ -6,6 +6,8 @@ date: 2019-10-07 19:07:29
 
 ### 电影
 
+* [《徒手攀岩 Free Solo (2018)》](https://movie.douban.com/subject/30167509/)
+
 * [《决战中途岛》](https://movie.douban.com/subject/26786669/)
 
 * [《决胜时刻》](https://movie.douban.com/subject/30481973/)
