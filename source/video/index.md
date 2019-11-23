@@ -6,6 +6,10 @@ date: 2019-10-07 19:07:29
 
 ### 电影
 
+* [《一条狗的使命2》](https://movie.douban.com/subject/27074316/)
+
+* [《海上钢琴师》](https://movie.douban.com/subject/1292001/)
+
 * [《徒手攀岩 Free Solo (2018)》](https://movie.douban.com/subject/30167509/)
 
 * [《决战中途岛》](https://movie.douban.com/subject/26786669/)
