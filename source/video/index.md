@@ -6,6 +6,8 @@ date: 2019-10-07 19:07:29
 
 ### 电影
 
+* [《勇敢者游戏：决战丛林》](https://movie.douban.com/subject/26586766/)
+
 * [《一条狗的使命2》](https://movie.douban.com/subject/27074316/)
 
 * [《海上钢琴师》](https://movie.douban.com/subject/1292001/)
