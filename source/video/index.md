@@ -6,6 +6,12 @@ date: 2019-10-07 19:07:29
 
 ### 电影
 
+* [《我和我的祖国》](https://movie.douban.com/subject/32659890/)
+
+* [《误杀》](https://movie.douban.com/subject/30176393/)
+
+* [《催眠·裁决》](https://movie.douban.com/subject/26752547/)
+
 * [《勇敢者游戏：决战丛林》](https://movie.douban.com/subject/26586766/)
 
 * [《一条狗的使命2》](https://movie.douban.com/subject/27074316/)
@@ -30,6 +36,7 @@ date: 2019-10-07 19:07:29
 
 ### 电视剧
 
+* [《庆余年》](https://movie.douban.com/subject/25853071/)
 
 ### Python相关
 
