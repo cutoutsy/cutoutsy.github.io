@@ -6,6 +6,8 @@ date: 2019-10-07 19:07:29
 
 ### 电影
 
+* [《星球大战9：天行者崛起》](https://movie.douban.com/subject/22265687/)
+
 * [《我和我的祖国》](https://movie.douban.com/subject/32659890/)
 
 * [《误杀》](https://movie.douban.com/subject/30176393/)
