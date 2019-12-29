@@ -6,6 +6,10 @@ date: 2019-10-07 19:07:29
 
 ### 电影
 
+* [《双子杀人》](https://movie.douban.com/subject/3097572/)
+
+* [《中国机长》](https://movie.douban.com/subject/30295905/)
+
 * [《星球大战9：天行者崛起》](https://movie.douban.com/subject/22265687/)
 
 * [《我和我的祖国》](https://movie.douban.com/subject/32659890/)
@@ -39,6 +43,12 @@ date: 2019-10-07 19:07:29
 ### 电视剧
 
 * [《庆余年》](https://movie.douban.com/subject/25853071/)
+
+### 记录片
+
+* [《人间世 第一季》](https://movie.douban.com/subject/26815163/)
+
+* [《人间世 第二季》](https://movie.douban.com/subject/27199784/)
 
 ### Python相关
 
