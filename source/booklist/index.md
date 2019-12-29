@@ -24,9 +24,9 @@ date: 2018-07-10 11:23:29
 
 * [《庆余年》](https://book.douban.com/series/5762)
 
-* [《SQL必知必会》](https://book.douban.com/subject/24250054/)
-
 ### 已读书目
+
+* [《SQL必知必会》](https://book.douban.com/subject/24250054/)
 
 * [《长安十二时辰》](https://book.douban.com/subject/26899537/) 
 
