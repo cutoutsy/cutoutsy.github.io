@@ -6,6 +6,8 @@ date: 2019-10-07 19:07:29
 
 ### 电影
 
+* [《惊天危机 White House Down》](https://movie.douban.com/subject/10746175/)
+
 * [《双子杀人》](https://movie.douban.com/subject/3097572/)
 
 * [《中国机长》](https://movie.douban.com/subject/30295905/)
