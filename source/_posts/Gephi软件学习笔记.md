@@ -1,0 +1,17 @@
+---
+layout: post
+title: Gephi软件学习笔记
+categories: 算法
+date: 2020-01-17 11:02:00
+tags:
+    - 图网络
+    - 画图
+    - Gephi
+---
+### 写前面
+
+### 布局Layout
+
+#### 常规布局
+
+#### 辅助布局
