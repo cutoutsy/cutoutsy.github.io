@@ -16,6 +16,9 @@ tags:
 
 #### 辅助布局
 
+### 采坑
+
+节点标签不能使用节点Id，使用节点Id预览时候，节点标签不显示
 
 ### 参考资料
 [http://blog.sciencenet.cn/blog-3398620-1158376.html](http://blog.sciencenet.cn/blog-3398620-1158376.html)
