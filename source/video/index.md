@@ -6,6 +6,10 @@ date: 2019-10-07 19:07:29
 
 ### 电影
 
+* [《寄生虫》](https://movie.douban.com/subject/27010768/)
+
+* [《叶问4》](https://movie.douban.com/subject/26885074/)
+
 * [《惊天危机 White House Down》](https://movie.douban.com/subject/10746175/)
 
 * [《双子杀人》](https://movie.douban.com/subject/3097572/)
