@@ -18,10 +18,6 @@ date: 2018-07-10 11:23:29
 
 > KDD2016
 
-* [LINE: Large-scale Information Network Embedding](https://arxiv.org/pdf/1503.03578.pdf)
-
-> WWW2015
-
 * [《韭菜的自我修养》](https://book.douban.com/subject/30314653/)
 
 * [《智能Web算法》](https://book.douban.com/subject/6545083/)
@@ -39,6 +35,10 @@ date: 2018-07-10 11:23:29
 * [《国富论》](https://book.douban.com/subject/1261560/)
 
 * [《庆余年》](https://book.douban.com/series/5762)
+
+* [LINE: Large-scale Information Network Embedding](https://arxiv.org/pdf/1503.03578.pdf)
+
+> WWW2015
 
 * [DeepWalk: Online Learning of Social Representations](http://www.perozzi.net/publications/14_kdd_deepwalk.pdf)
 
