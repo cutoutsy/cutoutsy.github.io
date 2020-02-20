@@ -44,6 +44,8 @@ date: 2018-07-10 11:23:29
 
 > KDD2014
 
+> 待跑实验室
+
 ### 已读
 
 * [《SQL必知必会》](https://book.douban.com/subject/24250054/)
