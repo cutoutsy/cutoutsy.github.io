@@ -6,6 +6,10 @@ date: 2018-07-10 11:23:29
 
 ### 待读
 
+* [Ask not what AI can do, but what AI should do: Towards a framework of task delegability](https://papers.nips.cc/paper/8301-ask-not-what-ai-can-do-but-what-ai-should-do-towards-a-framework-of-task-delegability.pdf)
+
+> NIPS2019
+
 * [struc2vec: Learning Node Representations from Structural Identity](https://arxiv.org/pdf/1704.03165.pdf)
 
 > KDD2017
@@ -34,8 +38,6 @@ date: 2018-07-10 11:23:29
 
 * [《国富论》](https://book.douban.com/subject/1261560/)
 
-* [《庆余年》](https://book.douban.com/series/5762)
-
 * [LINE: Large-scale Information Network Embedding](https://arxiv.org/pdf/1503.03578.pdf)
 
 > WWW2015
@@ -44,9 +46,13 @@ date: 2018-07-10 11:23:29
 
 > KDD2014
 
-> 待跑实验室
+> 待跑实验
 
 ### 已读
+
+* [《庆余年》](https://book.douban.com/series/5762)
+
+> 看了庆余年电视剧后开始看小说，没想到小说是真的长，看了好久才看完~
 
 * [《SQL必知必会》](https://book.douban.com/subject/24250054/)
 
