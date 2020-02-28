@@ -36,7 +36,7 @@ date: 2018-07-10 11:23:29
 
 * [《深度学习》](https://book.douban.com/subject/27087503/)
 
-* [《国富论》](https://book.douban.com/subject/1261560/)
+* [《小狗钱钱》](https://book.douban.com/subject/3576486/)
 
 * [LINE: Large-scale Information Network Embedding](https://arxiv.org/pdf/1503.03578.pdf)
 
