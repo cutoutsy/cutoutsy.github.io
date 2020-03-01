@@ -32,6 +32,10 @@ date: 2018-07-10 11:23:29
 
 ### 阅读中...
 
+* [《Machine Learning Engineering》](http://www.mlebook.com/wiki/doku.php)
+
+> 这是一本机器学习工程方面的书籍，值得一读 
+
 * [《如何阅读一本书》](https://book.douban.com/subject/1013208/)
 
 * [《深度学习》](https://book.douban.com/subject/27087503/)
