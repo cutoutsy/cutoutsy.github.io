@@ -61,3 +61,9 @@ date: 2019-10-07 19:07:29
 * [《七月python3入门与进阶》](https://www.youtube.com/playlist?list=PLIlHEMiAEpeod9DcEzeLibEKkSTBazitJ)
 
 * [《python flask高级编程》](https://www.youtube.com/playlist?list=PLSKUOdPqiSdsC7f5MPa7cD7q49Aq7O2dP)
+
+### 经济学相关
+
+* [《经济学原理（微观经济学和宏观经济学）》](https://www.bilibili.com/video/av15008329)
+
+> 感觉经济学还蛮有意思的，改变了一些思考方式~
