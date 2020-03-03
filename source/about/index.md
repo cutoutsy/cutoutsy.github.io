@@ -2,13 +2,13 @@ title:
 date: 2017-06-09 20:36:02
 ---
 
-小川，本博客博主，研究生毕业于西安电子科技大学信息安全，对算法、机器学习、自然语言处理有极大的兴趣，乐于分享~~
+**Xiaochuan Feng  (冯小川)**
 
-现已入职网易（杭州）伏羲AI实验室，是一名游戏AI工程师。
+Senior R&D Engineer
 
-行走在编程的路上......
+User Profiling Group, Fuxi AI Lab, Netease Inc.
 
+### About Me
 
-互换友链，请联系我（QQ：774844724）
+I am currently a senior artificial intelligence engineer in NetEase Fuxi AI Lab, Hanzhou, China since 2019. I received the MA.Sc. degree and B.S. degree in Information Security from Xidian University.  My research interests include data mining and machine learning, with an emphasis on applying computational models to addressing problems in game-related user personas. I focused on frontier research and technology transformation in online games and my work has been successfully applied to a number of important games in NetEase, such as: Justice PC, Ghosts PC, Ghosts Mobile, Fever Basketball, etc.
 
-欢迎加入博客QQ交流群：816863019 (机器学习和NLP)
