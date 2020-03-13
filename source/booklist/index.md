@@ -6,6 +6,11 @@ date: 2018-07-10 11:23:29
 
 ### 待读
 
+* [Hidden Technical Debt in Machine Learning Systems](https://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems.pdf)
+
+> NIPS 2015
+> 重要，关于搭建机器学习系统的相关问题
+
 * [Ask not what AI can do, but what AI should do: Towards a framework of task delegability](https://papers.nips.cc/paper/8301-ask-not-what-ai-can-do-but-what-ai-should-do-towards-a-framework-of-task-delegability.pdf)
 
 > NIPS2019
