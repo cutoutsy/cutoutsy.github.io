@@ -16,6 +16,7 @@ pip安装的python包，默认从https://pypi.python.org/pypi 上下载的。但
 ```shell
 pip install pypiserver
 ```
+<!--more-->
 然后建立存放packages的文件夹，我这块是建在用户根目录下
 ```shell
 mkdir ~/packages
