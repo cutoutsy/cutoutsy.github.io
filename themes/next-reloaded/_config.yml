@@ -123,8 +123,8 @@ menu:
   categories: /categories/ || th
   archives: /archives/ || archive
   about: /about/ || user
-  booklist: /booklist/ || tags
-  video: /video/ || calendar
+  booklist: /books/ || tags
+  video: /movies/ || calendar
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat
