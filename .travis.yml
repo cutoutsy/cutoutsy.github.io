@@ -21,11 +21,13 @@ branches:
 # Start: Build Lifecycle
 install:
   - npm install
+  - npm install hexo-douban --save
 #  - npm install hexo-deployer-git --save
 
 # 执行清缓存，生成网页操作
 script:
   - hexo clean
+  - hexo douban -bm
   - hexo generate
 
 # 设置git提交名，邮箱；替换真实token到_config.yml文件，最后depoy部署
