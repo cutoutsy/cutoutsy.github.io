@@ -107,3 +107,14 @@ deploy:
   type: git
   repo: https://gh_token@github.com/cutoutsy/cutoutsy.github.io.git
   branch: master
+
+douban:
+  user: 135665913
+  builtin: false
+  book:
+    title: '我的阅读'
+    quote: '养成阅读的好习惯......'
+  movie:
+    title: '我的观影'
+    quote: '记录平时观看的一些视频'
+  timeout: 10000
