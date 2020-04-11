@@ -124,8 +124,8 @@ menu:
   categories: /categories/ || th
   archives: /archives/ || archive
   about: /about/ || user
-  booklist: /books/ || tags
-  video: /movies/ || calendar
+  booklist: /books/ || book
+  video: /movies/ || film
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat
