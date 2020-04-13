@@ -76,6 +76,11 @@ setup(
     name = "demo",
     version = "0.1",
     packages = find_packages(),
+    install_requires=[
+        'requests==2.20.0',
+        'numpy==1.14.5',
+    ]
+
 )
 ```
 当前的目录结构：
