@@ -173,7 +173,7 @@ make html
 ![显示效果3](https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_sphinx_9.png)
 还记得上面提到的在`make html`时的那个Warning么，这就是那个导致的
 
-那个warning的意思是说，modules.rst没有被包含，没有被什么包含呢，是没有在index.rst里面包含，比较我们显示是用的index.rst。
+那个warning的意思是说，modules.rst没有被包含，没有被什么包含呢，是没有在index.rst里面包含，毕竟我们显示是用的index.rst。
 
 所以我们需要在index.rst里面加上modules，不知道是不是这个版本的问题，我在好多教程里面都没有提到这个，所以踩了个坑。
 
