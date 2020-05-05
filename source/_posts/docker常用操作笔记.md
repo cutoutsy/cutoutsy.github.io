@@ -23,6 +23,17 @@ docker exec -it name bash
 ```
 <!--more-->
 
+### 容器与主机之间的数据拷贝
+使用docker cp命令
+```shell
+docker cp CONTAINER:SRC_PATH DEST_PATH
+docker cp DEST_PATH CONTAINER:SRC_PATH
+```
+将主机/www/test目录拷贝到容器test的/www目录下
+```shell
+docker cp /www/test test:/www
+```
+
 ### 列出所有容器
 ```shell
 docker ps -a
