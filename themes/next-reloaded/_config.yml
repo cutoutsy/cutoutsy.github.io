@@ -484,7 +484,7 @@ google_analytics: UA-122351842-1
 
 # Disqus
 disqus:
-  enable: true
+  enable: false
   shortname: cutoutsy-blog
   count: true
   lazyload: false
