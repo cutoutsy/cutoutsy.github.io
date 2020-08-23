@@ -22,6 +22,7 @@ branches:
 install:
   - npm install
   - npm install hexo-douban --save
+  - npm install -g npm-check
 #  - npm install hexo-deployer-git --save
 
 # 执行清缓存，生成网页操作
