@@ -23,6 +23,7 @@ install:
   - npm install
   - npm install hexo-douban --save
   - npm install -g npm-check
+  - npm-check -u -g
 #  - npm install hexo-deployer-git --save
 
 # 执行清缓存，生成网页操作
