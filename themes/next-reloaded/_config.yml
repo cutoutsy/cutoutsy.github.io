@@ -125,6 +125,7 @@ menu:
   archives: /archives/ || archive
   about: /about/ || user
   booklist: /books/ || book
+  read: /booklist/ || book
   video: /movies/ || film
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
