@@ -37,6 +37,8 @@ date: 2018-07-10 11:23:29
 
 ### 阅读中...
 
+* [Competitive Balance in Team Sports Games](https://arxiv.org/abs/2006.13763)
+
 * [《Machine Learning Engineering》](http://www.mlebook.com/wiki/doku.php)
 
 > 这是一本机器学习工程方面的书籍，值得一读 
