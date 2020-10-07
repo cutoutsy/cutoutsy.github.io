@@ -27,25 +27,12 @@ date: 2018-07-10 11:23:29
 
 > KDD2016
 
-* [《韭菜的自我修养》](https://book.douban.com/subject/30314653/)
-
-* [《智能Web算法》](https://book.douban.com/subject/6545083/)
-
-* [《数学及其历史》](https://book.douban.com/subject/6028251/)
-
-* [《数学桥》](https://book.douban.com/subject/5246524/)
 
 ### 阅读中...
 
 * [《Machine Learning Engineering》](http://www.mlebook.com/wiki/doku.php)
 
 > 这是一本机器学习工程方面的书籍，值得一读 
-
-* [《如何阅读一本书》](https://book.douban.com/subject/1013208/)
-
-* [《深度学习》](https://book.douban.com/subject/27087503/)
-
-* [《小狗钱钱》](https://book.douban.com/subject/3576486/)
 
 * [LINE: Large-scale Information Network Embedding](https://arxiv.org/pdf/1503.03578.pdf)
 
