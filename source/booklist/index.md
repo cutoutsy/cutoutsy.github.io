@@ -37,8 +37,6 @@ date: 2018-07-10 11:23:29
 
 ### 阅读中...
 
-* [Competitive Balance in Team Sports Games](https://arxiv.org/abs/2006.13763)
-
 * [《Machine Learning Engineering》](http://www.mlebook.com/wiki/doku.php)
 
 > 这是一本机器学习工程方面的书籍，值得一读 
@@ -60,6 +58,11 @@ date: 2018-07-10 11:23:29
 > 待跑实验
 
 ### 已读
+
+* [Competitive Balance in Team Sports Games](https://arxiv.org/abs/2006.13763)
+
+> 关于每场比赛的特征可以考虑进行实践，比赛公平性定义需要思考，如何定义一场比赛的公平性，对游戏方来说，比赛公平性的衡量指标是什么。论文中提到的一些关于匹配的论文可以阅读
+
 
 * [《庆余年》](https://book.douban.com/series/5762)
 
