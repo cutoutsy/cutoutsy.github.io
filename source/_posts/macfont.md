@@ -3,7 +3,7 @@ layout: post
 title: Mac还原系统默认字体
 date: 2015-10-30 12:04:35
 tags:
-	- mac
+	- Mac
 	- font
 ---
 ### 0x01写在前面
