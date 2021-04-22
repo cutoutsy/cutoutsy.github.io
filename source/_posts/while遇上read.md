@@ -3,7 +3,7 @@ layout: post
 title: linux shell:while遇上read
 date: 2016-11-29 08:23:53
 tags:
-	- linux
+	- Linux
 	- shell
 ---
 
