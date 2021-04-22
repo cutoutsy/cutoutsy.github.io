@@ -7,7 +7,7 @@ tags:
 	- 谷歌
 	- Kickstart
 	- F轮
-	- Java
+	- JAVA
 ---
 
 <script type="text/x-mathjax-config">
