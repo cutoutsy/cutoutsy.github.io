@@ -5,7 +5,7 @@ categories: 算法
 date: 2018-11-12 15:49:38
 tags:
     - Leetcode
-    - python3
+    - Python3
     - 937
 ---
 **难度：Easy**
