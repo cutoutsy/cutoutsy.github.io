@@ -4,7 +4,7 @@ title: Mac下LaTeX环境的搭建
 categories: 杂记
 tags:
   - LaTeX
-  - mac
+  - Mac
 date: 2018-10-24 16:50:29
 ---
 
