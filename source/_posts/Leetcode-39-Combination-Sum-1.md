@@ -4,7 +4,7 @@ title: 'Leetcode 39: Combination Sum'
 categories: 算法
 date: 2018-09-05 09:14:45
 tags:
-    - leetcode
+    - Leetcode
     - backtracking
 ---
 **难度：medium**
