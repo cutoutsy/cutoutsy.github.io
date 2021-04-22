@@ -4,7 +4,7 @@ title: 基于python注释使用sphinx自动化生成API文档
 categories: python
 date: 2020-04-25 15:37:58
 tags:
-    - python
+    - Python
     - sphinx
     - 文档
 ---
