@@ -3,7 +3,7 @@ layout: post
 title: "Java里执行js代码"
 date: 2015-06-11 00:11:44
 tags: 
-		- Java 
+		- JAVA 
 		- js
 ---
 在用java写爬虫的过程中，有时我们需要执行js代码来模拟js渲染得到结果。当然也可以用phantomjs来写爬虫，但这不在本文的讨论范围内。
