@@ -5,7 +5,7 @@ categories: 笔记
 date: 2019-10-08 11:03:58
 tags:
     - docker
-    - linux
+    - Linux
 ---
 ### 镜像打包
 ```shell
