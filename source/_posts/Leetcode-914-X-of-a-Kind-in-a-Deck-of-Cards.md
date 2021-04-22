@@ -6,7 +6,7 @@ date: 2018-10-14 10:46:54
 tags:
     - leetcode
     - 914
-    - python3
+    - Python3
 ---
 **难度：Easy**
 ### 题目描述
