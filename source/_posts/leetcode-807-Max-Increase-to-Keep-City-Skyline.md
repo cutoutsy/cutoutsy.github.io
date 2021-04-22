@@ -5,7 +5,7 @@ categories: 算法
 date: 2018-07-23 09:21:10
 tags:
     - 算法
-    - leetcode
+    - Leetcode
     - 807
 ---
 **难度：medium**
