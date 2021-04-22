@@ -3,7 +3,7 @@ layout: post
 title: "linux下Eclipse建立快捷方式"
 date: 2015-04-12 23:17:47
 tags: 
-		- java
+		- JAVA
 		- eclipse
 ---
 在linux下，Eclipse解压后直接就可以用了，但是每次都要去目录下启动，很不方便，我们可以考虑创建个快捷方式，并加入dock中，这样就方便很多了。
