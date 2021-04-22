@@ -5,7 +5,7 @@ categories: 算法
 date: 2018-07-24 10:16:08
 tags:
     - 算法
-    - leetcode
+    - Leetcode
     - 470
 ---
 ### 题目描述
