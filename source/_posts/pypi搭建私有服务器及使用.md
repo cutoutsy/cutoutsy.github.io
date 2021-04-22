@@ -4,7 +4,7 @@ title: pypi搭建私有服务器及使用
 categories: Python
 date: 2020-03-25 23:19:46
 tags:
-    - python
+    - Python
     - pypi
     - package
 ---
