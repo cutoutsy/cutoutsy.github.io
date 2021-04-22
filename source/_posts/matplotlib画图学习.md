@@ -4,7 +4,7 @@ title: matplotlib画图学习笔记
 date: 2018-01-13 16:56:38
 categories: 学习笔记
 tags:
-    - python
+    - Python
     - matplotlib
     - 画图
 ---
