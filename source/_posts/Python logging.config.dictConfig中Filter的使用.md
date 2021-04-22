@@ -4,7 +4,7 @@ title: Python logging.config.dictConfig中Filter的使用
 categories: Python
 date: 2020-04-01 22:197:46
 tags:
-    - python
+    - Python
     - log
     - dictConfig
 ---
