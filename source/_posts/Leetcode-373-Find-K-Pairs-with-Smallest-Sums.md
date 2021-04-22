@@ -4,7 +4,7 @@ title: 'Leetcode 373: Find K Pairs with Smallest Sums'
 categories: 算法
 date: 2018-09-01 11:10:48
 tags:
-    - leetcode
+    - Leetcode
     - 373
 ---
 **难度：Medium**
