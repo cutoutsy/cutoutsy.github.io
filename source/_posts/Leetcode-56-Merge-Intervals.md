@@ -4,7 +4,7 @@ title: 'Leetcode 56: Merge Intervals'
 categories: 算法
 date: 2018-08-24 10:44:23
 tags:
-    - leetcode
+    - Leetcode
     - 56
     - Array
 ---
