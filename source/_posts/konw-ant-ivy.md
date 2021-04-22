@@ -3,7 +3,7 @@ layout: post
 title: "初识Ant和Ivy"
 date: 2016-08-10 00:19:01
 tags: 
-		- Java 
+		- JAVA 
 		- Ant
 		- Ivy
 ---
