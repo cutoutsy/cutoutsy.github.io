@@ -4,7 +4,7 @@ title: 'Leetcode 2: Add Two Numbers'
 categories: 算法
 date: 2018-09-25 10:27:24
 tags:
-    - leetcode
+    - Leetcode
     - 算法
     - Linked List
 ---
