@@ -4,7 +4,7 @@ title: 'Leetcode 914: X of a Kind in a Deck of Cards'
 categories: 算法
 date: 2018-10-14 10:46:54
 tags:
-    - leetcode
+    - Leetcode
     - 914
     - Python3
 ---
