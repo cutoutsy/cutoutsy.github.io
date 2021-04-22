@@ -4,7 +4,7 @@ title: python3使用中问题记录
 categories: 学习笔记
 date: 2018-08-29 15:16:08
 tags:
-    - python3
+    - Python3
     - 问题记录
 ---
 ### 写在前面
