@@ -2,7 +2,7 @@
 layout: post
 title: Python中logging.config.dictConfig中Filter的使用
 categories: Python
-date: 2020-04-01 22:197:46
+date: 2020-04-01 22:19:46
 tags:
     - Python
     - log
