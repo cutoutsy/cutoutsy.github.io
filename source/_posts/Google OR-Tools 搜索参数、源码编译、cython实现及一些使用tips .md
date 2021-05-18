@@ -49,6 +49,7 @@ enum Polarity {
 # 初始化相关设置
 optional Polarity initial_polarity = POLARITY_FALSE;
 ```
+<!--more-->
 
 #### Conflict analysis 冲突分析相关参数
 ```python
