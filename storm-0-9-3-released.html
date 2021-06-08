@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next-cat.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="此版本发布于2014年11月25日 Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本在Kafka整和带来大量的更新，包括可以往一台或者一个集群写入数据现在Storm和Kafka整合使得读写都不将受到限制,Storm使用者可以把Kafka作为消息流的源头或者消息源的目的地。这样允许内在topology交流，topology链,将基本的spo">
+<meta name="keywords" content="storm,bigdata">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Storm 0.9.3 released">
+<meta property="og:url" content="https://fengxc.me/storm-0-9-3-released.html">
+<meta property="og:site_name" content="会微积分的喵">
+<meta property="og:description" content="此版本发布于2014年11月25日 Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本在Kafka整和带来大量的更新，包括可以往一台或者一个集群写入数据现在Storm和Kafka整合使得读写都不将受到限制,Storm使用者可以把Kafka作为消息流的源头或者消息源的目的地。这样允许内在topology交流，topology链,将基本的spo">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-06-08T13:38:46.481Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Storm 0.9.3 released">
+<meta name="twitter:description" content="此版本发布于2014年11月25日 Kafka整合Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本在Kafka整和带来大量的更新，包括可以往一台或者一个集群写入数据现在Storm和Kafka整合使得读写都不将受到限制,Storm使用者可以把Kafka作为消息流的源头或者消息源的目的地。这样允许内在topology交流，topology链,将基本的spo">
+
+
+
+
+
+
+  <link rel="canonical" href="https://fengxc.me/storm-0-9-3-released.html">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Storm 0.9.3 released | 会微积分的喵</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-122351842-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-122351842-1');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a4f22e1e9cbbfd498ecb004941dd74f6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">会微积分的喵</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">我走得很慢，但我从不后退</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-booklist">
+    <a href="/books/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>书单</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-read">
+    <a href="/booklist/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>阅读</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-video">
+    <a href="/movies/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-film"></i> <br>视频</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/storm-0-9-3-released.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Storm 0.9.3 released
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2015-05-15 11:11:22" itemprop="dateCreated datePublished" datetime="2015-05-15T11:11:22+00:00">2015-05-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-06-08 13:38:46" itemprop="dateModified" datetime="2021-06-08T13:38:46+00:00">2021-06-08</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/storm-0-9-3-released.html#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="storm-0-9-3-released.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">4k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">4 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>此版本发布于2014年11月25日</p>
+<h2 id="Kafka整合"><a href="#Kafka整合" class="headerlink" title="Kafka整合"></a>Kafka整合</h2><p>Apache Storm自从0.9.2就开始支持Apache   Kafka了,0.9.3版本在Kafka整和带来大量的更新，包括可以往一台或者一个集群写入数据<br>现在Storm和Kafka整合使得读写都不将受到限制,Storm使用者可以把Kafka作为消息流的源头或者消息源的目的地。这样允许内在topology交流，topology链,将基本的spout、bolt和基本Trident数据流结合，甚至和任何外部支持从Kafka获取数据的系统整合.<br>更多关于Storm的Kafka整合的信息可以在<a href="https://github.com/apache/storm/blob/v0.9.3/external/storm-kafka/README.md" target="_blank" rel="noopener">storm-kafka project documentation</a>找到。<br><a id="more"></a></p>
+<h2 id="HDFS整合"><a href="#HDFS整合" class="headerlink" title="HDFS整合"></a>HDFS整合</h2><p>许多的流处理用HDFS来存储数据，以便离线分析处理。Apache Storm的HDFS整合包含几个bolt和Trident状态继承让storm开发者更容易的从任何topology向HDFS写入数据。<br>更多关于Storm的HDFS整合的信息可以在<a href="https://github.com/apache/storm/tree/v0.9.3/external/storm-hdfs" target="_blank" rel="noopener">storm-hdfs project documentation</a>找到。</p>
+<h2 id="HBase整合"><a href="#HBase整合" class="headerlink" title="HBase整合"></a>HBase整合</h2><p>Apacge Storm的HBase整合包含一系列的组件，允许topologies实时向HBase写入和查询数据。许多组织使用HBase作为他们大数据批处理、交互、实时工作流策略的一部分。Storm HBase的整合允许使用者利用数据作为流的查询，也作为流计算结果的目的地。<br>更多关于Storm的HBase整合的信息可以在<a href="https://github.com/apache/storm/tree/v0.9.3/external/storm-hbase" target="_blank" rel="noopener">storm-hbase project documentation</a>找到。</p>
+<h2 id="减少依赖冲突"><a href="#减少依赖冲突" class="headerlink" title="减少依赖冲突"></a>减少依赖冲突</h2><p>在Storm以前的版本中，很常见用户自己拓扑的依赖和Storm自己的依赖产生冲突。在Storm 0.9.3中几个常见的包冲突已经迁移（隐藏）来避免这种情况。开发者可以更自由的使用Storm打包的版本，或者自己提供的版本。<br>下面的表格列举了依赖包的迁移：<br>|依赖|原来的包|Storm包<br>|—|—|—|<br>|Apache Thrift| org.apache.thrift|org.apache.thrift7|<br>|Netty|org.jboss.netty|org.apache.storm.netty|<br>|Google Guava|org.google.common|org.apache.storm.guava|<br>|            |org.google.thirfparty|org.apache.storm.guava.thirdparty|<br>|Apache HTTPClient|org.apache.http|org.apache.storm.http|<br>|Apache Zookeeper|org.apache.zookeeper|org.apache.storm.zookeeper|<br>|Apache Curator|org.apache.curator|org.apache.storm.curator|</p>
+<h2 id="多语言改善"><a href="#多语言改善" class="headerlink" title="多语言改善"></a>多语言改善</h2><p>Apache Storm 0.9.3增加了Node.js,允许开发者可以用JavaScript来编写spouts和bolts。<br>除了增加了Node.js的实现，这多语言协议也从实质上得到改善，更加稳健和错误处理能力。<br>所以，这多语言API不是向下兼容的。有多语言拓扑的使用者在升级之前看看Python，Ruby,和JavaScript的多语言例子来判断升级的影响。</p>
+<h2 id="完成的更新"><a href="#完成的更新" class="headerlink" title="完成的更新"></a>完成的更新</h2><blockquote>
+<ul>
+<li>将”swap!”变成”reset!”，修复任务版本在supervisor上的bug。</li>
+<li>Storm json回复编码设为UTF-8</li>
+<li>从多语言子进程检查心跳</li>
+<li>“topology.enable.message.timeout”没有意义</li>
+<li>exector忽略本地主机名配置</li>
+<li>测试超时时间应该被设置</li>
+<li>改变在日志里默认的时间格式为ISO8601，以便包含时区</li>
+<li>Storm-Kafka spout在无效的偏移时保持发送获取请求</li>
+<li>Guava com.google.thirdpart.publicsuffix不再被隐藏</li>
+<li>正在被读取时，不要修改netty服务器的taskToQueueId</li>
+<li>一个worker无限重连到另一个死掉的worker</li>
+<li>增加tuple作为HBaseValueMapper的输入参数</li>
+<li>如果Storm CLI运行不知道的命令，就会已错误代码254退出</li>
+<li>不统计bolt acks&amp;fails在总的状态里</li>
+<li>修复在Windows下构建</li>
+<li>用jquery URL插件替换purl.js</li>
+<li>maven解决文档和清理隐藏的依赖</li>
+<li>增加storm-habse模块</li>
+<li>Topology可视化在ui上不会被锁住</li>
+<li>repl命令使用的类已过期</li>
+<li>netty客户端和监控继承storm的指数退避策略</li>
+<li>exit-process!并不总是退出进程，是抛出异常</li>
+<li>修复任务排序</li>
+<li>扩展/storm-kafka:避免NPE在空消息负载时</li>
+<li>修复错误消息影响kafka偏移量</li>
+<li>正确的文档在STORM-UI-REST-API.md</li>
+<li>格式化UI HTML代码</li>
+<li>隐藏/迁移那些容易产生依赖冲突的赖包</li>
+<li>cluster.xml文件不再包含STORM_LOG_DIR值</li>
+<li>Kafka spout：抛出RuntimeException当在分区里找不到leader</li>
+<li>修改storm-kafka文档</li>
+<li>增加kafka trident状态以致消息可以发送kafka主题</li>
+<li>增加HDFS模块的整合</li>
+<li>将spout ids公共管理</li>
+<li>STORM_CONF_DIR环境变量支持</li>
+<li>对于错误拓扑，增加详细的节点和组件页面</li>
+<li>为Workers,每个拓扑的类路径和环境变量</li>
+<li>去掉过时的通过curator的netty传输</li>
+<li>用RunTime.exit()替代RunTime.halt()</li>
+<li>在本地模式里，将ZooKeeper进程里去耦</li>
+<li>在storm命令里增加对python3的支持</li>
+<li>可以在storm-kafka进行序列化</li>
+<li>在对UI dom排序前,进行空表的检查</li>
+<li>增加日志查看页面和下载</li>
+<li>Typo在storm_env.ini</li>
+<li>在日志里增加shell进程的pid和name</li>
+<li>Storm UI REST api文档</li>
+<li>多种度量特征的方案</li>
+<li>多语言python进程进入无限循环</li>
+<li>supervisor和worker更智能的下载任务代码</li>
+<li>更多的Config限制性检查，用Utils.getInt()进行严格的范围检查</li>
+<li>将broken jquery.tablesorter.min.js换成最新的</li>
+<li>增加更多的storm监控工具,通过交互性来监控storm</li>
+<li>测试：允许使用者将TEST-TIMEOUT-MS作为一个拓扑的参数</li>
+<li>一个Spout/Bolt可以在不同的timeBucket里用同一个名字注册两次</li>
+<li>由于uninten…heartbeats-to-nimbus在supervisor-test中失败</li>
+<li>修复当在storm使用apache tika时FileNotFoundException错误</li>
+<li>修复时间用默认时区异常</li>
+<li>去掉在storm-starter python代码里的引用</li>
+<li>当当前偏移过时超过100k时，Kafka Spout默认使用当前最新的偏移</li>
+<li>在executor里查找主机名</li>
+<li>针对多语言soout和bolt支持日志级别</li>
+<li>增加一个可以看STORM JIRA和git pulls的工具</li>
+<li>在supervisor-test里加载验证一次不能解决多语言拓扑</li>
+<li>Storm重分配代码导致多语言拓扑被被分配到一个单独的端口</li>
+<li>更新test以致排序是非常明确的</li>
+<li>修复在netty client的重连逻辑</li>
+<li>给最近的错误增加颜色显示，修复ui模板</li>
+<li>修复topology summary页面显示错误的顺序</li>
+<li>允许supervisor通过路径操作他们自己的空间</li>
+<li>修复快速fail在ShellBolt的异常</li>
+<li>Storm UI丢失表格样式当tablesorter更新时</li>
+<li>IllegalArgumentExeptiond替换NullPointerException</li>
+<li>由于storm-hdfs pom.xml错误，最新的storm没有build</li>
+<li>迁移到curator 2.5.0</li>
+<li>例子spout使用错误的名字当连接时</li>
+<li>从ShellBolt children报告错误等级消息</li>
+<li>多语言日志的日志级别协议可能导致挂起</li>
+<li>更新ShellBolt到不存在当关闭的时候</li>
+<li>模拟时间提前在test cluster存在后导致断断续续的测试错误</li>
+<li>为Config增加metric helpers静态版本</li>
+<li>执行utf-8当多语言从stdin读取时</li>
+<li>给Storm UI API增加JSON-P支持</li>
+<li>为*.worker.childopts提供另外的的String替换</li>
+<li>在storm.cmd里增加command remoteconfvalue支持</li>
+<li>在desending order里通过空闲的槽来排序supervisor</li>
+<li>为没有完成的测试spout改善错误消息</li>
+<li>合适的处理InterruptedIOException异常</li>
+<li>exit-process!不总是退出进程，有时会抛出异常</li>
+<li>Storm UI不使用UTF-8</li>
+<li>跟新Logback版本</li>
+<li>nodejs多语言协议实现和例子</li>
+<li>增加spinner当UI从nimbus加载状态时</li>
+<li>丢掉StormSubmitter API</li>
+<li>Workers从他们自己的supervisor继承storm.conf.file/storm.options属性</li>
+<li>增加ZK连接超时时间可配置在Kafka spout</li>
+<li>提取ITuple接口</li>
+<li>更新DEVELOPER.md，Storm已经从孵化版到正式版</li>
+<li>跟新storm-starter README，Storm已经从孵化版到正式版</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="会微积分的喵 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpeg" alt="会微积分的喵 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>会微积分的喵</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://fengxc.me/storm-0-9-3-released.html" title="Storm 0.9.3 released">https://fengxc.me/storm-0-9-3-released.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/storm/" rel="tag"># storm</a>
+          
+            <a href="/tags/bigdata/" rel="tag"># bigdata</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/storm-0-9-4-released.html" rel="next" title="storm 0.9.4 released">
+                <i class="fa fa-chevron-left"></i> storm 0.9.4 released
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Java里执行js代码.html" rel="prev" title="Java里执行js代码">
+                Java里执行js代码 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="会微积分的喵">
+            
+              <p class="site-author-name" itemprop="name">会微积分的喵</p>
+              <p class="site-description motion-element" itemprop="description">Happy Code, Happy Life</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">122</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">194</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/cutoutsy" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:cutoutsy@gmail.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://windmgc.me" title="windmgc" target="_blank">windmgc</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka整合"><span class="nav-number">1.</span> <span class="nav-text">Kafka整合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS整合"><span class="nav-number">2.</span> <span class="nav-text">HDFS整合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase整合"><span class="nav-number">3.</span> <span class="nav-text">HBase整合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#减少依赖冲突"><span class="nav-number">4.</span> <span class="nav-text">减少依赖冲突</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多语言改善"><span class="nav-number">5.</span> <span class="nav-text">多语言改善</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完成的更新"><span class="nav-number">6.</span> <span class="nav-text">完成的更新</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">会微积分的喵</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">303k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">4:36</span>
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Pisces</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://cutoutsy-blog.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://fengxc.me/storm-0-9-3-released.html';
+        this.page.identifier = 'storm-0-9-3-released.html';
+        this.page.title = 'Storm 0.9.3 released';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cutoutsy-blog.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

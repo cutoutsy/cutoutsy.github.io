@@ -1,0 +1,2384 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next-cat.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="养成阅读的好习惯......         .hexo-douban-tabs {     margin-bottom: 15px;     margin-top: 15px; }  .hexo-douban-tab {     padding: 5px; }  .hexo-douban-active {     background: #657b83;">
+<meta name="keywords" content="java,机器学习,big data,大数据,深度学习,linux,开发者,程序猿极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3">
+<meta property="og:type" content="website">
+<meta property="og:title" content="我的阅读">
+<meta property="og:url" content="https://fengxc.me/books/index.html">
+<meta property="og:site_name" content="会微积分的喵">
+<meta property="og:description" content="养成阅读的好习惯......         .hexo-douban-tabs {     margin-bottom: 15px;     margin-top: 15px; }  .hexo-douban-tab {     padding: 5px; }  .hexo-douban-active {     background: #657b83;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta property="og:image" content="https://fengxc.me/assets/douban-loading.gif">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我的阅读">
+<meta name="twitter:description" content="养成阅读的好习惯......         .hexo-douban-tabs {     margin-bottom: 15px;     margin-top: 15px; }  .hexo-douban-tab {     padding: 5px; }  .hexo-douban-active {     background: #657b83;">
+<meta name="twitter:image" content="https://fengxc.me/assets/douban-loading.gif">
+
+
+
+
+
+
+  <link rel="canonical" href="https://fengxc.me/books/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>我的阅读 | 会微积分的喵</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-122351842-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-122351842-1');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a4f22e1e9cbbfd498ecb004941dd74f6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">会微积分的喵</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">我走得很慢，但我从不后退</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-booklist menu-item-active">
+    <a href="/books/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>书单</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-read">
+    <a href="/booklist/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>阅读</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-video">
+    <a href="/movies/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-film"></i> <br>视频</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+<h2 class="post-title" itemprop="name headline">我的阅读</h2>
+
+<div class="post-meta">
+  
+  
+
+
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <blockquote>
+    <p>养成阅读的好习惯......</p>
+</blockquote>
+
+<style>
+    
+.hexo-douban-tabs {
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.hexo-douban-tab {
+    padding: 5px;
+}
+
+.hexo-douban-active {
+    background: #657b83;
+    color: #fff;
+}
+
+.hexo-douban-item {
+    padding-bottom: 10px;
+    position: relative;
+    clear: both;
+    min-height: 170px;
+    padding: 10px 0;
+    border-bottom: 1px #ddd solid;
+}
+
+@media screen and (max-width: 600px) {
+    .hexo-douban-item {
+        width: 100%;
+    }
+}
+
+.hexo-douban-picture {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 100px;
+}
+
+.hexo-douban-info {
+    padding-left: 120px;
+}
+
+.hexo-douban-meta {
+    font-size: 12px;
+    padding-right: 10px;
+}
+
+.hexo-douban-comments {
+    font-size: 12px;
+}
+
+.hexo-douban-pagination {
+    margin-top: 15px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.hexo-douban-button {
+    padding: 5px;
+}
+
+.hexo-douban-button:hover {
+    background: #657b83;
+    color: #fff;
+}
+
+.hexo-douban-hide {
+    display: none;
+}
+
+.hexo-douban-show {
+    display: block;
+}
+
+
+</style>
+
+<div class="hexo-douban-tabs">
+    <a class="hexo-douban-tab" id="hexo-douban-tab1" href="javascript:;" rel="external">
+        在读
+        (2)</a>
+    <a class="hexo-douban-tab" id="hexo-douban-tab2" href="javascript:;" rel="external">
+        想读
+        (9)</a>
+    <a class="hexo-douban-tab" id="hexo-douban-tab3" href="javascript:;" rel="external">
+        已读
+        (35)</a>
+</div>
+<div>
+    <div id="hexo-douban-item1">
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s27991506.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/25910559/"> 剑指Offer</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  何海涛 / 电子工业出版社 / 2014-6-1 / CNY 55.00
+
+        </div>
+        <div class="hexo-douban-meta">2020-12-26
+      在读 /  算法 求职面试</div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s33457888.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/34794803/"> 深入理解AutoML和AutoDL：构建自动化机器学习与深度学习平台</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  王健宗、瞿晓阳 / 机械工业出版社 / 2019-8-20 / 99.00元
+
+        </div>
+        <div class="hexo-douban-meta">2020-06-18
+      在读 / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-pagination">
+    <a class="hexo-douban-button hexo-douban-firstpage" href="javascript:;"> 首页</a>
+    <a class="hexo-douban-button hexo-douban-previouspage" href="javascript:;">上一页</a>
+    <span class="hexo-douban-pagenum">2 / 3</span>
+    <a class="hexo-douban-button hexo-douban-nextpage" href="javascript:;">下一页</a>
+    <a class="hexo-douban-button hexo-douban-lastpage" href="javascript:;">尾页</a>
+</div>
+    </div>
+    <div id="hexo-douban-item2">
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s1090686.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/1108725/"> 人件</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  Tom DeMarco、Timothy Lister / UML China / 清华大学出版社 / 2003-6 / 35.00元
+
+      
+        </div>
+        <div class="hexo-douban-meta">2020-12-21
+      想读 /  计算机</div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s28259942.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/26381341/"> Python Cookbook（第3版）</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  David M. Beazley、Brian K. Jones / 陈舸 / 人民邮电出版社 / 2015-5-1 / 108.00元
+
+      
+        </div>
+        <div class="hexo-douban-meta">2020-12-05
+      想读 /  计算机 python</div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s3435132.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/3117898/"> Python源码剖析</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  陈儒 / 电子工业出版社 / 2008-6 / 69.80元
+
+      
+        </div>
+        <div class="hexo-douban-meta">2020-12-05
+      想读 /  计算机 Python</div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s29604952.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/27194738/"> SQL进阶教程</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  ［ 日］ MICK / 吴炎昌 / 人民邮电出版社 / 2017-11 / 79.00元
+
+      
+        </div>
+        <div class="hexo-douban-meta">2020-09-27
+      想读 /  SQL Database</div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s29497110.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/26585065/"> 亲密关系</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  [美] 罗兰·米勒 (Rowland S. Miller) / 王伟平 译、彭凯平 校 / 人民邮电出版社 / 2015-6 / 138.00元
+
+      
+        </div>
+        <div class="hexo-douban-meta">2020-08-11
+      想读 / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s29663524.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/27596775/"> 漫步华尔街(原书第11版)</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  伯顿G.马尔基尔 / 张伟 / 机械工业出版社 / 2018-1 / 69
+
+      
+        </div>
+        <div class="hexo-douban-meta">2020-07-06
+      想读 / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s6462582.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/5243775/"> 聪明的投资者</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  本杰明·格雷厄姆、Benjamin Graham / 王中华、黄一义 / 人民邮电出版社 / 2010-8 / 88.00元
+
+      
+        </div>
+        <div class="hexo-douban-meta">2020-07-06
+      想读 / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s29740206.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/30156795/"> 卓越密码</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  田志刚 / 电子工业出版社 / 2018-3 / 49.80元
+
+      
+        </div>
+        <div class="hexo-douban-meta">2020-05-18
+      想读 /  思想 个人成长</div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s33447563.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/34781297/"> 西贝的服务员为什么总爱笑</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  贾林男 / 文汇出版社 / 2019-8-20 / 56.00元
+
+      
+        </div>
+        <div class="hexo-douban-meta">2020-04-19
+      想读 / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-pagination">
+    <a class="hexo-douban-button hexo-douban-firstpage" href="javascript:;"> 首页</a>
+    <a class="hexo-douban-button hexo-douban-previouspage" href="javascript:;">上一页</a>
+    <span class="hexo-douban-pagenum">2 / 3</span>
+    <a class="hexo-douban-button hexo-douban-nextpage" href="javascript:;">下一页</a>
+    <a class="hexo-douban-button hexo-douban-lastpage" href="javascript:;">尾页</a>
+</div>
+
+    </div>
+    <div id="hexo-douban-item3">
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s10213357.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/10769749/"> 推荐系统实践</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  项亮 / 人民邮电出版社 / 2012-6-1 / 49.00元
+
+      </div>
+        <div class="hexo-douban-meta">2021-05-01
+      读过 /  算法 数据分析 推荐系统 机器学习 / ★★★★★ 力荐</div>
+        <div class="hexo-douban-comments">
+      挺好的，看完对推荐有个大致的了解
+      
+  
+
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s1495029.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/1477390/"> 代码大全（第2版）</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  [美] 史蒂夫·迈克康奈尔 / 金戈、汤凌、陈硕、张菲 译、裘宗燕 审校 / 电子工业出版社 / 2006-3 / 128.00元
+
+      </div>
+        <div class="hexo-douban-meta">2020-12-26
+      读过 /  计算机 代码大全 软件工程 / ★★★★★ 力荐</div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s27220989.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/25829645/"> 股市进阶之道</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  李杰 / 中国铁道出版社 / 2014-3 / 55
+
+      </div>
+        <div class="hexo-douban-meta">2020-07-26
+      读过 /  股票 股市 投资理财 / ★★★★☆ 推荐</div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s32292360.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/30784282/"> 解读基金（修订版）</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  季凯帆、康峰 / 中国经济出版社 / 2020-10 / 58.00元
+
+      </div>
+        <div class="hexo-douban-meta">2020-07-26
+      读过 /  投资理财 基金 / ★★★★☆ 推荐</div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s30014452.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/30468597/"> 重构（第2版）全彩精装版</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  Martin Fowler / 熊节、林从羽 / 人民邮电出版社 / 2019-3 / 168
+
+      </div>
+        <div class="hexo-douban-meta">2020-06-18
+      读过 /  / ★★★★☆ 推荐</div>
+        <div class="hexo-douban-comments">
+      看完之后还是蛮有帮助的，值得一看
+      
+  
+
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s1144911.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/1200840/"> 平凡的世界（全三部）</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  路遥 / 人民文学出版社 / 2005-1 / 64.00元
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  平凡的世界 路遥 人生 中国文学 经典 小说 文学 / ★★★★★ 力荐</div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s25108923.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/20384629/"> 温州一家人</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  高满堂 / 作家出版社 / 2012-11 / 36.00元
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s29179365.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/26923390/"> 长夜难明</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  紫金陈 / 云南人民出版社 / 2017-1 / 42.00元
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s9137567.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/1085799/"> 白鹿原</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  陈忠实 / 人民文学出版社 / 1997-12 / 28.00元
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s3814606.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/3646172/"> 恶意</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  [日] 东野圭吾 / 娄美莲 / 南海出版公司 / 2009-6 / 18.00
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s1429010.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/1033778/"> 富爸爸，穷爸爸</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  （美）罗伯特・T・清崎、莎伦・L・莱希特 / 杨君、杨明 / 世界图书出版公司 / 2000-09 / 18.80
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s1074291.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/1029791/"> 许三观卖血记</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  余华 / 南海出版公司 / 1998-9 / 16.80元
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s29349250.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/26976457/"> Tensorflow：实战Google深度学习框架</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  郑泽宇、顾思宇 / 电子工业出版社 / 2017-2-10 / 79
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s2962510.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/3006581/"> 无人生还</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  [英] 阿加莎・克里斯蒂 / 祁阿红 / 人民文学出版社 / 2008-3 / 19.00
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/f/shire/5522dd1f5b742d1e1394a17f44d590646b63871d/pics/book-default-lpic.gif" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/3239549/"> 未知图书</a></div>
+        <div class="hexo-douban-meta"></div>
+        <div class="hexo-douban-meta"> /  / </div>
+        <div class="hexo-douban-comments"></div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s28327014.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/26641431/"> 杜拉拉升职记</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  李可 / 南海出版公司 / 2015-10 / 39.50元
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s29418944.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/26945096/"> 算法神探</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  [美] 杰瑞米·库比卡 / 啊哈磊、李嘉浩 / 电子工业出版社 / 2017-2 / 65
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s1727290.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/1770782/"> 追风筝的人</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  [美] 卡勒德·胡赛尼 / 李继宏 / 上海人民出版社 / 2006-5 / 29.00元
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s29652928.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/27064488/"> 活着</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  余华 / 北京十月文艺出版社 / 2017-6-1 / 35.00元
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s4569879.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/5062697/"> 基督山伯爵（上、下）</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  （法）大仲马 / 韩沪麟（上册）、周克希（下册） / 上海译文出版社 / 2010-8-1 / 59.00元
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s1989291.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/1885213/"> 三个火枪手</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  大仲马 / 郝运、王振孙 / 上海译文出版社 / 2006-8 / 23.00元
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s29651121.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/27614904/"> 房思琪的初恋乐园</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  林奕含 / 北京联合出版公司 / 2018-1 / 45.00元
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s23593181.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/3432304/"> 大江东去（共三部）</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  阿耐 / 长江文艺出版社 / 2009-1 / 118.00元
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s29357154.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/26978506/"> 打火机与公主裙·荒草园</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  Twentine / 青岛出版社 / 2017-3 / 36.00元
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s29550955.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/27113040/"> 打火机与公主裙·长明灯</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  Twentine / 江苏凤凰文艺出版社 / 2017-8 / 38.00元
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  / </div>
+        <div class="hexo-douban-comments">
+      计算机相关题材小说是我一直喜欢看的。结尾有点突然，言情小说还是要少看
+      
+  
+
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s24936189.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/20441957/"> 兄弟</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  余华 / 作家出版社 / 2012-9-1 / 43.00元
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  / </div>
+        <div class="hexo-douban-comments">
+      开学来好久才看完这本书，忙于毕设，这本书讲述了无血缘两兄弟的凄惨生活，同时反映了时代的变化。
+      
+  
+
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s29356252.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/26978753/"> 厚积薄发</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  田涛、殷志峰 主编 / 生活·读书·新知三联书店 / 2017-1 / 46.00
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  / </div>
+        <div class="hexo-douban-comments">
+      最近来我哥家，在书架上有一本未拆封的书《厚积薄发》，拿出来花了两个下午看完了，让我对华为有了重新的认识，也对华为17万员工有一个新的了解，华为作为中国企业，在通信领域能做到现在这样，实属不易，而且现在华为又在手机终端、云计算等领域进行布局，可见华为其实是一个很好的公司。经历过华为的招聘，我还是想说，华为在招聘是并不看重面试者的意愿，从随机岗位分配就能看出，希望华为对此能进行改变，越做越好……
+      
+  
+
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s29247343.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/26899537/"> 长安十二时辰 上</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  马伯庸 / 湖南文艺出版社 / 2017-1 / 39.80元
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s28341985.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/24250054/"> SQL必知必会</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  福达 (Ben Forta) / 钟鸣、刘晓霞 / 人民邮电出版社 / 2013-5-1 / 29.00元
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s3207456.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/3155622/"> 庆余年·壹</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  猫腻 / 中国友谊出版公司 / 2008-7 / 28.00元
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s3304888.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/3244065/"> 庆余年·伍</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  猫腻 / 中国友谊出版公司 / 2008-10 / 28.00元
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s3207466.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/3165386/"> 庆余年·肆</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  猫腻 / 中国友谊出版公司 / 2008-09 / 28.00元
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s3207463.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/3165385/"> 庆余年·叁</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  猫腻 / 中国友谊出版公司 / 2008-09 / 28.00元
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s3304890.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/3244068/"> 庆余年·陆</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  猫腻 / 中国友谊出版公司 / 2008-10 / 29.80元
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/subject/s/public/s3207458.jpg" referrerpolicy="no-referrer"></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title"><a target="_blank" href="https://book.douban.com/subject/3165135/"> 庆余年·贰</a></div>
+        <div class="hexo-douban-meta">
+        
+  
+  猫腻 / 中国友谊出版公司 / 2008-07 / 28.00元
+
+      </div>
+        <div class="hexo-douban-meta">2020-04-06
+      读过 /  小说 / </div>
+        <div class="hexo-douban-comments">
+  </div>
+    </div>
+</div>
+
+        
+        <div class="hexo-douban-pagination">
+    <a class="hexo-douban-button hexo-douban-firstpage" href="javascript:;"> 首页</a>
+    <a class="hexo-douban-button hexo-douban-previouspage" href="javascript:;">上一页</a>
+    <span class="hexo-douban-pagenum">2 / 3</span>
+    <a class="hexo-douban-button hexo-douban-nextpage" href="javascript:;">下一页</a>
+    <a class="hexo-douban-button hexo-douban-lastpage" href="javascript:;">尾页</a>
+</div>
+    </div>
+
+</div>
+
+<script>
+    /**
+ * Created by myths on 18-2-8.
+ */
+
+Element.prototype.siblings = function () {
+    var siblingElement = [];
+    var sibs = this.parentNode.children;
+    for (var i = 0; i < sibs.length; i++) {
+        if (sibs[i] !== this) {
+            siblingElement.push(sibs[i]);
+        }
+    }
+    return siblingElement;
+};
+function tabClick() {
+    //修改标签样式
+    this.classList.add('hexo-douban-active');
+    var sibs = this.siblings();
+    for (var j = 0; j < sibs.length; j++) {
+        sibs[j].classList.remove('hexo-douban-active');
+    }
+    //显示对应板块
+    var itemId = this.id.replace('tab', 'item');
+    var target = document.getElementById(itemId);
+    target.classList.remove('hexo-douban-hide');
+    target.classList.add('hexo-douban-show');
+    sibs = document.getElementById(itemId).siblings();
+    for (var k = 0; k < sibs.length; k++) {
+        sibs[k].classList.remove('hexo-douban-show');
+        sibs[k].classList.add('hexo-douban-hide');
+    }
+}
+var tabs = document.getElementsByClassName("hexo-douban-tab");
+for (var i = 0; i < tabs.length; i++) {
+    tabs[i].onclick = tabClick;
+    tabs[i].onclick.apply(tabs[i]);
+}
+tabs[2].click();
+
+    var firstpages = document.getElementsByClassName("hexo-douban-firstpage");
+var previouspages = document.getElementsByClassName("hexo-douban-previouspage");
+var nextpages = document.getElementsByClassName("hexo-douban-nextpage");
+var lastpages = document.getElementsByClassName("hexo-douban-lastpage");
+var pagenums = document.getElementsByClassName("hexo-douban-pagenum");
+
+function makePageNum(num, arr) {
+    return (num + 1) + ' / ' + (Math.ceil(arr.length / 10 === 0 ? 1 : Math.ceil(arr.length / 10)));
+}
+
+function firstBtn() {
+    var sibs = this.parentNode.siblings();
+    displayPage(sibs, 0);
+    this.parentNode.getElementsByClassName('hexo-douban-pagenum')[0].innerText = makePageNum(0, sibs);
+}
+
+function previousBtn() {
+    var sibs = this.parentNode.siblings();
+    var currNum = this.parentNode.getElementsByClassName('hexo-douban-pagenum')[0].innerText;
+    currNum = currNum.substr(0, currNum.indexOf('/') - 1);
+    currNum = parseInt(currNum, 10) - 1;
+    if (currNum > 0) {
+        currNum--;
+    }
+    displayPage(sibs, currNum);
+    this.parentNode.getElementsByClassName('hexo-douban-pagenum')[0].innerText = makePageNum(currNum, sibs);
+}
+
+function nextBtn() {
+    var sibs = this.parentNode.siblings();
+    var currNum = this.parentNode.getElementsByClassName('hexo-douban-pagenum')[0].innerText;
+    currNum = currNum.substr(0, currNum.indexOf('/') - 1);
+    currNum = parseInt(currNum, 10) - 1;
+    if (currNum < Math.ceil(sibs.length / 10) - 1) {
+        currNum++;
+    }
+    displayPage(sibs, currNum);
+    this.parentNode.getElementsByClassName('hexo-douban-pagenum')[0].innerText = makePageNum(currNum, sibs);
+}
+
+function lastBtn() {
+    var sibs = this.parentNode.siblings();
+    displayPage(sibs, Math.ceil(sibs.length / 10) - 1);
+    this.parentNode.getElementsByClassName('hexo-douban-pagenum')[0].innerText = makePageNum(Math.ceil(sibs.length / 10) - 1 === -1 ? 0 : Math.ceil(sibs.length / 10) - 1, sibs);
+}
+
+function displayPage(arr, num) {
+    for (var i = 0; i < arr.length; i++) {
+        if (Math.floor(i / 10) === num) {
+            arr[i].classList.remove('hexo-douban-hide');
+            var img = arr[i].getElementsByTagName('img')[0];
+            img.src = img.getAttribute('data-src');
+        } else {
+            arr[i].classList.add('hexo-douban-hide');
+        }
+    }
+}
+
+for (var i = 0; i < firstpages.length; i++) {
+
+    //add listener
+    firstpages[i].onclick = firstBtn;
+    previouspages[i].onclick = previousBtn;
+    nextpages[i].onclick = nextBtn;
+    lastpages[i].onclick = lastBtn;
+
+    //set page num
+    var size = pagenums[i].parentNode.siblings().length;
+    pagenums[i].innerText = '1 / ' + (Math.ceil(size / 10) === 0 ? 1 : Math.ceil(size / 10));
+    firstpages[i].click();
+}
+
+</script>
+
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+
+
+
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="会微积分的喵">
+            
+              <p class="site-author-name" itemprop="name">会微积分的喵</p>
+              <p class="site-description motion-element" itemprop="description">Happy Code, Happy Life</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">122</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">194</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/cutoutsy" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:cutoutsy@gmail.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://windmgc.me" title="windmgc" target="_blank">windmgc</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">会微积分的喵</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">303k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">4:36</span>
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Pisces</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://cutoutsy-blog.disqus.com/count.js" async></script>
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
