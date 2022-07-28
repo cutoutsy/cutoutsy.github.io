@@ -28,5 +28,14 @@ OR-Tools包括以下问题的求解器：
 
 **线性与混合整数规划**
 
-测试
+Glop线性优化器在给定一组线性不等式作为约束条件（例如，分配工作，或在最小化成本的同时找到一组资源的最佳分配）的情况下，寻找线性目标函数的最优值。Glop和混合整数规划软件[SCIP](http://scip.zib.de/)也可以通过Google App Script [优化服务](https://developers.google.com/apps-script/reference/optimization)获得。
 
+**车辆路径规划**
+
+一个专门的库，在给定约束下，确定最佳车辆路线
+
+**图算法**
+
+用于在图中寻找最短路径，最小成本流，最大流和线性和分配问题。
+
+[下一节]()将帮助你快速使用OR-Tools
