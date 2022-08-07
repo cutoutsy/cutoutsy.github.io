@@ -52,5 +52,72 @@ $$  x + y \leq 2 $$
 在这个例子里目标函数是$3x + y$。目标函数和约束都是由线性表达式给出的，这使得这是一个线性问题。
 
 #### 求解问题的主要步骤
+对于每种编程语言，建立和解决问题的基本步骤都是相同的：
 
+* 导入必需的依赖库
+* 声明求解器
+* 创建变量
+* 定义约束
+* 定义目标函数
+* 调用求解器并显示结果
 
+#### Python编程
+本节将介绍通过Python编程来建立和求解问题
+
+> **Note**
+> 完整的程序和运行它的步骤显示在本节的最后
+
+以下是步骤：
+
+**导入必需的依赖库**
+```python
+from ortools.linear_solver import pywraplp
+from ortools.init import pywrapinit
+```
+**声明求解器**
+```python
+# 创建一个基于GLOP后端的线性求解器
+solver = pywraplp.Solver.CreateSolver('GLOP')
+```
+`pywraplp`是底层C++求解器的Python包装器。参数`"GLOP"`指定了OR-Tools线性求解器[GLOP]()
+
+**创建变量**
+```python
+# 创建变量x, y
+x = solver.NumVar(0, 1, 'x')
+y = solver.NumVar(0, 2, 'y')
+
+print('Number of variables =', solver.NumVariables())
+```
+**定义约束**
+
+前两个约束，$0 \leq x \leq 1$和$0 \leq y \leq 2$已经在变量中定义了。下面的代码是定义约束
+$x + y \leq 2$：
+```python
+# 创建线性约束, 0 <= x + y <= 2.
+ct = solver.Constraint(0, 2, 'ct')
+ct.SetCoefficient(x, 1)
+ct.SetCoefficient(y, 1)
+
+print('Number of constraints =', solver.NumConstraints())
+```
+方法`SetCoefficient`设置在约束表达式中x和y的系数。
+
+**定义目标函数**
+```python
+# 创建目标函数, 3 * x + y.
+objective = solver.Objective()
+objective.SetCoefficient(x, 3)
+objective.SetCoefficient(y, 1)
+objective.SetMaximization()
+```
+方法`SetMaximization`表明这是一个最大化优化问题
+
+**调用求解器并显示结果**
+```python
+solver.Solve()
+print('Solution:')
+print('Objective value =', objective.Value())
+print('x =', x.solution_value())
+print('y =', y.solution_value())
+```
