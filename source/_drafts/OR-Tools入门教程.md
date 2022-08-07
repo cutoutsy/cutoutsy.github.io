@@ -94,7 +94,7 @@ print('Number of variables =', solver.NumVariables())
 前两个约束，$0 \leq x \leq 1$和$0 \leq y \leq 2$已经在变量中定义了。下面的代码是定义约束
 $x + y \leq 2$：
 ```python
-# 创建线性约束, 0 <= x + y <= 2.
+# 创建线性约束, 0 <= x + y <= 2
 ct = solver.Constraint(0, 2, 'ct')
 ct.SetCoefficient(x, 1)
 ct.SetCoefficient(y, 1)
@@ -105,7 +105,7 @@ print('Number of constraints =', solver.NumConstraints())
 
 **定义目标函数**
 ```python
-# 创建目标函数, 3 * x + y.
+# 创建目标函数, 3 * x + y
 objective = solver.Objective()
 objective.SetCoefficient(x, 3)
 objective.SetCoefficient(y, 1)
@@ -121,3 +121,53 @@ print('Objective value =', objective.Value())
 print('x =', x.solution_value())
 print('y =', y.solution_value())
 ```
+
+#### 完整程序
+完整的程序如下所示。
+```python
+from ortools.linear_solver import pywraplp
+from ortools.init import pywrapinit
+
+
+def main():
+    # 创建一个基于GLOP后端的线性求解器
+    solver = pywraplp.Solver.CreateSolver('GLOP')
+
+    # Create the variables x and y.
+    x = solver.NumVar(0, 1, 'x')
+    y = solver.NumVar(0, 2, 'y')
+
+    print('Number of variables =', solver.NumVariables())
+
+    # 创建线性约束, 0 <= x + y <= 2
+    ct = solver.Constraint(0, 2, 'ct')
+    ct.SetCoefficient(x, 1)
+    ct.SetCoefficient(y, 1)
+
+    print('Number of constraints =', solver.NumConstraints())
+
+    # 创建目标函数, 3 * x + y
+    objective = solver.Objective()
+    objective.SetCoefficient(x, 3)
+    objective.SetCoefficient(y, 1)
+    objective.SetMaximization()
+
+    solver.Solve()
+
+    print('Solution:')
+    print('Objective value =', objective.Value())
+    print('x =', x.solution_value())
+    print('y =', y.solution_value())
+
+
+if __name__ == '__main__':
+    pywrapinit.CppBridge.InitLogging('basic_example.py')
+    cpp_flags = pywrapinit.CppFlags()
+    cpp_flags.logtostderr = True
+    cpp_flags.log_prefix = False
+    pywrapinit.CppBridge.SetFlags(cpp_flags)
+
+    main()
+```
+#### 运行程序
+
