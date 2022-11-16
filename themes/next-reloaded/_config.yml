@@ -124,6 +124,7 @@ menu:
   categories: /categories/ || th
   archives: /archives/ || archive
   about: /about/ || user
+  job: /job/ || job
   booklist: /books/ || book
   read: /booklist/ || book
   video: /movies/ || film
