@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next-cat.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="写在前面本篇博客收集一些机器学习的常见面试题，题目主要为机器学习和自然语言处理相关，不包括计算机视觉。并附上个人答案，持续更新，直到今年秋招结束。欢迎大家在评论去贡献题目和讨论答案。">
+<meta name="keywords" content="机器学习,nlp,面试题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习常见面试题(持续更新中...)">
+<meta property="og:url" content="https://fengxc.me/机器学习常见面试点-持续更新中.html">
+<meta property="og:site_name" content="会微积分的喵">
+<meta property="og:description" content="写在前面本篇博客收集一些机器学习的常见面试题，题目主要为机器学习和自然语言处理相关，不包括计算机视觉。并附上个人答案，持续更新，直到今年秋招结束。欢迎大家在评论去贡献题目和讨论答案。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2022-12-05T17:10:33.335Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习常见面试题(持续更新中...)">
+<meta name="twitter:description" content="写在前面本篇博客收集一些机器学习的常见面试题，题目主要为机器学习和自然语言处理相关，不包括计算机视觉。并附上个人答案，持续更新，直到今年秋招结束。欢迎大家在评论去贡献题目和讨论答案。">
+
+
+
+
+
+
+  <link rel="canonical" href="https://fengxc.me/机器学习常见面试点-持续更新中.html">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>机器学习常见面试题(持续更新中...) | 会微积分的喵</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-122351842-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-122351842-1');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a4f22e1e9cbbfd498ecb004941dd74f6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">会微积分的喵</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">我走得很慢，但我从不后退</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-job">
+    <a href="/job/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>网易内推</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-booklist">
+    <a href="/books/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>书单</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-read">
+    <a href="/booklist/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>阅读</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-video">
+    <a href="/movies/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-film"></i> <br>视频</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/机器学习常见面试点-持续更新中.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">机器学习常见面试题(持续更新中...)
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-28 14:48:53" itemprop="dateCreated datePublished" datetime="2018-07-28T14:48:53+00:00">2018-07-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2022-12-05 17:10:33" itemprop="dateModified" datetime="2022-12-05T17:10:33+00:00">2022-12-05</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/机器学习常见面试点-持续更新中.html#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="机器学习常见面试点-持续更新中.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">8.9k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">8 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>本篇博客收集一些机器学习的常见面试题，题目主要为机器学习和自然语言处理相关，不包括计算机视觉。并附上个人答案，持续更新，直到今年秋招结束。欢迎大家在评论去贡献题目和讨论答案。</p>
+<a id="more"></a>
+<h3 id="监督学习与非监督学习区别，非监督学习举例"><a href="#监督学习与非监督学习区别，非监督学习举例" class="headerlink" title="监督学习与非监督学习区别，非监督学习举例"></a>监督学习与非监督学习区别，非监督学习举例</h3><p>主要是训练数据上的区别，监督学习的数据是有标记的，非监督学习的数据是没有标记的。<br>非监督学习举例：新闻聚类，用户人群分类</p>
+<h3 id="统计（传统）机器学习和深度学习的区别与联系"><a href="#统计（传统）机器学习和深度学习的区别与联系" class="headerlink" title="统计（传统）机器学习和深度学习的区别与联系"></a>统计（传统）机器学习和深度学习的区别与联系</h3><p>传统机器学习需要人工设计特征，特征工程很重要。<br>深度学习可以自动学习特征，特别是在图像、语音、文本方面，这些数据都有局部和整体的关系，DL能发挥很大作用。但是调参也是一个繁琐的事情。<br>联系：深度学习是一种实现机器学习的技术。</p>
+<h3 id="特征工程你一般怎么做"><a href="#特征工程你一般怎么做" class="headerlink" title="特征工程你一般怎么做"></a>特征工程你一般怎么做</h3><p>数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已。<br>特征工程的目的是获取更好的训练数据，把原始数据转变成特征。从数学的角度来看，特征工程就是人工的去设计输入变量X。<br>特征构建 -&gt; 特征提取 -&gt; 特征选择<br>特征构建<br>指从原始数据中人工的构建新的特征。<br>特征提取<br>自动的构建新的特征，将原始特征转换为一组有明显统计意义的特征。</p>
+<blockquote>
+<ul>
+<li>PCA(Principal component analysis, 主成分分析)</li>
+<li>ICA(Independent component analysis, 独立成分分析)</li>
+<li>LDA(Linear Discriminant Analysis, 线性判别分析)</li>
+</ul>
+</blockquote>
+<p>特征选择<br>从给定的特征集合中选择出相关特征子集的过程，称为特征选择。<br>原因：</p>
+<blockquote>
+<ul>
+<li>维数灾难</li>
+<li>去除不相关的特征往往会降低学习任务的难度</li>
+</ul>
+</blockquote>
+<p>主要选择方式</p>
+<blockquote>
+<ul>
+<li>过滤式选择</li>
+<li>包裹式选择</li>
+<li>嵌入式选择与L1正则化</li>
+</ul>
+</blockquote>
+<h3 id="什么是数据标准化，为什么要进行数据标准化？"><a href="#什么是数据标准化，为什么要进行数据标准化？" class="headerlink" title="什么是数据标准化，为什么要进行数据标准化？"></a>什么是数据标准化，为什么要进行数据标准化？</h3><p>数据标准化时预处理步骤，将数据标准化到一个特定的范围能够在反向传播中保证更好的收敛。一般来说，是将该值去平均值后再除以标准差。如果不进行标准化，有些特征值（值很大）将会对损失函数影响更大（即使这个特征改变很小）。因此数据标准化可以使得每个特征的重要性更加均衡。</p>
+<h3 id="机器学习中对样本数据不平衡的情况有哪些解决办法"><a href="#机器学习中对样本数据不平衡的情况有哪些解决办法" class="headerlink" title="机器学习中对样本数据不平衡的情况有哪些解决办法"></a>机器学习中对样本数据不平衡的情况有哪些解决办法</h3><p>假设正样本&lt;&lt;负样本<br>对数据进行重采样<br>(1) 对正样本的数据样本进行采样来增加正样本的数据样本个数，即过采样（over-sampling, 采样的次数大于改类样本个数）<br>(2) 对负样本的数据样本进行采样来减少该类数据样本的个数，即欠采样（under-sampling, 采样的次数少于该类样本的个数）<br>阈值移动<br>原来学习器在决策过程中假设真实正、反例可能性相同。<br>可以进行“再缩放”，改变学习器的评价标准，学习器的预测几率高于观测几率。</p>
+<h3 id="解释什么是降维，在哪里会用到降维，它的好处是什么？"><a href="#解释什么是降维，在哪里会用到降维，它的好处是什么？" class="headerlink" title="解释什么是降维，在哪里会用到降维，它的好处是什么？"></a>解释什么是降维，在哪里会用到降维，它的好处是什么？</h3><p>降维是指通过保留一些比较重要的特征，去除一些冗余的特征，减少数据特征的维度。而特征的重要性取决于该特征能够表达多少数据集的信息，也取决于使用什么方法进行降维。使用哪种降维方法则是通过反复的试验和每种方法在该数据集上的效果。一般情况会先使用线性降维方法再使用非线性的降维方法。<br>好处：<br>(1) 节省存储空间<br>(2) 加速计算速度，维度越少，计算量越少，并且能够使用那些不适合高维度的算法<br>(3) 去除一些冗余特征，比如降维后使得数据不会即保存平方米又保存平方英里的表示地形大小的特征<br>(4) 将数据维度降到2维或者3维使之能可视化，便于观察和挖掘信息<br>(5) 特征太多或者太复杂会使得模型过拟合</p>
+<h3 id="如何处理缺失值"><a href="#如何处理缺失值" class="headerlink" title="如何处理缺失值"></a>如何处理缺失值</h3><p>处理方法有两种，一种是删除整行或者整列的数据，另一种则是使用其他值去填充。</p>
+<h3 id="过拟合如何解决"><a href="#过拟合如何解决" class="headerlink" title="过拟合如何解决"></a>过拟合如何解决</h3><blockquote>
+<ul>
+<li>获取更多的数据，数据越多越接近整体</li>
+<li>使用简单的模型</li>
+<li>训练时间，提前结束训练（Early stopping）</li>
+<li>正则化（限制权值）</li>
+</ul>
+</blockquote>
+<h3 id="AUC是什么"><a href="#AUC是什么" class="headerlink" title="AUC是什么"></a>AUC是什么</h3><p>AUC(Area Under ROC Curve)，即在ROC曲线下的面积。ROC曲线就是根据学习器的预测结果对样例进行排序，按此顺序逐个把样本作为正例进行预测，每次计算出两个重要的量，一个是真正例率，一个是假正例率(假例中预测为正例的比率)，真正例率(正例中预测为正例的比率)作为纵轴，假正例率作为横轴，作图，就得到ROC曲线。</p>
+<h3 id="解释k-means原理"><a href="#解释k-means原理" class="headerlink" title="解释k-means原理"></a>解释k-means原理</h3><p>k均值算法针对聚类所得的簇划分最小化平方误差。<br>找到最优解需考察样本集D所有可能的簇划分，这是一个NP难问题。所有k-means采用了贪心策略，通过迭代优化来近似求解。</p>
+<blockquote>
+<ol>
+<li>从D中随机选择k个样本作为初始均值向量，类别k是人为设定的。</li>
+<li>计算各个样本与各个均值向量的距离，根据距离最近的均值向量确定样本的簇标记，并化入相应的簇。</li>
+<li>更新均值向量，如果新的均值向量不等于之前的均值向量，则更新均值向量，否则保持不变。</li>
+<li>重复2~3，直到当前均值向量均未更新，得到最终的簇划分。</li>
+</ol>
+</blockquote>
+<h3 id="Random-forest原理"><a href="#Random-forest原理" class="headerlink" title="Random forest原理"></a>Random forest原理</h3><p>是Bagging的一个扩展变体。以决策树为基学习器。在决策树的训练过程中引入了随机属性选择。</p>
+<blockquote>
+<ol>
+<li>假如m个训练样本，自助采样一个训练集</li>
+<li>当每个样本有d个属性，在决策树的每个节点需要分裂时，随机从这d个属性中选取出k个属性，满足条件k &lt;&lt; d。推荐值$k = log_{2}d$ ，再从这个k个属性值中采取某种策略（比如说信息增益）来选择一个属性作为该节点的分裂属性。</li>
+<li>决策树形成过程的每个节点都要按照步骤2来分裂，一直到不能够再分裂位置。整个决策树形成过程没有剪枝。</li>
+<li>按照步骤1~3建立大量的决策树，这样就构成了随机森林。</li>
+</ol>
+</blockquote>
+<h3 id="DBSCAN推导"><a href="#DBSCAN推导" class="headerlink" title="DBSCAN推导"></a>DBSCAN推导</h3><p>全称为“Density-Based Spatial Clustering of Applications with Noise”，属于密度聚类。此类算法假设聚类结构能通过样本分布的紧密程度确定。<br>定义下面几个概念：</p>
+<ul>
+<li>$\epsilon$-邻域：对$x<em>{j} \in D$，其$\epsilon$邻域包含样本集D中与$x</em>{j}$的距离不大于$\epsilon$的样本，即$N<em>\epsilon (x</em>{j}) = {x<em>{i}\in D | dist(x</em>{i}, x_{j})\leqslant \epsilon}$</li>
+<li>核心对象：若$x<em>{j}$的$\epsilon$-邻域至少包含MinPts个样本，这$x</em>{j}$是一个核心对象。</li>
+<li>密度直达：若$x<em>{j}$位于$x</em>{i}$的$\epsilon$-邻域中，且$x<em>{i}$是核心对象，则称$x</em>{j}$由$x_{i}$密度直达。</li>
+<li>密度可达：对$x<em>{i}$与$x</em>{j}$，若存在样本序列$p<em>{1},p</em>{2},…,p<em>{n}$，其中$p</em>{1} = x<em>{i}$, $p</em>{n} = x<em>{j}$且$p</em>{i+1}$由$p<em>{i}$密度直达，则称$x</em>{j}$由$x_{i}$密度可达。</li>
+</ul>
+<p>“簇”定义为：由密度可达关系导出的最大密度相连样本集合。</p>
+<h3 id="EM算法推导"><a href="#EM算法推导" class="headerlink" title="EM算法推导"></a>EM算法推导</h3><h3 id="LR和SVM的异同"><a href="#LR和SVM的异同" class="headerlink" title="LR和SVM的异同"></a>LR和SVM的异同</h3><p>相同点：</p>
+<ul>
+<li>LR和SVM都是分类算法</li>
+<li>如果不考虑核函数，他们的决策面都是线性的。</li>
+<li>LR和SVM都是监督学习算法</li>
+<li>LR和SVM都是判别模型</li>
+<li>LR和SVM在学术界都广为认知并且应用广泛</li>
+</ul>
+<p>不同点：</p>
+<ul>
+<li>本质上其loss function不同。不同的loss function代表不同的前提假设，也就代表不同的分类原理。简单来说，逻辑回归方法是基于概率理论，假设样本为1的概率可以用sigmoid函数来表示，然后通过极大似然的方法可以估计出参数的值。支持向量则是基于几何间隔最大的原理，认为存在最大几何间隔的分类为最优分类面。</li>
+<li>支持向量只考虑局部边界线附近的点，而逻辑回归考虑全局。从这一点可以得知：线性SVM不直接依赖于数据分布，分类平面不受一类点影响；LR则受所有数据点的影响，如果数据不同类别strongly unbalance，一般需要先对数据做balancing。</li>
+<li>在解决非线性问题时，支持向量机采用核函数的机制，而LR通常不采用核函数的方法。这个问题理解起来非常简单。分类模型的结果就是计算决策面，模型训练的过程就是决策面的计算过程。通过上面的第二点可以了解，在计算决策面时，SVM算法里只有少数几个代表支持向量的样本参与计算，也就是只有少数几个样本需要参与核计算（即keranal machine解的系数是稀疏的）。然而，LR算法里，每个样本点都必须参与决策面的计算过程，也就是说，假设在LR里也运用核函数的原理，那么每个样本点都必须参与核计算，这带来的计算复杂度是相当高的。所以，在具体应用时，LR很少运用核函数机制。</li>
+<li>线性SVM依赖数据表达的距离测量，所以需要对数据先做normalization，LR不受其影响。</li>
+<li>SVM的损失函数自带正则项，这就是问什么SVM是结构风险最小化算法的原因。而LR必须在损失函数上添加正则项。</li>
+</ul>
+<h3 id="HMM和CRF区别"><a href="#HMM和CRF区别" class="headerlink" title="HMM和CRF区别"></a>HMM和CRF区别</h3><ul>
+<li>HMM是生成模型，CRF是判别模型</li>
+<li>HMM是概率有向图，CRF是概率无向图</li>
+<li>HMM求解过程可能是局部最优，CRF可以全局最优</li>
+<li>CRF概率归一化比较合理，HMM则会导致label bias问题</li>
+</ul>
+<p>参考链接：<br><a href="https://www.zhihu.com/question/53458773" target="_blank" rel="noopener">条件随机场（CRF）和隐马尔科夫模型（HMM）最大区别在哪里？CRF的全局最优体现在哪里？</a><br><a href="https://www.zhihu.com/question/35866596" target="_blank" rel="noopener">如何用简单易懂的例子解释条件随机场（CRF）模型？它和HMM有什么区别？</a></p>
+<h3 id="集成学习介绍-boosting、bagging、stacking原理"><a href="#集成学习介绍-boosting、bagging、stacking原理" class="headerlink" title="集成学习介绍(boosting、bagging、stacking原理)"></a>集成学习介绍(boosting、bagging、stacking原理)</h3><p>集成学习器通过构建并结合多个学习器（弱学习器）来完成学习任务，常可获得比单一学习器显著优越的泛化性能。<br>主要集成学习方法可以分为两大类：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">个体学习器之间存在强依赖关系，必须串行生成序列化方法。(Boosting)</span><br><span class="line">个体学习器间不存在强依赖关系，可同时生成的并行化算法。(Bagging和Random Forest)</span><br></pre></td></tr></table></figure></p>
+<p><strong>Boosting</strong><br>先从初始训练集训练出一个基学习器，再根据基学习器的表现对样本分布进行调整，使得先前基学习做错的训练样本在后续受到更多的关注，然后基于调整后的样本分布来训练下一个基学习器；如此反复进行，直到基学习器数目达到事先指定的值T，最终将这个T个基学习器进行加权组合。</p>
+<p><strong>Bagging</strong><br>基于自助采样法（booststrap sampling）。<br>采样出T个含m个训练样本的采样集，然后基于每个采样集训练出一个基学习器，在将这些基学习器进行结合。结合时分类任务常使用简单投票法，回归任务使用简单平均法。</p>
+<p><strong>Stacking</strong><br>Stacking其实是一种结合策略（本身也是一种著名的集成学习算法），即基学习器的结合策略。把个体学习器成为初级学习器，用于结合的学习器称为次级学习器或元学习器。<br>Stacking先从初始数据集训练出初级学习器，然后生成一个新的数据集用于训练次级学习器，初级学习器的输出被当做样例特征，而初始样本的标记仍被当作样例标记。<br>使用交叉验证或者留一法，用初级学习器为使用的样本来产生次级学习器的训练样本。<br>次级学习算法一般使用多响应线性回归效果较好。</p>
+<h3 id="随机梯度下降法和牛顿法的区别和定义"><a href="#随机梯度下降法和牛顿法的区别和定义" class="headerlink" title="随机梯度下降法和牛顿法的区别和定义"></a>随机梯度下降法和牛顿法的区别和定义</h3><p>随机梯度下降是使用的一阶导，实现简单。当目标函数是凸函数时，梯度下降法的解是全局最优解，一般情况下，其解不保证是全局最优解。收敛速度未必是很快的。<br>牛顿法和拟牛顿法有收敛速度快的优点。需要求解目标函数的海赛矩阵的逆矩阵，计算比较复杂。拟牛顿法通过正定矩阵近似海赛矩阵的逆矩阵或海赛矩阵，简化了这一计算过程。<br>主要是使用二阶导数。</p>
+<h3 id="xgboost原理，怎么防止过拟合"><a href="#xgboost原理，怎么防止过拟合" class="headerlink" title="xgboost原理，怎么防止过拟合"></a>xgboost原理，怎么防止过拟合</h3><p>XGBoost可以看做是对GradientBoost的优化。其原理还是基于GradientBoost，创新之处是用了二阶导数和正则项。</p>
+<h3 id="SVM与感知机的区别"><a href="#SVM与感知机的区别" class="headerlink" title="SVM与感知机的区别"></a>SVM与感知机的区别</h3><h3 id="GBDT推导"><a href="#GBDT推导" class="headerlink" title="GBDT推导"></a>GBDT推导</h3><p>包含两个概念：GB(Gradient Boosting)和DT(Decision Tree)。因此，GBDT使用的弱分类器就是Decision Tree，而融合的方法叫做Gradient Boosting。<br>Gradient Boosting是一个Boosting框架，将梯度下降的思想引入Boosting算法，能处理不同的损失函数，较为实用。<br>本质是，每一次建立模型是在之前建立模型损失函数的梯度下降方向。</p>
+<h3 id="L1-L2正则化的区别"><a href="#L1-L2正则化的区别" class="headerlink" title="L1 L2正则化的区别"></a>L1 L2正则化的区别</h3><p>正则化定义：对学习算法的修改，旨在减少泛化误差而不是训练误差。<br>L2正则化是各个参数的平方和。<br>L1正则化时各个参数的绝对值之和。<br>相同点</p>
+<ul>
+<li>都是用于避免过拟合</li>
+</ul>
+<p>不同点：</p>
+<ul>
+<li>L1可以让一部分特征的系数缩小到0，从而间接实现特征选择。所以L1适用于特征之间有关联的情况。L2让所有特征的系数都缩小，但是不会减为0，它会使优化求解稳定快速。所以L2适用于特征之间没有关联的情况。</li>
+</ul>
+<h3 id="常见的激活函数有哪些"><a href="#常见的激活函数有哪些" class="headerlink" title="常见的激活函数有哪些"></a>常见的激活函数有哪些</h3><p>加入激活函数是用来加入非线性因素的，解决线性模型所不能解决的问题。<br>(1) sigmoid<br>函数表达式：$f(x) = \frac {1}{1 + e^{-x}}$<br>存在梯度消失、不是关于原点对称、计算exp比较耗时等问题<br>(2) tanh<br>函数表达式：$f(x) =\frac {e^{x} - e^{-x}}{e^{x} + e^{-x}} =\frac{1 - e^{-2x}}{1 + e^{-2x}}$<br>收敛速度比sigmoid快<br>解决了原点对称问题，但是梯度弥散没有解决<br>(3) ReLU<br>函数表达式：$ f(x) = max(0, x)$<br>能够有效缓解梯度消失问题。<br>提供神经网络的稀疏表达能力。<br>ReLU在$x &lt; 0$时，权重无法更新，会导致“神经元死亡”。<br>(4) Leaky-ReLu<br>函数表达式：</p>
+<script type="math/tex; mode=display">f(x) = ax (x < 0)</script><script type="math/tex; mode=display">f(x) = x (x >= 0)</script><p>(5) PReLU(parametric ReLU)<br>对于Leaky ReLU中的<script type="math/tex">\alpha</script>作为一个参数进行训练。<br>如何选择<br>首先尝试ReLU</p>
+<h3 id="凸函数的定义，sigmoid是凸函数吗"><a href="#凸函数的定义，sigmoid是凸函数吗" class="headerlink" title="凸函数的定义，sigmoid是凸函数吗"></a>凸函数的定义，sigmoid是凸函数吗</h3><p>对区间[a, b]上定义的函数f ，若它对区间中任意两点$x1,x2$均有$f(\frac{x1+x2}{2}\leq \frac{f(x1)+f(x2)}{2})$，则称$f$为区间[a, b]上的凸函数。对实数集上的函数，可以通过求二阶导数来判别，若二阶导数在区间上非负，则称为凸函数，若二阶导数在区间上恒大于0，则称为严格凸函数。</p>
+<p>sigmoid不是凸函数，没有全局最小值。</p>
+<h3 id="softmax与cross-entropy区别"><a href="#softmax与cross-entropy区别" class="headerlink" title="softmax与cross entropy区别"></a>softmax与cross entropy区别</h3><p>Softmax函数，或称归一化指数函数，将一个含任意实数的K维向量$z$压缩到另一个k维实向量$softmax(z)$，使得每一个元素的范围都在(0, 1)之间，并且所有元素的和为1。</p>
+<script type="math/tex; mode=display">S_{i} = \frac{e^i}{\sum_{j}{}e^j}</script><p>主要应用于基于概率的多分类问题。</p>
+<p>cross entropy为交叉熵代价函数。具体形式如下</p>
+<script type="math/tex; mode=display">l(\hat y, y) = - \sum_{i=1}^{C}y^(i)log(\hat y^{(i)})</script><p>所以，这两个是不同的，但是经常联合起来使用。在softmax + 交叉熵组合的情况下，导数的形式非常简洁。</p>
+<h3 id="Adam算法"><a href="#Adam算法" class="headerlink" title="Adam算法"></a>Adam算法</h3><p>Adam是一种学习率自适应的优化算法。</p>
+<ul>
+<li>步长$\epsilon$(建议默认为0.001)</li>
+<li>矩估计的指数衰减速率，$\rho<em>{1}$和$\rho</em>{2}$在区间[0, 1)内。(建议默认分别为0.9和0.999)</li>
+<li>用于数值稳定的小常数$\delta$(建议默认为：$10^{-8}$)</li>
+<li>初始参数$\theta$<br>初始化一阶和二阶矩变量$s = 0, r= 0$<br>初始化时间步t = 0<br>从训练集中采包含$m$个样本{$x^{(1)}, x^{(2)},…,x^{(m)}$}的小批量，对于目标为$y^{(i)}$<br>计算梯度：<script type="math/tex; mode=display">g = \frac{1}{m}\bigtriangledown _{\theta}\sum_{i}L(f(x^{(i)};\theta), y^{(i)})</script>更新有偏一阶矩估计：<script type="math/tex; mode=display">s = \rho_{1}s + (1-\rho_{1})g</script>更新有偏二阶矩估计：<script type="math/tex; mode=display">r = \rho_{2}r + (1-\rho_{2})g\odot g</script>修正一阶矩的偏差：<script type="math/tex; mode=display">\hat s \leftarrow \frac{s}{1-\rho_{1}^t}</script>修正二阶矩的偏差：<script type="math/tex; mode=display">\hat r \leftarrow \frac{r}{1-\rho_{1}^t}</script>计算更新：<script type="math/tex; mode=display">\bigtriangledown_{\theta} = -\epsilon\frac{\hat s}{\sqrt{\hat r}+\delta}</script>应用更新：<script type="math/tex; mode=display">\theta \leftarrow \theta + \bigtriangledown_{\theta}</script></li>
+</ul>
+<h3 id="反向传播，梯度检验怎么做？"><a href="#反向传播，梯度检验怎么做？" class="headerlink" title="反向传播，梯度检验怎么做？"></a>反向传播，梯度检验怎么做？</h3><p>对于一个函数来说，通常有两种计算梯度的方式：</p>
+<ul>
+<li>数值梯度</li>
+<li>解析梯度<br>神经网络算法使用反向传播计算目标函数关于每个参数的梯度，由于神经网络中函数都是可导的，所以求的是解析梯度。由于计算过程中涉及到的参数很多，反向传播计算的梯度很容易出现误差。</li>
+</ul>
+<p>为了确认代码中反向传播计算的梯度是否正确，可以采用梯度检验(gradient check)的方法。通过计算数值梯度，得到梯度的近似值，然后和反向传播算法进行比较，若两者相差很小的话则证明反向传播的代码是正确的。<br>数值梯度：</p>
+<script type="math/tex; mode=display">\frac{d}{d\theta}J(\theta) = \frac{J(\theta + \epsilon ) - J(\theta + \epsilon )}{2\epsilon}</script><p>$epsilon$是一个很小的值，比如$10^{(-4)}$。<br>所以我们可以通过计算损失函数的数值梯度来检验解析梯度，如果二者很接近的话，则验证解析方法得到的梯度是正确的。</p>
+<h3 id="为什么引入非线性激励函数"><a href="#为什么引入非线性激励函数" class="headerlink" title="为什么引入非线性激励函数"></a>为什么引入非线性激励函数</h3><ul>
+<li>对于线性函数，其实相当于$f(x) = x$，那么在线性激活函数下，每一层相当于用一个矩阵去乘以x，那么多层就是反复的用矩阵去乘以输入，根据矩阵的乘法法则，多个矩阵相乘得到一个大矩阵，所以线性激励函数下，多层网络与一层网络是一样的。</li>
+<li>非线性变化是深度学习有效的原因之一。原因在于非线性相当于对空间进行变换，变换完成后相当于对问题空间进行简化，原来线性不可解的问题现在变得可解了。</li>
+</ul>
+<p>非线性激励函数可以逼近任意函数，最早的想法是sigmoid函数或者tanh函数，含有一定的生物解释。</p>
+<h3 id="什么样的数据集不适合用深度学习"><a href="#什么样的数据集不适合用深度学习" class="headerlink" title="什么样的数据集不适合用深度学习"></a>什么样的数据集不适合用深度学习</h3><p>(1) 数据集太小，数据样本不足时，深度学习相对于其他机器学习算法，没有明显优势。<br>(2) 数据集没有局部相关特性，目前深度学习表现好的领域主要是图像、语音、自然语言处理等领域，这些领域的一个共性是局部相关性。图像中像素组成物体，语音信号中音位组合成单词，文本数据中单词组合成句子，这些特征元素一旦被打乱，表示的含义同时也被改变。对于没有这样的局部相关性的数据集，不适合使用深度学习算法进行处理。<br>举个例子：预测一个人的健康状况，相关的特征会有年龄、职业、收入、家庭状况等，将这些元素打乱，并不会影响相关的结果。</p>
+<h3 id="CNN最早成功应用在CV，为什么NLP和Speech里面很多问题也可以用CNN，为什么AlphaGo里面也用了CNN，这些问题的相似性在哪里，CNN通过什么手段抓住了这个共性。"><a href="#CNN最早成功应用在CV，为什么NLP和Speech里面很多问题也可以用CNN，为什么AlphaGo里面也用了CNN，这些问题的相似性在哪里，CNN通过什么手段抓住了这个共性。" class="headerlink" title="CNN最早成功应用在CV，为什么NLP和Speech里面很多问题也可以用CNN，为什么AlphaGo里面也用了CNN，这些问题的相似性在哪里，CNN通过什么手段抓住了这个共性。"></a>CNN最早成功应用在CV，为什么NLP和Speech里面很多问题也可以用CNN，为什么AlphaGo里面也用了CNN，这些问题的相似性在哪里，CNN通过什么手段抓住了这个共性。</h3><p>以上几个不相关问题的相关性在于，都存在局部与整体的关系，由低层次的特征经过组合，组成高层次的特征，并且得到不同特征之间的空间相关性。<br>CNN抓住此共性的手段主要有四个：局部连接、权值共享、池化操作、多层次结构<br>局部连接使网络可以提取数据的局部特征，权值共享大大降低了网络的训练难度，一个Filter只提取一个特征，在这个图片（或者语音/文本）中进行卷积，池化操作与多层次结构一起，实现了数据的降维。将低层次的局部特征组合成为较高层次的特征，从而对整个图片进行表示。</p>
+<h3 id="神经网络中激活函数的真正意义，一个激活函数需要具有哪些必要的属性，还有哪些属性是好的属性但不必要的。"><a href="#神经网络中激活函数的真正意义，一个激活函数需要具有哪些必要的属性，还有哪些属性是好的属性但不必要的。" class="headerlink" title="神经网络中激活函数的真正意义，一个激活函数需要具有哪些必要的属性，还有哪些属性是好的属性但不必要的。"></a>神经网络中激活函数的真正意义，一个激活函数需要具有哪些必要的属性，还有哪些属性是好的属性但不必要的。</h3><p>(1) 非线性：即导数不是常数。这个条件是多层神经网络的基础，保证多层网络不会退化成单层线性网络。这也是激活函数的意义所在。<br>(2) 几乎处处可微：可微性保证了在优化中梯度的可计算性。对于SGD算法来说，由于几乎不可能收敛到梯度接近零的位置，有限的不可微点对于优化结果不会有很大影响。<br>(3) 计算简单：非线性函数有很多。激活函数在神经网络前向的计算次数与神经元个数成正比，因此简单的非线性函数自然更适合用作激活函数。这也是ReLU之流比其他使用exp操作的激活函数更受欢迎的其中一个原因。<br>(4) 非饱和性：饱和指的是在某些区间梯度解决于零（即梯度消失），使得参数无法继续更新的问题。典型的例子就是Sigmoid，它的导数在x为比较大的正值和比较小的负值时都会接近于0。<br>(5) 单调性：即导数符号不变。单调性使得激活函数处的梯度方向不会经常发生改变，从而让训练变得更容易。<br>(6) 参数少：大部分激活函数都是没有参数的。<br>(7) 归一化：这是最近才出来的概率，对应的激活函数是SELU，主要思想是使样本分布自动归一化到零均值、单位方差的分布，从而稳定训练。在这之前，这种归一化思想也被用于网络结构的设计，比如Batch Normalization。</p>
+<h3 id="为什么实现分类的CNN中需要进行Max-pooling"><a href="#为什么实现分类的CNN中需要进行Max-pooling" class="headerlink" title="为什么实现分类的CNN中需要进行Max-pooling"></a>为什么实现分类的CNN中需要进行Max-pooling</h3><p>Max-pooling可以将特征维度变小，使得减小计算时间，同时，不会损失太多重要的信息，因为我们是保存最大值，这个最大值可以理解为该窗口下的最重要信息。同时Max-pooling也对CNN具有平移不变性提供了很多理论支撑。</p>
+<h3 id="RNN为什么会梯度消失，LSTM是怎么避免梯度消失的"><a href="#RNN为什么会梯度消失，LSTM是怎么避免梯度消失的" class="headerlink" title="RNN为什么会梯度消失，LSTM是怎么避免梯度消失的"></a>RNN为什么会梯度消失，LSTM是怎么避免梯度消失的</h3><p>可以参考我的另一博客<a href="https://fengxc.me/%E5%90%B4%E6%81%A9%E8%BE%BE%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B%EF%BC%9A%E5%BE%AA%E7%8E%AF%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B.html#more">吴恩达序列模型：循环序列模型</a></p>
+<h3 id="nlp中未登录词怎么处理"><a href="#nlp中未登录词怎么处理" class="headerlink" title="nlp中未登录词怎么处理"></a>nlp中未登录词怎么处理</h3><p>未登录词就是未在词表中出现的词。可以使用标记<unk>表示未登录词，在表示词向量时，可以将未登录词进行标准初始化。</unk></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="会微积分的喵 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpeg" alt="会微积分的喵 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>会微积分的喵</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://fengxc.me/机器学习常见面试点-持续更新中.html" title="机器学习常见面试题(持续更新中...)">https://fengxc.me/机器学习常见面试点-持续更新中.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/nlp/" rel="tag"># nlp</a>
+          
+            <a href="/tags/面试题/" rel="tag"># 面试题</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Leetcode-654-Maximum-Binary-Tree.html" rel="next" title="Leetcode 654: Maximum Binary Tree">
+                <i class="fa fa-chevron-left"></i> Leetcode 654: Maximum Binary Tree
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Leetcode-814-Binary-Tree-Pruning.html" rel="prev" title="Leetcode 814: Binary Tree Pruning">
+                Leetcode 814: Binary Tree Pruning <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="会微积分的喵">
+            
+              <p class="site-author-name" itemprop="name">会微积分的喵</p>
+              <p class="site-description motion-element" itemprop="description">Happy Code, Happy Life</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">128</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">204</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/cutoutsy" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:cutoutsy@gmail.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://windmgc.me" title="windmgc" target="_blank">windmgc</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监督学习与非监督学习区别，非监督学习举例"><span class="nav-number">2.</span> <span class="nav-text">监督学习与非监督学习区别，非监督学习举例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#统计（传统）机器学习和深度学习的区别与联系"><span class="nav-number">3.</span> <span class="nav-text">统计（传统）机器学习和深度学习的区别与联系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征工程你一般怎么做"><span class="nav-number">4.</span> <span class="nav-text">特征工程你一般怎么做</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是数据标准化，为什么要进行数据标准化？"><span class="nav-number">5.</span> <span class="nav-text">什么是数据标准化，为什么要进行数据标准化？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#机器学习中对样本数据不平衡的情况有哪些解决办法"><span class="nav-number">6.</span> <span class="nav-text">机器学习中对样本数据不平衡的情况有哪些解决办法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解释什么是降维，在哪里会用到降维，它的好处是什么？"><span class="nav-number">7.</span> <span class="nav-text">解释什么是降维，在哪里会用到降维，它的好处是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何处理缺失值"><span class="nav-number">8.</span> <span class="nav-text">如何处理缺失值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过拟合如何解决"><span class="nav-number">9.</span> <span class="nav-text">过拟合如何解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AUC是什么"><span class="nav-number">10.</span> <span class="nav-text">AUC是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解释k-means原理"><span class="nav-number">11.</span> <span class="nav-text">解释k-means原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Random-forest原理"><span class="nav-number">12.</span> <span class="nav-text">Random forest原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DBSCAN推导"><span class="nav-number">13.</span> <span class="nav-text">DBSCAN推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EM算法推导"><span class="nav-number">14.</span> <span class="nav-text">EM算法推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LR和SVM的异同"><span class="nav-number">15.</span> <span class="nav-text">LR和SVM的异同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HMM和CRF区别"><span class="nav-number">16.</span> <span class="nav-text">HMM和CRF区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集成学习介绍-boosting、bagging、stacking原理"><span class="nav-number">17.</span> <span class="nav-text">集成学习介绍(boosting、bagging、stacking原理)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#随机梯度下降法和牛顿法的区别和定义"><span class="nav-number">18.</span> <span class="nav-text">随机梯度下降法和牛顿法的区别和定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xgboost原理，怎么防止过拟合"><span class="nav-number">19.</span> <span class="nav-text">xgboost原理，怎么防止过拟合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SVM与感知机的区别"><span class="nav-number">20.</span> <span class="nav-text">SVM与感知机的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GBDT推导"><span class="nav-number">21.</span> <span class="nav-text">GBDT推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#L1-L2正则化的区别"><span class="nav-number">22.</span> <span class="nav-text">L1 L2正则化的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见的激活函数有哪些"><span class="nav-number">23.</span> <span class="nav-text">常见的激活函数有哪些</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#凸函数的定义，sigmoid是凸函数吗"><span class="nav-number">24.</span> <span class="nav-text">凸函数的定义，sigmoid是凸函数吗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#softmax与cross-entropy区别"><span class="nav-number">25.</span> <span class="nav-text">softmax与cross entropy区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adam算法"><span class="nav-number">26.</span> <span class="nav-text">Adam算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反向传播，梯度检验怎么做？"><span class="nav-number">27.</span> <span class="nav-text">反向传播，梯度检验怎么做？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么引入非线性激励函数"><span class="nav-number">28.</span> <span class="nav-text">为什么引入非线性激励函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么样的数据集不适合用深度学习"><span class="nav-number">29.</span> <span class="nav-text">什么样的数据集不适合用深度学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CNN最早成功应用在CV，为什么NLP和Speech里面很多问题也可以用CNN，为什么AlphaGo里面也用了CNN，这些问题的相似性在哪里，CNN通过什么手段抓住了这个共性。"><span class="nav-number">30.</span> <span class="nav-text">CNN最早成功应用在CV，为什么NLP和Speech里面很多问题也可以用CNN，为什么AlphaGo里面也用了CNN，这些问题的相似性在哪里，CNN通过什么手段抓住了这个共性。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#神经网络中激活函数的真正意义，一个激活函数需要具有哪些必要的属性，还有哪些属性是好的属性但不必要的。"><span class="nav-number">31.</span> <span class="nav-text">神经网络中激活函数的真正意义，一个激活函数需要具有哪些必要的属性，还有哪些属性是好的属性但不必要的。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么实现分类的CNN中需要进行Max-pooling"><span class="nav-number">32.</span> <span class="nav-text">为什么实现分类的CNN中需要进行Max-pooling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RNN为什么会梯度消失，LSTM是怎么避免梯度消失的"><span class="nav-number">33.</span> <span class="nav-text">RNN为什么会梯度消失，LSTM是怎么避免梯度消失的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nlp中未登录词怎么处理"><span class="nav-number">34.</span> <span class="nav-text">nlp中未登录词怎么处理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">会微积分的喵</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">332k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">5:02</span>
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Pisces</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://cutoutsy-blog.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://fengxc.me/机器学习常见面试点-持续更新中.html';
+        this.page.identifier = '机器学习常见面试点-持续更新中.html';
+        this.page.title = '机器学习常见面试题(持续更新中...)';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cutoutsy-blog.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

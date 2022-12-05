@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next-cat.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="上学期选修了一门信息安全讨论，期末的时候是写一个关于信息安全方面的报告，找本科毕设精简一下交上去，被老师发现了，开学来了要重新写，哭，于是遂有下文。 摘 要: Google对于SHA-1的破解是一个重大的突破，从应用层上验证了SHA-1的不安全 性。本文详细的介绍了哈希函数及 SHA-1 的发展和应用，其中着重介绍了针对 SHA-1 的攻 击的历史发展。最后我们介绍了在 SHA-1 之后的一些哈希">
+<meta name="keywords" content="SHA-1,Googlw,密码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SHA-1的简单探究">
+<meta property="og:url" content="https://fengxc.me/SHA-1的简单探究.html">
+<meta property="og:site_name" content="会微积分的喵">
+<meta property="og:description" content="上学期选修了一门信息安全讨论，期末的时候是写一个关于信息安全方面的报告，找本科毕设精简一下交上去，被老师发现了，开学来了要重新写，哭，于是遂有下文。 摘 要: Google对于SHA-1的破解是一个重大的突破，从应用层上验证了SHA-1的不安全 性。本文详细的介绍了哈希函数及 SHA-1 的发展和应用，其中着重介绍了针对 SHA-1 的攻 击的历史发展。最后我们介绍了在 SHA-1 之后的一些哈希">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/sha-1_1.png">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/blog_sha-1_2.png">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/blog_sha-1_3.png">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/blog_sha-1_4.png">
+<meta property="og:updated_time" content="2022-12-05T17:10:33.335Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SHA-1的简单探究">
+<meta name="twitter:description" content="上学期选修了一门信息安全讨论，期末的时候是写一个关于信息安全方面的报告，找本科毕设精简一下交上去，被老师发现了，开学来了要重新写，哭，于是遂有下文。 摘 要: Google对于SHA-1的破解是一个重大的突破，从应用层上验证了SHA-1的不安全 性。本文详细的介绍了哈希函数及 SHA-1 的发展和应用，其中着重介绍了针对 SHA-1 的攻 击的历史发展。最后我们介绍了在 SHA-1 之后的一些哈希">
+<meta name="twitter:image" content="http://7oxhal.com1.z0.glb.clouddn.com/sha-1_1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://fengxc.me/SHA-1的简单探究.html">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>SHA-1的简单探究 | 会微积分的喵</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-122351842-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-122351842-1');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a4f22e1e9cbbfd498ecb004941dd74f6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">会微积分的喵</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">我走得很慢，但我从不后退</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-job">
+    <a href="/job/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>网易内推</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-booklist">
+    <a href="/books/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>书单</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-read">
+    <a href="/booklist/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>阅读</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-video">
+    <a href="/movies/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-film"></i> <br>视频</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/SHA-1的简单探究.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">SHA-1的简单探究
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-03-25 10:24:16" itemprop="dateCreated datePublished" datetime="2017-03-25T10:24:16+00:00">2017-03-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2022-12-05 17:10:33" itemprop="dateModified" datetime="2022-12-05T17:10:33+00:00">2022-12-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/SHA-1的简单探究.html#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="SHA-1的简单探究.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">5.3k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">5 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>上学期选修了一门信息安全讨论，期末的时候是写一个关于信息安全方面的报告，找本科毕设精简一下交上去，被老师发现了，开学来了要重新写，哭，于是遂有下文。</p>
+<p>摘 要: Google对于SHA-1的破解是一个重大的突破，从应用层上验证了SHA-1的不安全 性。本文详细的介绍了哈希函数及 SHA-1 的发展和应用，其中着重介绍了针对 SHA-1 的攻 击的历史发展。最后我们介绍了在 SHA-1 之后的一些哈希函数的安全性和发展现状。<br><a id="more"></a><br>关键词:SHA-1，哈希函数，碰撞</p>
+<h3 id="1-引言"><a href="#1-引言" class="headerlink" title="1 引言"></a>1 引言</h3><p>2017年2月23日，Google经过两年的研究，表示其已经成功破解了SHA-1加密，具体的详情在90天之后我们就能知道(根据Google的披露原则)。同时，还发布了两份特制 PDF 文档，它们拥有相同的SHA-1值，但是内容却不尽相同。谷歌公司多年来一直主张弃用SHA-1方案，特别是在TLS证书签署等场景之下。早在2014年，Chrome小组就宣布将逐渐淘汰对SHA-1的使用。Google希望自己针对SHA-1完成的实际攻击能够进一步巩固这一结论，让更多人意识到其已经不再安全可靠。</p>
+<p>关于SHA-1的安全性，早在2005年，密码学家就证明SHA-1的破解速度比预期提高了2000倍，虽然破解仍然是极其困难和昂贵的，但随着计算机变得越来越快和越来越廉价， SHA-1 算法的安全性也逐年降低，已被密码学家严重质疑，希望由安全强度更高的 SHA-2 替代它。但是现在还是有好多领域在使用SHA-1。SHA-1 被业内广泛用于数字签名、文件 完整性验证、以及保护广泛的数字资产(包括信用卡交易、电子文档、开源软件资源库与 软件更新等)的加密标准。</p>
+<p>互联网的出现给人们的生活或者工作带来了极大的方便。但是随着计算机被广泛应用的信息时代，面对越来越多的信息。如何保护信息的安全越来越显得重要。特别是在网络化的 今天，我们的很多信息暴露在网上，比如出生证明、身份信息、信用卡信息、学籍信息等。如果我们不对这些信息加以保护，那将给我们的生活带来危害。哈希算法在我们日常网络安 全、代码仓库安全、甚至是确认文件的完整性方面都扮演着重要的角色。比如我们在登录系统时，将我们的登录密码进行哈希后再保存起来，可以防止存放账号密码的数据库被人入侵 时，破坏者仍然不知道我们的密码。</p>
+<h3 id="2-哈希函数"><a href="#2-哈希函数" class="headerlink" title="2 哈希函数"></a>2 哈希函数</h3><p>哈希函数(Hash Function)又称散列函数、散列算法。是一种将任意长度的数据映射到有限长度的域上。即对一串数据进行杂糅，输出一段固定长度的数据 h，这段固定长度的数 据称为指纹。</p>
+<p>哈希函数需要满足一定的条件，首先是要满足确定性，哈希函数算法是确定性的算法，算法执行过程不引入任何随机变量。即相同消息的哈希结果一定相同。如果相同消息产生的 结果不同，那这种算法也就不是哈希函数。高效性，给定任意一个消息，可以快速计算Hash(m)。哈希函数一个特点就是计算速度快，这样就可以把长的消息转为短的消息，然后供其他计算速度慢的算法去计算，用哈希函数做一个预处理。目标抗碰撞性，给定任意一个消息$m_0$ ，很难找到另一个消息$m_1$ ，使得 Hash($m_0$)=Hash($m_1$)。这也是在破解的时候，是基于目标抗碰撞性的。如果给定任意一个消息$m_0$ ，都能找到另外一个消息与它哈希值相同，<br>那么就可以称完全破解了这种算法。广义碰撞性，很难找到两个消息$m_0≠m_1$，使得 Hash($m_0$)= Hash($m_1$)。如果第四个条件不满足，则这个哈希函数是不安全的。如果第三个条件完全不满足，那么此哈希函数已经彻底不安全，应该直接弃用。哈希函数要具有抗碰撞的能力以及抗篡改能力，对于一个数据块，哪怕只是改动其一个比特位，其hash值的改动也会非常大。</p>
+<p>哈希函数在信息安全方面的一个作用就是进行文件校验，相比于我们熟悉的奇偶校验和CRC校验，使用哈希函数的校验具有抗数据篡改的能力，防止对数据的恶意破坏。在文件 传送后，将得到的目标文件计算的哈希值和源文件的哈希值进行对比，由着两者的一致性，可以保证两个文件的每一个码元都是相同的。可以校验文件传输过程中是否出现错误，以及更重要的是可以保证文件在传输过程中未被恶意破坏。比如我们在上Oracle官网上下载JDK的时候，就会有checksum。供用户下载后进行验证，保证下载JDK的正确性。还有在Linux系统安装软件包的时候，也可以进行校验，以保证安装的软件包是来自于官方的源，不被破坏者植入恶意代码。</p>
+<p>哈希函数的另一个作用就是数字签名，由于非对称算法的运算速度较慢，所以在数字签名协议中也包含了哈希函数，在这种签名协议中，双发必须事先协商好双方都支持的 Hash 函数和签名算法。签名方先对数据文件使用哈希函数计算散列值，然后对较短的哈希值结果用非对称算法进行数字签名操作，接受方先对数据文件进行计算哈希值，然后再用非对称算法验证数字签名。具体过程如图1所示，数字签名进行身份认证，并保证完整性和不可否认性。</p>
+<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/sha-1_1.png" alt="SHA-1"></p>
+<h3 id="3-SHA-1"><a href="#3-SHA-1" class="headerlink" title="3 SHA-1"></a>3 SHA-1</h3><h4 id="3-1-SHA-1简介"><a href="#3-1-SHA-1简介" class="headerlink" title="3.1 SHA-1简介"></a>3.1 SHA-1简介</h4><p>SHA(Secure Hash Algorithm)安全散列算法是一个密码散列家族，由美国国家安全局(NSA)所设计，也是一种哈希函数。是FIPS所认证的安全散列算法。能计算出一个数字消息所对应到的，长度固定的字符串(又称消息摘要)的算法。输入的消息不同，它们对应到不同字符串的概率很高。</p>
+<p>SHA-1发布于1995年，与前身MD5相比，SHA-1的输出长度更长，(MD5输出长度为128bit，SHA-1输出长度为160bit)，曾被视为是MD5(更早以前被广泛使用的散列函数)的后继者。在许多安全协议中广为使用，包括TLS和SSL，PGP、SSH、S/MIME和IPsec。但SHA-1的安全性在2000年以后已经不被大多数的加密场景所接受。</p>
+<h4 id="3-2-SHA-1算法"><a href="#3-2-SHA-1算法" class="headerlink" title="3.2 SHA-1算法"></a>3.2 SHA-1算法</h4><p>SHA-1 可以对不超过$2^{64}$比特的消息进行计算，输入以512位数据块为单位处理，产生160比特的消息摘要作为输出。该算法的处理流程主要分为5个步骤:</p>
+<p>步骤 1:对输入的数据进行填充，是的数据位长度对512求余的结果为448。填充比特 串的最高位补一个 1，其余位补0。附加填充总是要进行的，即使消息的长度满足所要求的长度。</p>
+<p>步骤 2:将64比特加在报文后表示报文的原始长度，是报文长度为512比特的倍数。</p>
+<p>步骤 3:一个160位MD缓存用以保存中间和最终的散列函数的结果。它可以表示为32位寄存器(A，B，C，D，E)。初始化为 A=67452301，B=EFCDAB89，C=98BADCFE， D=10325476，E=C3D2E1F0。前四个是与MD5相同的，但存储为big-endian format，即将高 序字节存储在起始地址。</p>
+<p>步骤 4: 以512比特(16个字)分组处理消息。此算法的核心就是称为压缩算法(compression function)的模块。这个模块包括4次循环，每次循环又包含20 个处理步骤。 4次循环具有相似的结构，但每次循环使用不同的基本逻辑函数，称为 f1，f2，f3，f4。</p>
+<p>步骤 5:全部L个512位数据块处理完毕后，输出160位消息摘要。</p>
+<h4 id="3-3-SHA-1碰撞"><a href="#3-3-SHA-1碰撞" class="headerlink" title="3.3 SHA-1碰撞"></a>3.3 SHA-1碰撞</h4><p>1990 年 MD4 算法提出，但是很快发现了严重的安全问题，在1992年被MD5算法取代，MD5算法在之后的十几年内被软件行业广泛使用，但之后也被破解。随后开始使用SHA-1。</p>
+<p>关于寻找哈希函数碰撞的难度和一般方法，SHA-1输出长度为160bit。如果SHA-1本身没有漏洞，而攻击者想要找到一组碰撞的话，最显然的方法是选取$2^{160}$ 组不同的数据，依次计算它们的哈希结果。根据著名的抽屉原理，必然会出现一组数据，使得其哈希结果相同。 此攻击方法需要调用$2^{160}$次 SHA-1，即计算量级大约为$2^{160}$。这样的计算代价是巨大的，实际操作根本不可能。</p>
+<p>上面的方法可以通过放宽条件，用概率的方法寻找，能降低一定的计算量。 一个屋子里必须有366个人(一年有365天，不考虑闰年的情况)才能保证有两个人的生日是同一天。<br>但假设现在有23个人，根据概率论:第2个人和第1个人生日不同概率为1-$\frac{1}{365}$，第3个人和前两个人生日不同的概率为$(1−\frac{1}{365})(1−\frac{1}{364})$ ，第4个人和前三个人生日都不相同的概率为$(1−\frac{1}{365})(1−\frac{1}{364})(1−\frac{1}{363})$，依次类推，第23个人和前22个人生日都不相同的概率为<script type="math/tex">\prod_{i=1}^{23}(1-\frac{1}{365-i+1})</script>，上述事件同时发生时，23个人生日才会各不相同。因此23个人中存在2个人生日相同的概率为:</p>
+<p><script type="math/tex">1−\frac{365!}{(365-23)!365^{23}} ≈ 50\%</script>。所以在寻找哈希碰撞时，选择大约$\sqrt{2^{160}}=2^{80}$组不同的数据并计算哈希结果，则有50%的概率有2个哈希结果相同。此方法的数量级远优于前一种方法，但是引入的代价是成功率变为50%。密码学上认为，如果能找到一种方法，能在计算时间小于$2^{80}的情况下，有超过生日攻击概率下找到一组碰撞，则认为这个哈希函数就不安全了。</p>
+<p>SHA-1自提出后，学者们一直认为它是安全的，并没有找到计算时间小于$2^{80}$攻击方法。 我国著名密码学家王小云教授所在的团队提出了一种寻找SHA-1碰撞的，相对快速的攻击方法。此攻击方法的计算量级为269，这标志着SHA-1存在漏洞。NIST不得不选择新的哈希函数，因此才有了SHA-256、SHA-384、SHA-512等。</p>
+<p>王小云教授的开创性工作让进一步破解SHA-1成为了可能。然而，王小云教授的方法 仅可破解SHA-1的广义抗碰撞性，且计算时间相对较长。在计算发杂度上也很高，具体操 作上可行度并不是很高。这表明SHA-1在一段时间内还是可以使用的。后来Stevens提出了 一种攻击方法，可以在$2^{61}$计算量级内找到一组哈希碰撞。</p>
+<p>上述方法都是使用纯CPU计算的方法。Stevens等人在2016年提出了新的攻击方法， 把显卡(即GPU)引入破解工作，使用大规模并行处理，进行并行计算，则计算量级会进一步降低到$2^{57.5}$。这样使得具体的破解成为了可能，本次Google的破解工作也使用了类似的方法。</p>
+<h4 id="3-4-Google-的破解工作"><a href="#3-4-Google-的破解工作" class="headerlink" title="3.4 Google 的破解工作"></a>3.4 Google 的破解工作</h4><p>Google 发布了两个 PDF 文件，第一个 PDF 文件打开打开如图 2 所示，<br><img src="http://7oxhal.com1.z0.glb.clouddn.com/blog_sha-1_2.png" alt="SHAttered1"><br>第二个 PDF 文件打开如图 3 所示，<br><img src="http://7oxhal.com1.z0.glb.clouddn.com/blog_sha-1_3.png" alt="SHAttered2"><br>这两份PDF文件经过SHA-1 哈希后的值是一样的，可以证明针对SHA-1找到了一组碰撞。但是这PDF的内容还是有意义的。可见Google的工作不仅仅是找到一组碰撞那么简单。 Google的官方网站的后续说明也证明了这一点。Google让用户上传任意文件，来检测文件本身是否可能被这种攻击威胁。可见这对于哈希函数本身虽不能算彻底的破解，但是基本以宣 告SHA-1 的死刑。如果你想查看自己的文件是否存在碰撞，可以将文件上传 到 <a href="https://shattered.io/" target="_blank" rel="noopener">https://shattered.io/</a> 这个网站。比如我把本文生成的PDF上传，得到的检测结果如图 4 所示， 从检测结果可以知道，本文生成的文档还是安全的。<br><img src="http://7oxhal.com1.z0.glb.clouddn.com/blog_sha-1_4.png" alt="upload"></p>
+<h3 id="4-一些其他的SHA"><a href="#4-一些其他的SHA" class="headerlink" title="4 一些其他的SHA"></a>4 一些其他的SHA</h3><p>在SHA-0和 SHA-1 之后，NSA 又设计发布了 SHA-2 和 SHA-3，其中 SHA-2 包括SHA-224、SHA-256、SHA-384、SHA-512、SHA-512/224和SHA-512/256。后面跟的数字是哈希后的 bit 位数。至今尚未出现对 SHA-2 有效的攻击，但是由于其算法与 SHA-1 相似。 需要一个其他替代的散列算法，于是 SHA-3 出现了，SHA-3 并不是要替换 SHA-2，而是算 法不同，更加的安全。<br>现在很多网络上很多地方还在使用SHA-1，比如我们现在我们打开网站好多都是https。 但是一些一些网站使用的 https 证书是用 SHA-1 进行哈希计算的，这样是很不安全的。现在 很有必须更换为 SHA-2 等安全性算法，当然国内还有好多网站没有实现 https，这也需要尽 快加上 https，使用户访问网站更加安全。</p>
+<h3 id="5-结论"><a href="#5-结论" class="headerlink" title="5 结论"></a>5 结论</h3><p>本文根据最近Google对SHA-1的破解，了解了关于哈希函数的定义以及它的一些应用发展。之后着重讨论了SHA-1的算法及破解的历程，以及Google这次破解对信息安全一些 领域的影响。最后介绍了其他的哈希函数 SHA-2 和 SHA-3 这些现在安全的的哈希函数。<br>当然本文只是一个简单的探究，还有好多关于哈希函数的其他知识尚未涉及到。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="会微积分的喵 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpeg" alt="会微积分的喵 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>会微积分的喵</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://fengxc.me/SHA-1的简单探究.html" title="SHA-1的简单探究">https://fengxc.me/SHA-1的简单探究.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SHA-1/" rel="tag"># SHA-1</a>
+          
+            <a href="/tags/Googlw/" rel="tag"># Googlw</a>
+          
+            <a href="/tags/密码/" rel="tag"># 密码</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Java自动拆装箱.html" rel="next" title="Java自动拆装箱">
+                <i class="fa fa-chevron-left"></i> Java自动拆装箱
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/华为2017精英软件赛参赛感受.html" rel="prev" title="华为2017精英软件赛参赛感受">
+                华为2017精英软件赛参赛感受 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="会微积分的喵">
+            
+              <p class="site-author-name" itemprop="name">会微积分的喵</p>
+              <p class="site-description motion-element" itemprop="description">Happy Code, Happy Life</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">128</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">204</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/cutoutsy" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:cutoutsy@gmail.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://windmgc.me" title="windmgc" target="_blank">windmgc</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-引言"><span class="nav-number">1.</span> <span class="nav-text">1 引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-哈希函数"><span class="nav-number">2.</span> <span class="nav-text">2 哈希函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-SHA-1"><span class="nav-number">3.</span> <span class="nav-text">3 SHA-1</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-SHA-1简介"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 SHA-1简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-SHA-1算法"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 SHA-1算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-SHA-1碰撞"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 SHA-1碰撞</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-Google-的破解工作"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 Google 的破解工作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-一些其他的SHA"><span class="nav-number">4.</span> <span class="nav-text">4 一些其他的SHA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-结论"><span class="nav-number">5.</span> <span class="nav-text">5 结论</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">会微积分的喵</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">332k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">5:02</span>
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Pisces</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://cutoutsy-blog.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://fengxc.me/SHA-1的简单探究.html';
+        this.page.identifier = 'SHA-1的简单探究.html';
+        this.page.title = 'SHA-1的简单探究';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cutoutsy-blog.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

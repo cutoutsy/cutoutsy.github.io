@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next-cat.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="OR-Tools是用c++编写的，但也可以在Python、Java或C#中使用它。下面主要介绍使用Python创建和运行OR-Tools程序。 以下部分将帮助您开始使用Python的OR-Tools:  什么是优化问题 使用Python解决优化问题 更多使用Python的例子 确定你希望解决的问题类型">
+<meta name="keywords" content="OR-Tools,运筹学,组合优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OR-Tools入门教程">
+<meta property="og:url" content="https://fengxc.me/OR-Tools入门教程.html">
+<meta property="og:site_name" content="会微积分的喵">
+<meta property="og:description" content="OR-Tools是用c++编写的，但也可以在Python、Java或C#中使用它。下面主要介绍使用Python创建和运行OR-Tools程序。 以下部分将帮助您开始使用Python的OR-Tools:  什么是优化问题 使用Python解决优化问题 更多使用Python的例子 确定你希望解决的问题类型">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2022-12-05T17:10:33.331Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OR-Tools入门教程">
+<meta name="twitter:description" content="OR-Tools是用c++编写的，但也可以在Python、Java或C#中使用它。下面主要介绍使用Python创建和运行OR-Tools程序。 以下部分将帮助您开始使用Python的OR-Tools:  什么是优化问题 使用Python解决优化问题 更多使用Python的例子 确定你希望解决的问题类型">
+
+
+
+
+
+
+  <link rel="canonical" href="https://fengxc.me/OR-Tools入门教程.html">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>OR-Tools入门教程 | 会微积分的喵</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-122351842-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-122351842-1');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a4f22e1e9cbbfd498ecb004941dd74f6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">会微积分的喵</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">我走得很慢，但我从不后退</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-job">
+    <a href="/job/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>网易内推</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-booklist">
+    <a href="/books/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>书单</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-read">
+    <a href="/booklist/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>阅读</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-video">
+    <a href="/movies/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-film"></i> <br>视频</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/OR-Tools入门教程.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">OR-Tools入门教程
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2022-08-05 15:37:49" itemprop="dateCreated datePublished" datetime="2022-08-05T15:37:49+00:00">2022-08-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2022-12-05 17:10:33" itemprop="dateModified" datetime="2022-12-05T17:10:33+00:00">2022-12-05</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/OR-Tools入门教程.html#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="OR-Tools入门教程.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">4.5k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">4 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>OR-Tools是用c++编写的，但也可以在Python、Java或C#中使用它。下面主要介绍使用Python创建和运行OR-Tools程序。</p>
+<p>以下部分将帮助您开始使用Python的OR-Tools:</p>
+<ul>
+<li>什么是优化问题</li>
+<li>使用Python解决优化问题</li>
+<li>更多使用Python的例子</li>
+<li>确定你希望解决的问题类型</li>
+</ul>
+<a id="more"></a>
+<h3 id="什么是优化问题"><a href="#什么是优化问题" class="headerlink" title="什么是优化问题"></a>什么是优化问题</h3><p>优化的目标是从一大堆可能的解决方案中找到一个问题的最佳解决方案。（有时你会满足于找到任何可行的解决方案；OR-Tools可以做到这一点）</p>
+<p>这里有一个典型的优化问题。假设一家运输公司使用卡车车队向客户运送包裹。每天，该公司必须将包裹分配给卡车，然后为每辆卡车选择运送包裹的路线。每一个包裹和路线的分配都一个成本，基于卡车的总行驶距离或者其他因素。问题是选择成本最低的包裹和线路分配方案。</p>
+<p>与所有优化问题一样，这个问题包含以下元素：</p>
+<ul>
+<li><p><strong>优化目标</strong>-想要优化的数值。在上面的例子中，目标是最小化成本。为了建立一个优化问题，你需要定义一个函数来计算解决方案的优化数值。这个函数称作目标函数。在前面的例子中，目标函数将计算任意分配包裹和路线方案的总成本。</p>
+<p>最优解是目标函数最佳的解。（最佳可以是最大值，也可以是最小值）</p>
+</li>
+<li><strong>约束</strong>-根据问题的具体要求，限制可能解的集合。例如，如果运输公司不能分配包裹给超过卡车载重，这将对解决方案施加约束。可行解是满足问题的所有给定约束条件，而不一定是最优解。</li>
+</ul>
+<p>求解优化问题的第一步是确定目标和约束条件。</p>
+<h3 id="使用Python解决优化问题"><a href="#使用Python解决优化问题" class="headerlink" title="使用Python解决优化问题"></a>使用Python解决优化问题</h3><p>接下来，我们给出一个优化问题的例子，并展示如何用Python建立和解决它。</p>
+<h4 id="线性优化问题"><a href="#线性优化问题" class="headerlink" title="线性优化问题"></a>线性优化问题</h4><p>在优化领域，线性优化（或线性规划）是最古老和最广泛使用的问题之一，其中其目标函数和约束可以写成线性表达式。下面式这类问题的一个简单例子。</p>
+<p><strong>在一下约束条件下最大化</strong>$3x + y$：</p>
+<script type="math/tex; mode=display">0 \leq x \leq 1</script><script type="math/tex; mode=display">0 \leq y \leq 2</script><script type="math/tex; mode=display">x + y \leq 2</script><p>在这个例子里目标函数是$3x + y$。目标函数和约束都是由线性表达式给出的，这使得这是一个线性问题。</p>
+<h4 id="求解问题的主要步骤"><a href="#求解问题的主要步骤" class="headerlink" title="求解问题的主要步骤"></a>求解问题的主要步骤</h4><p>对于每种编程语言，建立和解决问题的基本步骤都是相同的：</p>
+<ul>
+<li>导入必需的依赖库</li>
+<li>声明求解器</li>
+<li>创建变量</li>
+<li>定义约束</li>
+<li>定义目标函数</li>
+<li>调用求解器并显示结果</li>
+</ul>
+<h4 id="Python编程"><a href="#Python编程" class="headerlink" title="Python编程"></a>Python编程</h4><p>本节将介绍通过Python编程来建立和求解问题</p>
+<blockquote>
+<p><strong>Note</strong><br>完整的程序和运行它的步骤显示在本节的最后</p>
+</blockquote>
+<p>以下是步骤：</p>
+<p><strong>导入必需的依赖库</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> ortools.linear_solver <span class="keyword">import</span> pywraplp</span><br><span class="line"><span class="keyword">from</span> ortools.init <span class="keyword">import</span> pywrapinit</span><br></pre></td></tr></table></figure></p>
+<p><strong>声明求解器</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个基于GLOP后端的线性求解器</span></span><br><span class="line">solver = pywraplp.Solver.CreateSolver(<span class="string">'GLOP'</span>)</span><br></pre></td></tr></table></figure></p>
+<p><code>pywraplp</code>是底层C++求解器的Python包装器。参数<code>&quot;GLOP&quot;</code>指定了OR-Tools线性求解器<a href>GLOP</a></p>
+<p><strong>创建变量</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建变量x, y</span></span><br><span class="line">x = solver.NumVar(<span class="number">0</span>, <span class="number">1</span>, <span class="string">'x'</span>)</span><br><span class="line">y = solver.NumVar(<span class="number">0</span>, <span class="number">2</span>, <span class="string">'y'</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">'Number of variables ='</span>, solver.NumVariables())</span><br></pre></td></tr></table></figure></p>
+<p><strong>定义约束</strong></p>
+<p>前两个约束，$0 \leq x \leq 1$和$0 \leq y \leq 2$已经在变量中定义了。下面的代码是定义约束<br>$x + y \leq 2$：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建线性约束, 0 &lt;= x + y &lt;= 2</span></span><br><span class="line">ct = solver.Constraint(<span class="number">0</span>, <span class="number">2</span>, <span class="string">'ct'</span>)</span><br><span class="line">ct.SetCoefficient(x, <span class="number">1</span>)</span><br><span class="line">ct.SetCoefficient(y, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">'Number of constraints ='</span>, solver.NumConstraints())</span><br></pre></td></tr></table></figure></p>
+<p>方法<code>SetCoefficient</code>设置在约束表达式中x和y的系数。</p>
+<p><strong>定义目标函数</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建目标函数, 3 * x + y</span></span><br><span class="line">objective = solver.Objective()</span><br><span class="line">objective.SetCoefficient(x, <span class="number">3</span>)</span><br><span class="line">objective.SetCoefficient(y, <span class="number">1</span>)</span><br><span class="line">objective.SetMaximization()</span><br></pre></td></tr></table></figure></p>
+<p>方法<code>SetMaximization</code>表明这是一个最大化优化问题</p>
+<p><strong>调用求解器并显示结果</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">solver.Solve()</span><br><span class="line">print(<span class="string">'Solution:'</span>)</span><br><span class="line">print(<span class="string">'Objective value ='</span>, objective.Value())</span><br><span class="line">print(<span class="string">'x ='</span>, x.solution_value())</span><br><span class="line">print(<span class="string">'y ='</span>, y.solution_value())</span><br></pre></td></tr></table></figure></p>
+<h4 id="完整程序"><a href="#完整程序" class="headerlink" title="完整程序"></a>完整程序</h4><p>完整的程序如下所示。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> ortools.linear_solver <span class="keyword">import</span> pywraplp</span><br><span class="line"><span class="keyword">from</span> ortools.init <span class="keyword">import</span> pywrapinit</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 创建一个基于GLOP后端的线性求解器</span></span><br><span class="line">    solver = pywraplp.Solver.CreateSolver(<span class="string">'GLOP'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Create the variables x and y.</span></span><br><span class="line">    x = solver.NumVar(<span class="number">0</span>, <span class="number">1</span>, <span class="string">'x'</span>)</span><br><span class="line">    y = solver.NumVar(<span class="number">0</span>, <span class="number">2</span>, <span class="string">'y'</span>)</span><br><span class="line"></span><br><span class="line">    print(<span class="string">'Number of variables ='</span>, solver.NumVariables())</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建线性约束, 0 &lt;= x + y &lt;= 2</span></span><br><span class="line">    ct = solver.Constraint(<span class="number">0</span>, <span class="number">2</span>, <span class="string">'ct'</span>)</span><br><span class="line">    ct.SetCoefficient(x, <span class="number">1</span>)</span><br><span class="line">    ct.SetCoefficient(y, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    print(<span class="string">'Number of constraints ='</span>, solver.NumConstraints())</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建目标函数, 3 * x + y</span></span><br><span class="line">    objective = solver.Objective()</span><br><span class="line">    objective.SetCoefficient(x, <span class="number">3</span>)</span><br><span class="line">    objective.SetCoefficient(y, <span class="number">1</span>)</span><br><span class="line">    objective.SetMaximization()</span><br><span class="line"></span><br><span class="line">    solver.Solve()</span><br><span class="line"></span><br><span class="line">    print(<span class="string">'Solution:'</span>)</span><br><span class="line">    print(<span class="string">'Objective value ='</span>, objective.Value())</span><br><span class="line">    print(<span class="string">'x ='</span>, x.solution_value())</span><br><span class="line">    print(<span class="string">'y ='</span>, y.solution_value())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    pywrapinit.CppBridge.InitLogging(<span class="string">'basic_example.py'</span>)</span><br><span class="line">    cpp_flags = pywrapinit.CppFlags()</span><br><span class="line">    cpp_flags.logtostderr = <span class="literal">True</span></span><br><span class="line">    cpp_flags.log_prefix = <span class="literal">False</span></span><br><span class="line">    pywrapinit.CppBridge.SetFlags(cpp_flags)</span><br><span class="line"></span><br><span class="line">    main()</span><br></pre></td></tr></table></figure></p>
+<h4 id="运行程序"><a href="#运行程序" class="headerlink" title="运行程序"></a>运行程序</h4><p>你可以按照如下方式运行上面的程序：</p>
+<ol>
+<li>复制粘贴上面的代码到一个新文件中，并保存为<code>program.py</code></li>
+<li>打开命令行窗口，并切换到保存<code>program.py</code>的目录</li>
+<li>在命令提示符下，输入<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python relative/path/to/program.py</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>其中<em>relative/path/to/</em>是保存程序的目录的路径</p>
+<p>程序返回最大化目标函数的x和y:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Solution:</span><br><span class="line">x =  1.0</span><br><span class="line">y =  1.0</span><br></pre></td></tr></table></figure></p>
+<h3 id="更多Python示例"><a href="#更多Python示例" class="headerlink" title="更多Python示例"></a>更多Python示例</h3><p>有关如何解决各种类型优化问题的更多Python示例，请参见<a href>示例</a></p>
+<h3 id="确定你希望解决的问题类型"><a href="#确定你希望解决的问题类型" class="headerlink" title="确定你希望解决的问题类型"></a>确定你希望解决的问题类型</h3><p>世界上有各种各样的优化问题。对于每种类型的问题，都有不同的方法和算法来寻找最优解。在你开始编写解决优化问题之前，你需要确定你正在处理的问题类型，然后选择一个合适的<em>求解器</em>-一种寻找最佳解决方案的算法。</p>
+<p>下面你将看到OR-Tools解决的问题类型的简要概述，以及如何解决每种问题的链接。</p>
+<ul>
+<li><a href>线性优化</a></li>
+<li><a href>约束优化</a></li>
+<li><a href>混合整数优化</a></li>
+<li><a href>装箱</a></li>
+<li><a href>网络流</a></li>
+<li><a href>分配问题</a></li>
+<li><a href>调度问题</a></li>
+<li><a href>路径规划</a></li>
+</ul>
+<h4 id="线性优化"><a href="#线性优化" class="headerlink" title="线性优化"></a>线性优化</h4><p>正如在前面学到的，线性优化问题是目标函数和约束都是线性表达式的一类问题。OR-Tools中用于解决这类问题的主要求解器是线性优化求解器，它实际上是对几个用于线性和混合整数规划求解器的封装，包括第三方求解器。</p>
+<p><a href>了解更多关于线性优化</a></p>
+<h4 id="约束优化"><a href="#约束优化" class="headerlink" title="约束优化"></a>约束优化</h4><p>约束优化，或约束规划（CP），问题可以建模在任意约束条件下，从一个非常大的候选集中，确定可行的解决方案。约束规划基于可行性（寻找可行解）而不是优化（寻找最优解），关注约束和变量而不是目标函数。然后，约束规划可以用来解决优化问题，只需简单的比较所有可行解的目标函数数值。</p>
+<p><a href>了解更多关于约束优化</a></p>
+<h4 id="混合整数规划"><a href="#混合整数规划" class="headerlink" title="混合整数规划"></a>混合整数规划</h4><p><em>混合整数优化问题</em>是要求某些或者所有变量都是整数的一类问题。比如分配问题，一组工人需要被分配到一组任务。对于每个工人和任务，定义一个变量，如果给该工作者分配该任务，则该变量值为1，否则为0。在本例中，变量只能取0或1。</p>
+<p><a href>了解更多关于混合整数规划</a></p>
+<h4 id="装箱问题"><a href="#装箱问题" class="headerlink" title="装箱问题"></a>装箱问题</h4><p><em>装箱问题</em>是将一组不同尺寸的物品装入不同容量的容器的一类问题。其目标是根据容器的容量，装尽可能多的物品。一个特殊的例子是<em>背包问题</em>，其中只有一个容器。</p>
+<p><a href>了解更多关于装箱问题</a></p>
+<h4 id="网络流"><a href="#网络流" class="headerlink" title="网络流"></a>网络流</h4><p>许多问题可以用节点和节点之间的有向边组成的有向图来表示。例如，运输问题，货物通过铁路网运输，可以用图来表示，其中边是铁路线，节点是配送中心。在<em>最大流问题</em>中，每条边都有一个最大运输能力。问题是分配每条边运输货物的数量，使得总运输量尽可能大。</p>
+<p><a href>了解更多关于网络流</a></p>
+<h4 id="分配问题"><a href="#分配问题" class="headerlink" title="分配问题"></a>分配问题</h4><p><em>分配问题</em>是将一组工人或者机器分配给一组任务，其中每个工作或者机器在不同的任务上有固定的成本。问题是找到总成本最小的分配方案。分配问题实际上是网络流问题的一种特殊情况。</p>
+<p><a href>了解更多关于分配问题</a></p>
+<h4 id="调度问题"><a href="#调度问题" class="headerlink" title="调度问题"></a>调度问题</h4><p><em>调度问题</em>涉及分配资源以在特定时间执行一组任务。一个重要的例子是<em>作业车间调度问题</em>，其中多个作业在多台机器上处理。每个作业由一系列任务组成，这些任务必须按照给定的顺序执行，每个任务必须在特定的机器上处理。问题是分配一个时间表，以便在尽可能短的时间内完成所有工作。</p>
+<p><a href>了解更多关于调度问题</a></p>
+<h4 id="路径规划"><a href="#路径规划" class="headerlink" title="路径规划"></a>路径规划</h4><p>路径规划涉及寻找通过网络的最优路线车队，网络是一个有向图。问题是将包裹分配给运输卡车，见<a href>什么是优化问题</a>描述，是路径规划的一个例子。另一个是<a href>旅行推销员问题</a></p>
+<p><a href>了解更多关于路径规划</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="会微积分的喵 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpeg" alt="会微积分的喵 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>会微积分的喵</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://fengxc.me/OR-Tools入门教程.html" title="OR-Tools入门教程">https://fengxc.me/OR-Tools入门教程.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/OR-Tools/" rel="tag"># OR-Tools</a>
+          
+            <a href="/tags/运筹学/" rel="tag"># 运筹学</a>
+          
+            <a href="/tags/组合优化/" rel="tag"># 组合优化</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/OR-Tools简介.html" rel="next" title="OR-Tools简介">
+                <i class="fa fa-chevron-left"></i> OR-Tools简介
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/作业车间调度问题.html" rel="prev" title="车间调度问题">
+                车间调度问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="会微积分的喵">
+            
+              <p class="site-author-name" itemprop="name">会微积分的喵</p>
+              <p class="site-description motion-element" itemprop="description">Happy Code, Happy Life</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">128</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">204</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/cutoutsy" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:cutoutsy@gmail.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://windmgc.me" title="windmgc" target="_blank">windmgc</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是优化问题"><span class="nav-number">1.</span> <span class="nav-text">什么是优化问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Python解决优化问题"><span class="nav-number">2.</span> <span class="nav-text">使用Python解决优化问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#线性优化问题"><span class="nav-number">2.1.</span> <span class="nav-text">线性优化问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#求解问题的主要步骤"><span class="nav-number">2.2.</span> <span class="nav-text">求解问题的主要步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Python编程"><span class="nav-number">2.3.</span> <span class="nav-text">Python编程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#完整程序"><span class="nav-number">2.4.</span> <span class="nav-text">完整程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行程序"><span class="nav-number">2.5.</span> <span class="nav-text">运行程序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更多Python示例"><span class="nav-number">3.</span> <span class="nav-text">更多Python示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#确定你希望解决的问题类型"><span class="nav-number">4.</span> <span class="nav-text">确定你希望解决的问题类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#线性优化"><span class="nav-number">4.1.</span> <span class="nav-text">线性优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#约束优化"><span class="nav-number">4.2.</span> <span class="nav-text">约束优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#混合整数规划"><span class="nav-number">4.3.</span> <span class="nav-text">混合整数规划</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#装箱问题"><span class="nav-number">4.4.</span> <span class="nav-text">装箱问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络流"><span class="nav-number">4.5.</span> <span class="nav-text">网络流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分配问题"><span class="nav-number">4.6.</span> <span class="nav-text">分配问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调度问题"><span class="nav-number">4.7.</span> <span class="nav-text">调度问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#路径规划"><span class="nav-number">4.8.</span> <span class="nav-text">路径规划</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">会微积分的喵</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">332k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">5:02</span>
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Pisces</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://cutoutsy-blog.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://fengxc.me/OR-Tools入门教程.html';
+        this.page.identifier = 'OR-Tools入门教程.html';
+        this.page.title = 'OR-Tools入门教程';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cutoutsy-blog.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

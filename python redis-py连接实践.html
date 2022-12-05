@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next-cat.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="0x01 Redis四种模式这里的模式主要是说的Redis Server的部署模式，有四种：单机模式、主从模式、哨兵模式、集群模式 这四种模式的详细介绍可以参考这篇文章：https://juejin.cn/post/6844904191236767751 主从模式的Redis数据库，单点连接主节点。这种模式主要如果主节点挂掉，从库会切换为主节点，但是主节点IP已经变化，应用服务需要修改IP地址，重">
+<meta name="keywords" content="python,redis,连接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python redis-py连接实践">
+<meta property="og:url" content="https://fengxc.me/python redis-py连接实践.html">
+<meta property="og:site_name" content="会微积分的喵">
+<meta property="og:description" content="0x01 Redis四种模式这里的模式主要是说的Redis Server的部署模式，有四种：单机模式、主从模式、哨兵模式、集群模式 这四种模式的详细介绍可以参考这篇文章：https://juejin.cn/post/6844904191236767751 主从模式的Redis数据库，单点连接主节点。这种模式主要如果主节点挂掉，从库会切换为主节点，但是主节点IP已经变化，应用服务需要修改IP地址，重">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_redis_py_01.png">
+<meta property="og:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_redis_py_02.png">
+<meta property="og:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_redis_py_03.png">
+<meta property="og:updated_time" content="2022-12-05T17:10:33.335Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python redis-py连接实践">
+<meta name="twitter:description" content="0x01 Redis四种模式这里的模式主要是说的Redis Server的部署模式，有四种：单机模式、主从模式、哨兵模式、集群模式 这四种模式的详细介绍可以参考这篇文章：https://juejin.cn/post/6844904191236767751 主从模式的Redis数据库，单点连接主节点。这种模式主要如果主节点挂掉，从库会切换为主节点，但是主节点IP已经变化，应用服务需要修改IP地址，重">
+<meta name="twitter:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_redis_py_01.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://fengxc.me/python redis-py连接实践.html">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>python redis-py连接实践 | 会微积分的喵</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-122351842-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-122351842-1');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a4f22e1e9cbbfd498ecb004941dd74f6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">会微积分的喵</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">我走得很慢，但我从不后退</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-job">
+    <a href="/job/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>网易内推</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-booklist">
+    <a href="/books/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>书单</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-read">
+    <a href="/booklist/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>阅读</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-video">
+    <a href="/movies/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-film"></i> <br>视频</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/python redis-py连接实践.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">python redis-py连接实践
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2022-02-09 19:43:11" itemprop="dateCreated datePublished" datetime="2022-02-09T19:43:11+00:00">2022-02-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2022-12-05 17:10:33" itemprop="dateModified" datetime="2022-12-05T17:10:33+00:00">2022-12-05</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/python redis-py连接实践.html#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="python redis-py连接实践.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">6k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">5 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="0x01-Redis四种模式"><a href="#0x01-Redis四种模式" class="headerlink" title="0x01 Redis四种模式"></a>0x01 Redis四种模式</h3><p>这里的模式主要是说的Redis Server的部署模式，有四种：单机模式、主从模式、哨兵模式、集群模式</p>
+<p>这四种模式的详细介绍可以参考这篇文章：<a href="https://juejin.cn/post/6844904191236767751" target="_blank" rel="noopener">https://juejin.cn/post/6844904191236767751</a></p>
+<p>主从模式的Redis数据库，单点连接主节点。这种模式主要如果主节点挂掉，从库会切换为主节点，但是主节点IP已经变化，应用服务需要修改IP地址，重新发布。</p>
+<p>建议哨兵模式，这种主要连接的是哨兵节点（一个或多个组成），访问redis集群的数据都是通过哨兵集群的，redis集群出现问题，应用服务不用更改访问地址</p>
+<a id="more"></a>
+<h3 id="0x02-连接池"><a href="#0x02-连接池" class="headerlink" title="0x02 连接池"></a>0x02 连接池</h3><h4 id="ConnectionPool"><a href="#ConnectionPool" class="headerlink" title="ConnectionPool"></a>ConnectionPool</h4><p>redis-py 使用 connection pool 来管理对一个 redis server 的所有连接，避免每次建立、释放连接的开销。</p>
+<p>默认，每个Redis客户端实例都会维护一个自己的连接池。可以直接建立一个连接池ConnectionPool，然后作为参数初始化Redis，这样就可以实现多个 Redis 实例共享一个连接池。</p>
+<p>redis 取出的结果默认是字节，我们可以设定 decode_responses=True 改成字符串。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> redis    <span class="comment"># 导入redis 模块</span></span><br><span class="line"> </span><br><span class="line">pool = redis.ConnectionPool(host=<span class="string">'localhost'</span>, port=<span class="number">6379</span>, decode_responses=<span class="literal">True</span>)</span><br><span class="line">r = redis.Redis(host=<span class="string">'localhost'</span>, port=<span class="number">6379</span>, decode_responses=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<p>连接池大小默认是2 ** 31，可以通过设置max_connections来限制连接池大小</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> redis    <span class="comment"># 导入redis 模块</span></span><br><span class="line"> </span><br><span class="line">pool = redis.ConnectionPool(host=<span class="string">'localhost'</span>, port=<span class="number">6379</span>, max_connections=<span class="number">40</span>, decode_responses=<span class="literal">True</span>)  <span class="comment"># 连接池大小设置为40</span></span><br><span class="line">r = redis.Redis(host=<span class="string">'localhost'</span>, port=<span class="number">6379</span>, decode_responses=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<p>因为Redis服务器设置的连接数是有限的，在大并发的情况下，可能会导致客户端连接数超过redis server设置的最大连接数，从而会报错</p>
+<p>但是也不能设置太小，连接池设置太小会导致在大并发的时候没有可用连接而抛出异常，可以看源码中这两个函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_connection</span><span class="params">(self, command_name, *keys, **options)</span>:</span></span><br><span class="line">        <span class="string">"Get a connection from the pool"</span></span><br><span class="line">        self._checkpid()</span><br><span class="line">        <span class="keyword">with</span> self._lock:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                connection = self._available_connections.pop()   <span class="comment"># 当可用连接数为空时，pop会抛出IndexError的异常，如果这个时候连接数已达到最大链接数，在创建连接的时候会报错</span></span><br><span class="line">            <span class="keyword">except</span> IndexError:</span><br><span class="line">                connection = self.make_connection()</span><br><span class="line">            self._in_use_connections.add(connection)</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="comment"># ensure this connection is connected to Redis</span></span><br><span class="line">            connection.connect()</span><br><span class="line">            <span class="comment"># connections that the pool provides should be ready to send</span></span><br><span class="line">            <span class="comment"># a command. if not, the connection was either returned to the</span></span><br><span class="line">            <span class="comment"># pool before all data has been read or the socket has been</span></span><br><span class="line">            <span class="comment"># closed. either way, reconnect and verify everything is good.</span></span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                <span class="keyword">if</span> connection.can_read():</span><br><span class="line">                    <span class="keyword">raise</span> ConnectionError(<span class="string">'Connection has data'</span>)</span><br><span class="line">            <span class="keyword">except</span> ConnectionError:</span><br><span class="line">                connection.disconnect()</span><br><span class="line">                connection.connect()</span><br><span class="line">                <span class="keyword">if</span> connection.can_read():</span><br><span class="line">                    <span class="keyword">raise</span> ConnectionError(<span class="string">'Connection not ready'</span>)</span><br><span class="line">        <span class="keyword">except</span> BaseException:</span><br><span class="line">            <span class="comment"># release the connection back to the pool so that we don't</span></span><br><span class="line">            <span class="comment"># leak it</span></span><br><span class="line">            self.release(connection)</span><br><span class="line">            <span class="keyword">raise</span></span><br><span class="line"> </span><br><span class="line">        <span class="keyword">return</span> connection</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_connection</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"Create a new connection"</span></span><br><span class="line">        <span class="keyword">if</span> self._created_connections &gt;= self.max_connections:   <span class="comment"># 在这块会抛出Too many connections的连接异常</span></span><br><span class="line">            <span class="keyword">raise</span> ConnectionError(<span class="string">"Too many connections"</span>)</span><br><span class="line">        self._created_connections += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> self.connection_class(**self.connection_kwargs)</span><br></pre></td></tr></table></figure>
+<p>报错信息：<br><img src="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_redis_py_01.png" alt="连接数报错"></p>
+<h4 id="BlockingConnectionPool"><a href="#BlockingConnectionPool" class="headerlink" title="BlockingConnectionPool"></a>BlockingConnectionPool</h4><p>BlockingConnectionPool和ConnectionPool功能是一样的，但是是线程安全的，在多线程的环境下，建议用BlockingConnectionPool，比如gunicorn使用了多线程的worker。同时，当所有连接都在使用时，获取可用连接不会抛异常，而是可以设置等待时间。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Block forever.</span></span><br><span class="line">pool = BlockingConnectionPool(timeout=<span class="literal">None</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Raise a ``ConnectionError`` after five seconds if a connection is</span></span><br><span class="line"><span class="comment"># not available.</span></span><br><span class="line">pool = BlockingConnectionPool(timeout=<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="0x03-timeout相关"><a href="#0x03-timeout相关" class="headerlink" title="0x03 timeout相关"></a>0x03 timeout相关</h3><p>在初始化连接的时候，可以设置一些超时时间。</p>
+<p><strong>socket_timeout</strong></p>
+<p>指Redis发出命令接收响应的时间不能超过此参数设置时间. 如果超过了此时间, 将会抛出异常:redis.exceptions.TimeoutError: Timeout reading from socket, 即读取响应超时。</p>
+<p>建议设置这个时间，防止程序读取redis数据超时导致服务卡住，同时增加对这个的异常处理。</p>
+<p><strong>socket_connect_timeout</strong></p>
+<p>指Redis建立连接超时时间. 当设置此参数时, 如果在此时间内没有建立连接, 将会抛出异常redis.exceptions.TimeoutError: Timeout connecting to server。</p>
+<p>socket_connect_timeout不设置时，这个值等于socket_timeout。</p>
+<p>可以只设置socket_timeout</p>
+<p><strong>retry_on_timeout</strong></p>
+<p>Boolean类型，建议设置为True</p>
+<p>当设置False时, 一个命令超时后, 将会直接抛出timeout异常。</p>
+<p>当设置为True时, 命令超时后,将会重试一次, 重试成功则正常返回; 失败则抛出timeout异常。</p>
+<h3 id="0x04-Sentinel（哨兵）连接"><a href="#0x04-Sentinel（哨兵）连接" class="headerlink" title="0x04 Sentinel（哨兵）连接"></a>0x04 Sentinel（哨兵）连接</h3><p>Sentinel一般包含：Sentinel地址列表，master name，redis auth，分别填入下面</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> redis.sentinel <span class="keyword">import</span> Sentinel</span><br><span class="line">conf = &#123;</span><br><span class="line">    <span class="string">'sentinel'</span>: [(<span class="string">'x.x.x.1'</span>, <span class="number">26379</span>), (<span class="string">'x.x.x.2'</span>, <span class="number">26379</span>), (<span class="string">'x.x.x.3'</span>, <span class="number">26379</span>)],   <span class="comment"># Sentinel地址列表</span></span><br><span class="line">    <span class="string">'master_group_name'</span>: <span class="string">'mymaster'</span>,  <span class="comment"># master name</span></span><br><span class="line">    <span class="string">'connection_conf'</span>: &#123;</span><br><span class="line">        <span class="string">'password'</span>: <span class="string">'xxxxx'</span>,   <span class="comment"># redis auth</span></span><br><span class="line">        <span class="string">'socket_timeout'</span>: <span class="number">0.5</span>,</span><br><span class="line">        <span class="string">'retry_on_timeout'</span>: <span class="literal">True</span>,</span><br><span class="line">        <span class="string">'socket_keepalive'</span>: <span class="literal">True</span>,</span><br><span class="line">        <span class="string">'max_connections'</span>: <span class="number">20</span>,</span><br><span class="line">        <span class="string">'encoding'</span>: <span class="string">'utf8'</span>,</span><br><span class="line">        <span class="string">'decode_responses'</span>: <span class="literal">True</span>,</span><br><span class="line">        <span class="string">'client_name'</span>: <span class="string">'sentinel_client'</span>  <span class="comment"># 客户端连接名称</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">sentinel = Sentinel(conf[<span class="string">'sentinel'</span>], **conf[<span class="string">'connection_conf'</span>])</span><br><span class="line">redis_cli_0 = sentinel.master_for(conf[<span class="string">'master_group_name'</span>], db=<span class="number">0</span>)</span><br><span class="line">redis_cli_1 = sentinel.master_for(conf[<span class="string">'master_group_name'</span>], db=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>Sentinel连接方式和普通连接方式类似，master_for函数会返回一个Redis实例，但是sentinel的连接池不同，连接池类型是SentinelConnectionPool。</p>
+<p>里面逻辑主要新增：</p>
+<p>connect创建连接时，每次都会先去Sentinel查询一次master的地址。</p>
+<p>master宕机发生主从切换时，有两种场景，第一种是原master宕机了，这时候这时候客户端无法连接到master, 会产生ConnectionError或者TimeoutError异常。第二种是原master会变成slave，这样就会返回ReadOnlyError异常，会被转换为ConnectionError。</p>
+<p>无论哪种情况，都会在execute_command里调用Connection里的disconnect方法。</p>
+<p>这样在下次再使用这个连接时，因为连接断开了，就会再次调用connect创建连接，而connect调用connection_pool的get_master_address方法，这里调用get_master_address获取master的地址，而且都是实时获取的，如果发现master地址变了，就会断开所有的连接，重新连接。</p>
+<p>redis-py的Sentinel维持master的地址的方式是每次创建连接时都会去动态获取一次master的地址，而不是每次查询时都去获取一次master。不然的话，每一次请求都实际需要两次请求，吞吐量就下降了不少。而检查到master的异常后，会断开所有连接，然后重连</p>
+<h3 id="0x05-使用建议"><a href="#0x05-使用建议" class="headerlink" title="0x05 使用建议"></a>0x05 使用建议</h3><p>单py文件，无需对redis-py进一步封装，直接用原生的就好，因为本身有连接池，可以直接在py文件中创建对应db的连接，比如使用db 0，创建一个redis_cli_0，其他地方需要用到直接导入即可，单例模式。</p>
+<h3 id="0x06-相关Redis命令"><a href="#0x06-相关Redis命令" class="headerlink" title="0x06 相关Redis命令"></a>0x06 相关Redis命令</h3><p><strong>看Redis当前连接数</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; info clients</span><br><span class="line"><span class="comment"># Clients</span></span><br><span class="line">connected_clients: 2  <span class="comment"># 已连接客户端数</span></span><br><span class="line">client_recent_max_input_buffer: 2</span><br><span class="line">client_recent_max_output_buffer:0</span><br></pre></td></tr></table></figure>
+<p><strong>查看具体连接信息</strong></p>
+<p><img src="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_redis_py_02.png" alt="具体连接信息"></p>
+<p>具体含义可参考：<a href="https://www.runoob.com/redis/server-client-list.html" target="_blank" rel="noopener">https://www.runoob.com/redis/server-client-list.html</a></p>
+<p>这里的name是指客户端连接的名称，我们可以再创建连接的时候通过client_name设置，低版本不支持这个参数</p>
+<p><strong>关闭客户端连接</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client <span class="built_in">kill</span> ip:port</span><br></pre></td></tr></table></figure>
+<p><img src="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_redis_py_03.png" alt="关闭客户端连接"></p>
+<p><strong>查看Redis最大连接数</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; config get maxclients</span><br><span class="line">1) <span class="string">"maxclients"</span></span><br><span class="line">2) <span class="string">"10000"</span></span><br></pre></td></tr></table></figure>
+<p><strong>查看空闲连接多少时间会关闭</strong></p>
+<p>默认为0，指redis server永远不会关闭空闲连接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; config get timeout</span><br><span class="line">1) <span class="string">"timeout"</span></span><br><span class="line">2) <span class="string">"0"</span></span><br></pre></td></tr></table></figure>
+<h3 id="0x07-参考资料"><a href="#0x07-参考资料" class="headerlink" title="0x07 参考资料"></a>0x07 参考资料</h3><p><a href="https://juejin.cn/post/6844904191236767751" target="_blank" rel="noopener">https://juejin.cn/post/6844904191236767751</a></p>
+<p><a href="https://www.runoob.com/redis/redis-tutorial.html" target="_blank" rel="noopener">https://www.runoob.com/redis/redis-tutorial.html</a></p>
+<p><a href="https://huangzhw.github.io/2019/03/23/how-redis-py-sentinel-work/" target="_blank" rel="noopener">https://huangzhw.github.io/2019/03/23/how-redis-py-sentinel-work/</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="会微积分的喵 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpeg" alt="会微积分的喵 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>会微积分的喵</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://fengxc.me/python redis-py连接实践.html" title="python redis-py连接实践">https://fengxc.me/python redis-py连接实践.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/redis/" rel="tag"># redis</a>
+          
+            <a href="/tags/连接/" rel="tag"># 连接</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Python requests timeout详解.html" rel="next" title="Python requests timeout详解">
+                <i class="fa fa-chevron-left"></i> Python requests timeout详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/OR-Tools简介.html" rel="prev" title="OR-Tools简介">
+                OR-Tools简介 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="会微积分的喵">
+            
+              <p class="site-author-name" itemprop="name">会微积分的喵</p>
+              <p class="site-description motion-element" itemprop="description">Happy Code, Happy Life</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">128</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">204</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/cutoutsy" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:cutoutsy@gmail.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://windmgc.me" title="windmgc" target="_blank">windmgc</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-Redis四种模式"><span class="nav-number">1.</span> <span class="nav-text">0x01 Redis四种模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-连接池"><span class="nav-number">2.</span> <span class="nav-text">0x02 连接池</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ConnectionPool"><span class="nav-number">2.1.</span> <span class="nav-text">ConnectionPool</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BlockingConnectionPool"><span class="nav-number">2.2.</span> <span class="nav-text">BlockingConnectionPool</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-timeout相关"><span class="nav-number">3.</span> <span class="nav-text">0x03 timeout相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-Sentinel（哨兵）连接"><span class="nav-number">4.</span> <span class="nav-text">0x04 Sentinel（哨兵）连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x05-使用建议"><span class="nav-number">5.</span> <span class="nav-text">0x05 使用建议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x06-相关Redis命令"><span class="nav-number">6.</span> <span class="nav-text">0x06 相关Redis命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x07-参考资料"><span class="nav-number">7.</span> <span class="nav-text">0x07 参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">会微积分的喵</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">332k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">5:02</span>
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Pisces</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://cutoutsy-blog.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://fengxc.me/python redis-py连接实践.html';
+        this.page.identifier = 'python redis-py连接实践.html';
+        this.page.title = 'python redis-py连接实践';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cutoutsy-blog.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

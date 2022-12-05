@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next-cat.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="写在前面本文翻译 Implement Gradient Descent in Python 什么是梯度下降算法梯度下降算法是一种寻找函数最小值得优化算法。算法从函数的一个随机点开始，每次移动都是函数梯度的负方向，从而到达函数的全局/局部最小点。">
+<meta name="keywords" content="算法,Python,梯度下降">
+<meta property="og:type" content="article">
+<meta property="og:title" content="梯度下降算法Python实现">
+<meta property="og:url" content="https://fengxc.me/梯度下降算法Python实现.html">
+<meta property="og:site_name" content="会微积分的喵">
+<meta property="og:description" content="写在前面本文翻译 Implement Gradient Descent in Python 什么是梯度下降算法梯度下降算法是一种寻找函数最小值得优化算法。算法从函数的一个随机点开始，每次移动都是函数梯度的负方向，从而到达函数的全局/局部最小点。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/gradient_descent_1.gif">
+<meta property="og:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/gradient_descent_2.png">
+<meta property="og:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/gradient_descent_3.png">
+<meta property="og:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/gradient_descent_4.png">
+<meta property="og:updated_time" content="2022-12-05T17:10:33.335Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="梯度下降算法Python实现">
+<meta name="twitter:description" content="写在前面本文翻译 Implement Gradient Descent in Python 什么是梯度下降算法梯度下降算法是一种寻找函数最小值得优化算法。算法从函数的一个随机点开始，每次移动都是函数梯度的负方向，从而到达函数的全局/局部最小点。">
+<meta name="twitter:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/gradient_descent_1.gif">
+
+
+
+
+
+
+  <link rel="canonical" href="https://fengxc.me/梯度下降算法Python实现.html">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>梯度下降算法Python实现 | 会微积分的喵</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-122351842-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-122351842-1');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a4f22e1e9cbbfd498ecb004941dd74f6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">会微积分的喵</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">我走得很慢，但我从不后退</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-job">
+    <a href="/job/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>网易内推</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-booklist">
+    <a href="/books/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>书单</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-read">
+    <a href="/booklist/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>阅读</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-video">
+    <a href="/movies/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-film"></i> <br>视频</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/梯度下降算法Python实现.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">梯度下降算法Python实现
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-04-06 15:45:58" itemprop="dateCreated datePublished" datetime="2020-04-06T15:45:58+00:00">2020-04-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2022-12-05 17:10:33" itemprop="dateModified" datetime="2022-12-05T17:10:33+00:00">2022-12-05</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/梯度下降算法Python实现.html#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="梯度下降算法Python实现.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">31k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">28 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>本文翻译 <a href="https://towardsdatascience.com/implement-gradient-descent-in-python-9b93ed7108d1" target="_blank" rel="noopener">Implement Gradient Descent in Python</a></p>
+<h3 id="什么是梯度下降算法"><a href="#什么是梯度下降算法" class="headerlink" title="什么是梯度下降算法"></a>什么是梯度下降算法</h3><p>梯度下降算法是一种寻找函数最小值得优化算法。算法从函数的一个随机点开始，每次移动都是函数梯度的负方向，从而到达函数的全局/局部最小点。</p>
+<p><img src="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/gradient_descent_1.gif" alt="梯度下降"></p>
+<a id="more"></a>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p><strong>问题</strong>：给定函数$y=(x+5)^2$，从x=3点出发，找到函数的局部最小点。<br><img src="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/gradient_descent_2.png" alt="二次函数"></p>
+<p><strong>解决方案</strong>：从函数图形上看，我们可以知道答案。当x = -5 时，函数$y=(x+5)^2$到达最小值(x=-5, y=0)。所以x=-5是函数的局部和全局最小值。</p>
+<p>现在，我们来看如何使用梯度下降算法来获得同样的答案。</p>
+<p><strong>第一步</strong>：初始化x=3。找到函数的梯度，$\frac{dy}{dx} = 2*(x+5)$.</p>
+<p><strong>第二步</strong>：向梯度的负方向移动。但是每次移动多少呢。这里，我们需要一个学习率。这里我们假设<code>学习率-&gt;0.01</code></p>
+<p><strong>第三步</strong>：我们来演示梯度下降的两次迭代<br><img src="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/gradient_descent_3.png" alt="两步迭代"></p>
+<p><strong>第四步</strong>：我们可以看到x的值在下降，应该会收敛到局部最小-5。然而，我们需要多少次迭代呢。</p>
+<p><em>我们在算法里设置一个精度变量用来计算两个连续的”x”值。如果两个连续x的值得差值小于我们设置的精度，就停止算法。</em></p>
+<h3 id="Python实现梯度下降"><a href="#Python实现梯度下降" class="headerlink" title="Python实现梯度下降"></a>Python实现梯度下降</h3><p><strong>步骤1</strong>：初始化参数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cur_x = <span class="number">3</span>   <span class="comment"># 算法开始在 x=3</span></span><br><span class="line">rate = <span class="number">0.01</span> <span class="comment">#学习率</span></span><br><span class="line">precision = <span class="number">0.000001</span> <span class="comment">#  什么时候停止算法</span></span><br><span class="line">previous_step_size = <span class="number">1</span></span><br><span class="line">max_iters = <span class="number">10000</span>   <span class="comment"># 最大迭代次数</span></span><br><span class="line">iters = <span class="number">0</span>   <span class="comment"># 迭代计数器</span></span><br><span class="line">df = <span class="keyword">lambda</span> x : <span class="number">2</span>*(x+<span class="number">5</span>)     <span class="comment"># 函数梯度</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>步骤2</strong>：在循环中进行梯度下降<br>停止循环当两个连续迭代的x值的差小于<em>0.000001</em>或者迭代次数超过10,000<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> previous_step_size &gt; precision <span class="keyword">and</span> iters &lt; max_iters:</span><br><span class="line">    prev_x = cur_x</span><br><span class="line">    cur_x = cur_x - rate * df(prev_x)   <span class="comment"># 梯度</span></span><br><span class="line">    previous_step_size = abs(cur_x - prev_x)</span><br><span class="line">    iters = iters + <span class="number">1</span></span><br><span class="line">    print(<span class="string">"Iteration"</span>,iters,<span class="string">"\nX value is"</span>,cur_x)</span><br><span class="line"></span><br><span class="line">print(<span class="string">"The local minimum occurs at"</span>, cur_x)</span><br></pre></td></tr></table></figure></p>
+<p><strong>输出</strong>：从下面的输出，我们可以看到最开始10次迭代的x的值，我们可以通过这个交叉检查我们上面的计算。算法运行了595次迭代直到停止。</p>
+<p><img src="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/gradient_descent_4.png" alt="前10次迭代"></p>
+<p>完整的运行过程：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cur_x = <span class="number">3</span>   <span class="comment"># 算法开始在 x=3</span></span><br><span class="line">rate = <span class="number">0.01</span> <span class="comment">#学习率</span></span><br><span class="line">precision = <span class="number">0.000001</span> <span class="comment">#  什么时候停止算法</span></span><br><span class="line">previous_step_size = <span class="number">1</span></span><br><span class="line">max_iters = <span class="number">10000</span>   <span class="comment"># 最大迭代次数</span></span><br><span class="line">iters = <span class="number">0</span>   <span class="comment"># 迭代计数器</span></span><br><span class="line">df = <span class="keyword">lambda</span> x : <span class="number">2</span>*(x+<span class="number">5</span>)     <span class="comment"># 函数梯度</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> previous_step_size &gt; precision <span class="keyword">and</span> iters &lt; max_iters:</span><br><span class="line">    prev_x = cur_x</span><br><span class="line">    cur_x = cur_x - rate * df(prev_x)   <span class="comment"># 梯度</span></span><br><span class="line">    previous_step_size = abs(cur_x - prev_x)</span><br><span class="line">    iters = iters + <span class="number">1</span></span><br><span class="line">    print(<span class="string">"Iteration"</span>,iters,<span class="string">"\nX value is"</span>,cur_x)</span><br><span class="line"></span><br><span class="line">print(<span class="string">"The local minimum occurs at"</span>, cur_x)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br><span class="line">544</span><br><span class="line">545</span><br><span class="line">546</span><br><span class="line">547</span><br><span class="line">548</span><br><span class="line">549</span><br><span class="line">550</span><br><span class="line">551</span><br><span class="line">552</span><br><span class="line">553</span><br><span class="line">554</span><br><span class="line">555</span><br><span class="line">556</span><br><span class="line">557</span><br><span class="line">558</span><br><span class="line">559</span><br><span class="line">560</span><br><span class="line">561</span><br><span class="line">562</span><br><span class="line">563</span><br><span class="line">564</span><br><span class="line">565</span><br><span class="line">566</span><br><span class="line">567</span><br><span class="line">568</span><br><span class="line">569</span><br><span class="line">570</span><br><span class="line">571</span><br><span class="line">572</span><br><span class="line">573</span><br><span class="line">574</span><br><span class="line">575</span><br><span class="line">576</span><br><span class="line">577</span><br><span class="line">578</span><br><span class="line">579</span><br><span class="line">580</span><br><span class="line">581</span><br><span class="line">582</span><br><span class="line">583</span><br><span class="line">584</span><br><span class="line">585</span><br><span class="line">586</span><br><span class="line">587</span><br><span class="line">588</span><br><span class="line">589</span><br><span class="line">590</span><br><span class="line">591</span><br><span class="line">592</span><br><span class="line">593</span><br><span class="line">594</span><br><span class="line">595</span><br><span class="line">596</span><br><span class="line">597</span><br><span class="line">598</span><br><span class="line">599</span><br><span class="line">600</span><br><span class="line">601</span><br><span class="line">602</span><br><span class="line">603</span><br><span class="line">604</span><br><span class="line">605</span><br><span class="line">606</span><br><span class="line">607</span><br><span class="line">608</span><br><span class="line">609</span><br><span class="line">610</span><br><span class="line">611</span><br><span class="line">612</span><br><span class="line">613</span><br><span class="line">614</span><br><span class="line">615</span><br><span class="line">616</span><br><span class="line">617</span><br><span class="line">618</span><br><span class="line">619</span><br><span class="line">620</span><br><span class="line">621</span><br><span class="line">622</span><br><span class="line">623</span><br><span class="line">624</span><br><span class="line">625</span><br><span class="line">626</span><br><span class="line">627</span><br><span class="line">628</span><br><span class="line">629</span><br><span class="line">630</span><br><span class="line">631</span><br><span class="line">632</span><br><span class="line">633</span><br><span class="line">634</span><br><span class="line">635</span><br><span class="line">636</span><br><span class="line">637</span><br><span class="line">638</span><br><span class="line">639</span><br><span class="line">640</span><br><span class="line">641</span><br><span class="line">642</span><br><span class="line">643</span><br><span class="line">644</span><br><span class="line">645</span><br><span class="line">646</span><br><span class="line">647</span><br><span class="line">648</span><br><span class="line">649</span><br><span class="line">650</span><br><span class="line">651</span><br><span class="line">652</span><br><span class="line">653</span><br><span class="line">654</span><br><span class="line">655</span><br><span class="line">656</span><br><span class="line">657</span><br><span class="line">658</span><br><span class="line">659</span><br><span class="line">660</span><br><span class="line">661</span><br><span class="line">662</span><br><span class="line">663</span><br><span class="line">664</span><br><span class="line">665</span><br><span class="line">666</span><br><span class="line">667</span><br><span class="line">668</span><br><span class="line">669</span><br><span class="line">670</span><br><span class="line">671</span><br><span class="line">672</span><br><span class="line">673</span><br><span class="line">674</span><br><span class="line">675</span><br><span class="line">676</span><br><span class="line">677</span><br><span class="line">678</span><br><span class="line">679</span><br><span class="line">680</span><br><span class="line">681</span><br><span class="line">682</span><br><span class="line">683</span><br><span class="line">684</span><br><span class="line">685</span><br><span class="line">686</span><br><span class="line">687</span><br><span class="line">688</span><br><span class="line">689</span><br><span class="line">690</span><br><span class="line">691</span><br><span class="line">692</span><br><span class="line">693</span><br><span class="line">694</span><br><span class="line">695</span><br><span class="line">696</span><br><span class="line">697</span><br><span class="line">698</span><br><span class="line">699</span><br><span class="line">700</span><br><span class="line">701</span><br><span class="line">702</span><br><span class="line">703</span><br><span class="line">704</span><br><span class="line">705</span><br><span class="line">706</span><br><span class="line">707</span><br><span class="line">708</span><br><span class="line">709</span><br><span class="line">710</span><br><span class="line">711</span><br><span class="line">712</span><br><span class="line">713</span><br><span class="line">714</span><br><span class="line">715</span><br><span class="line">716</span><br><span class="line">717</span><br><span class="line">718</span><br><span class="line">719</span><br><span class="line">720</span><br><span class="line">721</span><br><span class="line">722</span><br><span class="line">723</span><br><span class="line">724</span><br><span class="line">725</span><br><span class="line">726</span><br><span class="line">727</span><br><span class="line">728</span><br><span class="line">729</span><br><span class="line">730</span><br><span class="line">731</span><br><span class="line">732</span><br><span class="line">733</span><br><span class="line">734</span><br><span class="line">735</span><br><span class="line">736</span><br><span class="line">737</span><br><span class="line">738</span><br><span class="line">739</span><br><span class="line">740</span><br><span class="line">741</span><br><span class="line">742</span><br><span class="line">743</span><br><span class="line">744</span><br><span class="line">745</span><br><span class="line">746</span><br><span class="line">747</span><br><span class="line">748</span><br><span class="line">749</span><br><span class="line">750</span><br><span class="line">751</span><br><span class="line">752</span><br><span class="line">753</span><br><span class="line">754</span><br><span class="line">755</span><br><span class="line">756</span><br><span class="line">757</span><br><span class="line">758</span><br><span class="line">759</span><br><span class="line">760</span><br><span class="line">761</span><br><span class="line">762</span><br><span class="line">763</span><br><span class="line">764</span><br><span class="line">765</span><br><span class="line">766</span><br><span class="line">767</span><br><span class="line">768</span><br><span class="line">769</span><br><span class="line">770</span><br><span class="line">771</span><br><span class="line">772</span><br><span class="line">773</span><br><span class="line">774</span><br><span class="line">775</span><br><span class="line">776</span><br><span class="line">777</span><br><span class="line">778</span><br><span class="line">779</span><br><span class="line">780</span><br><span class="line">781</span><br><span class="line">782</span><br><span class="line">783</span><br><span class="line">784</span><br><span class="line">785</span><br><span class="line">786</span><br><span class="line">787</span><br><span class="line">788</span><br><span class="line">789</span><br><span class="line">790</span><br><span class="line">791</span><br><span class="line">792</span><br><span class="line">793</span><br><span class="line">794</span><br><span class="line">795</span><br><span class="line">796</span><br><span class="line">797</span><br><span class="line">798</span><br><span class="line">799</span><br><span class="line">800</span><br><span class="line">801</span><br><span class="line">802</span><br><span class="line">803</span><br><span class="line">804</span><br><span class="line">805</span><br><span class="line">806</span><br><span class="line">807</span><br><span class="line">808</span><br><span class="line">809</span><br><span class="line">810</span><br><span class="line">811</span><br><span class="line">812</span><br><span class="line">813</span><br><span class="line">814</span><br><span class="line">815</span><br><span class="line">816</span><br><span class="line">817</span><br><span class="line">818</span><br><span class="line">819</span><br><span class="line">820</span><br><span class="line">821</span><br><span class="line">822</span><br><span class="line">823</span><br><span class="line">824</span><br><span class="line">825</span><br><span class="line">826</span><br><span class="line">827</span><br><span class="line">828</span><br><span class="line">829</span><br><span class="line">830</span><br><span class="line">831</span><br><span class="line">832</span><br><span class="line">833</span><br><span class="line">834</span><br><span class="line">835</span><br><span class="line">836</span><br><span class="line">837</span><br><span class="line">838</span><br><span class="line">839</span><br><span class="line">840</span><br><span class="line">841</span><br><span class="line">842</span><br><span class="line">843</span><br><span class="line">844</span><br><span class="line">845</span><br><span class="line">846</span><br><span class="line">847</span><br><span class="line">848</span><br><span class="line">849</span><br><span class="line">850</span><br><span class="line">851</span><br><span class="line">852</span><br><span class="line">853</span><br><span class="line">854</span><br><span class="line">855</span><br><span class="line">856</span><br><span class="line">857</span><br><span class="line">858</span><br><span class="line">859</span><br><span class="line">860</span><br><span class="line">861</span><br><span class="line">862</span><br><span class="line">863</span><br><span class="line">864</span><br><span class="line">865</span><br><span class="line">866</span><br><span class="line">867</span><br><span class="line">868</span><br><span class="line">869</span><br><span class="line">870</span><br><span class="line">871</span><br><span class="line">872</span><br><span class="line">873</span><br><span class="line">874</span><br><span class="line">875</span><br><span class="line">876</span><br><span class="line">877</span><br><span class="line">878</span><br><span class="line">879</span><br><span class="line">880</span><br><span class="line">881</span><br><span class="line">882</span><br><span class="line">883</span><br><span class="line">884</span><br><span class="line">885</span><br><span class="line">886</span><br><span class="line">887</span><br><span class="line">888</span><br><span class="line">889</span><br><span class="line">890</span><br><span class="line">891</span><br><span class="line">892</span><br><span class="line">893</span><br><span class="line">894</span><br><span class="line">895</span><br><span class="line">896</span><br><span class="line">897</span><br><span class="line">898</span><br><span class="line">899</span><br><span class="line">900</span><br><span class="line">901</span><br><span class="line">902</span><br><span class="line">903</span><br><span class="line">904</span><br><span class="line">905</span><br><span class="line">906</span><br><span class="line">907</span><br><span class="line">908</span><br><span class="line">909</span><br><span class="line">910</span><br><span class="line">911</span><br><span class="line">912</span><br><span class="line">913</span><br><span class="line">914</span><br><span class="line">915</span><br><span class="line">916</span><br><span class="line">917</span><br><span class="line">918</span><br><span class="line">919</span><br><span class="line">920</span><br><span class="line">921</span><br><span class="line">922</span><br><span class="line">923</span><br><span class="line">924</span><br><span class="line">925</span><br><span class="line">926</span><br><span class="line">927</span><br><span class="line">928</span><br><span class="line">929</span><br><span class="line">930</span><br><span class="line">931</span><br><span class="line">932</span><br><span class="line">933</span><br><span class="line">934</span><br><span class="line">935</span><br><span class="line">936</span><br><span class="line">937</span><br><span class="line">938</span><br><span class="line">939</span><br><span class="line">940</span><br><span class="line">941</span><br><span class="line">942</span><br><span class="line">943</span><br><span class="line">944</span><br><span class="line">945</span><br><span class="line">946</span><br><span class="line">947</span><br><span class="line">948</span><br><span class="line">949</span><br><span class="line">950</span><br><span class="line">951</span><br><span class="line">952</span><br><span class="line">953</span><br><span class="line">954</span><br><span class="line">955</span><br><span class="line">956</span><br><span class="line">957</span><br><span class="line">958</span><br><span class="line">959</span><br><span class="line">960</span><br><span class="line">961</span><br><span class="line">962</span><br><span class="line">963</span><br><span class="line">964</span><br><span class="line">965</span><br><span class="line">966</span><br><span class="line">967</span><br><span class="line">968</span><br><span class="line">969</span><br><span class="line">970</span><br><span class="line">971</span><br><span class="line">972</span><br><span class="line">973</span><br><span class="line">974</span><br><span class="line">975</span><br><span class="line">976</span><br><span class="line">977</span><br><span class="line">978</span><br><span class="line">979</span><br><span class="line">980</span><br><span class="line">981</span><br><span class="line">982</span><br><span class="line">983</span><br><span class="line">984</span><br><span class="line">985</span><br><span class="line">986</span><br><span class="line">987</span><br><span class="line">988</span><br><span class="line">989</span><br><span class="line">990</span><br><span class="line">991</span><br><span class="line">992</span><br><span class="line">993</span><br><span class="line">994</span><br><span class="line">995</span><br><span class="line">996</span><br><span class="line">997</span><br><span class="line">998</span><br><span class="line">999</span><br><span class="line">1000</span><br><span class="line">1001</span><br><span class="line">1002</span><br><span class="line">1003</span><br><span class="line">1004</span><br><span class="line">1005</span><br><span class="line">1006</span><br><span class="line">1007</span><br><span class="line">1008</span><br><span class="line">1009</span><br><span class="line">1010</span><br><span class="line">1011</span><br><span class="line">1012</span><br><span class="line">1013</span><br><span class="line">1014</span><br><span class="line">1015</span><br><span class="line">1016</span><br><span class="line">1017</span><br><span class="line">1018</span><br><span class="line">1019</span><br><span class="line">1020</span><br><span class="line">1021</span><br><span class="line">1022</span><br><span class="line">1023</span><br><span class="line">1024</span><br><span class="line">1025</span><br><span class="line">1026</span><br><span class="line">1027</span><br><span class="line">1028</span><br><span class="line">1029</span><br><span class="line">1030</span><br><span class="line">1031</span><br><span class="line">1032</span><br><span class="line">1033</span><br><span class="line">1034</span><br><span class="line">1035</span><br><span class="line">1036</span><br><span class="line">1037</span><br><span class="line">1038</span><br><span class="line">1039</span><br><span class="line">1040</span><br><span class="line">1041</span><br><span class="line">1042</span><br><span class="line">1043</span><br><span class="line">1044</span><br><span class="line">1045</span><br><span class="line">1046</span><br><span class="line">1047</span><br><span class="line">1048</span><br><span class="line">1049</span><br><span class="line">1050</span><br><span class="line">1051</span><br><span class="line">1052</span><br><span class="line">1053</span><br><span class="line">1054</span><br><span class="line">1055</span><br><span class="line">1056</span><br><span class="line">1057</span><br><span class="line">1058</span><br><span class="line">1059</span><br><span class="line">1060</span><br><span class="line">1061</span><br><span class="line">1062</span><br><span class="line">1063</span><br><span class="line">1064</span><br><span class="line">1065</span><br><span class="line">1066</span><br><span class="line">1067</span><br><span class="line">1068</span><br><span class="line">1069</span><br><span class="line">1070</span><br><span class="line">1071</span><br><span class="line">1072</span><br><span class="line">1073</span><br><span class="line">1074</span><br><span class="line">1075</span><br><span class="line">1076</span><br><span class="line">1077</span><br><span class="line">1078</span><br><span class="line">1079</span><br><span class="line">1080</span><br><span class="line">1081</span><br><span class="line">1082</span><br><span class="line">1083</span><br><span class="line">1084</span><br><span class="line">1085</span><br><span class="line">1086</span><br><span class="line">1087</span><br><span class="line">1088</span><br><span class="line">1089</span><br><span class="line">1090</span><br><span class="line">1091</span><br><span class="line">1092</span><br><span class="line">1093</span><br><span class="line">1094</span><br><span class="line">1095</span><br><span class="line">1096</span><br><span class="line">1097</span><br><span class="line">1098</span><br><span class="line">1099</span><br><span class="line">1100</span><br><span class="line">1101</span><br><span class="line">1102</span><br><span class="line">1103</span><br><span class="line">1104</span><br><span class="line">1105</span><br><span class="line">1106</span><br><span class="line">1107</span><br><span class="line">1108</span><br><span class="line">1109</span><br><span class="line">1110</span><br><span class="line">1111</span><br><span class="line">1112</span><br><span class="line">1113</span><br><span class="line">1114</span><br><span class="line">1115</span><br><span class="line">1116</span><br><span class="line">1117</span><br><span class="line">1118</span><br><span class="line">1119</span><br><span class="line">1120</span><br><span class="line">1121</span><br><span class="line">1122</span><br><span class="line">1123</span><br><span class="line">1124</span><br><span class="line">1125</span><br><span class="line">1126</span><br><span class="line">1127</span><br><span class="line">1128</span><br><span class="line">1129</span><br><span class="line">1130</span><br><span class="line">1131</span><br><span class="line">1132</span><br><span class="line">1133</span><br><span class="line">1134</span><br><span class="line">1135</span><br><span class="line">1136</span><br><span class="line">1137</span><br><span class="line">1138</span><br><span class="line">1139</span><br><span class="line">1140</span><br><span class="line">1141</span><br><span class="line">1142</span><br><span class="line">1143</span><br><span class="line">1144</span><br><span class="line">1145</span><br><span class="line">1146</span><br><span class="line">1147</span><br><span class="line">1148</span><br><span class="line">1149</span><br><span class="line">1150</span><br><span class="line">1151</span><br><span class="line">1152</span><br><span class="line">1153</span><br><span class="line">1154</span><br><span class="line">1155</span><br><span class="line">1156</span><br><span class="line">1157</span><br><span class="line">1158</span><br><span class="line">1159</span><br><span class="line">1160</span><br><span class="line">1161</span><br><span class="line">1162</span><br><span class="line">1163</span><br><span class="line">1164</span><br><span class="line">1165</span><br><span class="line">1166</span><br><span class="line">1167</span><br><span class="line">1168</span><br><span class="line">1169</span><br><span class="line">1170</span><br><span class="line">1171</span><br><span class="line">1172</span><br><span class="line">1173</span><br><span class="line">1174</span><br><span class="line">1175</span><br><span class="line">1176</span><br><span class="line">1177</span><br><span class="line">1178</span><br><span class="line">1179</span><br><span class="line">1180</span><br><span class="line">1181</span><br><span class="line">1182</span><br><span class="line">1183</span><br><span class="line">1184</span><br><span class="line">1185</span><br><span class="line">1186</span><br><span class="line">1187</span><br><span class="line">1188</span><br><span class="line">1189</span><br><span class="line">1190</span><br><span class="line">1191</span><br></pre></td><td class="code"><pre><span class="line">Iteration <span class="number">1</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">2.84</span></span><br><span class="line">Iteration <span class="number">2</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">2.6832</span></span><br><span class="line">Iteration <span class="number">3</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">2.529536</span></span><br><span class="line">Iteration <span class="number">4</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">2.37894528</span></span><br><span class="line">Iteration <span class="number">5</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">2.2313663744</span></span><br><span class="line">Iteration <span class="number">6</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">2.0867390469119997</span></span><br><span class="line">Iteration <span class="number">7</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">1.9450042659737599</span></span><br><span class="line">Iteration <span class="number">8</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">1.8061041806542846</span></span><br><span class="line">Iteration <span class="number">9</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">1.669982097041199</span></span><br><span class="line">Iteration <span class="number">10</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">1.5365824551003748</span></span><br><span class="line">Iteration <span class="number">11</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">1.4058508059983674</span></span><br><span class="line">Iteration <span class="number">12</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">1.2777337898784</span></span><br><span class="line">Iteration <span class="number">13</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">1.152179114080832</span></span><br><span class="line">Iteration <span class="number">14</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">1.0291355317992152</span></span><br><span class="line">Iteration <span class="number">15</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">0.9085528211632309</span></span><br><span class="line">Iteration <span class="number">16</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">0.7903817647399662</span></span><br><span class="line">Iteration <span class="number">17</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">0.6745741294451669</span></span><br><span class="line">Iteration <span class="number">18</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">0.5610826468562635</span></span><br><span class="line">Iteration <span class="number">19</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">0.44986099391913825</span></span><br><span class="line">Iteration <span class="number">20</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">0.3408637740407555</span></span><br><span class="line">Iteration <span class="number">21</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">0.23404649855994042</span></span><br><span class="line">Iteration <span class="number">22</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">0.1293655685887416</span></span><br><span class="line">Iteration <span class="number">23</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">0.026778257216966764</span></span><br><span class="line">Iteration <span class="number">24</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-0.07375730792737258</span></span><br><span class="line">Iteration <span class="number">25</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-0.1722821617688251</span></span><br><span class="line">Iteration <span class="number">26</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-0.2688365185334486</span></span><br><span class="line">Iteration <span class="number">27</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-0.36345978816277963</span></span><br><span class="line">Iteration <span class="number">28</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-0.45619059239952403</span></span><br><span class="line">Iteration <span class="number">29</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-0.5470667805515336</span></span><br><span class="line">Iteration <span class="number">30</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-0.6361254449405029</span></span><br><span class="line">Iteration <span class="number">31</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-0.7234029360416929</span></span><br><span class="line">Iteration <span class="number">32</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-0.8089348773208591</span></span><br><span class="line">Iteration <span class="number">33</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-0.8927561797744419</span></span><br><span class="line">Iteration <span class="number">34</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-0.9749010561789531</span></span><br><span class="line">Iteration <span class="number">35</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-1.055403035055374</span></span><br><span class="line">Iteration <span class="number">36</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-1.1342949743542665</span></span><br><span class="line">Iteration <span class="number">37</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-1.2116090748671813</span></span><br><span class="line">Iteration <span class="number">38</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-1.2873768933698377</span></span><br><span class="line">Iteration <span class="number">39</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-1.361629355502441</span></span><br><span class="line">Iteration <span class="number">40</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-1.4343967683923922</span></span><br><span class="line">Iteration <span class="number">41</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-1.5057088330245443</span></span><br><span class="line">Iteration <span class="number">42</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-1.5755946563640535</span></span><br><span class="line">Iteration <span class="number">43</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-1.6440827632367725</span></span><br><span class="line">Iteration <span class="number">44</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-1.711201107972037</span></span><br><span class="line">Iteration <span class="number">45</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-1.7769770858125964</span></span><br><span class="line">Iteration <span class="number">46</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-1.8414375440963444</span></span><br><span class="line">Iteration <span class="number">47</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-1.9046087932144176</span></span><br><span class="line">Iteration <span class="number">48</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-1.9665166173501292</span></span><br><span class="line">Iteration <span class="number">49</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-2.0271862850031264</span></span><br><span class="line">Iteration <span class="number">50</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-2.0866425593030637</span></span><br><span class="line">Iteration <span class="number">51</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-2.1449097081170025</span></span><br><span class="line">Iteration <span class="number">52</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-2.2020115139546625</span></span><br><span class="line">Iteration <span class="number">53</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-2.257971283675569</span></span><br><span class="line">Iteration <span class="number">54</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-2.312811858002058</span></span><br><span class="line">Iteration <span class="number">55</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-2.3665556208420164</span></span><br><span class="line">Iteration <span class="number">56</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-2.419224508425176</span></span><br><span class="line">Iteration <span class="number">57</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-2.4708400182566725</span></span><br><span class="line">Iteration <span class="number">58</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-2.521423217891539</span></span><br><span class="line">Iteration <span class="number">59</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-2.570994753533708</span></span><br><span class="line">Iteration <span class="number">60</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-2.619574858463034</span></span><br><span class="line">Iteration <span class="number">61</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-2.667183361293773</span></span><br><span class="line">Iteration <span class="number">62</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-2.713839694067898</span></span><br><span class="line">Iteration <span class="number">63</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-2.75956290018654</span></span><br><span class="line">Iteration <span class="number">64</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-2.804371642182809</span></span><br><span class="line">Iteration <span class="number">65</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-2.8482842093391527</span></span><br><span class="line">Iteration <span class="number">66</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-2.8913185251523696</span></span><br><span class="line">Iteration <span class="number">67</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-2.9334921546493224</span></span><br><span class="line">Iteration <span class="number">68</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-2.974822311556336</span></span><br><span class="line">Iteration <span class="number">69</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.015325865325209</span></span><br><span class="line">Iteration <span class="number">70</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.055019348018705</span></span><br><span class="line">Iteration <span class="number">71</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.093918961058331</span></span><br><span class="line">Iteration <span class="number">72</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.1320405818371646</span></span><br><span class="line">Iteration <span class="number">73</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.1693997702004215</span></span><br><span class="line">Iteration <span class="number">74</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.206011774796413</span></span><br><span class="line">Iteration <span class="number">75</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.2418915393004846</span></span><br><span class="line">Iteration <span class="number">76</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.277053708514475</span></span><br><span class="line">Iteration <span class="number">77</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.3115126343441856</span></span><br><span class="line">Iteration <span class="number">78</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.345282381657302</span></span><br><span class="line">Iteration <span class="number">79</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.378376734024156</span></span><br><span class="line">Iteration <span class="number">80</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.4108091993436727</span></span><br><span class="line">Iteration <span class="number">81</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.4425930153567994</span></span><br><span class="line">Iteration <span class="number">82</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.4737411550496633</span></span><br><span class="line">Iteration <span class="number">83</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.50426633194867</span></span><br><span class="line">Iteration <span class="number">84</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.534181005309697</span></span><br><span class="line">Iteration <span class="number">85</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.563497385203503</span></span><br><span class="line">Iteration <span class="number">86</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.5922274374994325</span></span><br><span class="line">Iteration <span class="number">87</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.620382888749444</span></span><br><span class="line">Iteration <span class="number">88</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.6479752309744553</span></span><br><span class="line">Iteration <span class="number">89</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.675015726354966</span></span><br><span class="line">Iteration <span class="number">90</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.7015154118278666</span></span><br><span class="line">Iteration <span class="number">91</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.7274851035913095</span></span><br><span class="line">Iteration <span class="number">92</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.7529354015194833</span></span><br><span class="line">Iteration <span class="number">93</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.7778766934890937</span></span><br><span class="line">Iteration <span class="number">94</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.8023191596193118</span></span><br><span class="line">Iteration <span class="number">95</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.8262727764269258</span></span><br><span class="line">Iteration <span class="number">96</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.8497473208983872</span></span><br><span class="line">Iteration <span class="number">97</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.8727523744804193</span></span><br><span class="line">Iteration <span class="number">98</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.895297326990811</span></span><br><span class="line">Iteration <span class="number">99</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.917391380450995</span></span><br><span class="line">Iteration <span class="number">100</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.939043552841975</span></span><br><span class="line">Iteration <span class="number">101</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.9602626817851356</span></span><br><span class="line">Iteration <span class="number">102</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-3.981057428149433</span></span><br><span class="line">Iteration <span class="number">103</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.001436279586445</span></span><br><span class="line">Iteration <span class="number">104</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.021407553994716</span></span><br><span class="line">Iteration <span class="number">105</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.040979402914822</span></span><br><span class="line">Iteration <span class="number">106</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.060159814856525</span></span><br><span class="line">Iteration <span class="number">107</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.078956618559395</span></span><br><span class="line">Iteration <span class="number">108</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.097377486188207</span></span><br><span class="line">Iteration <span class="number">109</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.115429936464443</span></span><br><span class="line">Iteration <span class="number">110</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.133121337735154</span></span><br><span class="line">Iteration <span class="number">111</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.150458910980451</span></span><br><span class="line">Iteration <span class="number">112</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.167449732760842</span></span><br><span class="line">Iteration <span class="number">113</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.1841007381056246</span></span><br><span class="line">Iteration <span class="number">114</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.200418723343512</span></span><br><span class="line">Iteration <span class="number">115</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.216410348876642</span></span><br><span class="line">Iteration <span class="number">116</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.2320821418991095</span></span><br><span class="line">Iteration <span class="number">117</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.247440499061128</span></span><br><span class="line">Iteration <span class="number">118</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.262491689079905</span></span><br><span class="line">Iteration <span class="number">119</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.277241855298307</span></span><br><span class="line">Iteration <span class="number">120</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.291697018192341</span></span><br><span class="line">Iteration <span class="number">121</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.305863077828494</span></span><br><span class="line">Iteration <span class="number">122</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.319745816271924</span></span><br><span class="line">Iteration <span class="number">123</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.333350899946486</span></span><br><span class="line">Iteration <span class="number">124</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.3466838819475555</span></span><br><span class="line">Iteration <span class="number">125</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.359750204308605</span></span><br><span class="line">Iteration <span class="number">126</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.372555200222433</span></span><br><span class="line">Iteration <span class="number">127</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.385104096217984</span></span><br><span class="line">Iteration <span class="number">128</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.3974020142936245</span></span><br><span class="line">Iteration <span class="number">129</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.409453974007752</span></span><br><span class="line">Iteration <span class="number">130</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.421264894527597</span></span><br><span class="line">Iteration <span class="number">131</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.432839596637045</span></span><br><span class="line">Iteration <span class="number">132</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.444182804704305</span></span><br><span class="line">Iteration <span class="number">133</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.4552991486102185</span></span><br><span class="line">Iteration <span class="number">134</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.466193165638014</span></span><br><span class="line">Iteration <span class="number">135</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.4768693023252535</span></span><br><span class="line">Iteration <span class="number">136</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.487331916278748</span></span><br><span class="line">Iteration <span class="number">137</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.497585277953173</span></span><br><span class="line">Iteration <span class="number">138</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.50763357239411</span></span><br><span class="line">Iteration <span class="number">139</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.517480900946228</span></span><br><span class="line">Iteration <span class="number">140</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.527131282927304</span></span><br><span class="line">Iteration <span class="number">141</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.536588657268758</span></span><br><span class="line">Iteration <span class="number">142</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.545856884123382</span></span><br><span class="line">Iteration <span class="number">143</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.5549397464409145</span></span><br><span class="line">Iteration <span class="number">144</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.563840951512097</span></span><br><span class="line">Iteration <span class="number">145</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.572564132481855</span></span><br><span class="line">Iteration <span class="number">146</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.581112849832218</span></span><br><span class="line">Iteration <span class="number">147</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.589490592835574</span></span><br><span class="line">Iteration <span class="number">148</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.597700780978863</span></span><br><span class="line">Iteration <span class="number">149</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.605746765359285</span></span><br><span class="line">Iteration <span class="number">150</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.6136318300521</span></span><br><span class="line">Iteration <span class="number">151</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.621359193451058</span></span><br><span class="line">Iteration <span class="number">152</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.628932009582036</span></span><br><span class="line">Iteration <span class="number">153</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.636353369390395</span></span><br><span class="line">Iteration <span class="number">154</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.643626302002588</span></span><br><span class="line">Iteration <span class="number">155</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.650753775962536</span></span><br><span class="line">Iteration <span class="number">156</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.657738700443285</span></span><br><span class="line">Iteration <span class="number">157</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.664583926434419</span></span><br><span class="line">Iteration <span class="number">158</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.671292247905731</span></span><br><span class="line">Iteration <span class="number">159</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.6778664029476165</span></span><br><span class="line">Iteration <span class="number">160</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.684309074888664</span></span><br><span class="line">Iteration <span class="number">161</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.6906228933908904</span></span><br><span class="line">Iteration <span class="number">162</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.696810435523073</span></span><br><span class="line">Iteration <span class="number">163</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.702874226812612</span></span><br><span class="line">Iteration <span class="number">164</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.708816742276359</span></span><br><span class="line">Iteration <span class="number">165</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.714640407430832</span></span><br><span class="line">Iteration <span class="number">166</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.720347599282215</span></span><br><span class="line">Iteration <span class="number">167</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.725940647296571</span></span><br><span class="line">Iteration <span class="number">168</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.731421834350639</span></span><br><span class="line">Iteration <span class="number">169</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.736793397663627</span></span><br><span class="line">Iteration <span class="number">170</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.742057529710355</span></span><br><span class="line">Iteration <span class="number">171</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.747216379116147</span></span><br><span class="line">Iteration <span class="number">172</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.752272051533824</span></span><br><span class="line">Iteration <span class="number">173</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.757226610503148</span></span><br><span class="line">Iteration <span class="number">174</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.762082078293084</span></span><br><span class="line">Iteration <span class="number">175</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.766840436727223</span></span><br><span class="line">Iteration <span class="number">176</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.771503627992678</span></span><br><span class="line">Iteration <span class="number">177</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.776073555432824</span></span><br><span class="line">Iteration <span class="number">178</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.780552084324168</span></span><br><span class="line">Iteration <span class="number">179</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.784941042637685</span></span><br><span class="line">Iteration <span class="number">180</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.7892422217849315</span></span><br><span class="line">Iteration <span class="number">181</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.793457377349233</span></span><br><span class="line">Iteration <span class="number">182</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.7975882298022485</span></span><br><span class="line">Iteration <span class="number">183</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.801636465206204</span></span><br><span class="line">Iteration <span class="number">184</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.805603735902079</span></span><br><span class="line">Iteration <span class="number">185</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.809491661184038</span></span><br><span class="line">Iteration <span class="number">186</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.813301827960357</span></span><br><span class="line">Iteration <span class="number">187</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.81703579140115</span></span><br><span class="line">Iteration <span class="number">188</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.820695075573127</span></span><br><span class="line">Iteration <span class="number">189</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.824281174061665</span></span><br><span class="line">Iteration <span class="number">190</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.827795550580431</span></span><br><span class="line">Iteration <span class="number">191</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.831239639568823</span></span><br><span class="line">Iteration <span class="number">192</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.834614846777447</span></span><br><span class="line">Iteration <span class="number">193</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.837922549841898</span></span><br><span class="line">Iteration <span class="number">194</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.84116409884506</span></span><br><span class="line">Iteration <span class="number">195</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.844340816868159</span></span><br><span class="line">Iteration <span class="number">196</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.847454000530796</span></span><br><span class="line">Iteration <span class="number">197</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.85050492052018</span></span><br><span class="line">Iteration <span class="number">198</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.853494822109776</span></span><br><span class="line">Iteration <span class="number">199</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.85642492566758</span></span><br><span class="line">Iteration <span class="number">200</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.859296427154229</span></span><br><span class="line">Iteration <span class="number">201</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.862110498611145</span></span><br><span class="line">Iteration <span class="number">202</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.864868288638922</span></span><br><span class="line">Iteration <span class="number">203</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.867570922866143</span></span><br><span class="line">Iteration <span class="number">204</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.87021950440882</span></span><br><span class="line">Iteration <span class="number">205</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.872815114320644</span></span><br><span class="line">Iteration <span class="number">206</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.875358812034231</span></span><br><span class="line">Iteration <span class="number">207</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.877851635793546</span></span><br><span class="line">Iteration <span class="number">208</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.880294603077676</span></span><br><span class="line">Iteration <span class="number">209</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.882688711016122</span></span><br><span class="line">Iteration <span class="number">210</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.8850349367958</span></span><br><span class="line">Iteration <span class="number">211</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.887334238059884</span></span><br><span class="line">Iteration <span class="number">212</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.8895875532986866</span></span><br><span class="line">Iteration <span class="number">213</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.891795802232712</span></span><br><span class="line">Iteration <span class="number">214</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.893959886188058</span></span><br><span class="line">Iteration <span class="number">215</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.896080688464297</span></span><br><span class="line">Iteration <span class="number">216</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.898159074695011</span></span><br><span class="line">Iteration <span class="number">217</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9001958932011105</span></span><br><span class="line">Iteration <span class="number">218</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.902191975337089</span></span><br><span class="line">Iteration <span class="number">219</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.904148135830347</span></span><br><span class="line">Iteration <span class="number">220</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.90606517311374</span></span><br><span class="line">Iteration <span class="number">221</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.907943869651465</span></span><br><span class="line">Iteration <span class="number">222</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.909784992258436</span></span><br><span class="line">Iteration <span class="number">223</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.911589292413267</span></span><br><span class="line">Iteration <span class="number">224</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.913357506565002</span></span><br><span class="line">Iteration <span class="number">225</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.915090356433702</span></span><br><span class="line">Iteration <span class="number">226</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9167885493050285</span></span><br><span class="line">Iteration <span class="number">227</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.918452778318928</span></span><br><span class="line">Iteration <span class="number">228</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.920083722752549</span></span><br><span class="line">Iteration <span class="number">229</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.921682048297498</span></span><br><span class="line">Iteration <span class="number">230</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.923248407331548</span></span><br><span class="line">Iteration <span class="number">231</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9247834391849175</span></span><br><span class="line">Iteration <span class="number">232</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.926287770401219</span></span><br><span class="line">Iteration <span class="number">233</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.927762014993195</span></span><br><span class="line">Iteration <span class="number">234</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.929206774693331</span></span><br><span class="line">Iteration <span class="number">235</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.930622639199464</span></span><br><span class="line">Iteration <span class="number">236</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.932010186415474</span></span><br><span class="line">Iteration <span class="number">237</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.933369982687164</span></span><br><span class="line">Iteration <span class="number">238</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.934702583033421</span></span><br><span class="line">Iteration <span class="number">239</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.936008531372753</span></span><br><span class="line">Iteration <span class="number">240</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.937288360745298</span></span><br><span class="line">Iteration <span class="number">241</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.938542593530392</span></span><br><span class="line">Iteration <span class="number">242</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.939771741659784</span></span><br><span class="line">Iteration <span class="number">243</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.940976306826588</span></span><br><span class="line">Iteration <span class="number">244</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.942156780690056</span></span><br><span class="line">Iteration <span class="number">245</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.943313645076255</span></span><br><span class="line">Iteration <span class="number">246</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.94444737217473</span></span><br><span class="line">Iteration <span class="number">247</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.945558424731236</span></span><br><span class="line">Iteration <span class="number">248</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.946647256236611</span></span><br><span class="line">Iteration <span class="number">249</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.947714311111879</span></span><br><span class="line">Iteration <span class="number">250</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9487600248896415</span></span><br><span class="line">Iteration <span class="number">251</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.949784824391848</span></span><br><span class="line">Iteration <span class="number">252</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.950789127904011</span></span><br><span class="line">Iteration <span class="number">253</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.951773345345931</span></span><br><span class="line">Iteration <span class="number">254</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.952737878439012</span></span><br><span class="line">Iteration <span class="number">255</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.953683120870232</span></span><br><span class="line">Iteration <span class="number">256</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.954609458452827</span></span><br><span class="line">Iteration <span class="number">257</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.955517269283771</span></span><br><span class="line">Iteration <span class="number">258</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.956406923898095</span></span><br><span class="line">Iteration <span class="number">259</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.957278785420133</span></span><br><span class="line">Iteration <span class="number">260</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.958133209711731</span></span><br><span class="line">Iteration <span class="number">261</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.958970545517496</span></span><br><span class="line">Iteration <span class="number">262</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.959791134607146</span></span><br><span class="line">Iteration <span class="number">263</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.960595311915003</span></span><br><span class="line">Iteration <span class="number">264</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9613834056767026</span></span><br><span class="line">Iteration <span class="number">265</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.962155737563169</span></span><br><span class="line">Iteration <span class="number">266</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.962912622811905</span></span><br><span class="line">Iteration <span class="number">267</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.963654370355667</span></span><br><span class="line">Iteration <span class="number">268</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.964381282948554</span></span><br><span class="line">Iteration <span class="number">269</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.965093657289583</span></span><br><span class="line">Iteration <span class="number">270</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.965791784143791</span></span><br><span class="line">Iteration <span class="number">271</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.966475948460915</span></span><br><span class="line">Iteration <span class="number">272</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.967146429491697</span></span><br><span class="line">Iteration <span class="number">273</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.967803500901863</span></span><br><span class="line">Iteration <span class="number">274</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.968447430883826</span></span><br><span class="line">Iteration <span class="number">275</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.969078482266149</span></span><br><span class="line">Iteration <span class="number">276</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.969696912620826</span></span><br><span class="line">Iteration <span class="number">277</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.970302974368409</span></span><br><span class="line">Iteration <span class="number">278</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.970896914881041</span></span><br><span class="line">Iteration <span class="number">279</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.97147897658342</span></span><br><span class="line">Iteration <span class="number">280</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.972049397051752</span></span><br><span class="line">Iteration <span class="number">281</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.972608409110717</span></span><br><span class="line">Iteration <span class="number">282</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.973156240928502</span></span><br><span class="line">Iteration <span class="number">283</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.973693116109932</span></span><br><span class="line">Iteration <span class="number">284</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.974219253787734</span></span><br><span class="line">Iteration <span class="number">285</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.974734868711979</span></span><br><span class="line">Iteration <span class="number">286</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.975240171337739</span></span><br><span class="line">Iteration <span class="number">287</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.975735367910985</span></span><br><span class="line">Iteration <span class="number">288</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.976220660552765</span></span><br><span class="line">Iteration <span class="number">289</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.976696247341709</span></span><br><span class="line">Iteration <span class="number">290</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.977162322394875</span></span><br><span class="line">Iteration <span class="number">291</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.977619075946977</span></span><br><span class="line">Iteration <span class="number">292</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.978066694428038</span></span><br><span class="line">Iteration <span class="number">293</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.978505360539477</span></span><br><span class="line">Iteration <span class="number">294</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.978935253328687</span></span><br><span class="line">Iteration <span class="number">295</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.979356548262113</span></span><br><span class="line">Iteration <span class="number">296</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.979769417296871</span></span><br><span class="line">Iteration <span class="number">297</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.980174028950934</span></span><br><span class="line">Iteration <span class="number">298</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.980570548371915</span></span><br><span class="line">Iteration <span class="number">299</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.980959137404477</span></span><br><span class="line">Iteration <span class="number">300</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.981339954656387</span></span><br><span class="line">Iteration <span class="number">301</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.981713155563259</span></span><br><span class="line">Iteration <span class="number">302</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.982078892451994</span></span><br><span class="line">Iteration <span class="number">303</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9824373146029535</span></span><br><span class="line">Iteration <span class="number">304</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.982788568310895</span></span><br><span class="line">Iteration <span class="number">305</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.983132796944677</span></span><br><span class="line">Iteration <span class="number">306</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.983470141005784</span></span><br><span class="line">Iteration <span class="number">307</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.983800738185668</span></span><br><span class="line">Iteration <span class="number">308</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.984124723421955</span></span><br><span class="line">Iteration <span class="number">309</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.984442228953515</span></span><br><span class="line">Iteration <span class="number">310</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.984753384374445</span></span><br><span class="line">Iteration <span class="number">311</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.985058316686956</span></span><br><span class="line">Iteration <span class="number">312</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9853571503532175</span></span><br><span class="line">Iteration <span class="number">313</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.985650007346153</span></span><br><span class="line">Iteration <span class="number">314</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9859370071992295</span></span><br><span class="line">Iteration <span class="number">315</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.986218267055245</span></span><br><span class="line">Iteration <span class="number">316</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.98649390171414</span></span><br><span class="line">Iteration <span class="number">317</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.986764023679857</span></span><br><span class="line">Iteration <span class="number">318</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.98702874320626</span></span><br><span class="line">Iteration <span class="number">319</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.987288168342134</span></span><br><span class="line">Iteration <span class="number">320</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.987542404975292</span></span><br><span class="line">Iteration <span class="number">321</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.987791556875786</span></span><br><span class="line">Iteration <span class="number">322</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.98803572573827</span></span><br><span class="line">Iteration <span class="number">323</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.988275011223505</span></span><br><span class="line">Iteration <span class="number">324</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.988509510999035</span></span><br><span class="line">Iteration <span class="number">325</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.988739320779054</span></span><br><span class="line">Iteration <span class="number">326</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.988964534363473</span></span><br><span class="line">Iteration <span class="number">327</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.989185243676204</span></span><br><span class="line">Iteration <span class="number">328</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.98940153880268</span></span><br><span class="line">Iteration <span class="number">329</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.989613508026626</span></span><br><span class="line">Iteration <span class="number">330</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.989821237866094</span></span><br><span class="line">Iteration <span class="number">331</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.990024813108772</span></span><br><span class="line">Iteration <span class="number">332</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9902243168465965</span></span><br><span class="line">Iteration <span class="number">333</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.990419830509665</span></span><br><span class="line">Iteration <span class="number">334</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.990611433899471</span></span><br><span class="line">Iteration <span class="number">335</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.990799205221482</span></span><br><span class="line">Iteration <span class="number">336</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.990983221117052</span></span><br><span class="line">Iteration <span class="number">337</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.991163556694711</span></span><br><span class="line">Iteration <span class="number">338</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.991340285560817</span></span><br><span class="line">Iteration <span class="number">339</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9915134798496</span></span><br><span class="line">Iteration <span class="number">340</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.991683210252608</span></span><br><span class="line">Iteration <span class="number">341</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.991849546047556</span></span><br><span class="line">Iteration <span class="number">342</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.992012555126605</span></span><br><span class="line">Iteration <span class="number">343</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.992172304024073</span></span><br><span class="line">Iteration <span class="number">344</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.992328857943591</span></span><br><span class="line">Iteration <span class="number">345</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.99248228078472</span></span><br><span class="line">Iteration <span class="number">346</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.992632635169025</span></span><br><span class="line">Iteration <span class="number">347</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9927799824656445</span></span><br><span class="line">Iteration <span class="number">348</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.992924382816332</span></span><br><span class="line">Iteration <span class="number">349</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.993065895160005</span></span><br><span class="line">Iteration <span class="number">350</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.993204577256805</span></span><br><span class="line">Iteration <span class="number">351</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.993340485711669</span></span><br><span class="line">Iteration <span class="number">352</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.993473675997436</span></span><br><span class="line">Iteration <span class="number">353</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.993604202477487</span></span><br><span class="line">Iteration <span class="number">354</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.993732118427937</span></span><br><span class="line">Iteration <span class="number">355</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.993857476059379</span></span><br><span class="line">Iteration <span class="number">356</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.993980326538191</span></span><br><span class="line">Iteration <span class="number">357</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9941007200074266</span></span><br><span class="line">Iteration <span class="number">358</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.994218705607278</span></span><br><span class="line">Iteration <span class="number">359</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.994334331495133</span></span><br><span class="line">Iteration <span class="number">360</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.994447644865231</span></span><br><span class="line">Iteration <span class="number">361</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.994558691967926</span></span><br><span class="line">Iteration <span class="number">362</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.994667518128567</span></span><br><span class="line">Iteration <span class="number">363</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.994774167765996</span></span><br><span class="line">Iteration <span class="number">364</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9948786844106765</span></span><br><span class="line">Iteration <span class="number">365</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.994981110722463</span></span><br><span class="line">Iteration <span class="number">366</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.995081488508014</span></span><br><span class="line">Iteration <span class="number">367</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.995179858737854</span></span><br><span class="line">Iteration <span class="number">368</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.995276261563097</span></span><br><span class="line">Iteration <span class="number">369</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.995370736331835</span></span><br><span class="line">Iteration <span class="number">370</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9954633216051985</span></span><br><span class="line">Iteration <span class="number">371</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.995554055173095</span></span><br><span class="line">Iteration <span class="number">372</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.995642974069633</span></span><br><span class="line">Iteration <span class="number">373</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.99573011458824</span></span><br><span class="line">Iteration <span class="number">374</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.995815512296476</span></span><br><span class="line">Iteration <span class="number">375</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.995899202050547</span></span><br><span class="line">Iteration <span class="number">376</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.995981218009535</span></span><br><span class="line">Iteration <span class="number">377</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.996061593649345</span></span><br><span class="line">Iteration <span class="number">378</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.996140361776358</span></span><br><span class="line">Iteration <span class="number">379</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.996217554540831</span></span><br><span class="line">Iteration <span class="number">380</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.996293203450014</span></span><br><span class="line">Iteration <span class="number">381</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.996367339381013</span></span><br><span class="line">Iteration <span class="number">382</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.996439992593393</span></span><br><span class="line">Iteration <span class="number">383</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.996511192741525</span></span><br><span class="line">Iteration <span class="number">384</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.996580968886694</span></span><br><span class="line">Iteration <span class="number">385</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.99664934950896</span></span><br><span class="line">Iteration <span class="number">386</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9967163625187805</span></span><br><span class="line">Iteration <span class="number">387</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.996782035268405</span></span><br><span class="line">Iteration <span class="number">388</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.996846394563037</span></span><br><span class="line">Iteration <span class="number">389</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.996909466671776</span></span><br><span class="line">Iteration <span class="number">390</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.996971277338341</span></span><br><span class="line">Iteration <span class="number">391</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.997031851791574</span></span><br><span class="line">Iteration <span class="number">392</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.997091214755742</span></span><br><span class="line">Iteration <span class="number">393</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.997149390460628</span></span><br><span class="line">Iteration <span class="number">394</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.997206402651415</span></span><br><span class="line">Iteration <span class="number">395</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.997262274598387</span></span><br><span class="line">Iteration <span class="number">396</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.997317029106419</span></span><br><span class="line">Iteration <span class="number">397</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.997370688524291</span></span><br><span class="line">Iteration <span class="number">398</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.997423274753805</span></span><br><span class="line">Iteration <span class="number">399</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.997474809258729</span></span><br><span class="line">Iteration <span class="number">400</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.997525313073554</span></span><br><span class="line">Iteration <span class="number">401</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.997574806812083</span></span><br><span class="line">Iteration <span class="number">402</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.997623310675841</span></span><br><span class="line">Iteration <span class="number">403</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.997670844462324</span></span><br><span class="line">Iteration <span class="number">404</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.997717427573078</span></span><br><span class="line">Iteration <span class="number">405</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.997763079021617</span></span><br><span class="line">Iteration <span class="number">406</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.997807817441185</span></span><br><span class="line">Iteration <span class="number">407</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.997851661092361</span></span><br><span class="line">Iteration <span class="number">408</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.997894627870514</span></span><br><span class="line">Iteration <span class="number">409</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.997936735313104</span></span><br><span class="line">Iteration <span class="number">410</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9979780006068415</span></span><br><span class="line">Iteration <span class="number">411</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998018440594705</span></span><br><span class="line">Iteration <span class="number">412</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998058071782811</span></span><br><span class="line">Iteration <span class="number">413</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998096910347155</span></span><br><span class="line">Iteration <span class="number">414</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998134972140212</span></span><br><span class="line">Iteration <span class="number">415</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998172272697408</span></span><br><span class="line">Iteration <span class="number">416</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9982088272434595</span></span><br><span class="line">Iteration <span class="number">417</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998244650698591</span></span><br><span class="line">Iteration <span class="number">418</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998279757684619</span></span><br><span class="line">Iteration <span class="number">419</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998314162530927</span></span><br><span class="line">Iteration <span class="number">420</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998347879280309</span></span><br><span class="line">Iteration <span class="number">421</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998380921694703</span></span><br><span class="line">Iteration <span class="number">422</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998413303260809</span></span><br><span class="line">Iteration <span class="number">423</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998445037195593</span></span><br><span class="line">Iteration <span class="number">424</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998476136451681</span></span><br><span class="line">Iteration <span class="number">425</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998506613722648</span></span><br><span class="line">Iteration <span class="number">426</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998536481448195</span></span><br><span class="line">Iteration <span class="number">427</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998565751819231</span></span><br><span class="line">Iteration <span class="number">428</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998594436782846</span></span><br><span class="line">Iteration <span class="number">429</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998622548047189</span></span><br><span class="line">Iteration <span class="number">430</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998650097086245</span></span><br><span class="line">Iteration <span class="number">431</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9986770951445205</span></span><br><span class="line">Iteration <span class="number">432</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.99870355324163</span></span><br><span class="line">Iteration <span class="number">433</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998729482176797</span></span><br><span class="line">Iteration <span class="number">434</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998754892533261</span></span><br><span class="line">Iteration <span class="number">435</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998779794682596</span></span><br><span class="line">Iteration <span class="number">436</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998804198788944</span></span><br><span class="line">Iteration <span class="number">437</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998828114813166</span></span><br><span class="line">Iteration <span class="number">438</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998851552516903</span></span><br><span class="line">Iteration <span class="number">439</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998874521466565</span></span><br><span class="line">Iteration <span class="number">440</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998897031037234</span></span><br><span class="line">Iteration <span class="number">441</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998919090416489</span></span><br><span class="line">Iteration <span class="number">442</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.99894070860816</span></span><br><span class="line">Iteration <span class="number">443</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998961894435997</span></span><br><span class="line">Iteration <span class="number">444</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.998982656547277</span></span><br><span class="line">Iteration <span class="number">445</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999003003416331</span></span><br><span class="line">Iteration <span class="number">446</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999022943348004</span></span><br><span class="line">Iteration <span class="number">447</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999042484481044</span></span><br><span class="line">Iteration <span class="number">448</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999061634791423</span></span><br><span class="line">Iteration <span class="number">449</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999080402095594</span></span><br><span class="line">Iteration <span class="number">450</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999098794053682</span></span><br><span class="line">Iteration <span class="number">451</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999116818172609</span></span><br><span class="line">Iteration <span class="number">452</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999134481809157</span></span><br><span class="line">Iteration <span class="number">453</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999151792172974</span></span><br><span class="line">Iteration <span class="number">454</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999168756329515</span></span><br><span class="line">Iteration <span class="number">455</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999185381202924</span></span><br><span class="line">Iteration <span class="number">456</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999201673578866</span></span><br><span class="line">Iteration <span class="number">457</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999217640107289</span></span><br><span class="line">Iteration <span class="number">458</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999233287305143</span></span><br><span class="line">Iteration <span class="number">459</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9992486215590395</span></span><br><span class="line">Iteration <span class="number">460</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999263649127859</span></span><br><span class="line">Iteration <span class="number">461</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999278376145302</span></span><br><span class="line">Iteration <span class="number">462</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999292808622396</span></span><br><span class="line">Iteration <span class="number">463</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999306952449948</span></span><br><span class="line">Iteration <span class="number">464</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999320813400949</span></span><br><span class="line">Iteration <span class="number">465</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.99933439713293</span></span><br><span class="line">Iteration <span class="number">466</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999347709190272</span></span><br><span class="line">Iteration <span class="number">467</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9993607550064665</span></span><br><span class="line">Iteration <span class="number">468</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999373539906337</span></span><br><span class="line">Iteration <span class="number">469</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.99938606910821</span></span><br><span class="line">Iteration <span class="number">470</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9993983477260455</span></span><br><span class="line">Iteration <span class="number">471</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999410380771525</span></span><br><span class="line">Iteration <span class="number">472</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999422173156094</span></span><br><span class="line">Iteration <span class="number">473</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9994337296929725</span></span><br><span class="line">Iteration <span class="number">474</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999445055099113</span></span><br><span class="line">Iteration <span class="number">475</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999456153997131</span></span><br><span class="line">Iteration <span class="number">476</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999467030917188</span></span><br><span class="line">Iteration <span class="number">477</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9994776902988445</span></span><br><span class="line">Iteration <span class="number">478</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999488136492867</span></span><br><span class="line">Iteration <span class="number">479</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.99949837376301</span></span><br><span class="line">Iteration <span class="number">480</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.99950840628775</span></span><br><span class="line">Iteration <span class="number">481</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999518238161995</span></span><br><span class="line">Iteration <span class="number">482</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999527873398756</span></span><br><span class="line">Iteration <span class="number">483</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.99953731593078</span></span><br><span class="line">Iteration <span class="number">484</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999546569612165</span></span><br><span class="line">Iteration <span class="number">485</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999555638219921</span></span><br><span class="line">Iteration <span class="number">486</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999564525455523</span></span><br><span class="line">Iteration <span class="number">487</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999573234946412</span></span><br><span class="line">Iteration <span class="number">488</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9995817702474845</span></span><br><span class="line">Iteration <span class="number">489</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999590134842535</span></span><br><span class="line">Iteration <span class="number">490</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999598332145684</span></span><br><span class="line">Iteration <span class="number">491</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.99960636550277</span></span><br><span class="line">Iteration <span class="number">492</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999614238192715</span></span><br><span class="line">Iteration <span class="number">493</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999621953428861</span></span><br><span class="line">Iteration <span class="number">494</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999629514360284</span></span><br><span class="line">Iteration <span class="number">495</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999636924073078</span></span><br><span class="line">Iteration <span class="number">496</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999644185591617</span></span><br><span class="line">Iteration <span class="number">497</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999651301879784</span></span><br><span class="line">Iteration <span class="number">498</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999658275842188</span></span><br><span class="line">Iteration <span class="number">499</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999665110325345</span></span><br><span class="line">Iteration <span class="number">500</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999671808118838</span></span><br><span class="line">Iteration <span class="number">501</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9996783719564615</span></span><br><span class="line">Iteration <span class="number">502</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999684804517332</span></span><br><span class="line">Iteration <span class="number">503</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999691108426985</span></span><br><span class="line">Iteration <span class="number">504</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999697286258446</span></span><br><span class="line">Iteration <span class="number">505</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9997033405332765</span></span><br><span class="line">Iteration <span class="number">506</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999709273722611</span></span><br><span class="line">Iteration <span class="number">507</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999715088248159</span></span><br><span class="line">Iteration <span class="number">508</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999720786483196</span></span><br><span class="line">Iteration <span class="number">509</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999726370753532</span></span><br><span class="line">Iteration <span class="number">510</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999731843338461</span></span><br><span class="line">Iteration <span class="number">511</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999737206471692</span></span><br><span class="line">Iteration <span class="number">512</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999742462342258</span></span><br><span class="line">Iteration <span class="number">513</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999747613095413</span></span><br><span class="line">Iteration <span class="number">514</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999752660833504</span></span><br><span class="line">Iteration <span class="number">515</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999757607616834</span></span><br><span class="line">Iteration <span class="number">516</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999762455464498</span></span><br><span class="line">Iteration <span class="number">517</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999767206355208</span></span><br><span class="line">Iteration <span class="number">518</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999771862228104</span></span><br><span class="line">Iteration <span class="number">519</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999776424983542</span></span><br><span class="line">Iteration <span class="number">520</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9997808964838715</span></span><br><span class="line">Iteration <span class="number">521</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999785278554194</span></span><br><span class="line">Iteration <span class="number">522</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9997895729831106</span></span><br><span class="line">Iteration <span class="number">523</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999793781523448</span></span><br><span class="line">Iteration <span class="number">524</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999797905892979</span></span><br><span class="line">Iteration <span class="number">525</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999801947775119</span></span><br><span class="line">Iteration <span class="number">526</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999805908819617</span></span><br><span class="line">Iteration <span class="number">527</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999809790643225</span></span><br><span class="line">Iteration <span class="number">528</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.99981359483036</span></span><br><span class="line">Iteration <span class="number">529</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999817322933753</span></span><br><span class="line">Iteration <span class="number">530</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999820976475077</span></span><br><span class="line">Iteration <span class="number">531</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999824556945576</span></span><br><span class="line">Iteration <span class="number">532</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999828065806665</span></span><br><span class="line">Iteration <span class="number">533</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9998315044905315</span></span><br><span class="line">Iteration <span class="number">534</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999834874400721</span></span><br><span class="line">Iteration <span class="number">535</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999838176912706</span></span><br><span class="line">Iteration <span class="number">536</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999841413374452</span></span><br><span class="line">Iteration <span class="number">537</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999844585106963</span></span><br><span class="line">Iteration <span class="number">538</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999847693404824</span></span><br><span class="line">Iteration <span class="number">539</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999850739536727</span></span><br><span class="line">Iteration <span class="number">540</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999853724745993</span></span><br><span class="line">Iteration <span class="number">541</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999856650251073</span></span><br><span class="line">Iteration <span class="number">542</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999859517246051</span></span><br><span class="line">Iteration <span class="number">543</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.99986232690113</span></span><br><span class="line">Iteration <span class="number">544</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999865080363108</span></span><br><span class="line">Iteration <span class="number">545</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999867778755846</span></span><br><span class="line">Iteration <span class="number">546</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999870423180729</span></span><br><span class="line">Iteration <span class="number">547</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999873014717115</span></span><br><span class="line">Iteration <span class="number">548</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999875554422772</span></span><br><span class="line">Iteration <span class="number">549</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999878043334316</span></span><br><span class="line">Iteration <span class="number">550</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.99988048246763</span></span><br><span class="line">Iteration <span class="number">551</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999882872818278</span></span><br><span class="line">Iteration <span class="number">552</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999885215361912</span></span><br><span class="line">Iteration <span class="number">553</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999887511054674</span></span><br><span class="line">Iteration <span class="number">554</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999889760833581</span></span><br><span class="line">Iteration <span class="number">555</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999891965616909</span></span><br><span class="line">Iteration <span class="number">556</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999894126304571</span></span><br><span class="line">Iteration <span class="number">557</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999896243778479</span></span><br><span class="line">Iteration <span class="number">558</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999898318902909</span></span><br><span class="line">Iteration <span class="number">559</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999900352524851</span></span><br><span class="line">Iteration <span class="number">560</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9999023454743545</span></span><br><span class="line">Iteration <span class="number">561</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999904298564868</span></span><br><span class="line">Iteration <span class="number">562</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9999062125935705</span></span><br><span class="line">Iteration <span class="number">563</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999908088341699</span></span><br><span class="line">Iteration <span class="number">564</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9999099265748645</span></span><br><span class="line">Iteration <span class="number">565</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999911728043367</span></span><br><span class="line">Iteration <span class="number">566</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9999134934825</span></span><br><span class="line">Iteration <span class="number">567</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.99991522361285</span></span><br><span class="line">Iteration <span class="number">568</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999916919140593</span></span><br><span class="line">Iteration <span class="number">569</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999918580757781</span></span><br><span class="line">Iteration <span class="number">570</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999920209142625</span></span><br><span class="line">Iteration <span class="number">571</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999921804959773</span></span><br><span class="line">Iteration <span class="number">572</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9999233688605775</span></span><br><span class="line">Iteration <span class="number">573</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999924901483366</span></span><br><span class="line">Iteration <span class="number">574</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999926403453699</span></span><br><span class="line">Iteration <span class="number">575</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999927875384625</span></span><br><span class="line">Iteration <span class="number">576</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999929317876933</span></span><br><span class="line">Iteration <span class="number">577</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999930731519394</span></span><br><span class="line">Iteration <span class="number">578</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999932116889006</span></span><br><span class="line">Iteration <span class="number">579</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999933474551226</span></span><br><span class="line">Iteration <span class="number">580</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999934805060202</span></span><br><span class="line">Iteration <span class="number">581</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999936108958998</span></span><br><span class="line">Iteration <span class="number">582</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999937386779818</span></span><br><span class="line">Iteration <span class="number">583</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999938639044221</span></span><br><span class="line">Iteration <span class="number">584</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999939866263337</span></span><br><span class="line">Iteration <span class="number">585</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.99994106893807</span></span><br><span class="line">Iteration <span class="number">586</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999942247559309</span></span><br><span class="line">Iteration <span class="number">587</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999943402608123</span></span><br><span class="line">Iteration <span class="number">588</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9999445345559606</span></span><br><span class="line">Iteration <span class="number">589</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999945643864842</span></span><br><span class="line">Iteration <span class="number">590</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999946730987545</span></span><br><span class="line">Iteration <span class="number">591</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999947796367794</span></span><br><span class="line">Iteration <span class="number">592</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999948840440438</span></span><br><span class="line">Iteration <span class="number">593</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999949863631629</span></span><br><span class="line">Iteration <span class="number">594</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.999950866358997</span></span><br><span class="line">Iteration <span class="number">595</span> </span><br><span class="line">X value <span class="keyword">is</span> <span class="number">-4.9999518490318176</span></span><br><span class="line">The local minimum occurs at <span class="number">-4.9999518490318176</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="会微积分的喵 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpeg" alt="会微积分的喵 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>会微积分的喵</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://fengxc.me/梯度下降算法Python实现.html" title="梯度下降算法Python实现">https://fengxc.me/梯度下降算法Python实现.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/梯度下降/" rel="tag"># 梯度下降</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Python-logging-config-dictConfig中Filter的使用.html" rel="next" title="Python中logging.config.dictConfig中Filter的使用">
+                <i class="fa fa-chevron-left"></i> Python中logging.config.dictConfig中Filter的使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/基于python注释使用sphinx自动化生成API文档.html" rel="prev" title="基于python注释使用sphinx自动化生成API文档">
+                基于python注释使用sphinx自动化生成API文档 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="会微积分的喵">
+            
+              <p class="site-author-name" itemprop="name">会微积分的喵</p>
+              <p class="site-description motion-element" itemprop="description">Happy Code, Happy Life</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">128</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">204</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/cutoutsy" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:cutoutsy@gmail.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://windmgc.me" title="windmgc" target="_blank">windmgc</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是梯度下降算法"><span class="nav-number">2.</span> <span class="nav-text">什么是梯度下降算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">3.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python实现梯度下降"><span class="nav-number">4.</span> <span class="nav-text">Python实现梯度下降</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">会微积分的喵</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">332k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">5:02</span>
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Pisces</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://cutoutsy-blog.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://fengxc.me/梯度下降算法Python实现.html';
+        this.page.identifier = '梯度下降算法Python实现.html';
+        this.page.title = '梯度下降算法Python实现';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cutoutsy-blog.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
