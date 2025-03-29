@@ -1,0 +1,120 @@
+# Hexo Configuration
+## Docs: http://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site
+title: 会微积分的喵
+#language: zh-Hans
+language: zh-CN
+# subtitle: Happy Code, Happy Life
+subtitle: 我走得很慢，但我从不后退
+description: Happy Code, Happy Life
+author: 会微积分的喵
+email: cutoutsy@gmail.com
+keywords: "java,机器学习,big data,大数据,深度学习,linux,开发者,程序猿极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3"
+
+# URL
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: https://fengxc.me
+root: /
+#permalink: :year/:month/:day/:title/
+permalink: :title.html
+permalink_defaults:
+
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+skip_render:
+
+sitemap:
+path: sitemap.xml
+
+math:
+  engine: 'mathjax' # or 'katex'
+  mathjax:
+    src: custom_mathjax_source
+    config:
+      # MathJax config
+  katex:
+    css: custom_css_source
+    js: custom_js_source # not used
+    config:
+      # KaTeX config
+
+symbols_count_time:
+  symbols: true
+  time: true
+  total_symbols: true
+  total_time: true
+
+# Writing
+new_post_name: :title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link: true # Open external links in new tab
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+highlight:
+  enable: true
+  line_number: true
+  tab_replace: ''
+  auto_detect: false
+
+# Category & Tag
+default_category: uncategorized
+category_map:
+tag_map:
+
+# comments
+disqus_shortname:
+
+# Archives
+## 2: Enable pagination
+## 1: Disable pagination
+## 0: Fully Disable
+archive: 1
+category: 1
+tag: 1
+
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+
+# Pagination
+## Set per_page to 0 to disable pagination
+per_page: 8
+pagination_dir: page
+
+# Extensions
+## Plugins: http://hexo.io/plugins/
+## Themes: http://hexo.io/themes/
+# theme: next
+theme: next-reloaded
+
+# Deployment
+## Docs: http://hexo.io/docs/deployment.html
+deploy:
+  type: git
+  repo: https://gh_token@github.com/cutoutsy/cutoutsy.github.io.git
+  branch: master
+
+douban:
+  user: 135665913
+  builtin: false
+  book:
+    title: '我的阅读'
+    quote: '养成阅读的好习惯......'
+  movie:
+    title: '我的观影'
+    quote: '记录平时观看的一些视频'
+  timeout: 10000
