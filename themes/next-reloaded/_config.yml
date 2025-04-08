@@ -489,7 +489,7 @@ disqus:
   enable: true
   shortname: cutoutsy-blog
   count: true
-  lazyload: false
+  lazyload: true
 
 # changyan
 changyan:
