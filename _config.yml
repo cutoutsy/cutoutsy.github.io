@@ -110,7 +110,7 @@ deploy:
 
 douban:
   user: 135665913
-  builtin: false
+  builtin: true
   book:
     title: '我的阅读'
     quote: '养成阅读的好习惯......'
