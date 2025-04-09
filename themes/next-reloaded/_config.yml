@@ -127,7 +127,7 @@ menu:
   job: /job/ || user
   booklist: /books/ || book
   read: /booklist/ || book
-  video: /video/ || film
+  video: /movies/ || film
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat

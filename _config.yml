@@ -109,7 +109,7 @@ deploy:
   branch: master
 
 douban:
-  user: 135665913
+  id: 135665913
   builtin: true
   book:
     title: '我的阅读'
