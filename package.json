@@ -29,6 +29,6 @@
     "hexo-renderer-kramed": "^0.1.4",
     "hexo-symbols-count-time": "^0.4.4",
     "hexo-wordcount": "^3.0.2",
-    "hexo-douban":"^2.2.0"
+    "hexo-douban":"^2.3.6"
   }
 }
