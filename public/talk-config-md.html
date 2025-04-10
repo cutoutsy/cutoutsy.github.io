@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"fengxc.me","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="0x00 写在前面配置文件是什么东东，配置文件相信用过电脑的同学都接触过，有时候打游戏过程中出现问题，在网上寻找解决方法时，就会涉及到修改配置文件。在系统级，有一些用户的配置文件，用户在使用软件时，软件系统为用户所要加载所需环境的设置和文件的集合。它包括所有用户专用的配置设置，如程序项目、屏幕颜色、网络连接、打印机连接、鼠标设置及窗口的大小和位置等。经常使用Linux的话，那就避免不了与配置文件打">
+<meta property="og:type" content="article">
+<meta property="og:title" content="谈谈那些配置文件">
+<meta property="og:url" content="https://fengxc.me/talk-config-md.html">
+<meta property="og:site_name" content="会微积分的喵">
+<meta property="og:description" content="0x00 写在前面配置文件是什么东东，配置文件相信用过电脑的同学都接触过，有时候打游戏过程中出现问题，在网上寻找解决方法时，就会涉及到修改配置文件。在系统级，有一些用户的配置文件，用户在使用软件时，软件系统为用户所要加载所需环境的设置和文件的集合。它包括所有用户专用的配置设置，如程序项目、屏幕颜色、网络连接、打印机连接、鼠标设置及窗口的大小和位置等。经常使用Linux的话，那就避免不了与配置文件打">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-09-20T21:35:36.000Z">
+<meta property="article:modified_time" content="2025-04-10T14:09:26.305Z">
+<meta property="article:author" content="会微积分的喵">
+<meta property="article:tag" content="JAVA">
+<meta property="article:tag" content="配置文件">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://fengxc.me/talk-config-md.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://fengxc.me/talk-config-md.html","path":"talk-config-md.html","title":"谈谈那些配置文件"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>谈谈那些配置文件 | 会微积分的喵</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">会微积分的喵</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">我走得很慢，但我从不后退</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x00-%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">0x00 写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-%E5%B8%B8%E8%A7%81%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">0x01 常见的配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ini%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">2.1.</span> <span class="nav-text">ini配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">2.2.</span> <span class="nav-text">json配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#xml%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">2.3.</span> <span class="nav-text">xml配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#properties%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">2.4.</span> <span class="nav-text">properties配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#yaml%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">2.5.</span> <span class="nav-text">yaml配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#conf%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">2.6.</span> <span class="nav-text">conf配置文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-%E6%9C%80%E5%90%8E%E8%AF%B4%E4%B8%A4%E5%8F%A5"><span class="nav-number">3.</span> <span class="nav-text">0x03 最后说两句</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">会微积分的喵</p>
+  <div class="site-description" itemprop="description">Happy Code, Happy Life</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">204</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/talk-config-md.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="谈谈那些配置文件 | 会微积分的喵">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          谈谈那些配置文件
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2015-09-20 21:35:36" itemprop="dateCreated datePublished" datetime="2015-09-20T21:35:36+00:00">2015-09-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-10 14:09:26" itemprop="dateModified" datetime="2025-04-10T14:09:26+00:00">2025-04-10</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>0</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="0x00-写在前面"><a href="#0x00-写在前面" class="headerlink" title="0x00 写在前面"></a>0x00 写在前面</h3><p>配置文件是什么东东，配置文件相信用过电脑的同学都接触过，有时候打游戏过程中出现问题，在网上寻找解决方法时，就会涉及到修改配置文件。在系统级，有一些用户的配置文件，用户在使用软件时，软件系统为用户所要加载所需环境的设置和文件的集合。它包括所有用户专用的配置设置，如程序项目、屏幕颜色、网络连接、打印机连接、鼠标设置及窗口的大小和位置等。经常使用Linux的话，那就避免不了与配置文件打交道。<br><span id="more"></span></p>
+<h3 id="0x01-常见的配置文件"><a href="#0x01-常见的配置文件" class="headerlink" title="0x01 常见的配置文件"></a>0x01 常见的配置文件</h3><h4 id="ini配置文件"><a href="#ini配置文件" class="headerlink" title="ini配置文件"></a><strong>ini配置文件</strong></h4><p>这种配置文件经常使用windows的童鞋可能见得比较多，在Windows系统中，INI文件是很多，最重要的就是“System.ini”、“System32.ini”和“Win.ini”。该文件主要存放用户所做的选择以及系统的各种参数。.ini文件是Initialization File的缩写，即初始化文件，是windows的系统配置文件所采用的存储格式。不过在其他软件中也有使用，用来配置应用软件以实现不同用户的要求,比如php的配置文件php.ini。<br>格式：<br>节：［section］<br>参数（键＝值）：name=cutoutsy<br>注释：注解使用分号表示，在分号后面的文字，直到该行结尾都全部为注解。<br>实例：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">; exp ini file</span></span><br><span class="line"><span class="section">[port]</span></span><br><span class="line"><span class="attr">portname</span>=COM4</span><br><span class="line"><span class="attr">port</span>=<span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="json配置文件"><a href="#json配置文件" class="headerlink" title="json配置文件"></a><strong>json配置文件</strong></h4><p>JSON是一种轻量的数据交换格式，易于人阅读和编写，同时也易于机器解析和生成(网络传输速率)。<br>JSON语法规则：</p>
+<ul>
+<li>数据在键值对中</li>
+<li>数据由逗号分隔</li>
+<li>花括号保存对象</li>
+<li>方括号保存数组</li>
+</ul>
+<p>JSON值：</p>
+<ul>
+<li>数字（整数或浮点数）</li>
+<li>字符串（在双引号中</li>
+<li>逻辑值（true 或 false）</li>
+<li>数组（在方括号中）</li>
+<li>对象（在花括号中）</li>
+<li>null</li>
+</ul>
+<p>基础结构：对象和数组，通过这两种结构就可以组成复杂的数据结构。<br>1、对象：对象在js中表示为“{}”括起来的内容，数据结构为 {key：value,key：value,…}的键值对的结构，在面向对象的语言中，key为对象的属性，value为对应的属性值，所以很容易理解，取值方法为 对象.key 获取属性值，这个属性值的类型可以是 数字、字符串、数组、对象几种。<br>2、数组：数组在js中是中括号“[]”括起来的内容，数据结构为 [“java”,”javascript”,”vb”,…]，取值方式和所有语言中一样，使用索引获取，字段值的类型可以是 数字、字符串、数组、对象几种。</p>
+<p>比如我们用来翻墙的shadowsocks的config.json<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">	<span class="attr">&quot;server&quot;</span><span class="punctuation">:</span><span class="string">&quot;remote-shadowsocks-server-ip-addr&quot;</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;server_port&quot;</span><span class="punctuation">:</span><span class="number">443</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;local_address&quot;</span><span class="punctuation">:</span><span class="string">&quot;127.0.0.1&quot;</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;local_port&quot;</span><span class="punctuation">:</span><span class="number">1080</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;password&quot;</span><span class="punctuation">:</span><span class="string">&quot;your-passwd&quot;</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;timeout&quot;</span><span class="punctuation">:</span><span class="number">300</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;method&quot;</span><span class="punctuation">:</span><span class="string">&quot;aes-256-cfb&quot;</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;fast_open&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;workers&quot;</span><span class="punctuation">:</span><span class="number">1</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure><br>很多语言都支持JSON的解析，使用比较广泛。</p>
+<h4 id="xml配置文件"><a href="#xml配置文件" class="headerlink" title="xml配置文件"></a><strong>xml配置文件</strong></h4><p>XML配置文件相信写JAVA WEB的童鞋肯定不会陌生，使用ssh框架的时候需要配置大量的XML配置文件。<br>XML：Extensible Markup Language，可扩展标记语言。<br>语法：</p>
+<ul>
+<li>任何的起始标签都必须有一个结束标签。</li>
+<li>可以采用另一种简化语法，可以在一个标签中同时表示起始和结束标签。这种语法是在大于符号之前紧跟一个斜线（/），例如<name/>。XML解析器会将其翻译成<name></name>。</li>
+<li>标签必须按合适的顺序进行嵌套，所以结束标签必须按镜像顺序匹配起始标签。</li>
+<li>所有的特性都必须有值。</li>
+<li>所有的特性都必须在值的周围加上双引号。</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">note</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">to</span>&gt;</span>Tove<span class="tag">&lt;/<span class="name">to</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">from</span>&gt;</span>Jani<span class="tag">&lt;/<span class="name">from</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">heading</span>&gt;</span>Reminder<span class="tag">&lt;/<span class="name">heading</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span>Don&#x27;t forget me this weekend!<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">note</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这个用得也是灰常广泛，很多语言都有很好的解析。</p>
+<h4 id="properties配置文件"><a href="#properties配置文件" class="headerlink" title="properties配置文件"></a><strong>properties配置文件</strong></h4><p>.properties是JAVA的一种配置文件，主要用于表达配置信息。<br>语法：<br>参数（键＝值）：name=cutoutsy<br>注释：注解使用＃表示，在＃后面的文字，直到该行结尾都全部为注解。<br>实例：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#格式良好的properties文件 </span></span><br><span class="line"><span class="attr">aaa</span>=<span class="string">111 </span></span><br><span class="line"><span class="attr">bbb</span>=<span class="string">222</span></span><br></pre></td></tr></table></figure>
+<p>这个配置文件主要是在JAVA中使用，一个好的程序应该是基于配置的，嘻嘻。</p>
+<h4 id="yaml配置文件"><a href="#yaml配置文件" class="headerlink" title="yaml配置文件"></a><strong>yaml配置文件</strong></h4><p>首次见这个后缀名的文件是在学习Storm的时候，里面有个配置文件storm.yaml,我最开始不清楚这种语言格式，没有加空格，坑了我两天……<br>YAML=”YAML Ain ’ t a Markup Language”，即：YAML 不是一种标记语言的递归缩写。<br>格式：<br>多行缩进<br>数据结构可以用类似大纲的缩排方式呈现，结构通过缩进来表示，连续的项目通过减号“-”来表示，map结构里面的key/value对用冒号“:”来分隔。样例如下<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">house:</span></span><br><span class="line">  <span class="attr">family:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">Doe</span></span><br><span class="line">    <span class="attr">parents:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">John</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">Jane</span></span><br><span class="line">    <span class="attr">children:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">Paul</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">Mark</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">Simone</span></span><br><span class="line">  <span class="attr">address:</span></span><br><span class="line">    <span class="attr">number:</span> <span class="number">34</span></span><br><span class="line">    <span class="attr">street:</span> <span class="string">Main</span> <span class="string">Street</span></span><br><span class="line">    <span class="attr">city:</span> <span class="string">Nowheretown</span></span><br><span class="line">    <span class="attr">zipcode:</span> <span class="number">12345</span></span><br></pre></td></tr></table></figure><br>注意：</p>
+<ol>
+<li>字串不一定要用双引号标识；</li>
+<li>在缩排中空白字符的数目并不是非常重要，只要相同阶层的元素左侧对齐就可以了（不过不能使用TAB字符）；</li>
+<li>允许在文件中加入选择性的空行，以增加可读性；</li>
+<li>在一个档案中，可同时包含多个文件，并用“——”分隔；</li>
+<li>选择性的符号“…”可以用来表示档案结尾（在利用串流的通讯中，这非常有用，可以在不关闭串流的情况下，发送结束讯号）</li>
+</ol>
+<p>单行缩写<br>YAML也有用来描述好几行相同结构的数据的缩写语法，数组用’[]’包括起来，hash用’{}’来包括。因此，上面的这个YAML能够缩写成这样:<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">house:</span></span><br><span class="line">  <span class="attr">family:</span> &#123; <span class="attr">name:</span> <span class="string">Doe</span>, <span class="attr">parents:</span> [<span class="string">John</span>, <span class="string">Jane</span>], <span class="attr">children:</span> [<span class="string">Paul</span>, <span class="string">Mark</span>, <span class="string">Simone</span>] &#125;</span><br><span class="line">  <span class="attr">address:</span> &#123; <span class="attr">number:</span> <span class="number">34</span>, <span class="attr">street:</span> <span class="string">Main</span> <span class="string">Street</span>, <span class="attr">city:</span> <span class="string">Nowheretown</span>, <span class="attr">zipcode:</span> <span class="number">12345</span> &#125;</span><br></pre></td></tr></table></figure><br>最后贴一个storm的配置文件：</p>
+<h4 id="conf配置文件"><a href="#conf配置文件" class="headerlink" title="conf配置文件"></a><strong>conf配置文件</strong></h4><p>conf是config的缩写，就是配置文件的意思，这种配置文件也很常见。<br>常见的比如Apache的配置文件http.conf<br>语法：<br>参数（键 值）：name cutoutsy<br>注释：注解使用＃表示，在＃后面的文字，直到该行结尾都全部为注解。<br>实例：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"># Mutex: Allows you to set the mutex mechanism and mutex file directory</span><br><span class="line"># for individual mutexes, or change the global defaults</span><br><span class="line">#</span><br><span class="line"># Uncomment and change the directory if mutexes are file-based and the default</span><br><span class="line"># mutex file directory is not on a local disk or is not appropriate for some</span><br><span class="line"># other reason.</span><br><span class="line">#</span><br><span class="line"># Mutex default:/private/var/run</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># Listen: Allows you to bind Apache to specific IP addresses and/or</span><br><span class="line"># ports, instead of the default. See also the &lt;VirtualHost&gt;</span><br><span class="line"># directive.</span><br><span class="line">#</span><br><span class="line"># Change this to Listen on specific IP addresses as shown below to</span><br><span class="line"># prevent Apache from glomming onto all bound IP addresses.</span><br><span class="line">#</span><br><span class="line">#Listen 12.34.56.78:80</span><br><span class="line">Listen 80</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># Dynamic Shared Object (DSO) Support</span><br><span class="line"># Example:</span><br><span class="line"># LoadModule foo_module modules/mod_foo.so</span><br><span class="line">LoadModule authn_core_module libexec/apache2/mod_authn_core.so</span><br><span class="line">LoadModule authz_host_module libexec/apache2/mod_authz_host.so</span><br><span class="line">LoadModule authz_groupfile_module libexec/apache2/mod_authz_groupfile.so</span><br><span class="line">LoadModule authz_user_module libexec/apache2/mod_authz_user.so</span><br></pre></td></tr></table></figure></p>
+<h3 id="0x03-最后说两句"><a href="#0x03-最后说两句" class="headerlink" title="0x03 最后说两句"></a>0x03 最后说两句</h3><p>当然还有很多其他的配置文件，我只是列举一些常见的配置文件。当我们遇到遇到需要配置这些文件的时候，我们要注意格式，不然配置不会其作用或者软件不会运行。当我们自己在软件里使用配置文件时，也要注意配置文件的选择，选择一种适合自己软件的配置文件。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JAVA/" rel="tag"># JAVA</a>
+              <a href="/tags/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" rel="tag"># 配置文件</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/storm-0-9-5-released.html" rel="prev" title="storm-0.9.5-released">
+                  <i class="fa fa-angle-left"></i> storm-0.9.5-released
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/macfont.html" rel="next" title="Mac还原系统默认字体">
+                  Mac还原系统默认字体 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">会微积分的喵</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">341k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:10</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

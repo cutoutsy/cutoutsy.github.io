@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"fengxc.me","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="写在前面卷积神经网络来源于图像处理，计算机视觉中要面临一个挑战，就是数据的输入可能会非常大。因为图像是像素点，且彩色图片有3个RGB通道。如果直接使用全连接网络的话，会导致参数数量巨大。在参数如此大量的情况下，难以获得足够的数据来防止神经网络发生过拟合（参数越多，拟合能力越强）和竞争需求，而且这么多的参数需要的内存也让人接受不了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="卷积神经网络">
+<meta property="og:url" content="https://fengxc.me/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">
+<meta property="og:site_name" content="会微积分的喵">
+<meta property="og:description" content="写在前面卷积神经网络来源于图像处理，计算机视觉中要面临一个挑战，就是数据的输入可能会非常大。因为图像是像素点，且彩色图片有3个RGB通道。如果直接使用全连接网络的话，会导致参数数量巨大。在参数如此大量的情况下，难以获得足够的数据来防止神经网络发生过拟合（参数越多，拟合能力越强）和竞争需求，而且这么多的参数需要的内存也让人接受不了。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.ai-start.com/dl2017/images/7099a5373f2281626aa8ddd47a180571.png">
+<meta property="og:image" content="http://www.ai-start.com/dl2017/images/d6ecaeb7228172a00bc3948e8b214a27.png">
+<meta property="og:image" content="http://www.ai-start.com/dl2017/images/5f9c10d0986f003e5bd6fa87a9ffe04b.png">
+<meta property="og:image" content="http://www.ai-start.com/dl2017/images/50836692632e32453f0eefcbbf58551b.png">
+<meta property="og:image" content="http://www.ai-start.com/dl2017/images/9b0b0e9062f8814a6a462ea64449f89e.png">
+<meta property="og:image" content="http://www.ai-start.com/dl2017/images/53d04d8ee616c7468e5b92da95c0e22b.png">
+<meta property="og:image" content="http://www.ai-start.com/dl2017/images/02028431085fb7974b76156dd4974b68.png">
+<meta property="og:image" content="http://www.ai-start.com/dl2017/images/6bd58a754152e7f5cf55a8c5bbac3100.png">
+<meta property="og:image" content="http://www.ai-start.com/dl2017/images/445418bf9cd2eaa5a83f31c1f40757dc.png">
+<meta property="og:image" content="http://www.ai-start.com/dl2017/images/f00469a1fbea2ace64f1280849f9cd7d.png">
+<meta property="og:image" content="http://www.ai-start.com/dl2017/images/c6894969e33cfc84b16267b752baf644.png">
+<meta property="article:published_time" content="2018-08-10T20:49:34.000Z">
+<meta property="article:modified_time" content="2025-04-10T14:09:26.341Z">
+<meta property="article:author" content="会微积分的喵">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="卷积神经网络">
+<meta property="article:tag" content="吴恩达">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.ai-start.com/dl2017/images/7099a5373f2281626aa8ddd47a180571.png">
+
+
+<link rel="canonical" href="https://fengxc.me/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://fengxc.me/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html","path":"卷积神经网络.html","title":"卷积神经网络"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>卷积神经网络 | 会微积分的喵</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">会微积分的喵</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">我走得很慢，但我从不后退</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E8%BF%90%E7%AE%97"><span class="nav-number">2.</span> <span class="nav-text">卷积运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Padding"><span class="nav-number">3.</span> <span class="nav-text">Padding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E6%AD%A5%E9%95%BF"><span class="nav-number">4.</span> <span class="nav-text">卷积步长</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E7%BB%B4%E5%8D%B7%E7%A7%AF"><span class="nav-number">5.</span> <span class="nav-text">三维卷积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E5%B1%82%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="nav-number">6.</span> <span class="nav-text">单层卷积神经网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%A4%BA%E4%BE%8B"><span class="nav-number">7.</span> <span class="nav-text">简单神经网络示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%A0%E5%8C%96%E5%B1%82"><span class="nav-number">8.</span> <span class="nav-text">池化层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C%E7%A4%BA%E4%BE%8B"><span class="nav-number">9.</span> <span class="nav-text">卷积网络示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E5%8D%B7%E7%A7%AF"><span class="nav-number">10.</span> <span class="nav-text">为什么使用卷积</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">会微积分的喵</p>
+  <div class="site-description" itemprop="description">Happy Code, Happy Life</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">204</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="卷积神经网络 | 会微积分的喵">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          卷积神经网络
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-08-10 20:49:34" itemprop="dateCreated datePublished" datetime="2018-08-10T20:49:34+00:00">2018-08-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-10 14:09:26" itemprop="dateModified" datetime="2025-04-10T14:09:26+00:00">2025-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>0</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>卷积神经网络来源于图像处理，计算机视觉中要面临一个挑战，就是数据的输入可能会非常大。因为图像是像素点，且彩色图片有3个RGB通道。如果直接使用全连接网络的话，会导致参数数量巨大。在参数如此大量的情况下，难以获得足够的数据来防止神经网络发生过拟合（参数越多，拟合能力越强）和竞争需求，而且这么多的参数需要的内存也让人接受不了。<br><span id="more"></span></p>
+<h3 id="卷积运算"><a href="#卷积运算" class="headerlink" title="卷积运算"></a>卷积运算</h3><p>卷积运算是卷积神经网络最基本的组成部分。<br>用一个例子来讲，下图是一个6x6的灰度图像，是一个6x6x1的矩阵。为了检测图像中的垂直边缘，可以构造一个3x3的矩阵，称为过滤器或者卷积核。<br><img src="http://www.ai-start.com/dl2017/images/7099a5373f2281626aa8ddd47a180571.png" alt="卷积例子"></p>
+<p>卷积运算就是用卷积核在图像上进行滑动，然后进行元素乘法(element-wise products)，每次将得到的值进行相加。</p>
+<p><img src="http://www.ai-start.com/dl2017/images/d6ecaeb7228172a00bc3948e8b214a27.png" alt="计算"></p>
+<p>比如我们要计算第一个值，那么进行元素乘法并相加为：</p>
+<script type="math/tex; mode=display">3\times 1 + 1\times 1 + 2\times 1 + 0\times 0 + 5\times 0 + 7\times 0 + 1\times (-1) + 8\times (-1) + 2\times (-1) = -5</script><p>所以得到的右边矩阵的第一个值就为-5，计算完第一个将卷积核向右移动一格，计算第二个值，在第一行计算完后，向下移动一格，计算第二行的值，直到全部计算完毕，得到下面的值：<br><img src="http://www.ai-start.com/dl2017/images/5f9c10d0986f003e5bd6fa87a9ffe04b.png" alt="计算结果"></p>
+<p>左边矩阵是一张图片，中间这个被理解为卷积核，右边的图片我们可以理解为另一张图片。<br>在编程语言中实现卷积运算：</p>
+<ul>
+<li>tensorflow: tf.nn.conv2d()</li>
+<li>keras: Conv2D()</li>
+</ul>
+<p>为什么这个可以进行垂直边缘检测呢？看下面这个例子：<br><img src="http://www.ai-start.com/dl2017/images/50836692632e32453f0eefcbbf58551b.png" alt="垂直边缘检测"></p>
+<p>左边这个灰度图像，像素值10是比较亮的像素值，所以左边图像的右边比较暗，左边比较亮，在中间类似有一条垂线。<br>在经过卷积核卷积运算后，可以看出右边的图像中间要亮些。表示图像中间有一个明显的垂直边缘。</p>
+<p>除了可以进行垂直边缘检测的卷积核，还有进行水平边缘检测的卷积核。当然还有许多其他的卷积核。<br>但是随着深度学习的发展，我们可以把卷积核中的9个数字当成参数，使用反向传播算法去学习这9个参数。这样会学习出很多卷积核，有的可能我们都不知道它的作用，但是在实践中是有效的。</p>
+<p>将这9个数字当成参数的思想，已经成为计算机视觉中最为有效的思想之一。</p>
+<h3 id="Padding"><a href="#Padding" class="headerlink" title="Padding"></a>Padding</h3><p>Padding是卷积的一个基本操作，这是为了构建深度神经网络。<br>在之前，我们用一个3x3的卷积核去卷积一个6x6的图像，得到是一个4x4的输出。<br>如果我们有一个nxn的图像，用fxf的卷积核做卷积，那么输出的维度就是(n-f+1)x(n-f+1)。<br>这样做存在两个缺点:</p>
+<ul>
+<li>每次做卷积操作图像就会缩小，可能会缩小到1x1的大小。使得图像的部分信息丢失了。</li>
+<li>角落边缘的像素点只被一个输出所触碰或者使用。</li>
+</ul>
+<p>为了解决这个问题，我们可以沿着图像边缘再填充一层像素。这样6x6的图像就被填充成一个8x8的图像，这个时候再用3x3的图像对这个8x8的图像卷积，你得到的输出就不是4x4的，而是6x6的图像，这样就和原始图像6x6相同大小。</p>
+<p>习惯上，用0去填充，如果p是填充的数量，在这个案例中，p=1，这样输出就变成了(n+2p-f+1)x(n+2p-f+1)，这样来的话输出的图像一样大，而且角落边缘的像素点也不止被一个格子所影响。</p>
+<p>当然我们也可以填充两个像素点，即p=2。</p>
+<p>选择填充多少像素，通常有两个选择，分别叫做<strong>Valid卷积</strong>和<strong>Same卷积</strong>。<br>Valid卷积意味着不填充，如果你有一个nxn的图像，用一个fxf的卷积核，它将会给你一个(n-f+1)x(n-f+1)维的输出。这就像我们前面的例子似的。<br>Same卷积意味着填充后，你的输出和输入大小是一样的。根据公式n-f+1，当你填充p个像素点，n就变成了n+2p，最后公式变为n+2p-f+1，因此如果你想让输出和输入大小相等的话，那么即n = n + 2p -f + 1，那么$p = \frac{f-1}{2}$，所以当f是奇数时，只要选择相应的填充尺寸，那么就能确保得到和输入相同尺寸的输出。</p>
+<p>习惯上，在计算机视觉中，f通常是奇数。</p>
+<p>不使用偶数的原因有两个：</p>
+<ul>
+<li>如果f是一个偶数，那么你只能使用一些不对称的填充。只有f是奇数的情况，Same卷积才会有自然的填充。</li>
+<li>当你有一个奇数过滤器，比如3x3或者5x5，它就有一个中心点。这样便于指出过滤器的位置。</li>
+</ul>
+<h3 id="卷积步长"><a href="#卷积步长" class="headerlink" title="卷积步长"></a>卷积步长</h3><p>卷积中的步幅是另一个卷积神经网络的基本操作。</p>
+<p>上面的步幅是1，我们也可以把步幅设置成2，即让过滤器每次跳过2个步长。假设步长s = 2，那么输出公式为：$(\frac{n+2p -f}{s} + 1)\times (\frac{n+2p-f}{s} + 1)$。<br>这个时候有个问题，如果商不是整数怎么办，在这种情况下，我们向下取整。</p>
+<h3 id="三维卷积"><a href="#三维卷积" class="headerlink" title="三维卷积"></a>三维卷积</h3><p>上面的是对二维图像做卷积，现在我们来对三维图像做卷积。</p>
+<p>假设你现在想检测的是彩色图像的特征，彩色图像是6x6x3的，这里的3是3个颜色通道。这时原来的3x3的卷积核要变为3x3x3，卷积核也对应有3层。这时候输出是一个4x4的图像。</p>
+<p><img src="http://www.ai-start.com/dl2017/images/9b0b0e9062f8814a6a462ea64449f89e.png" alt="三维卷积"></p>
+<p>我们可以同时使用多个卷积核（每个卷积核检测不同的特征），这样可以得到的输出维度和卷积核个数有关。比如上面我们使用两个3x3x3的卷积核，那么我们的得到的输出是4x4x2的。<br>我们用公式来总结一下立体卷积核的维度，假设输入维度是$n\times n\times n<em>{c}$，$n</em>{c}$为通道数目，卷积核大小为$f\times f\times $n<em>{c}$，那么输出就是$ (n-f+1) \times (n-f+1) \times n</em>{k} $，这里的$n_{k}$其实是下一层的通道数，它等于使用的卷积核的个数。这里默认使用的是步幅为1，且未使用padding，如果你使用不同的步幅和Padding，那么n-f+1数值会发生变化，变化方式我们上面已经讲过了。</p>
+<h3 id="单层卷积神经网络"><a href="#单层卷积神经网络" class="headerlink" title="单层卷积神经网络"></a>单层卷积神经网络</h3><p>对于一层的卷积，首先是运用线性函数在加上偏差，然后应用激活函数ReLU，这样就通过神经网络的一层把一个6x6x3维度转变为一个4x4x2维度的输出。</p>
+<p>如果我们将卷积核增加到10个，那么输出就为4x4x10。</p>
+<p>我们来计算一下参数，对于一个3x3x3的卷积核，有27个参数，再加上一个偏差，用参数b表示，那么一个卷积核的参数就是28个。如果是10个卷积核的话，参数就是280，和输入图像的维度是没关的。这样我们可以知道参数相对直接应用神经网络来说是很少的，所以这样可以避免过拟合。</p>
+<p>总结一下卷积神经网络中的一层（以l层为例）：</p>
+<p><img src="http://www.ai-start.com/dl2017/images/53d04d8ee616c7468e5b92da95c0e22b.png" alt="单层卷积网络"></p>
+<p>将上面的单层神经网络堆叠起来，就会构成深度卷积神经网络。</p>
+<h3 id="简单神经网络示例"><a href="#简单神经网络示例" class="headerlink" title="简单神经网络示例"></a>简单神经网络示例</h3><p>一个典型的卷积神经网络通常有三层，一个是卷积层，常常用Conv来标注，一个是池化层，用POOL来标注，最后一个是全连接层，用FC表示。池化层和全连接层比卷积层更容易设计。<br>卷积神经网络设计的一个趋势，高度和宽度会在一段时间内保持一致，然后随着网络深度的加深而逐渐减小，而通道数量往往在增加。</p>
+<p><img src="http://www.ai-start.com/dl2017/images/02028431085fb7974b76156dd4974b68.png" alt="卷积网络层类型"></p>
+<p>虽然仅用卷积层也有可能构建出很好的神经网络，但是大部分情况下还是要添加池化层和全连接层。</p>
+<h3 id="池化层"><a href="#池化层" class="headerlink" title="池化层"></a>池化层</h3><p>除了卷积层，卷积网络也经常使用池化层来缩减模型的大小，提高计算速度，同时提高所提取特征的鲁棒性。</p>
+<p>人们使用最大池化的主要原因是此方法在很多实验中效果都很好。</p>
+<p>池化层有一组超参数（f, s），但并没有参数需要学习。上面计算卷积的公式也同样适用于计算池化输出大小：$\frac{n+2p-f}{s} + 1$。<br>如果输入是3维的，那么输出也是三维的。比如，输入是5x5x2，那么输出是3x3x2，分别对每个通道进行计算。</p>
+<p>池化最常用的是最大池化：选取每个过滤器的最大值，还有一种类型的池化，平均池化：选取的不是每个过滤器的最大值，而是平均值。</p>
+<p>总结一下，池化的超级参数包括过滤器大小f和步幅s，常用的参数值为f=2，s=2，应用频率非常高。根据公式可以看出效果相当于高度和宽度缩减一半。<br>超参数padding是很少使用的，最常用的p的值是0.</p>
+<p><img src="http://www.ai-start.com/dl2017/images/6bd58a754152e7f5cf55a8c5bbac3100.png" alt="池化层"></p>
+<p>最大池化只是计算神经网络某一层的静态属性，不需要学习。</p>
+<h3 id="卷积网络示例"><a href="#卷积网络示例" class="headerlink" title="卷积网络示例"></a>卷积网络示例</h3><p>假设我们来实现一个手写数字识别，输入图片大小是32x32x3。<br>我们构建的网络模型和经典网络LeNet-5非常相似。<br>第一层使用的过滤器大小为5x5，步幅是1，padding是0，过滤器个数为6。那么输出为28x28x6。将这层标记为CON1，用了6个卷积核，增加了偏差，应用了非线性函数（ReLU）。<br>然后构建一个池化层，参数f=2， s=2。所以输出为14x14x6。将该层记为POOL1。</p>
+<p><img src="http://www.ai-start.com/dl2017/images/445418bf9cd2eaa5a83f31c1f40757dc.png" alt="layer1"></p>
+<p>这儿我们将一个卷积层和一个池化层一起作为一层，比如上面的记为Layer1。</p>
+<p>再构建一个卷积层，卷积核大小为5x5，步幅为1，使用16个卷积核，输出为10x10x10的矩阵，标记为CONV2。<br>然后做最大池化，超参数为f=2, s=2。那么输出结果为5x5x16，标记为POOL2。<br>上面整体作为神经网络的第二层，即Layer2。</p>
+<p><img src="http://www.ai-start.com/dl2017/images/f00469a1fbea2ace64f1280849f9cd7d.png" alt="layer2"></p>
+<p>5x5x16矩阵包含400个元素，将POOL2平整化为一个大小为400的一维向量，利用这400个单元构建下一层，下一层包含120个单元，这就是我们第一个全连接层，标记为FC3。是一个标准的神经网络，维度为120x400。全连接的意思就是这400个单元与这120个单元的每一项连接，还有一个偏差参数。</p>
+<p>然后我们在对这120个单元再添加一个全连接层，含有84个单元。标记为FC4。</p>
+<p>最后我们用着84个单元填充一个softmax单元，如果我们想识别0-9这10个手写数字，这个softmax就会有10个输出。</p>
+<p><img src="http://www.ai-start.com/dl2017/images/c6894969e33cfc84b16267b752baf644.png" alt="arch"></p>
+<p>这儿我用keras实现了上面的卷积神经网络结构，代码如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">lenet_5</span>(<span class="params">input_shape=(<span class="params"><span class="number">32</span>, <span class="number">32</span>, <span class="number">1</span></span>), classes=<span class="number">10</span></span>):</span><br><span class="line">    X_input = Input(input_shape)</span><br><span class="line">    <span class="comment"># Layer1</span></span><br><span class="line">    X = Conv2D(<span class="number">6</span>, (<span class="number">5</span>, <span class="number">5</span>), strides=(<span class="number">1</span>, <span class="number">1</span>), padding=<span class="string">&#x27;valid&#x27;</span>, name=<span class="string">&#x27;conv1&#x27;</span>)(X)</span><br><span class="line">    X = Activation(<span class="string">&#x27;tanh&#x27;</span>)(X)</span><br><span class="line">    X = MaxPool2D((<span class="number">2</span>, <span class="number">2</span>), strides=(<span class="number">2</span>, <span class="number">2</span>), name=<span class="string">&#x27;pool1&#x27;</span>)(X)</span><br><span class="line">    <span class="comment"># Layer2</span></span><br><span class="line">    X = Conv2D(<span class="number">16</span>, (<span class="number">5</span>, <span class="number">5</span>), strides=(<span class="number">1</span>, <span class="number">1</span>), padding=<span class="string">&#x27;valid&#x27;</span>, name=<span class="string">&#x27;Conv2&#x27;</span>)(X)</span><br><span class="line">    X = Activation(<span class="string">&#x27;tanh&#x27;</span>)(X)</span><br><span class="line">    X = MaxPool2D((<span class="number">2</span>, <span class="number">2</span>), strides=(<span class="number">2</span>, <span class="number">2</span>))(X)</span><br><span class="line">    <span class="comment"># FC3</span></span><br><span class="line">    X = Flatten()(X)</span><br><span class="line">    X = Dense(<span class="number">120</span>, activation=<span class="string">&#x27;tanh&#x27;</span>, name=<span class="string">&#x27;fc3&#x27;</span>)(X)</span><br><span class="line">    <span class="comment"># FC4</span></span><br><span class="line">    X = Dense(<span class="number">84</span>, activation=<span class="string">&#x27;tanh&#x27;</span>, name=<span class="string">&#x27;fc4&#x27;</span>)(X)</span><br><span class="line">    <span class="comment"># softmax</span></span><br><span class="line">    X = Dense(classes, activation=<span class="string">&#x27;softmax&#x27;</span>)(X)</span><br><span class="line"></span><br><span class="line">    model = Model(inputs=X_input, outputs = X, name=<span class="string">&#x27;lenet_5&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> model</span><br><span class="line"></span><br><span class="line">model = lenet_5(input_shape=(<span class="number">32</span>, <span class="number">32</span>, <span class="number">1</span>), classes=<span class="number">10</span>)</span><br><span class="line">adam = optimizers.Adam()</span><br><span class="line">model.<span class="built_in">compile</span>(optimizer=adam, loss=<span class="string">&#x27;categorical_crossentropy&#x27;</span>, metrics=[<span class="string">&#x27;accuracy&#x27;</span>])</span><br><span class="line">model.fit(X_train, Y_train, epochs=<span class="number">3</span>, batch_size=<span class="number">16</span>, verbose=<span class="number">0</span>)</span><br></pre></td></tr></table></figure></p>
+<p>一个卷积神经网络包括卷积层、池化层和全连接层。许多计算机视觉研究正在探索如何把这些基本模块整合起来，构建高效的神经网络，整合这些基本模块需要深入的理解。<br>找到整合基本构造模块的最好方法就是大量阅读别人的案例。</p>
+<h3 id="为什么使用卷积"><a href="#为什么使用卷积" class="headerlink" title="为什么使用卷积"></a>为什么使用卷积</h3><p>和只用全连接层相比，卷积层的两个主要优势在于参数共享和稀疏连接。</p>
+<p>参数共享：观察发现，特征检测如垂直边缘检测如果适用于图片的某个区域，那么它也可能适用于图片的其他区域。<br>稀疏连接：在每一层，每个输出值只依赖于很小一部分输入。比如3x3的卷积，只依赖于这个3x3的输入的单元格。</p>
+<p>卷积神经网络可以通过这两种机制减少参数，防止过拟合。</p>
+<p>卷积神经网络善于捕捉平移不变，通过观察发现，向右移动两个像素，图片中的猫依然清晰可见，因为卷积神经网络的卷积结构使得即使移动几个像素，这张图片依然具有非常相似的特征，应该属于同样的输出标记。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
+              <a href="/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag"># 卷积神经网络</a>
+              <a href="/tags/%E5%90%B4%E6%81%A9%E8%BE%BE/" rel="tag"># 吴恩达</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Leetcode-856-Score-of-Parenthese.html" rel="prev" title="Leetcode 856: Score of Parenthese">
+                  <i class="fa fa-angle-left"></i> Leetcode 856: Score of Parenthese
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Leetcode-508-Most-Frequent-Subtree-Sum.html" rel="next" title="Leetcode 508: Most Frequent Subtree Sum">
+                  Leetcode 508: Most Frequent Subtree Sum <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">会微积分的喵</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">341k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:10</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

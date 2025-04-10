@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"fengxc.me","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="最近在公司做安装测试，有一种方式是GUI安装，不过我们的Server都是类*unix无界面的，所以就需要用到VNC来进行界面的安装，本来服务器上都安装好了，直接使用就可以了，不过在使用的过程中遇到了问题，于是就了解了一下VNC，在此做个记录。 我们一般连接服务器是使用SSH，进行的是文字界面的连接。而VNC是图形界面的连接，要想达到这一目的，首先需要在服务器上安装VNC Server，以我使用的C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux:VNC初识">
+<meta property="og:url" content="https://fengxc.me/Linux-VNC%E5%88%9D%E8%AF%86.html">
+<meta property="og:site_name" content="会微积分的喵">
+<meta property="og:description" content="最近在公司做安装测试，有一种方式是GUI安装，不过我们的Server都是类*unix无界面的，所以就需要用到VNC来进行界面的安装，本来服务器上都安装好了，直接使用就可以了，不过在使用的过程中遇到了问题，于是就了解了一下VNC，在此做个记录。 我们一般连接服务器是使用SSH，进行的是文字界面的连接。而VNC是图形界面的连接，要想达到这一目的，首先需要在服务器上安装VNC Server，以我使用的C">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/vncserver_start.PNG">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/tightVNC_client.PNG">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/connect_success.PNG">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/vnc_gedit.PNG">
+<meta property="article:published_time" content="2016-12-08T08:36:12.000Z">
+<meta property="article:modified_time" content="2025-04-10T14:09:26.245Z">
+<meta property="article:author" content="会微积分的喵">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="VNC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://7oxhal.com1.z0.glb.clouddn.com/vncserver_start.PNG">
+
+
+<link rel="canonical" href="https://fengxc.me/Linux-VNC%E5%88%9D%E8%AF%86.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://fengxc.me/Linux-VNC%E5%88%9D%E8%AF%86.html","path":"Linux-VNC初识.html","title":"Linux:VNC初识"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Linux:VNC初识 | 会微积分的喵</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">会微积分的喵</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">我走得很慢，但我从不后退</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">会微积分的喵</p>
+  <div class="site-description" itemprop="description">Happy Code, Happy Life</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">204</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/Linux-VNC%E5%88%9D%E8%AF%86.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Linux:VNC初识 | 会微积分的喵">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux:VNC初识
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-12-08 08:36:12" itemprop="dateCreated datePublished" datetime="2016-12-08T08:36:12+00:00">2016-12-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-10 14:09:26" itemprop="dateModified" datetime="2025-04-10T14:09:26+00:00">2025-04-10</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>0</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>最近在公司做安装测试，有一种方式是GUI安装，不过我们的Server都是类*unix无界面的，所以就需要用到VNC来进行界面的安装，本来服务器上都安装好了，直接使用就可以了，不过在使用的过程中遇到了问题，于是就了解了一下VNC，在此做个记录。</p>
+<p>我们一般连接服务器是使用SSH，进行的是文字界面的连接。而VNC是图形界面的连接，要想达到这一目的，首先需要在服务器上安装VNC Server，以我使用的Centos 7.2为例，只需执行：</p>
+<span id="more"></span>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install tigervnc-server</span><br></pre></td></tr></table></figure>
+<p>安装就ok了。VNC Server会在服务器端监听一个端口，一般是在5901~5910之间，当用户端启动TightVNC Viewer连接到服务器开放的端口后，VNC Server将一堆预定设定好的X client透过这个端口发送到用户端上，最终就能在用户端显示服务器的图形界面了。</p>
+<p>VNC Server一般不需要长期开启（像sshd似的），一般都是独立提供给一个用户来连接的，当你要使用VNC时，在连接到服务器上去，启动VNC server，手动启动，使用完毕后，再将VNC Server关闭即可。</p>
+<p>下面看一下具体的操作：<br>在服务器上开启vncserver<br><img src="http://7oxhal.com1.z0.glb.clouddn.com/vncserver_start.PNG" alt="vncserver_start"><br>我们将VNC Server的端口开在5902端口，要注意输入的密码至少需要6个字符。生成的密码会放在~/.vnc/passwd下，如果已经存在，则不会存在输入密码的界面。如果要修改密码的话直接使用vncpasswd就可以了。</p>
+<p>在windows上使用TightVNC Viewer去连接：</p>
+<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/tightVNC_client.PNG" alt="tightvnc_client"></p>
+<p>输入服务器的地址（IP或者域名）,然后输入开启的端口，点击connect.输入你刚才设置的密码，就可以得到如下的界面：</p>
+<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/connect_success.PNG" alt="connect_success"></p>
+<p>在server上<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setenv DISPLAY hostname/ip:2 或者</span><br><span class="line">export DISPLAY=hostname/ip:2</span><br></pre></td></tr></table></figure><br>然后在server打开gedit，就可以得到gedit的编辑界面：</p>
+<p><img src="http://7oxhal.com1.z0.glb.clouddn.com/vnc_gedit.PNG" alt="vnc_gedit"></p>
+<p>当然你也可以打开其他一些需要界面的程序。</p>
+<p>除此之外，vnc还可以这样使用，比如下面这种场景：<br>服务器A安装了VNC Server，服务器B没有安装VNC Server，但是服务器A，B互相可以ssh无密码登陆，这时如果我们想在服务器B上运行带界面的程序，然后通过TightVNC Viewer显示出来。</p>
+<p>我们可以在服务器B上执行同样的命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setenv DISPLAY server A:2 或者</span><br><span class="line">export DISPLAY=server A:2</span><br></pre></td></tr></table></figure><br>然后用TightVNC Viewer连接服务器A及相应端口，在服务器B上执行需要界面的程序，在TightVNC Viewer上就可以显示出来。</p>
+<p>下面说下我在使用时遇到的问题，我使用的场景是上面这种，当我执行需要界面的程序是，报错如下：<br>Xlib: connection to “tzedek:2.0” refused by server<br>Xlib: No protocol specified</p>
+<p>(gedit:12646): Gtk-WARNING **: cannot open display:</p>
+<p>后面通过查询发现，这很有可能是由于VNC auth的问题，可以把.Xauthority和passwd删除后，重新启动vncserver,重新输入密码就可以了。</p>
+<p>关于VNC的了解差不多就这么多了，欢迎批评交流。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/VNC/" rel="tag"># VNC</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/while%E9%81%87%E4%B8%8Aread.html" rel="prev" title="linux shell:while遇上read">
+                  <i class="fa fa-angle-left"></i> linux shell:while遇上read
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Java%E8%87%AA%E5%8A%A8%E6%8B%86%E8%A3%85%E7%AE%B1.html" rel="next" title="Java自动拆装箱">
+                  Java自动拆装箱 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">会微积分的喵</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">341k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:10</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"fengxc.me","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="写在前面EM算法简单来说就是，猜（E-step）,反思（M-step）,重复。你知道一些东西（观测到的数据），你不知道一些东西（观测不到的），你就根据一些假设（parameter）先猜（E-step）,把那些不知道的东西都猜出来，假装你全都知道了；然后有了这些猜出来的数据，你反思一些，更新一下你的假设（parameter）,让你观测到的数据更加可能（Maximize likehood; M-ste">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EM算法">
+<meta property="og:url" content="https://fengxc.me/EM%E7%AE%97%E6%B3%95.html">
+<meta property="og:site_name" content="会微积分的喵">
+<meta property="og:description" content="写在前面EM算法简单来说就是，猜（E-step）,反思（M-step）,重复。你知道一些东西（观测到的数据），你不知道一些东西（观测不到的），你就根据一些假设（parameter）先猜（E-step）,把那些不知道的东西都猜出来，假装你全都知道了；然后有了这些猜出来的数据，你反思一些，更新一下你的假设（parameter）,让你观测到的数据更加可能（Maximize likehood; M-ste">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-08-18T09:47:15.000Z">
+<meta property="article:modified_time" content="2025-04-10T14:09:26.189Z">
+<meta property="article:author" content="会微积分的喵">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="EM">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://fengxc.me/EM%E7%AE%97%E6%B3%95.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://fengxc.me/EM%E7%AE%97%E6%B3%95.html","path":"EM算法.html","title":"EM算法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>EM算法 | 会微积分的喵</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">会微积分的喵</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">我走得很慢，但我从不后退</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%AD%98%E5%9C%A8EM%E7%AE%97%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">为什么会存在EM算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3"><span class="nav-number">3.</span> <span class="nav-text">基本思想</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#EM%E7%AE%97%E6%B3%95"><span class="nav-number">3.1.</span> <span class="nav-text">EM算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A8%E5%AF%BC"><span class="nav-number">4.</span> <span class="nav-text">推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">5.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">会微积分的喵</p>
+  <div class="site-description" itemprop="description">Happy Code, Happy Life</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">204</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/EM%E7%AE%97%E6%B3%95.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="EM算法 | 会微积分的喵">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          EM算法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-08-18 09:47:15" itemprop="dateCreated datePublished" datetime="2018-08-18T09:47:15+00:00">2018-08-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-10 14:09:26" itemprop="dateModified" datetime="2025-04-10T14:09:26+00:00">2025-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>0</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>EM算法简单来说就是，猜（E-step）,反思（M-step）,重复。<br>你知道一些东西（观测到的数据），你不知道一些东西（观测不到的），你就根据一些假设（parameter）先猜（E-step）,把那些不知道的东西都猜出来，假装你全都知道了；然后有了这些猜出来的数据，你反思一些，更新一下你的假设（parameter）,让你观测到的数据更加可能（Maximize likehood; M-step），然后再猜，再反思，最后，你就得到一个可以解释整个数据的假设了。<br><span id="more"></span></p>
+<h3 id="为什么会存在EM算法"><a href="#为什么会存在EM算法" class="headerlink" title="为什么会存在EM算法"></a>为什么会存在EM算法</h3><p>概念模型有时既含有观察遍历，又含有隐变量或潜在变量。如果概念模型的变量都是观测变量，那么给定数据，可以直接用极大似然估计法，或贝叶斯法估计模型参数，当模型含有隐变量是，EM算法就是含有隐变量的概率模型参数的极大似然估计。</p>
+<h3 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h3><p>EM算法的基本思想是通过优化目标函数的下界，间接优化目标函数。</p>
+<p>类似于小和尚抱小牛的故事，老和尚让小和尚从小就抱一头小牛。小牛每天长大，小和尚每天都抱得动，最后小和尚变得力大无穷。<br>这里小和尚的力气就是目标函数，小牛的体重就是目标函数的下界。小牛随着时间的增长而越来越重，这就是优化下界。而小和尚由于总抱小牛，力气也随着增长，这就是间接优化了目标函数。</p>
+<h4 id="EM算法"><a href="#EM算法" class="headerlink" title="EM算法"></a>EM算法</h4><p>输入：观测变量数据Y，隐变量数据Z，联合分布$P(Y, Z|\theta)$，条件分布$P(Z|Y, \theta)$;<br>输出：模型参数$\theta$<br>(1)选择参数的初始值$\theta^{(0)}$，开始迭代。<br>(2)E步：记$\theta^{(i)}$为第$i$次迭代参数$\theta$的估计值，在第$i+1$次迭代的E步，计算：</p>
+<script type="math/tex; mode=display">Q(\theta, \theta^{(i)}) = E_{Z}[logP(Y, Z|\theta)|Y, \theta^{(i)}] = \sum_{Z}logP(Y, Z|\theta)P(Z|Y,\theta^{(i)})</script><p>(3)M步：求使$Q(\theta, \theta^{(i)})$极大化的$\theta$，确定第$i+1$次迭代的参数的估计值$\theta^{(i+1)}$</p>
+<script type="math/tex; mode=display">\theta^{(i+1)} =arg\ \underset{\theta}{max} Q(\theta, \theta^{(i)})</script><p>(4)重复第(2)步和第(3)步，直到收敛。</p>
+<h3 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h3><p>通过近似求解观测数据的对数似然函数的极大问题来导出EM算法。</p>
+<p>目标是极大化观测数据（不完全数据）Y关于参数$\theta$的对数似然函数，即极大化</p>
+<script type="math/tex; mode=display">L(\theta) = logP(Y|\theta) = log\sum_{Z}P(Y, Z|\theta) = log(\sum_{Z}P(Y|Z, \theta)P(Z|\theta))</script><p>这一极大化的主要困难是含有未观测数据并有包含和的对数。<br>通过逐步近似极大化$L(\theta)$的。假设在第$i$次迭代后$\theta$后的估计值是$\theta^{(i)}$。我们希望新估计值$\theta$能使$L(\theta)$增加，即$L(\theta) &gt; L(\theta^{(i)})$，并逐步达到极大值。为此，考虑两者的差：</p>
+<script type="math/tex; mode=display">L(\theta) - L(\theta^{(i)}) = log(\sum_{Z}P(Y|Z, \theta)P(Z|\theta)) - logP(Y|\theta^{(i)})</script><p>利用Jensen不等式得到其下界：</p>
+<script type="math/tex; mode=display">\begin{equation}
+\begin{aligned}
+L(\theta) - L(\theta^{(i)}) &= log(\sum_{Z}P(Y|\theta^{(i)})\frac{P(Y|Z, \theta)P(Z|\theta)}{P(Y|\theta^{(i)})}) - logP(Y|\theta^{(i)}) \\
+&\geq \sum_{Z}P(Z|Y, \theta^{(i)})log\frac{P(Y|Z, \theta)P(Z|\theta)}{P(Z|Y, \theta^{(i)})}) - logP(Y|\theta^{(i)}) \\
+&=  \sum_{Z}P(Z|Y, \theta^{(i)})log\frac{P(Y|Z, \theta)P(Z|\theta)}{P(Z|Y, \theta^{(i)})P(Y|\theta^{(i)})}) 
+\end{aligned}
+\end{equation}</script><p>令</p>
+<script type="math/tex; mode=display">B(\theta, \theta^{(i)}) = L(\theta^{(i)}) + \sum_{Z}P(Z|Y, \theta^{(i)})log\frac{P(Y|Z, \theta)P(Z|\theta)}{P(Z|Y, \theta^{(i)})P(Y|\theta^{(i)})})</script><p>则</p>
+<script type="math/tex; mode=display">L(\theta) \geq B(\theta, \theta^{(i)})</script><p>即函数$B(\theta, \theta^{(i)})$是一个下界，任何可以使$B(\theta, \theta^{(i)})$增大的$\theta$，也可以使$L(\theta)$增大。选择$\theta^{(i+1)}$使得$B(\theta, \theta^{(i)})$达到极大，即</p>
+<script type="math/tex; mode=display">\theta^{(i+1)} = arg\ \underset{\theta}{max}B(\theta, \theta^{(i)})</script><script type="math/tex; mode=display">\begin{equation}
+\begin{aligned}
+\theta^{(i+1)} &= arg\ \underset{\theta}{max}(L(\theta^{(i)}) + \sum_{Z}P(Z|Y, \theta^{(i)})log\frac{P(Y|Z, \theta)P(Z|\theta)}{P(Z|Y, \theta^{(i)})P(Y|\theta^{(i)})})) \\
+&= arg\ \underset{\theta}{max}(\sum_{Z}P(Z|Y, \theta^{(i)})logP(Y|Z, \theta)P(Z|\theta))) \\
+&= arg\ \underset{\theta}{max}(\sum_{Z}P(Z|Y, \theta^{(i)})logP(Y,Z | \theta))
+\end{aligned}
+\end{equation}</script><h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>《统计学习方法》</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
+              <a href="/tags/EM/" rel="tag"># EM</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E9%98%BF%E9%87%8C2018%E7%BC%96%E7%A8%8B%E6%B5%8B%E9%AA%8C%E9%A2%98.html" rel="prev" title="阿里2018编程测验算法题">
+                  <i class="fa fa-angle-left"></i> 阿里2018编程测验算法题
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95.html" rel="next" title="深度学习中的优化算法">
+                  深度学习中的优化算法 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">会微积分的喵</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">341k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:10</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

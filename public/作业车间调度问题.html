@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"fengxc.me","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="一个常见的调度问题是作业车间调度问题，多个作业在多台机器上处理。每个作业由一系列任务组成，这些任务必须按照给定的顺序执行，并且每个任务必须在特定的机器上处理。例如，作业可以是制造单一的消费品，如汽车。问题是如何安排机器上的任务，以最小化调度的长度，即所有任务完成所需的时间。 作业车间问题由几个约束条件：  在作业的前一个任务完成之前，作业的任何任务不能启动 一台机器一次自能做一项任务 一项任务，一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="车间调度问题">
+<meta property="og:url" content="https://fengxc.me/%E4%BD%9C%E4%B8%9A%E8%BD%A6%E9%97%B4%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98.html">
+<meta property="og:site_name" content="会微积分的喵">
+<meta property="og:description" content="一个常见的调度问题是作业车间调度问题，多个作业在多台机器上处理。每个作业由一系列任务组成，这些任务必须按照给定的顺序执行，并且每个任务必须在特定的机器上处理。例如，作业可以是制造单一的消费品，如汽车。问题是如何安排机器上的任务，以最小化调度的长度，即所有任务完成所需的时间。 作业车间问题由几个约束条件：  在作业的前一个任务完成之前，作业的任何任务不能启动 一台机器一次自能做一项任务 一项任务，一">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/schedule1.png">
+<meta property="og:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_schedule2.png">
+<meta property="article:published_time" content="2022-09-05T22:33:00.000Z">
+<meta property="article:modified_time" content="2025-04-10T14:09:26.317Z">
+<meta property="article:author" content="会微积分的喵">
+<meta property="article:tag" content="OR-Tools">
+<meta property="article:tag" content="运筹学">
+<meta property="article:tag" content="JSP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/schedule1.png">
+
+
+<link rel="canonical" href="https://fengxc.me/%E4%BD%9C%E4%B8%9A%E8%BD%A6%E9%97%B4%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://fengxc.me/%E4%BD%9C%E4%B8%9A%E8%BD%A6%E9%97%B4%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98.html","path":"作业车间调度问题.html","title":"车间调度问题"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>车间调度问题 | 会微积分的喵</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">会微积分的喵</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">我走得很慢，但我从不后退</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90"><span class="nav-number">1.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">2.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E5%92%8C%E7%BA%A6%E6%9D%9F"><span class="nav-number">3.</span> <span class="nav-text">变量和约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E7%9B%AE%E6%A0%87"><span class="nav-number">4.</span> <span class="nav-text">问题目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">5.</span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E4%BE%9D%E8%B5%96%E5%BA%93"><span class="nav-number">5.1.</span> <span class="nav-text">导入依赖库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE"><span class="nav-number">5.2.</span> <span class="nav-text">定义数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E5%88%9B%E5%BB%BA"><span class="nav-number">5.3.</span> <span class="nav-text">模型创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89"><span class="nav-number">5.4.</span> <span class="nav-text">变量定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%A6%E6%9D%9F%E5%AE%9A%E4%B9%89"><span class="nav-number">5.5.</span> <span class="nav-text">约束定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E4%BC%98%E5%8C%96%E7%9B%AE%E6%A0%87"><span class="nav-number">5.6.</span> <span class="nav-text">定义优化目标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%83%E7%94%A8%E6%B1%82%E8%A7%A3%E5%99%A8"><span class="nav-number">5.7.</span> <span class="nav-text">调用求解器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C"><span class="nav-number">5.8.</span> <span class="nav-text">输出结果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%A8%8B%E5%BA%8F"><span class="nav-number">6.</span> <span class="nav-text">完整程序</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">会微积分的喵</p>
+  <div class="site-description" itemprop="description">Happy Code, Happy Life</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">204</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/%E4%BD%9C%E4%B8%9A%E8%BD%A6%E9%97%B4%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="车间调度问题 | 会微积分的喵">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          车间调度问题
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-09-05 22:33:00" itemprop="dateCreated datePublished" datetime="2022-09-05T22:33:00+00:00">2022-09-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-10 14:09:26" itemprop="dateModified" datetime="2025-04-10T14:09:26+00:00">2025-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BF%90%E7%AD%B9%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">运筹学</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>0</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>一个常见的调度问题是作业车间调度问题，多个作业在多台机器上处理。每个作业由一系列任务组成，这些任务必须按照给定的顺序执行，并且每个任务必须在特定的机器上处理。例如，作业可以是制造单一的消费品，如汽车。问题是如何安排机器上的任务，以最小化调度的长度，即所有任务完成所需的时间。</p>
+<p>作业车间问题由几个约束条件：</p>
+<ul>
+<li>在作业的前一个任务完成之前，作业的任何任务不能启动</li>
+<li>一台机器一次自能做一项任务</li>
+<li>一项任务，一旦开始，必须运行到完成</li>
+</ul>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>下面是一个作业车间调度问题的简单例子，其中每个作业都用一对数字(m, p)来表示，其中m是必须处理该任务的机器编号，p是该任务的处理时间。（作业和机器的编号从0开始）</p>
+<ul>
+<li>job 0 = [(0, 3), (1, 2), (2, 2)]</li>
+<li>job 1 = [(0, 2), (2, 1), (1, 4)]</li>
+<li>job 2 = [(1, 4), (2, 3)]</li>
+</ul>
+<span id="more"></span>
+<p>在本例中，作业0有三个任务，第一个(0,3)表示必须在机器0上在3个单位时间内处理完成。第二个(1,2)表示必须在机器1上在2个单位时间内处理完成……这里总共有8个任务。</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>这个作业车间问题的一个解决方案是为每个任务分配一个开始时间，满足上面给出的约束条件。下面的图表显示了这个问题的一个可行的解决方案：</p>
+<p><img src="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/schedule1.png" alt="schedule1"></p>
+<p>可以检查每个作业的任务是否按照问题给出的顺序以不重叠的时间间隔调度。</p>
+<p>这个解决方案的时间长度是12，这是所有三个作业都完成的时间。然而，你可以在下面看到，这并不是这个问题的最佳解决方案。</p>
+<h3 id="变量和约束"><a href="#变量和约束" class="headerlink" title="变量和约束"></a>变量和约束</h3><p>本节介绍如何设置问题的变量和约束。首先，task(i, j)表示job i中第j个任务。比如，task(0,2)代表job 0中第二个任务，对应问题描述中的(1, 2)。</p>
+<p>接下来，定义 $t<em>{i,j}$为task(i,j)的开始时间， $t</em>{i,j}$是作业车间问题中的变量。找到解决方案包括确定这些变量的值，以满足问题的需求。</p>
+<p>作业调度问题有两种约束：</p>
+<ul>
+<li><em>优先约束</em>——这些约束来自于这样的条件：在同一个作业中，任何两个连续的任务必须在第二个任务开始之前完成第一个任务。例如，task(0, 2)和task(0, 3)是job 0的连续任务。由于task(0, 2)的处理时间是2，task(0, 3)的开始时间必须在task2开始时间之后至少2个单位时间（也许task2是粉刷一扇门，油漆需要两个小时才能变干）。所以，你得到以下约束：</li>
+</ul>
+<script type="math/tex; mode=display">t_{0, 2} + 2 \leq t_{0, 3}</script><ul>
+<li><em>没有重叠约束</em>——这是由于一台机器不能同时处理两个任务的限制产生的。例如，task(0, 2)和task(2, 1)都在机器1上处理。由于它们的处理时间分别为2和4，因此，必须保持下面的约束：</li>
+</ul>
+<script type="math/tex; mode=display">t_{0, 2} + 2 \leq t_{2, 1}</script><p>   如果task(0, 2)在task(2, 1)前调度</p>
+<p>   或者</p>
+<script type="math/tex; mode=display">t_{2, 1} + 4 \leq t_{0, 2}</script><p>   如果task(2, 1)在task(0, 2)前调度</p>
+<h3 id="问题目标"><a href="#问题目标" class="headerlink" title="问题目标"></a>问题目标</h3><p>作业车间调度问题的目标是最小化最大完工时间，即从作业最早开始时间到最后结束时间的时间长度。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>下面的部分描述了解决作业车间问题的代码主要部分。</p>
+<h4 id="导入依赖库"><a href="#导入依赖库" class="headerlink" title="导入依赖库"></a>导入依赖库</h4><p>下面的代码导入需要的依赖库<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"><span class="keyword">from</span> ortools.sat.python <span class="keyword">import</span> cp_model</span><br></pre></td></tr></table></figure></p>
+<h4 id="定义数据"><a href="#定义数据" class="headerlink" title="定义数据"></a>定义数据</h4><p>接下来，定义问题的数据<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">jobs_data = [  <span class="comment"># task = (machine_id, processing_time).</span></span><br><span class="line">    [(<span class="number">0</span>, <span class="number">3</span>), (<span class="number">1</span>, <span class="number">2</span>), (<span class="number">2</span>, <span class="number">2</span>)],  <span class="comment"># Job0</span></span><br><span class="line">    [(<span class="number">0</span>, <span class="number">2</span>), (<span class="number">2</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">4</span>)],  <span class="comment"># Job1</span></span><br><span class="line">    [(<span class="number">1</span>, <span class="number">4</span>), (<span class="number">2</span>, <span class="number">3</span>)]  <span class="comment"># Job2</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">machines_count = <span class="number">1</span> + <span class="built_in">max</span>(task[<span class="number">0</span>] <span class="keyword">for</span> job <span class="keyword">in</span> jobs_data <span class="keyword">for</span> task <span class="keyword">in</span> job)</span><br><span class="line">all_machines = <span class="built_in">range</span>(machines_count)</span><br><span class="line"><span class="comment"># 计算所有持续时间的总和</span></span><br><span class="line">horizon = <span class="built_in">sum</span>(task[<span class="number">1</span>] <span class="keyword">for</span> job <span class="keyword">in</span> jobs_data <span class="keyword">for</span> task <span class="keyword">in</span> job)</span><br></pre></td></tr></table></figure></p>
+<h4 id="模型创建"><a href="#模型创建" class="headerlink" title="模型创建"></a>模型创建</h4><p>接下来创建问题的模型<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model = cp_model.CpModel()</span><br></pre></td></tr></table></figure></p>
+<h4 id="变量定义"><a href="#变量定义" class="headerlink" title="变量定义"></a>变量定义</h4><p>接下来定义问题的变量<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 存储创建变量的信息</span></span><br><span class="line">task_type = collections.namedtuple(<span class="string">&#x27;task_type&#x27;</span>, <span class="string">&#x27;start end interval&#x27;</span>)</span><br><span class="line"><span class="comment"># 解决方案信息</span></span><br><span class="line">assigned_task_type = collections.namedtuple(<span class="string">&#x27;assigned_task_type&#x27;</span>,</span><br><span class="line">                                            <span class="string">&#x27;start job index duration&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建job时间间隔变量，加上机器列表</span></span><br><span class="line">all_tasks = &#123;&#125;</span><br><span class="line">machine_to_intervals = collections.defaultdict(<span class="built_in">list</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> job_id, job <span class="keyword">in</span> <span class="built_in">enumerate</span>(jobs_data):</span><br><span class="line">    <span class="keyword">for</span> task_id, task <span class="keyword">in</span> <span class="built_in">enumerate</span>(job):</span><br><span class="line">        machine = task[<span class="number">0</span>]</span><br><span class="line">        duration = task[<span class="number">1</span>]</span><br><span class="line">        suffix = <span class="string">&#x27;_%i_%i&#x27;</span> % (job_id, task_id)</span><br><span class="line">        start_var = model.NewIntVar(<span class="number">0</span>, horizon, <span class="string">&#x27;start&#x27;</span> + suffix)</span><br><span class="line">        end_var = model.NewIntVar(<span class="number">0</span>, horizon, <span class="string">&#x27;end&#x27;</span> + suffix)</span><br><span class="line">        interval_var = model.NewIntervalVar(start_var, duration, end_var,</span><br><span class="line">                                            <span class="string">&#x27;interval&#x27;</span> + suffix)</span><br><span class="line">        all_tasks[job_id, task_id] = task_type(start=start_var,</span><br><span class="line">                                               end=end_var,</span><br><span class="line">                                               interval=interval_var)</span><br><span class="line">        machine_to_intervals[machine].append(interval_var)</span><br></pre></td></tr></table></figure><br>对于每个job和task，使用求解器的<code>NewIntVar</code>来创建变量：</p>
+<ul>
+<li><code>start_var</code>: task开始时间</li>
+<li><code>end_var</code>: task结束时间<br><code>start_var</code>和<code>end_var</code>的上界是<code>horizon</code>，所有job所有task处理时间的总和。<code>horizon</code>足够大，可以完成所有的任务，原因在于：如果你在非重叠时间间隔安排任务（一个非最优的解决方案），调度的时间长度正好是<code>horizon</code>。所以最优解的时间长度不能大于<code>horizon</code>。</li>
+</ul>
+<p>接下来，使用<code>NewIntervalVar</code>方法为task创建<em>interval variable</em>——它的值是一个可变的时间间隔。<code>NewIntervalVar</code>输入如下：</p>
+<ul>
+<li><code>start_var</code>：task开始时间变量</li>
+<li><code>duration</code>：task时间间隔长度</li>
+<li><code>end_var</code>：task结束时间间隔变量</li>
+<li><code>&#39;interval_%i_%i&#39; % (job, task_id))</code>：这个变量的名字</li>
+</ul>
+<p>在任意解决方案中，<code>end_var</code>减去<code>start_var</code>必须等于<code>duration</code>。</p>
+<h4 id="约束定义"><a href="#约束定义" class="headerlink" title="约束定义"></a>约束定义</h4><p>接下来定义问题的约束。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建无重叠约束</span></span><br><span class="line"><span class="keyword">for</span> machine <span class="keyword">in</span> all_machines:</span><br><span class="line">    model.AddNoOverlap(machine_to_intervals[machine])</span><br><span class="line"></span><br><span class="line"><span class="comment"># job内部的优先顺序</span></span><br><span class="line"><span class="keyword">for</span> job_id, job <span class="keyword">in</span> <span class="built_in">enumerate</span>(jobs_data):</span><br><span class="line">    <span class="keyword">for</span> task_id <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(job) - <span class="number">1</span>):</span><br><span class="line">        model.Add(all_tasks[job_id, task_id +</span><br><span class="line">                            <span class="number">1</span>].start &gt;= all_tasks[job_id, task_id].end)</span><br></pre></td></tr></table></figure><br>程序中使用求解器的<code>AddNoOverlap</code>方法来创建无重叠约束，从而防止同一台机器的任务在时间上重叠。</p>
+<p>接下来，程序添加了优先约束，以防止同一job的连续任务在时间上重叠。对每一个job，下面这行代码<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.Add(all_tasks[job, task_id + <span class="number">1</span>].start &gt;= all_tasks[job, task_id].end)</span><br></pre></td></tr></table></figure><br>要求一个task的结束时间必须发生在下一个task的开始时间前。</p>
+<h4 id="定义优化目标"><a href="#定义优化目标" class="headerlink" title="定义优化目标"></a>定义优化目标</h4><p>下面的代码定义这个问题的优化目标。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 最大完工时间</span></span><br><span class="line">obj_var = model.NewIntVar(<span class="number">0</span>, horizon, <span class="string">&#x27;makespan&#x27;</span>)</span><br><span class="line">model.AddMaxEquality(obj_var, [</span><br><span class="line">    all_tasks[job_id, <span class="built_in">len</span>(job) - <span class="number">1</span>].end</span><br><span class="line">    <span class="keyword">for</span> job_id, job <span class="keyword">in</span> <span class="built_in">enumerate</span>(jobs_data)</span><br><span class="line">])</span><br><span class="line">model.Minimize(obj_var)</span><br></pre></td></tr></table></figure><br>这个表达式<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">model.AddMaxEquality(</span><br><span class="line">  obj_var,</span><br><span class="line">  [all_tasks[(job, len(jobs_data[job]) - 1)].end for job in all_jobs])</span><br></pre></td></tr></table></figure><br>创建变量<code>obj_var</code>，值代表所有job的最大结束时间。</p>
+<h4 id="调用求解器"><a href="#调用求解器" class="headerlink" title="调用求解器"></a>调用求解器</h4><p>下面的代码调用求解器。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">solver = cp_model.CpSolver()</span><br><span class="line">status = solver.Solve(model)</span><br></pre></td></tr></table></figure></p>
+<h4 id="输出结果"><a href="#输出结果" class="headerlink" title="输出结果"></a>输出结果</h4><p>下面的代码显示结果，包括最佳计划和task间隔。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> status == cp_model.OPTIMAL <span class="keyword">or</span> status == cp_model.FEASIBLE:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Solution:&#x27;</span>)</span><br><span class="line">    <span class="comment"># 每个机器创建一个分配task的列表</span></span><br><span class="line">    assigned_jobs = collections.defaultdict(<span class="built_in">list</span>)</span><br><span class="line">    <span class="keyword">for</span> job_id, job <span class="keyword">in</span> <span class="built_in">enumerate</span>(jobs_data):</span><br><span class="line">        <span class="keyword">for</span> task_id, task <span class="keyword">in</span> <span class="built_in">enumerate</span>(job):</span><br><span class="line">            machine = task[<span class="number">0</span>]</span><br><span class="line">            assigned_jobs[machine].append(</span><br><span class="line">                assigned_task_type(start=solver.Value(</span><br><span class="line">                    all_tasks[job_id, task_id].start),</span><br><span class="line">                                   job=job_id,</span><br><span class="line">                                   index=task_id,</span><br><span class="line">                                   duration=task[<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 每个机器的输出</span></span><br><span class="line">    output = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> machine <span class="keyword">in</span> all_machines:</span><br><span class="line">        <span class="comment"># 开始时间排序</span></span><br><span class="line">        assigned_jobs[machine].sort()</span><br><span class="line">        sol_line_tasks = <span class="string">&#x27;Machine &#x27;</span> + <span class="built_in">str</span>(machine) + <span class="string">&#x27;: &#x27;</span></span><br><span class="line">        sol_line = <span class="string">&#x27;           &#x27;</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> assigned_task <span class="keyword">in</span> assigned_jobs[machine]:</span><br><span class="line">            name = <span class="string">&#x27;job_%i_task_%i&#x27;</span> % (assigned_task.job,</span><br><span class="line">                                       assigned_task.index)</span><br><span class="line">            <span class="comment"># 增加空格</span></span><br><span class="line">            sol_line_tasks += <span class="string">&#x27;%-15s&#x27;</span> % name</span><br><span class="line"></span><br><span class="line">            start = assigned_task.start</span><br><span class="line">            duration = assigned_task.duration</span><br><span class="line">            sol_tmp = <span class="string">&#x27;[%i,%i]&#x27;</span> % (start, start + duration)</span><br><span class="line">            <span class="comment"># 增加空格</span></span><br><span class="line">            sol_line += <span class="string">&#x27;%-15s&#x27;</span> % sol_tmp</span><br><span class="line"></span><br><span class="line">        sol_line += <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">        sol_line_tasks += <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">        output += sol_line_tasks</span><br><span class="line">        output += sol_line</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 输出找到的解决方案</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;Optimal Schedule Length: <span class="subst">&#123;solver.ObjectiveValue()&#125;</span>&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(output)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;No solution found.&#x27;</span>)</span><br></pre></td></tr></table></figure><br>最优调度如下所示：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Optimal Schedule Length: <span class="number">11</span></span><br><span class="line">Machine <span class="number">0</span>: job_0_0   job_1_0</span><br><span class="line">           [<span class="number">0</span>,<span class="number">3</span>]     [<span class="number">3</span>,<span class="number">5</span>]</span><br><span class="line">Machine <span class="number">1</span>: job_2_0   job_0_1   job_1_2</span><br><span class="line">           [<span class="number">0</span>,<span class="number">4</span>]     [<span class="number">4</span>,<span class="number">6</span>]     [<span class="number">7</span>,<span class="number">11</span>]</span><br><span class="line">Machine <span class="number">2</span>: job_1_1   job_0_2   job_2_1</span><br><span class="line">           [<span class="number">5</span>,<span class="number">6</span>]     [<span class="number">6</span>,<span class="number">8</span>]     [<span class="number">8</span>,<span class="number">11</span>]</span><br><span class="line">  </span><br></pre></td></tr></table></figure><br><img src="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_schedule2.png" alt="schedule2"></p>
+<p>眼尖的读者在检查机器1的时候可能会想，为什么job_1_2被安排在时间7而不是时间6。两个都是有效的解决方案，但请记住：目标式最小化完工时间。把job_1_2提前不会减少最大完工时间，因此从求解器的角度，这两个解决方案是相等的。</p>
+<h3 id="完整程序"><a href="#完整程序" class="headerlink" title="完整程序"></a>完整程序</h3><p>最后，下面是这个作业车间调度问题的完整程序。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;Minimal jobshop example.&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"><span class="keyword">from</span> ortools.sat.python <span class="keyword">import</span> cp_model</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Minimal jobshop problem.&quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 数据</span></span><br><span class="line">    jobs_data = [  <span class="comment"># task = (machine_id, processing_time).</span></span><br><span class="line">        [(<span class="number">0</span>, <span class="number">3</span>), (<span class="number">1</span>, <span class="number">2</span>), (<span class="number">2</span>, <span class="number">2</span>)],  <span class="comment"># Job0</span></span><br><span class="line">        [(<span class="number">0</span>, <span class="number">2</span>), (<span class="number">2</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">4</span>)],  <span class="comment"># Job1</span></span><br><span class="line">        [(<span class="number">1</span>, <span class="number">4</span>), (<span class="number">2</span>, <span class="number">3</span>)]  <span class="comment"># Job2</span></span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    machines_count = <span class="number">1</span> + <span class="built_in">max</span>(task[<span class="number">0</span>] <span class="keyword">for</span> job <span class="keyword">in</span> jobs_data <span class="keyword">for</span> task <span class="keyword">in</span> job)</span><br><span class="line">    all_machines = <span class="built_in">range</span>(machines_count)</span><br><span class="line">    <span class="comment"># 计算所有持续时间的总和</span></span><br><span class="line">    horizon = <span class="built_in">sum</span>(task[<span class="number">1</span>] <span class="keyword">for</span> job <span class="keyword">in</span> jobs_data <span class="keyword">for</span> task <span class="keyword">in</span> job)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建模型</span></span><br><span class="line">    model = cp_model.CpModel()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 存储创建变量的信息</span></span><br><span class="line">    task_type = collections.namedtuple(<span class="string">&#x27;task_type&#x27;</span>, <span class="string">&#x27;start end interval&#x27;</span>)</span><br><span class="line">    <span class="comment"># 解决方案信息</span></span><br><span class="line">    assigned_task_type = collections.namedtuple(<span class="string">&#x27;assigned_task_type&#x27;</span>,</span><br><span class="line">                                                <span class="string">&#x27;start job index duration&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建job时间间隔变量，加上机器列表</span></span><br><span class="line">    all_tasks = &#123;&#125;</span><br><span class="line">    machine_to_intervals = collections.defaultdict(<span class="built_in">list</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> job_id, job <span class="keyword">in</span> <span class="built_in">enumerate</span>(jobs_data):</span><br><span class="line">        <span class="keyword">for</span> task_id, task <span class="keyword">in</span> <span class="built_in">enumerate</span>(job):</span><br><span class="line">            machine = task[<span class="number">0</span>]</span><br><span class="line">            duration = task[<span class="number">1</span>]</span><br><span class="line">            suffix = <span class="string">&#x27;_%i_%i&#x27;</span> % (job_id, task_id)</span><br><span class="line">            start_var = model.NewIntVar(<span class="number">0</span>, horizon, <span class="string">&#x27;start&#x27;</span> + suffix)</span><br><span class="line">            end_var = model.NewIntVar(<span class="number">0</span>, horizon, <span class="string">&#x27;end&#x27;</span> + suffix)</span><br><span class="line">            interval_var = model.NewIntervalVar(start_var, duration, end_var,</span><br><span class="line">                                                <span class="string">&#x27;interval&#x27;</span> + suffix)</span><br><span class="line">            all_tasks[job_id, task_id] = task_type(start=start_var,</span><br><span class="line">                                                   end=end_var,</span><br><span class="line">                                                   interval=interval_var)</span><br><span class="line">            machine_to_intervals[machine].append(interval_var)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建无重叠约束</span></span><br><span class="line">    <span class="keyword">for</span> machine <span class="keyword">in</span> all_machines:</span><br><span class="line">        model.AddNoOverlap(machine_to_intervals[machine])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># job内部的优先顺序</span></span><br><span class="line">    <span class="keyword">for</span> job_id, job <span class="keyword">in</span> <span class="built_in">enumerate</span>(jobs_data):</span><br><span class="line">        <span class="keyword">for</span> task_id <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(job) - <span class="number">1</span>):</span><br><span class="line">            model.Add(all_tasks[job_id, task_id +</span><br><span class="line">                                <span class="number">1</span>].start &gt;= all_tasks[job_id, task_id].end)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 最大完工时间</span></span><br><span class="line">    obj_var = model.NewIntVar(<span class="number">0</span>, horizon, <span class="string">&#x27;makespan&#x27;</span>)</span><br><span class="line">    model.AddMaxEquality(obj_var, [</span><br><span class="line">        all_tasks[job_id, <span class="built_in">len</span>(job) - <span class="number">1</span>].end</span><br><span class="line">        <span class="keyword">for</span> job_id, job <span class="keyword">in</span> <span class="built_in">enumerate</span>(jobs_data)</span><br><span class="line">    ])</span><br><span class="line">    model.Minimize(obj_var)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建求解器并求解</span></span><br><span class="line">    solver = cp_model.CpSolver()</span><br><span class="line">    status = solver.Solve(model)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> status == cp_model.OPTIMAL <span class="keyword">or</span> status == cp_model.FEASIBLE:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Solution:&#x27;</span>)</span><br><span class="line">        <span class="comment"># Create one list of assigned tasks per machine.</span></span><br><span class="line">        assigned_jobs = collections.defaultdict(<span class="built_in">list</span>)</span><br><span class="line">        <span class="keyword">for</span> job_id, job <span class="keyword">in</span> <span class="built_in">enumerate</span>(jobs_data):</span><br><span class="line">            <span class="keyword">for</span> task_id, task <span class="keyword">in</span> <span class="built_in">enumerate</span>(job):</span><br><span class="line">                machine = task[<span class="number">0</span>]</span><br><span class="line">                assigned_jobs[machine].append(</span><br><span class="line">                    assigned_task_type(start=solver.Value(</span><br><span class="line">                        all_tasks[job_id, task_id].start),</span><br><span class="line">                                       job=job_id,</span><br><span class="line">                                       index=task_id,</span><br><span class="line">                                       duration=task[<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 每个机器创建一个分配task的列表</span></span><br><span class="line">        output = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> machine <span class="keyword">in</span> all_machines:</span><br><span class="line">            <span class="comment"># Sort by starting time.</span></span><br><span class="line">            assigned_jobs[machine].sort()</span><br><span class="line">            sol_line_tasks = <span class="string">&#x27;Machine &#x27;</span> + <span class="built_in">str</span>(machine) + <span class="string">&#x27;: &#x27;</span></span><br><span class="line">            sol_line = <span class="string">&#x27;           &#x27;</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> assigned_task <span class="keyword">in</span> assigned_jobs[machine]:</span><br><span class="line">                name = <span class="string">&#x27;job_%i_task_%i&#x27;</span> % (assigned_task.job,</span><br><span class="line">                                           assigned_task.index)</span><br><span class="line">                <span class="comment"># 增加空格</span></span><br><span class="line">                sol_line_tasks += <span class="string">&#x27;%-15s&#x27;</span> % name</span><br><span class="line"></span><br><span class="line">                start = assigned_task.start</span><br><span class="line">                duration = assigned_task.duration</span><br><span class="line">                sol_tmp = <span class="string">&#x27;[%i,%i]&#x27;</span> % (start, start + duration)</span><br><span class="line">                <span class="comment"># 增加空格</span></span><br><span class="line">                sol_line += <span class="string">&#x27;%-15s&#x27;</span> % sol_tmp</span><br><span class="line"></span><br><span class="line">            sol_line += <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            sol_line_tasks += <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            output += sol_line_tasks</span><br><span class="line">            output += sol_line</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 输出找到的解决方案</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;Optimal Schedule Length: <span class="subst">&#123;solver.ObjectiveValue()&#125;</span>&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(output)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;No solution found.&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 数据统计</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;\nStatistics&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;  - conflicts: %i&#x27;</span> % solver.NumConflicts())</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;  - branches : %i&#x27;</span> % solver.NumBranches())</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;  - wall time: %f s&#x27;</span> % solver.WallTime())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/OR-Tools/" rel="tag"># OR-Tools</a>
+              <a href="/tags/%E8%BF%90%E7%AD%B9%E5%AD%A6/" rel="tag"># 运筹学</a>
+              <a href="/tags/JSP/" rel="tag"># JSP</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/OR-Tools%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B.html" rel="prev" title="OR-Tools入门教程">
+                  <i class="fa fa-angle-left"></i> OR-Tools入门教程
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">会微积分的喵</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">341k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:10</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

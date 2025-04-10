@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"fengxc.me","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="人工智能不是个新词，早在1950年就存在了，希望机器和人一样聪明。是我们想达成的目标。之前我们并不知道如何来达成这个目标，直到机器学习的出现，机器学习是一种达到人工智能的手段。而深度学习是机器学习的一种。机器学习包含很多算法，比如逻辑回归、SVM、决策树等。不过现在来看深度学习这种算法发挥出的作用远远大于机器学习中的其他算法，导致很多将深度学习等同于机器学习，但其实不是这样的，深度学习是机器学习的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="李宏毅机器学习：Introduction of Machine Learning">
+<meta property="og:url" content="https://fengxc.me/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9AIntroduction-of-Machine-Learning.html">
+<meta property="og:site_name" content="会微积分的喵">
+<meta property="og:description" content="人工智能不是个新词，早在1950年就存在了，希望机器和人一样聪明。是我们想达成的目标。之前我们并不知道如何来达成这个目标，直到机器学习的出现，机器学习是一种达到人工智能的手段。而深度学习是机器学习的一种。机器学习包含很多算法，比如逻辑回归、SVM、决策树等。不过现在来看深度学习这种算法发挥出的作用远远大于机器学习中的其他算法，导致很多将深度学习等同于机器学习，但其实不是这样的，深度学习是机器学习的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.commitstrip.com/wp-content/uploads/2017/06/Strip-IA-construite-de-IF-english650-final.jpg">
+<meta property="article:published_time" content="2018-07-13T16:24:25.000Z">
+<meta property="article:modified_time" content="2025-04-10T14:09:26.357Z">
+<meta property="article:author" content="会微积分的喵">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="李宏毅">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.commitstrip.com/wp-content/uploads/2017/06/Strip-IA-construite-de-IF-english650-final.jpg">
+
+
+<link rel="canonical" href="https://fengxc.me/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9AIntroduction-of-Machine-Learning.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://fengxc.me/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9AIntroduction-of-Machine-Learning.html","path":"李宏毅机器学习：Introduction-of-Machine-Learning.html","title":"李宏毅机器学习：Introduction of Machine Learning"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>李宏毅机器学习：Introduction of Machine Learning | 会微积分的喵</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">会微积分的喵</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">我走得很慢，但我从不后退</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.</span> <span class="nav-text">机器学习是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%86%E6%9E%B6"><span class="nav-number">2.</span> <span class="nav-text">框架</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E4%B8%AA%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.1.</span> <span class="nav-text">三个步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF"><span class="nav-number">3.</span> <span class="nav-text">学习路线</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9E%E5%BD%92"><span class="nav-number">3.1.</span> <span class="nav-text">回归</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-number">3.2.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0"><span class="nav-number">3.3.</span> <span class="nav-text">结构学习</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">会微积分的喵</p>
+  <div class="site-description" itemprop="description">Happy Code, Happy Life</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">204</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9AIntroduction-of-Machine-Learning.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="李宏毅机器学习：Introduction of Machine Learning | 会微积分的喵">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          李宏毅机器学习：Introduction of Machine Learning
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-07-13 16:24:25" itemprop="dateCreated datePublished" datetime="2018-07-13T16:24:25+00:00">2018-07-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-10 14:09:26" itemprop="dateModified" datetime="2025-04-10T14:09:26+00:00">2025-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>0</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>人工智能不是个新词，早在1950年就存在了，希望机器和人一样聪明。是我们想达成的目标。<br>之前我们并不知道如何来达成这个目标，直到机器学习的出现，机器学习是一种达到人工智能的手段。<br>而深度学习是机器学习的一种。机器学习包含很多算法，比如逻辑回归、SVM、决策树等。不过现在来看深度学习这种算法发挥出的作用远远大于机器学习中的其他算法，导致很多将深度学习等同于机器学习，但其实不是这样的，深度学习是机器学习的一个子集。<br><span id="more"></span></p>
+<p>人工智能从生物的角度来说，来自于两个方面：生物的本能和后天的学习。<br>比如动物河狸，它的天生本能是筑水坝，只要听到流水声，它就要筑水坝直到听不到流水声。所以我们就可以利用它的这个本能来欺负它，用扬声器来模拟流水声。</p>
+<p>人类的本能呢？<br>手写规则，比如我们要做一个聊天机器人，首先我们想到的就是手写一些规则。<br>缺点：</p>
+<blockquote>
+<ul>
+<li>很难考虑到所有的可能性，比如在真实环境中，聊天机器人的可能性是无限的。</li>
+<li>人工成本很大，需要很多工程师来写规则，数以万计的规则，不适合小企业，没那么多工程师。</li>
+</ul>
+</blockquote>
+<p><img src="https://www.commitstrip.com/wp-content/uploads/2017/06/Strip-IA-construite-de-IF-english650-final.jpg" alt="AI inside"></p>
+<h3 id="机器学习是什么"><a href="#机器学习是什么" class="headerlink" title="机器学习是什么"></a>机器学习是什么</h3><p>拟人化：你写一个程序来让机器持续学习…<br>数学：寻找一个函数，从你喂给它的数据中，其实如果人能够写出这个函数，我们就不需要机器学习了，直接把这个函数写在程序中就可以了。但在现实中的绝大多数任务中，我们人是很难算出或者找个这个函数的，需要借助机器的力量，让它去跑、去计算、去学习出这个复杂函数的参数。</p>
+<h3 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h3><p>模型：函数集合$f<em>{1},f</em>{2}…$，几乎是无穷的<br>评估标准：好的算法来找出最好的函数($f^*$)<br>训练数据</p>
+<h4 id="三个步骤"><a href="#三个步骤" class="headerlink" title="三个步骤"></a>三个步骤</h4><blockquote>
+<ul>
+<li>定义一个函数集合</li>
+<li>损失函数</li>
+<li>从函数集合中找到最好的函数</li>
+</ul>
+</blockquote>
+<p>和把大象塞进冰箱只需要三个步骤一样（打开冰箱门-&gt;把大象赶进去-&gt;关上冰箱门）</p>
+<h3 id="学习路线"><a href="#学习路线" class="headerlink" title="学习路线"></a>学习路线</h3><p>从学习情景来分：<br>这是根据训练数据来决定的，比如你没有带标签的数据，那么你就不能做监督学习。</p>
+<blockquote>
+<ul>
+<li>监督学习<br>有标签数据</li>
+<li>非监督学习<br>没有标签数据</li>
+<li>半监督学习<br>大量没有标签的数据，少量有标签的数据</li>
+<li>迁移学习<br>数据和任务不相关，但是可以迁移过来</li>
+<li>增强学习（Reinforcement Learning）</li>
+</ul>
+</blockquote>
+<p>从任务上来分（也可以说从输出结果来分）：</p>
+<h4 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h4><p>输出值是一个标量<br>需要大量的训练数据</p>
+<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><p>二分类和多分类，类似于选择题<br>邮件分类<br>文章新闻分类</p>
+<h4 id="结构学习"><a href="#结构学习" class="headerlink" title="结构学习"></a>结构学习</h4><p>语音识别<br>机器翻译</p>
+<p>关于监督学习与增强学习：监督学习类似于有个老师，从老师处学习，而增强学习是从评价中学习。<br>Alpha Go是监督学习加增强学习。</p>
+<p>出现新工作：AI训练师<br>需要有经验的AI训练师。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>林轩田老师的课程是比较有趣的，中间会举很多有意思的例子，大多数是和动漫有关的。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
+              <a href="/tags/%E6%9D%8E%E5%AE%8F%E6%AF%85/" rel="tag"># 李宏毅</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017%E6%A0%A1%E6%8B%9B%E4%BA%AC%E4%B8%9C%EF%BC%9A%E8%BF%9B%E5%88%B6%E5%9D%87%E5%80%BC.html" rel="prev" title="2017校招京东：进制均值">
+                  <i class="fa fa-angle-left"></i> 2017校招京东：进制均值
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/MNIST%E6%95%B0%E6%8D%AE%E9%9B%86%E4%BB%8B%E7%BB%8D.html" rel="next" title="MNIST数据集介绍">
+                  MNIST数据集介绍 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">会微积分的喵</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">341k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:10</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

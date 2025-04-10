@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"fengxc.me","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="历史  概率论起源于17世纪 1654年，Pascal和Fermat对“分赌本”问题的讨论 使概率论成为数学的一个分支的真正奠基人是瑞士数学家J. 伯努利 概率论的飞速发展则在17世纪微积分学说建立以后   概率论是数理统计的基础，统计学是概率论的应用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="概率论与数理统计-随机事件、样本空间">
+<meta property="og:url" content="https://fengxc.me/%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%EF%BC%9A%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1-%E6%A6%82%E7%8E%87%E7%9A%84%E5%AE%9A%E4%B9%89%E3%80%81%E6%80%A7%E8%B4%A8.html">
+<meta property="og:site_name" content="会微积分的喵">
+<meta property="og:description" content="历史  概率论起源于17世纪 1654年，Pascal和Fermat对“分赌本”问题的讨论 使概率论成为数学的一个分支的真正奠基人是瑞士数学家J. 伯努利 概率论的飞速发展则在17世纪微积分学说建立以后   概率论是数理统计的基础，统计学是概率论的应用。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_prob_1.1-1.png">
+<meta property="og:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_prob_1.1-2.png">
+<meta property="og:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_prob_1.1-3.png">
+<meta property="og:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_prob_1.1-4.png">
+<meta property="og:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_prob_1.1-5.png">
+<meta property="article:published_time" content="2018-06-30T16:03:28.000Z">
+<meta property="article:modified_time" content="2025-04-10T14:09:26.337Z">
+<meta property="article:author" content="会微积分的喵">
+<meta property="article:tag" content="概率论">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="统计学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_prob_1.1-1.png">
+
+
+<link rel="canonical" href="https://fengxc.me/%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%EF%BC%9A%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1-%E6%A6%82%E7%8E%87%E7%9A%84%E5%AE%9A%E4%B9%89%E3%80%81%E6%80%A7%E8%B4%A8.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://fengxc.me/%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%EF%BC%9A%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1-%E6%A6%82%E7%8E%87%E7%9A%84%E5%AE%9A%E4%B9%89%E3%80%81%E6%80%A7%E8%B4%A8.html","path":"南京大学：概率论与数理统计-概率的定义、性质.html","title":"概率论与数理统计-随机事件、样本空间"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>概率论与数理统计-随机事件、样本空间 | 会微积分的喵</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">会微积分的喵</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">我走得很慢，但我从不后退</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%86%E5%8F%B2"><span class="nav-number">1.</span> <span class="nav-text">历史</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-number">2.</span> <span class="nav-text">常见的例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E8%AF%95%E9%AA%8C-%E7%AE%80%E7%A7%B0%EF%BC%9A%E8%AF%95%E9%AA%8C"><span class="nav-number">3.</span> <span class="nav-text">随机试验(简称：试验)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB%E4%B8%8E%E8%BF%90%E7%AE%97%EF%BC%88%E9%9B%86%E5%90%88%EF%BC%8C%E7%94%A8venn%E5%9B%BE%E6%9D%A5%E8%A1%A8%E7%A4%BA%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">事件之间的关系与运算（集合，用venn图来表示）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%A0%E9%A2%98"><span class="nav-number">5.</span> <span class="nav-text">习题</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">会微积分的喵</p>
+  <div class="site-description" itemprop="description">Happy Code, Happy Life</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">204</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%EF%BC%9A%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1-%E6%A6%82%E7%8E%87%E7%9A%84%E5%AE%9A%E4%B9%89%E3%80%81%E6%80%A7%E8%B4%A8.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="概率论与数理统计-随机事件、样本空间 | 会微积分的喵">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          概率论与数理统计-随机事件、样本空间
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-06-30 16:03:28" itemprop="dateCreated datePublished" datetime="2018-06-30T16:03:28+00:00">2018-06-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-10 14:09:26" itemprop="dateModified" datetime="2025-04-10T14:09:26+00:00">2025-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>0</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h3><blockquote>
+<ul>
+<li>概率论起源于17世纪</li>
+<li>1654年，Pascal和Fermat对“分赌本”问题的讨论</li>
+<li>使概率论成为数学的一个分支的真正奠基人是瑞士数学家J. 伯努利</li>
+<li>概率论的飞速发展则在17世纪微积分学说建立以后</li>
+</ul>
+</blockquote>
+<p>概率论是数理统计的基础，统计学是概率论的应用。</p>
+<span id="more"></span>
+<h3 id="常见的例子"><a href="#常见的例子" class="headerlink" title="常见的例子"></a>常见的例子</h3><p>概率论与数理统计是研究随机现象的统计规律性的数学学科。</p>
+<blockquote>
+<ul>
+<li>抛一枚均匀的硬币若干次</li>
+<li>测量物理量（如：长度、时间etc）的误差</li>
+<li>某批产品的使用寿命</li>
+</ul>
+</blockquote>
+<h3 id="随机试验-简称：试验"><a href="#随机试验-简称：试验" class="headerlink" title="随机试验(简称：试验)"></a>随机试验(简称：试验)</h3><p>定义：<br>(1) 可以在相同的条件下重复进行<br>(2) 试验的全部结果 (不止一个)，之前是知道的。<br>(3) 不能预言出现的结果。</p>
+<p>随机试验出现的结果通常称为<strong>事件</strong>，通常用大写的字母A, B, C…表示。</p>
+<p>$\Omega $: 必然事件<br>$\varnothing  $: 不可能事件</p>
+<p>基本事件：在试验中可直接观察到的、最基本的不能再分解的结果称为基本事件。（比如掷骰子，出现结果1，2，3，4，5，6为基本事件）<br>(复合)事件： 由基本事件组合而成的事件。（掷骰子，出现结果为奇数为复合事件）</p>
+<p>样本空间：由所有试验的结果组成的集合，也可以说是由全体基本事件组成的集合。用$\Omega $表示，即样本空间是必然事件，里面的样本点用$w$表示。</p>
+<p><strong>Ex1:</strong>将一枚硬币抛两次，H: 正面，T:反面。<br>则样本空间 $\Omega = {HH, HT, TH, TT}$</p>
+<p><strong>Ex2:</strong>连续向以目标射击，直到命中。$w<em>{i}$:前i-1次未能命中，而第i次命中，i = 1,2,3…<br>这样本空间 $\Omega = {w</em>{1}, w<em>{2}, w</em>{3},……}$ 无限的样本空间。</p>
+<h3 id="事件之间的关系与运算（集合，用venn图来表示）"><a href="#事件之间的关系与运算（集合，用venn图来表示）" class="headerlink" title="事件之间的关系与运算（集合，用venn图来表示）"></a>事件之间的关系与运算（集合，用venn图来表示）</h3><p>（1）包含关系：$A \subset B$，如果$A \subset B$, $B \subset A$，那么$A = B$<br>（2）和或者并关系：$A \cup B$<br>（3）积或者交关系：$A \cap B = AB$，其中若$AB = \varnothing$，即A与B互不相容，或者互斥。若$A<em>{1}\cup A</em>{2} \cup … \cup A<em>{n} = \Omega$，且$A</em>{i} \cap A<em>{j} = \varnothing, i \neq j$，那么$A</em>{1},…, A_{n}$则是$\Omega$的一个完备事件组。<br>（4）若$AB=\varnothing$,且$A \cup B = \Omega$，那么A、B互为对立事件（互为逆事件）。记$A = \bar{B}$<br>（5）差关系：$A - B$</p>
+<p><strong>运算规律</strong><br>（1）交换律：$A\cap B = B\cap A$, $A\cup B = B\cup A$<br>（2）结合律：$ABC = (AB)C = A(BC)$, $A\cup B\cup C = (A\cup B)\cup C = A\cup (B\cup C)$<br>（3）分配率：</p>
+<script type="math/tex; mode=display">A\cap (B\cup C) = (A\cap B)\cup (A\cap C)</script><script type="math/tex; mode=display">A\cup (B\cap C) = (A\cup B)\cap (A\cup C)</script><script type="math/tex; mode=display">A\cap (B-C) = (AB) - (AC)</script><p>（4）对偶法则：</p>
+<script type="math/tex; mode=display">\bar{A\cup B} = \bar{A}\cap \bar{B}</script><script type="math/tex; mode=display">\bar{A\cap B} = \bar{A}\cup \bar{B}</script><p><strong>ex1:证明: A - B = A - AB</strong><br>证：$A - B =A\bar{B} = A(1 - B) = A - AB$ </p>
+<p><strong>ex2:</strong>某人射击3次，令$A<em>{i}$={第i次射中目标}，i=1, 2, 3。$B</em>{j}$={在三次射击中，恰好击中j次}, j = 0, 1, 2, 3<br>则：<script type="math/tex">B_{0}=\bar{A_{1}}\bar{A_{2}}\bar{A_{3}}=\bar{A_{1}\cup A_{2}\cup A_{3}}</script></p>
+<script type="math/tex; mode=display">B_{1} = A_{1}\bar{A_{2}}\bar{A_{3}}\cup A_{2}\bar{A_{1}}\bar{A_{3}}\cup A_{3}\bar{A_{1}}\bar{A_{2}}</script><script type="math/tex; mode=display">B_{3} = A_{1}A_{2}A_{3}</script><h3 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h3><p><img src="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_prob_1.1-1.png" alt="习题1"><br>正确答案：<strong>D</strong><br><img src="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_prob_1.1-2.png" alt="习题2"><br>正确答案：<strong>A</strong><br><img src="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_prob_1.1-3.png" alt="习题3"><br>正确答案：<strong>C</strong><br><img src="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_prob_1.1-4.png" alt="习题4"><br>正确答案：<strong>A、D</strong><br><img src="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_prob_1.1-5.png" alt="习题5"><br>正确答案：(1,2),(1,3),(2,1),(2,3),(3,1),(3,2)</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" rel="tag"># 概率论</a>
+              <a href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag"># 数学</a>
+              <a href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6/" rel="tag"># 统计学</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017%E6%A0%A1%E6%8B%9B-%E7%BD%91%E6%98%93%EF%BC%9A%E6%95%B0%E5%AD%97%E7%BF%BB%E8%BD%AC.html" rel="prev" title="2017校招-网易：数字翻转">
+                  <i class="fa fa-angle-left"></i> 2017校招-网易：数字翻转
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017%E6%A0%A1%E6%8B%9B-%E7%BD%91%E6%98%93%EF%BC%9A%E4%B8%8B%E5%8E%A8%E6%88%BF.html" rel="next" title="2017校招-网易：下厨房">
+                  2017校招-网易：下厨房 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">会微积分的喵</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">341k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:10</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"fengxc.me","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="写在前面GBDT是一个系列算法，具有很好的性能，可以用于回归、分类、排序的机器学习任务，也是机器学习面试时常考的一个知识点，在这写下个人的一些理解，也当做个笔记。 GBDT分为两部分，GB: Gradient Boosting和DT: Decision tree。 GBDT算法是属于Boosting算法族的一部分，可将弱学习器提升为强学习器的算法，属于集成学习的范畴。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GBDT与Xgboost详解">
+<meta property="og:url" content="https://fengxc.me/GBDT%E8%AF%A6%E8%A7%A3.html">
+<meta property="og:site_name" content="会微积分的喵">
+<meta property="og:description" content="写在前面GBDT是一个系列算法，具有很好的性能，可以用于回归、分类、排序的机器学习任务，也是机器学习面试时常考的一个知识点，在这写下个人的一些理解，也当做个笔记。 GBDT分为两部分，GB: Gradient Boosting和DT: Decision tree。 GBDT算法是属于Boosting算法族的一部分，可将弱学习器提升为强学习器的算法，属于集成学习的范畴。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_xgboost.png">
+<meta property="og:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_gdbt_pic2.png">
+<meta property="article:published_time" content="2018-08-16T20:55:32.000Z">
+<meta property="article:modified_time" content="2025-04-10T14:09:26.189Z">
+<meta property="article:author" content="会微积分的喵">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="GBDT">
+<meta property="article:tag" content="xgboost">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_xgboost.png">
+
+
+<link rel="canonical" href="https://fengxc.me/GBDT%E8%AF%A6%E8%A7%A3.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://fengxc.me/GBDT%E8%AF%A6%E8%A7%A3.html","path":"GBDT详解.html","title":"GBDT与Xgboost详解"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>GBDT与Xgboost详解 | 会微积分的喵</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">会微积分的喵</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">我走得很慢，但我从不后退</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91"><span class="nav-number">2.</span> <span class="nav-text">决策树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9"><span class="nav-number">2.1.</span> <span class="nav-text">特征选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91%E7%9A%84%E5%89%AA%E6%9E%9D"><span class="nav-number">2.2.</span> <span class="nav-text">决策树的剪枝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CART%E7%AE%97%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text">CART算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%91%E6%9E%84%E5%BB%BA%E4%BB%A3%E7%A0%81"><span class="nav-number">2.4.</span> <span class="nav-text">树构建代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E5%8D%87%E6%A0%91%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">提升树模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A0%E6%B3%95%E6%A8%A1%E5%9E%8B-%E7%A7%AF%E7%A1%85%E6%AD%A5%E4%BB%A5%E8%87%B3%E5%8D%83%E9%87%8C"><span class="nav-number">3.1.</span> <span class="nav-text">加法模型-积硅步以至千里</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%89%8D%E5%90%91%E5%88%86%E6%AD%A5%E7%AE%97%E6%B3%95"><span class="nav-number">3.2.</span> <span class="nav-text">前向分步算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9E%E5%BD%92%E9%97%AE%E9%A2%98%E6%8F%90%E5%8D%87%E6%A0%91"><span class="nav-number">3.3.</span> <span class="nav-text">回归问题提升树</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GBDT"><span class="nav-number">4.</span> <span class="nav-text">GBDT</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A2%AF%E5%BA%A6%E8%BF%91%E4%BC%BC"><span class="nav-number">4.1.</span> <span class="nav-text">梯度近似</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%B0%E5%87%8F%EF%BC%88Shrinkage%EF%BC%89"><span class="nav-number">4.2.</span> <span class="nav-text">衰减（Shrinkage）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XGBOOST-eXtreme-Gradient-Boosting"><span class="nav-number">5.</span> <span class="nav-text">XGBOOST(eXtreme Gradient Boosting)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gbdt%E5%92%8Cxgboost%E5%AF%B9%E6%AF%94"><span class="nav-number">6.</span> <span class="nav-text">gbdt和xgboost对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">7.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">会微积分的喵</p>
+  <div class="site-description" itemprop="description">Happy Code, Happy Life</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">204</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/GBDT%E8%AF%A6%E8%A7%A3.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="GBDT与Xgboost详解 | 会微积分的喵">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          GBDT与Xgboost详解
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-08-16 20:55:32" itemprop="dateCreated datePublished" datetime="2018-08-16T20:55:32+00:00">2018-08-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-10 14:09:26" itemprop="dateModified" datetime="2025-04-10T14:09:26+00:00">2025-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>0</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>GBDT是一个系列算法，具有很好的性能，可以用于回归、分类、排序的机器学习任务，也是机器学习面试时常考的一个知识点，在这写下个人的一些理解，也当做个笔记。</p>
+<p>GBDT分为两部分，GB: Gradient Boosting和DT: Decision tree。</p>
+<p>GBDT算法是属于Boosting算法族的一部分，可将弱学习器提升为强学习器的算法，属于集成学习的范畴。<br><span id="more"></span></p>
+<h3 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h3><p>由于GBDT中的弱学习器采用的是决策树，在这儿我们先介绍下决策树。</p>
+<p>顾名思义，决策树对应于数据结构中的树结构，可以认为是if-then规则的集合，具有可解释性、分类速度快等优点。</p>
+<p>决策树的学习通常包含3个步骤：特征选择、决策树的生成和决策树的修剪。</p>
+<p>决策树由结点和有向边组成，结点有两种类型：内部结点和叶子结点，内部结点表示一个特征或属性，叶子结点表示一个类。</p>
+<p>分类时，根据内部结点的特征对样本进行测试，根据测试结果，分配到相应的子节点，递归直到到达叶子结点，则分类为叶子结点所在的类。</p>
+<p>互斥且完备：每一个样本都被树的一条路径（一条规则）所覆盖，而且只被一条路径所覆盖。</p>
+<p>决策树学习的本质是从训练数据中归纳出一组分类规则，由训练数据集估计条件概率模型。</p>
+<p>决策树学习的算法通常是一个递归地选择最优特征，并根据该特征对训练数据进行分割。</p>
+<p>决策树常用的算法有ID3、C4.5和CART。</p>
+<h4 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h4><p>特征选择在于选取对训练数据具有分类能力的特征。通常的准则是信息增益或信息增益比。</p>
+<p><strong>信息增益</strong><br>表示得知特征X的信息而使得类Y的信息的不确定性减少的程度。</p>
+<p>特征A对训练数据集D的信息增益$g(D,A)$，定义为集合D的经验熵与特征A给定条件下D的经验条件熵$H(D|A)$之差，即：</p>
+<script type="math/tex; mode=display">g(D, A) = H(D) - H(D|A)</script><p>信息增益大的特征具有更强的分类能力。</p>
+<p><strong>信息增益比</strong><br>以信息增益作为划分训练数据集的特征，存在偏向于选择取值较多的特征的问题。使用信息增益比可以对这一问题进行校正。</p>
+<p>特征A对训练数据集D的信息增益比$g<em>{R}(D,A)$定义为其信息增益$g(D, A)$与训练数据集D关于特征A的值的熵$H</em>{A}(D)$之比，即</p>
+<script type="math/tex; mode=display">g_{R}(D, A) = \frac{g(D, A)}{H_{A}(D)}</script><p><strong>基尼指数</strong><br>对于给定的样本集合D，其基尼指数为：</p>
+<script type="math/tex; mode=display">Gini(D) = 1 - \sum_{k=1}^K(\frac{|C_{k}|}{|D|})^2</script><p>$C_{k}$是D中属于第k类的样本子集，K是类的个数。</p>
+<p>如果样本集合D根据某特征被分隔成$D<em>{1}$和$D</em>{2}$两部分：则在特征A条件下，集合D的基尼指数定义为：</p>
+<script type="math/tex; mode=display">Gini(D, A) = \frac{|D_{1}|}{|D|}Gini(D_{1}) + \frac{|D_{2}|}{|D|}Gini(D_{2})</script><p>基尼指数值越大，样本集合的不确定性也就越大。</p>
+<p><strong>平方误差最小化</strong><br>这是针对回归任务来说的，在构建回归树时进行特征选取的准则。</p>
+<p>ID3算法是使用信息增益准则来进行特征选择。<br>C4.5算法是使用信息增益比准则来进行特征选择。<br>CART算法是使用基尼指数和平方误差最小化来进行特征选择。</p>
+<h4 id="决策树的剪枝"><a href="#决策树的剪枝" class="headerlink" title="决策树的剪枝"></a>决策树的剪枝</h4><p>决策树生成算法递归地产生决策树，直到不能继续下去为止。这样容易出现过拟合现象。</p>
+<p>在决策树学习中将已生成的树进行简化的过程称为剪枝。</p>
+<p>决策树的剪枝往往通过极小化决策树整体的损失函数或代价函数来实现。</p>
+<h4 id="CART算法"><a href="#CART算法" class="headerlink" title="CART算法"></a>CART算法</h4><p>分类回归树(classification and regression tree, CART)是应用广泛的决策树学习算法。</p>
+<p>CART假设决策树是二叉树，内部结点特征的取值为“是”和“否”，左边分支是取值为“是”的分支，右分支是取值为“否”的分支。</p>
+<p>CART算法由以下两步组成：<br>（1）决策树生成：基于训练数据生成决策树，生成的决策树要尽量大；<br>（2）决策树剪枝：用验证数据集对已生成的树进行剪枝并选择最优子树，这时用损失函数最小作为剪枝的标准。</p>
+<p><strong>分类树构建</strong><br>分类树构建与上面的ID3算法和C4.5算法类似，这里就不再叙述。</p>
+<p><strong>回归树构建</strong><br>一个回归树对应着输入空间的一个划分以及在划分单元上的输出值，假设已将输入空间划分为M个单元$R<em>{1},R</em>{2},…,R<em>{M}$，并且在每个单元$R</em>{m}$上有一个固定的输出值$c_{m}$，则回归树模型可表示为：</p>
+<script type="math/tex; mode=display">f(x) = \sum_{m=1}^{M}c_{m}I(x\in R_{m})</script><p>单元$R<em>{m}$上的$c</em>{m}$的最优值$\hat m<em>{c}$是$R</em>{m}$上所有输入样本$x<em>{i}$对应的输出$y</em>{i}$的均值。</p>
+<p>如何进行划分，采用启发式的方法，选择第$j$个变量$x^{(j)}$和它取的值，作为切分变量和切分点，并定义两个区域：</p>
+<script type="math/tex; mode=display">R_{1}(j, s) = {x|x^{(j)} \leq s}</script><script type="math/tex; mode=display">R_{1}(j, s) = {x|x^{(j)} > s}</script><p>然后寻找最优切分变量$j$和最优切分点s，具体地，求解：</p>
+<script type="math/tex; mode=display">min_{j, s} [min_{c_{1}}\sum_{x_{i}\in R_{1}(j,s)}(y_{i}-c_{1})^2 + min_{c_{2}}\sum_{x_{i}\in R_{2}(j,s)}(y_{i}-c_{2})^2]</script><p>每次在选择切分变量$j$和切分点s时，遍历变量$j$，对固定的切分变量$j$扫描切分点$s$，选择使上式达到最小值的对$(j, s)$。</p>
+<h4 id="树构建代码"><a href="#树构建代码" class="headerlink" title="树构建代码"></a>树构建代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> operator</span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算熵</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">calcEntry</span>(<span class="params">dataSet</span>):</span><br><span class="line">    numEntries = <span class="built_in">len</span>(dataSet)</span><br><span class="line">    labelCounts = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> featVec <span class="keyword">in</span> dataSet:</span><br><span class="line">        currentLabel = featVec[-<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> currentLabel <span class="keyword">not</span> <span class="keyword">in</span> labelCounts.keys():</span><br><span class="line">            labelCounts[currentLabel] = <span class="number">0</span></span><br><span class="line">        labelCounts[currentLabel] += <span class="number">1</span></span><br><span class="line">    entry = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">for</span> key <span class="keyword">in</span> labelCounts:</span><br><span class="line">        prob = <span class="built_in">float</span>(labelCounts[key]) / numEntries</span><br><span class="line">        entry -= prob * log(prob, <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">return</span> entry</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切分数据集</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">splitDataSet</span>(<span class="params">dataSet, axis, value</span>):</span><br><span class="line">    retDataSet = []</span><br><span class="line">    <span class="keyword">for</span> featVec <span class="keyword">in</span> dataSet:</span><br><span class="line">        <span class="keyword">if</span> featVec[axis] == value:</span><br><span class="line">            reducedFeatVec = featVec[:axis]</span><br><span class="line">            reducedFeatVec.extend(featVec[axis:])</span><br><span class="line">            retDataSet.append(reducedFeatVec)</span><br><span class="line">    <span class="keyword">return</span> retDataSet</span><br><span class="line"></span><br><span class="line"><span class="comment"># 选择最好的数据划分特征</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">chooseBestFeatureToSplit</span>(<span class="params">dataset</span>):</span><br><span class="line">    num_features = <span class="built_in">len</span>(dataset[<span class="number">0</span>]) - <span class="number">1</span></span><br><span class="line">    base_entropy = calc_entropy(dataset)</span><br><span class="line">    best_info_gain = <span class="number">0.0</span></span><br><span class="line">    best_feature = -<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num_features):</span><br><span class="line">        feat_list = [e[i] <span class="keyword">for</span> e <span class="keyword">in</span> dataset]</span><br><span class="line">        unique_val = <span class="built_in">set</span>(feat_list)</span><br><span class="line">        entropy = <span class="number">0.0</span></span><br><span class="line">        <span class="keyword">for</span> value <span class="keyword">in</span> unique_val:</span><br><span class="line">            subdata_set = splitDataSet(dataset, i, value)</span><br><span class="line">            prob = <span class="built_in">len</span>(subdata_set) / <span class="built_in">float</span>(<span class="built_in">len</span>(dataset))</span><br><span class="line">            entropy += prob * calc_entropy(subdata_set)</span><br><span class="line">        info_gain = base_entropy - entropy</span><br><span class="line">        <span class="keyword">if</span> info_gain &gt; best_info_gain:</span><br><span class="line">            best_info_gain = info_gain</span><br><span class="line">            best_feature = i</span><br><span class="line">        <span class="keyword">return</span> best_feature</span><br><span class="line"></span><br><span class="line"><span class="comment"># 选择标签最多的作为返回值</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">majority_cnt</span>(<span class="params">class_list</span>):</span><br><span class="line">    class_count = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> vote <span class="keyword">in</span> class_list:</span><br><span class="line">        <span class="keyword">if</span> vote <span class="keyword">not</span> <span class="keyword">in</span> class_count.keys():</span><br><span class="line">            class_count[vote] = <span class="number">0</span></span><br><span class="line">        class_count[vote] += <span class="number">1</span></span><br><span class="line">    sorted_class_count = <span class="built_in">sorted</span>(class_count.items())</span><br><span class="line">    key = operator.itemgetter(<span class="number">1</span>, reverse = <span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">return</span> sorted_class_count[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建树</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">createTree</span>(<span class="params">dataset, labels</span>):</span><br><span class="line">    class_list = [e[-<span class="number">1</span>] <span class="keyword">for</span> e <span class="keyword">in</span> dataset]</span><br><span class="line">    <span class="comment"># 类别完全相同则停止继续划分</span></span><br><span class="line">    <span class="keyword">if</span> class_list.count(class_list[<span class="number">0</span>]) == <span class="built_in">len</span>(class_list):</span><br><span class="line">        <span class="keyword">return</span> class_list[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(dataset[<span class="number">0</span>]) == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> majority_cnt(class_list)</span><br><span class="line">    best_feat = chooseBestFeatureToSplit(dataset)</span><br><span class="line">    best_feat_label = labels[best_feat] <span class="comment"># 特征名字</span></span><br><span class="line">    tree = &#123;best_feat_label: &#123;&#125;&#125;</span><br><span class="line">    <span class="keyword">del</span>(labels[best_feat])</span><br><span class="line">    feat_val = [e[best_feat] <span class="keyword">for</span> e <span class="keyword">in</span> dataset]</span><br><span class="line">    unique_val = <span class="built_in">set</span>(feat_val)</span><br><span class="line">    <span class="keyword">for</span> val <span class="keyword">in</span> unique_val:</span><br><span class="line">        sub_labels = labels[:]</span><br><span class="line">        tree[best_feat_label][val] = createTree(splitDataSet(dataset, best_feat, val), sub_labels)</span><br><span class="line">    <span class="keyword">return</span> tree</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="提升树模型"><a href="#提升树模型" class="headerlink" title="提升树模型"></a>提升树模型</h3><p>采用加法模型（即基函数的线性组合）与前向分布算法，以决策树为基函数的提升方法称为提升树。</p>
+<h4 id="加法模型-积硅步以至千里"><a href="#加法模型-积硅步以至千里" class="headerlink" title="加法模型-积硅步以至千里"></a>加法模型-积硅步以至千里</h4><p>加法模型的基本思想是“积硅步以至千里”，就是每次学习一点，然后一步步的接近最终要预测的值（完全是gradient的思想~）。</p>
+<p>提升树模型可以表示为决策树的加法模型：</p>
+<script type="math/tex; mode=display">f_{M}(x) = \sum_{m=1}^M T(x;\theta_{m})</script><p>其中，$T(x;\theta<em>{m})$表示决策树，$\theta</em>{m}$为决策树的参数；M为树的个数</p>
+<p>在给定训练数据及损失函数$L(y, f(y))$的条件下，学习加法模型$f_{M}(x)$称为经验风险极小化即损失函数极小化问题：</p>
+<script type="math/tex; mode=display">\underset{\theta_{m}}{min} = \sum_{i = 1}^{N}L(y_{i}, \sum_{m=1}^M T(x;\theta_{m}))</script><p>这是一个复杂的优化问题。可以使用前向分步算法来求解这一优化问题。</p>
+<h4 id="前向分步算法"><a href="#前向分步算法" class="headerlink" title="前向分步算法"></a>前向分步算法</h4><p>首先确定初始提升树$f_{0}(x) = 0$，第m步模型是：</p>
+<script type="math/tex; mode=display">f_{m}(x) = f_{m-1}(x)+ T(x;\theta_{m})</script><p>其中，$f<em>{m-1}(x)$为当前模型，通过经验风险极小化确定下一棵决策树的参数$\theta</em>{m}$，</p>
+<script type="math/tex; mode=display">\hat \theta_{m} = arg \underset{\theta_{m}}{min} \sum_{i=1}^ML(y_{i}, f_{m-1}(x_{i})+T(x_{i}; \theta_{m}))</script><p>树的线性组合可以很好的拟合训练数据，即使数据中的输入和输出之间的关系很复杂也是如此，所以提升树是一个高功能的学习算法。<br>针对不同问题的提升树学习算法，其主要区别在于使用的损失函数不同，包括用平方误差损失函数的回归问题，用指数损失函数的分类问题，以及用一般损失函数的一般决策问题。</p>
+<h4 id="回归问题提升树"><a href="#回归问题提升树" class="headerlink" title="回归问题提升树"></a>回归问题提升树</h4><p>采用平方误差损失函数时，</p>
+<script type="math/tex; mode=display">L(y, f(x)) = (y-f(x))^2</script><p>其损失变为：</p>
+<script type="math/tex; mode=display">L(y, f_{m-1}(x) + T(x;\theta_{m})) = [y-f_{m-1}(x)-T(x;\theta_{m})]^2 = [r-T(x;\theta_{m})]^2</script><p>这里，$r = y - f_{m-1}(x)$<br>是当前模型拟合数据的残差，对回归问题的提升树来说，只需要简单地拟合当前模型的残差。</p>
+<h3 id="GBDT"><a href="#GBDT" class="headerlink" title="GBDT"></a>GBDT</h3><p>当损失函数是平方损失和指数损失函数时，每一步优化是很简单的。但对一般损失函数而言，往往每一步优化并不那么容易。这时就需要用到梯度提升(gradient boosting)算法。<br>这是利用最速下降法的近似方法，其关键是利用损失函数的负梯度方向在当前模型的值，</p>
+<script type="math/tex; mode=display">-[\frac{\partial L(y_{i}, f(x))}{\partial f(x)}]_{f(x) = f_{m-1}(x)}</script><p>作为回归提升树算法的残差近似值，拟合一个回归树。</p>
+<h4 id="梯度近似"><a href="#梯度近似" class="headerlink" title="梯度近似"></a>梯度近似</h4><p>贪心法再每次选择最优基函数时仍然困难。<br>将样本带入当前模型，得到$f<em>{m-1}(x</em>{i})$，从而损失值为$L(y<em>{i}, f</em>{m-1}(x_{i})$。<br>此时我们可以求出梯度，然后进行更新：</p>
+<script type="math/tex; mode=display">f_{m}(x) = f_{m-1}(x) - r_{m}\sum_{i=1}{N}\delta L(y_{i}, f_{m-1}(x))</script><p>上式中权值为$r$为梯度下降的步长，使用线性搜索求最优步长。</p>
+<script type="math/tex; mode=display">r_{m} = arg \underset{r}{min}\sum_{i=1}^N L(y_{i}, f_{m-1}(x) - r_{m}\delta L(y_{i}, f_{m-1}(x)))</script><p>GBDT采用的是数值优化的思维，用的最速下降法去求解Loss Function的最优解，其中用CART决策树去拟合负梯度，用牛顿法求步长。</p>
+<h4 id="衰减（Shrinkage）"><a href="#衰减（Shrinkage）" class="headerlink" title="衰减（Shrinkage）"></a>衰减（Shrinkage）</h4><p>这个是把学习的大步变小步，即“真实值-预测值”*shrinkage<br>衰减因子：v<br>v = 1即为原始模型，推荐选择v&lt;0.1的小学习率。过小的学习率会造成计算次数增多。</p>
+<h3 id="XGBOOST-eXtreme-Gradient-Boosting"><a href="#XGBOOST-eXtreme-Gradient-Boosting" class="headerlink" title="XGBOOST(eXtreme Gradient Boosting)"></a>XGBOOST(eXtreme Gradient Boosting)</h3><p>xgboost模型：和上面的GBDT模型是一致的，假设有K棵树</p>
+<script type="math/tex; mode=display">\hat y_{i} = \sum_{k=1}^K f_{k}(x_{i}), f_{k}\in F</script><p>目标函数也基本一致，不过添加了正则项：</p>
+<script type="math/tex; mode=display">L(\phi ) = \sum_{i} l(\hat y_{i}, y_{i}) + \sum_{k}\Omega (f_{k})</script><p>同样使用前向分步算法进行学习。<br>所以在t轮我们可以得到：</p>
+<script type="math/tex; mode=display">Obj^{(t)} = \sum_{i=1}^nl(y_{i}, \hat y_{i}^{(t-1)}+f_{t}(x_{i})) + \Omega(f_{t}) + constant</script><p>对误差函数进行二阶泰勒展开：<br><img src="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_xgboost.png" alt="xgboost_taylor"><br>为什么这里要这样展开，这就是xgboost的特点了，通过这种近似，你可以自定义一些损失函数（只要保证二阶可导）。树分裂的打分函数是基于$g<em>{i},h</em>{i}$计算的。</p>
+<p>这样我们就得到了新的目标函数：</p>
+<script type="math/tex; mode=display">\sum_{i=1}^n[g_{i}f_{t}(x_{i}) + \frac{1}{2}h_{i}f_{t}^2(x_{i})] + \Omega(f_{t})</script><p>使用二阶导数的好处：</p>
+<ul>
+<li>理论上我们知道在学什么，收敛</li>
+<li>工程上：$g<em>{i},h</em>{i}$来自于损失函数且目标函数仅依赖于这两个，不用去考虑如何实现不同的损失函数（比如平方损失函数和逻辑损失函数）</li>
+</ul>
+<p>重新定义树结构：<br>用叶子节点集合以及叶子节点得分表示。<br>每个样本都落在一个叶子节点上。<br>$q(x)$表示样本落在某个叶子节点上，$w_{q}(x)$表示该节点的打分，即该样本的模型预测值。<br><strong>定义树的复杂度项</strong></p>
+<script type="math/tex; mode=display">\Omega(f_{t}) = \gamma T + \frac{1}{2}\lambda \sum_{j=1}^Tw_{j}^2</script><p>T表示树的叶子节点数。</p>
+<p>更新目标函数：<br>求和下标由n变成了T。<br><img src="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_gdbt_pic2.png" alt="regroup"></p>
+<p>我们可以计算$w_{j}$:</p>
+<script type="math/tex; mode=display">w_{j} = -\frac{\sum_{i \in I_{j}}g_{i}}{\sum_{i \in I_{j}}h_{i} + \lambda}</script><p>这样原目标函数就变为：</p>
+<script type="math/tex; mode=display">-\frac{1}{2}\sum_{j=1}^T\frac{(\sum_{i\in I_{j}}g_{i})^2}{\sum_{i\in I_{j}}h_{i} + \lambda} + \gamma T</script><p><strong>切分点算法</strong></p>
+<script type="math/tex; mode=display">Gain = \frac{1}{2}[\frac{(\sum_{i\in I_{L}}g_{i})^2}{\sum_{i\in I_{L}}h_{i} + \lambda} + \frac{(\sum_{i\in I_{R}}g_{i})^2}{\sum_{i\in I_{R}}h_{i} + \lambda} - \frac{(\sum_{i\in I_{j}}g_{i})^2}{\sum_{i\in I_{j}}h_{i} + \lambda}] - \gamma</script><p>这就是我们在决策树中的特征选择原则，有了这个我们就可以开始构建树。</p>
+<p>在特征选择时，作者针对算法设计对特征进行了排序，分位点划分等，进行性能提升。</p>
+<h3 id="gbdt和xgboost对比"><a href="#gbdt和xgboost对比" class="headerlink" title="gbdt和xgboost对比"></a>gbdt和xgboost对比</h3><ul>
+<li>传统GBDT以CART作为基分类器，xgboost还支持线性分类器，这个时候xgboost相当于带L1和L2正则项的逻辑斯蒂回归（分类问题）或者线性回归（回归问题）。</li>
+<li>GBDT优化时只用到一阶导数信息，xgboost则对代价函数进行了二阶泰勒展开，同时用到了一阶和二阶导数。xgboost工具支持自定义代价函数，只要函数可一阶二阶求导。</li>
+<li>xgboost在代价函数中引入了正则项，用于控制模型的复杂度。正则项里包含了树的叶子节点个数、每个叶子节点上输出score的L2。使学习出来的模型更加简单，防止过拟合。</li>
+<li>缩减和列采样：防止过拟合，列采样是从随机森林那边学习来的，防止过拟合的效果比传统的行采样效果还要好，并且有利于后面提到的并行化处理算法。</li>
+<li>划分点查找算法<ul>
+<li>贪心算法获取最优切分点</li>
+<li>近似算法，提出了候选分割点概念，先通过直方图算法获得候选分割点的分布情况</li>
+<li>分布式加权直方图算法</li>
+</ul>
+</li>
+<li>对缺失值的处理。对于特征的值有缺失的样本，xgboost可以自动学习出它的分裂方向。稀疏感知算法。</li>
+<li>内置交叉验证</li>
+<li>并行化处理：各个特征的增益计算是可以并行进行的</li>
+</ul>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>统计学习方法<br><a target="_blank" rel="noopener" href="https://homes.cs.washington.edu/~tqchen/pdf/BoostedTree.pdf">Xgboost Slides</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/sb19931201/article/details/52557382">https://blog.csdn.net/sb19931201/article/details/52557382</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
+              <a href="/tags/GBDT/" rel="tag"># GBDT</a>
+              <a href="/tags/xgboost/" rel="tag"># xgboost</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E7%99%BE%E5%BA%A6%E4%BD%9C%E4%B8%9A%E5%B8%AE%E6%8F%90%E5%89%8D%E6%89%B9%EF%BC%9A%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88%E4%B8%80%E9%9D%A2%E9%9D%A2%E7%BB%8F.html" rel="prev" title="百度作业帮提前批：数据挖掘&#x2F;机器学习算法工程师一面面经">
+                  <i class="fa fa-angle-left"></i> 百度作业帮提前批：数据挖掘/机器学习算法工程师一面面经
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E9%98%BF%E9%87%8C2018%E7%BC%96%E7%A8%8B%E6%B5%8B%E9%AA%8C%E9%A2%98.html" rel="next" title="阿里2018编程测验算法题">
+                  阿里2018编程测验算法题 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">会微积分的喵</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">341k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:10</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

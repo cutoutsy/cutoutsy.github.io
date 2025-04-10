@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"fengxc.me","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="写在前面本篇博客写的是关于大疆机器学习岗位的笔试题B卷（分两次考试：A卷和B卷），对其他岗位不具有参考性。今年的大疆笔试题题量大（单选，多选，填空，问答，编程），时间却很短（1个小时），可以说是时间短，题目多。好多人都没有做完，包括我。不说了，趁着刚做完，把题目做一个记录，题目来自于一些同学的拍照和自己的记忆。 题目单选题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2018校招-大疆机器学习笔试题">
+<meta property="og:url" content="https://fengxc.me/2018%E6%A0%A1%E6%8B%9B-%E5%A4%A7%E7%96%86%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AF%95%E9%A2%98.html">
+<meta property="og:site_name" content="会微积分的喵">
+<meta property="og:description" content="写在前面本篇博客写的是关于大疆机器学习岗位的笔试题B卷（分两次考试：A卷和B卷），对其他岗位不具有参考性。今年的大疆笔试题题量大（单选，多选，填空，问答，编程），时间却很短（1个小时），可以说是时间短，题目多。好多人都没有做完，包括我。不说了，趁着刚做完，把题目做一个记录，题目来自于一些同学的拍照和自己的记忆。 题目单选题">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-07-08T20:54:44.000Z">
+<meta property="article:modified_time" content="2025-04-10T14:09:26.177Z">
+<meta property="article:author" content="会微积分的喵">
+<meta property="article:tag" content="2018校招">
+<meta property="article:tag" content="大疆">
+<meta property="article:tag" content="笔试">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://fengxc.me/2018%E6%A0%A1%E6%8B%9B-%E5%A4%A7%E7%96%86%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AF%95%E9%A2%98.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://fengxc.me/2018%E6%A0%A1%E6%8B%9B-%E5%A4%A7%E7%96%86%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AF%95%E9%A2%98.html","path":"2018校招-大疆机器学习笔试题.html","title":"2018校招-大疆机器学习笔试题"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2018校招-大疆机器学习笔试题 | 会微积分的喵</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">会微积分的喵</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">我走得很慢，但我从不后退</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">2.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E9%80%89%E9%A2%98"><span class="nav-number">2.1.</span> <span class="nav-text">单选题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E9%80%89%E9%A2%98"><span class="nav-number">2.2.</span> <span class="nav-text">多选题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A1%AB%E7%A9%BA%E9%A2%98"><span class="nav-number">2.3.</span> <span class="nav-text">填空题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E7%AD%94%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">简答题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E7%A8%8B%E9%A2%98"><span class="nav-number">3.1.</span> <span class="nav-text">编程题</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">会微积分的喵</p>
+  <div class="site-description" itemprop="description">Happy Code, Happy Life</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">204</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/2018%E6%A0%A1%E6%8B%9B-%E5%A4%A7%E7%96%86%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AF%95%E9%A2%98.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2018校招-大疆机器学习笔试题 | 会微积分的喵">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2018校招-大疆机器学习笔试题
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-07-08 20:54:44" itemprop="dateCreated datePublished" datetime="2018-07-08T20:54:44+00:00">2018-07-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-10 14:09:26" itemprop="dateModified" datetime="2025-04-10T14:09:26+00:00">2025-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>0</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>本篇博客写的是关于大疆机器学习岗位的笔试题B卷（分两次考试：A卷和B卷），对其他岗位不具有参考性。今年的大疆笔试题题量大（单选，多选，填空，问答，编程），时间却很短（1个小时），可以说是时间短，题目多。好多人都没有做完，包括我。不说了，趁着刚做完，把题目做一个记录，题目来自于一些同学的拍照和自己的记忆。</p>
+<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><h4 id="单选题"><a href="#单选题" class="headerlink" title="单选题"></a>单选题</h4><span id="more"></span>
+<p>1. 关于Logistic回归和SVM，以下说法错误的是？</p>
+<blockquote>
+<ul>
+<li>Logistic回归可用于预测事件发生概率的大小</li>
+<li>Logistic回归的目标函数是最小化后验概率</li>
+<li>SVM的目标的结构风险最小化</li>
+<li>SVM可以有效避免模型过拟合</li>
+</ul>
+</blockquote>
+<p>2. 假设三个稠密矩阵（Dense Matrix）A, B, C的尺寸分别为m*n, n*q和p*q，且$m&lt;n&lt;p&lt;q$，一下计算顺序会加速的是？</p>
+<blockquote>
+<ul>
+<li>(AB)C</li>
+<li>AC(B)</li>
+<li>A(BC)</li>
+<li>所有效率都相同</li>
+</ul>
+</blockquote>
+<p>答案：A</p>
+<p>3. 以下有关特征数据归一化的说法错误的是：</p>
+<blockquote>
+<ul>
+<li>特征数据归一化加速梯度下降优化的速度</li>
+<li>特征数据归一化有可能提高模型的精度</li>
+<li>线性归一化适用于特征数值分化比较大的情况</li>
+<li>概率模型不需要做归一化处理</li>
+</ul>
+</blockquote>
+<p>4. 假定你在神经网络中的隐藏层中使用激活函数X，在特定神经元给定任意输入，你会得到输出[-0.0001]，X可能是一下哪一个？</p>
+<blockquote>
+<ul>
+<li>ReLU</li>
+<li>tanh</li>
+<li>sigmoid</li>
+<li>其他都不是</li>
+</ul>
+</blockquote>
+<p>5. 下列哪些项所描述的相关技术是对的？</p>
+<blockquote>
+<ul>
+<li>AdaGrad和L-BFGS使用的都是一阶差分</li>
+<li>AdaGrad和L-BFGS使用的都是二阶差分</li>
+<li>Adagrad使用的是一阶差分，L-BFGS使用的是二阶差分</li>
+<li>Adagrad使用的是二阶差分，L-BFGS使用的是一阶差分</li>
+</ul>
+</blockquote>
+<h4 id="多选题"><a href="#多选题" class="headerlink" title="多选题"></a>多选题</h4><p>1. 关于主成分分析PCA说法正确的是：</p>
+<blockquote>
+<ul>
+<li>我们必须在使用PCA前规范化数据</li>
+<li>我们应该选择使得模型有最大variance的主成分</li>
+<li>我们应该选择使得模型有最小variance的主成分</li>
+<li>我们可以使用PCA在低纬度上做数据可视化</li>
+</ul>
+</blockquote>
+<p>2. 以下描述错误的是？</p>
+<blockquote>
+<ul>
+<li>SVM是这样一个分类器，他寻找具有最小边缘的超平面，因此它也经常被称为最小边缘分类器（minimal margin classifier）</li>
+<li>在聚类分析中，簇内的相似性越大，簇间的差别越大，聚类的效果越好</li>
+<li>在决策树中，随着树中节点变得太大，即使模型的训练误差还在继续减低，但是检验误差开始增大，这是出现了模型拟合不足的问题</li>
+<li>聚类分析可以看做是一种非监督的分类</li>
+</ul>
+</blockquote>
+<p>3. 假设目标遍历的类别非常不平衡，即主要类别占据了训练数据的99%，现在你的模型在训练集上表现为99%的准确度，那么下面说法正确的是：</p>
+<blockquote>
+<ul>
+<li>准确度并不适合衡量不平衡类别问题</li>
+<li>准确度适合衡量不平衡类别问题</li>
+<li>精确度和召回率适合于衡量不平衡类别问题</li>
+<li>精确度和召回率不适合衡量不平衡类别问题</li>
+</ul>
+</blockquote>
+<p>4. 神经网络训练过程中的哪些现象表明可能出现了梯度爆炸？</p>
+<blockquote>
+<ul>
+<li>模型梯度快速变大</li>
+<li>模型权重变为NaN值</li>
+<li>每个节点和层的误差梯度值持续超多1.0</li>
+<li>损失函数持续减小</li>
+</ul>
+</blockquote>
+<p>应该还有个第五题，不过没有资料了。</p>
+<h4 id="填空题"><a href="#填空题" class="headerlink" title="填空题"></a>填空题</h4><p>1. 具体题目记不太清楚了，是关于输如一个200x200的图像，经过几次卷积和池化后，求维度大小。<br>2. 在训练集标签为[0,0,0,1,1,1,1,1], 求信息熵的大小。</p>
+<h3 id="简答题"><a href="#简答题" class="headerlink" title="简答题"></a>简答题</h3><p>1. BP算法推导<br>2. 写出Leaky-ReLu的数学公式，相对于sigmoid函数的优点<br>3. Adagrad的优缺点<br>4. 在图像处理中，Data augmentation有哪些方式<br>5. 为什么要进行数据归一化，有哪些方式</p>
+<h4 id="编程题"><a href="#编程题" class="headerlink" title="编程题"></a>编程题</h4><p>1. 给你一个数列a[0], n[1],…,a[n-1]，n大于4，必定存在i, j, p, q, 使得$i&lt;j&lt;p&lt;q$，且$n[j] - n[i] + n[q]-n[p]$值最大，求出这个最大值，并说明时间复杂度。</p>
+<p>2. 给你一个数组，求一个k值，使得前k个数的方差+后面n-k个数的方差最小，并说明时间复杂度。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/2018%E6%A0%A1%E6%8B%9B/" rel="tag"># 2018校招</a>
+              <a href="/tags/%E5%A4%A7%E7%96%86/" rel="tag"># 大疆</a>
+              <a href="/tags/%E7%AC%94%E8%AF%95/" rel="tag"># 笔试</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%EF%BC%9A%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1-%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87%EF%BC%8C%E4%B9%98%E6%B3%95%E5%85%AC%E5%BC%8F%EF%BC%8C%E5%85%A8%E6%A6%82%E7%8E%87%E5%85%AC%E5%BC%8F%EF%BC%8C%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%85%AC%E5%BC%8F.html" rel="prev" title="南京大学：概率论与数理统计-条件概率，乘法公式，全概率公式，贝叶斯公式">
+                  <i class="fa fa-angle-left"></i> 南京大学：概率论与数理统计-条件概率，乘法公式，全概率公式，贝叶斯公式
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017%E6%A0%A1%E6%8B%9B-%E4%BA%AC%E4%B8%9C%EF%BC%9A%E9%9B%86%E5%90%88.html" rel="next" title="2017校招-京东：集合">
+                  2017校招-京东：集合 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">会微积分的喵</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">341k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:10</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

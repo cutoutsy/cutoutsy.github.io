@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"fengxc.me","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="写在前面传说thoughtworks面试难度比Google还难，其实这就是个谣言，至少在中国区是这样。我就以我参加的2018年的thoughtworks秋招经历为例，来给大家说一下thoughtworks的流程和相关的信息。本文仅代表算法工程师，其他岗位可能不太相同，但是大同小异，可以作为参考。 招聘流程秋招招聘的岗位有：软件开发工程师，软件测试工程师，业务需求分析工程师，用户体验设计师，算法工程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2018年秋招thoughtworks提前批：算法面试经历">
+<meta property="og:url" content="https://fengxc.me/2018%E5%B9%B4thoughtworks%E6%8F%90%E5%89%8D%E6%89%B9%EF%BC%9A%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%8E%86.html">
+<meta property="og:site_name" content="会微积分的喵">
+<meta property="og:description" content="写在前面传说thoughtworks面试难度比Google还难，其实这就是个谣言，至少在中国区是这样。我就以我参加的2018年的thoughtworks秋招经历为例，来给大家说一下thoughtworks的流程和相关的信息。本文仅代表算法工程师，其他岗位可能不太相同，但是大同小异，可以作为参考。 招聘流程秋招招聘的岗位有：软件开发工程师，软件测试工程师，业务需求分析工程师，用户体验设计师，算法工程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_thoughtworks_pic1.png">
+<meta property="og:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_thoughtworks_pic2.png">
+<meta property="og:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_thoughtworks_pic3.png">
+<meta property="article:published_time" content="2018-10-16T15:30:46.000Z">
+<meta property="article:modified_time" content="2025-04-10T14:09:26.177Z">
+<meta property="article:author" content="会微积分的喵">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="thoughtworks">
+<meta property="article:tag" content="工作">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_thoughtworks_pic1.png">
+
+
+<link rel="canonical" href="https://fengxc.me/2018%E5%B9%B4thoughtworks%E6%8F%90%E5%89%8D%E6%89%B9%EF%BC%9A%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%8E%86.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://fengxc.me/2018%E5%B9%B4thoughtworks%E6%8F%90%E5%89%8D%E6%89%B9%EF%BC%9A%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%8E%86.html","path":"2018年thoughtworks提前批：算法面试经历.html","title":"2018年秋招thoughtworks提前批：算法面试经历"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2018年秋招thoughtworks提前批：算法面试经历 | 会微积分的喵</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">会微积分的喵</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">我走得很慢，但我从不后退</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%9B%E8%81%98%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">招聘流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%91%E7%94%B3"><span class="nav-number">2.1.</span> <span class="nav-text">网申</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8%E7%BA%BF%E4%BD%9C%E4%B8%9A"><span class="nav-number">2.2.</span> <span class="nav-text">在线作业</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%A2%E8%AF%95"><span class="nav-number">2.3.</span> <span class="nav-text">面试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Offer"><span class="nav-number">2.4.</span> <span class="nav-text">Offer</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">小结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">会微积分的喵</p>
+  <div class="site-description" itemprop="description">Happy Code, Happy Life</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">204</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/2018%E5%B9%B4thoughtworks%E6%8F%90%E5%89%8D%E6%89%B9%EF%BC%9A%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%8E%86.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2018年秋招thoughtworks提前批：算法面试经历 | 会微积分的喵">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2018年秋招thoughtworks提前批：算法面试经历
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-10-16 15:30:46" itemprop="dateCreated datePublished" datetime="2018-10-16T15:30:46+00:00">2018-10-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-10 14:09:26" itemprop="dateModified" datetime="2025-04-10T14:09:26+00:00">2025-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>0</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>传说thoughtworks面试难度比Google还难，其实这就是个谣言，至少在中国区是这样。我就以我参加的2018年的thoughtworks秋招经历为例，来给大家说一下thoughtworks的流程和相关的信息。<br>本文仅代表算法工程师，其他岗位可能不太相同，但是大同小异，可以作为参考。</p>
+<h3 id="招聘流程"><a href="#招聘流程" class="headerlink" title="招聘流程"></a>招聘流程</h3><p>秋招招聘的岗位有：软件开发工程师，软件测试工程师，业务需求分析工程师，用户体验设计师，算法工程师。<br>招聘城市有：北京、西安、成都、武汉。<br><span id="more"></span></p>
+<h4 id="网申"><a href="#网申" class="headerlink" title="网申"></a>网申</h4><p>首先和其他公司是一样的，要进行网申，可以找thoughtworks的员工进行内推，一般在牛客网上就可以找到。网申好像比较简单，就填写一下信息，内推的话会填写内推人姓名和电话。</p>
+<h4 id="在线作业"><a href="#在线作业" class="headerlink" title="在线作业"></a>在线作业</h4><p>网申之后，和其他公司直接进行简历筛选面试不同，thoughtworks会有一个在线作业，会发给网申的同学一个作业下载链接，线下完成并在指定时间内提交上传到指定位置。<br>今年的作业是一个关于迷宫的题目，大家可以看看：<br><img src="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_thoughtworks_pic1.png" alt="校招题目1"></p>
+<p><img src="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_thoughtworks_pic2.png" alt="校招题目2"></p>
+<p><img src="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_thoughtworks_pic3.png" alt="校招题目3"></p>
+<p>一般题目都不太难，更何况线下做，一般都是能做出来的，考察的主要是代码质量、代码设计、可扩展性等知识点。</p>
+<p>针对上面的题目，这是我写的一个代码<a target="_blank" rel="noopener" href="https://github.com/cutoutsy/maze">maze</a>，可以参考一下，顺便点下赞，哈哈。</p>
+<p>大家可能听说过，thoughtworks除了会招会计算机的同学，一些不会计算机的同学且没有编程基础的同学也可以应聘，作业环节将需要完成在线测评（逻辑题&amp;在线编程学习题），这我就不清楚了。</p>
+<p>这个题目大家一定要好好做，只有作业评测通过了才会有后面的面试。</p>
+<h4 id="面试"><a href="#面试" class="headerlink" title="面试"></a>面试</h4><p>由于我在西安，投的是深圳，所以是远程视频面试，软件是hr告诉我提前下载好的，用的是zoom。<br>算法是两轮技术面加HR面试，软件开发和软件测试应该是只有技术面加HR面，去现场面试的流程不太清楚，估计应该差不多。</p>
+<p>算法是先进行一轮技术面加HR面，通过了才会有算法面。<br>技术面主要是关于之前做的那个题，会让你讲一下你做的思路，把代码流程大概讲一遍，中间面试官可能会问一些问题，之后面试官会在现有的题目上增加一个小功能，让你讲一下实现的思路，可能还会让你在你原来代码的基础上进行实现，因为是屏幕共享的，所以面试官可以实时看到你写的代码。</p>
+<p>HR面的话主要是问一些比如你遇到的最大的困难是什么的，是怎么解决的，平时是如何学习的啊这些问题，一般都可以回答上来。</p>
+<p>如果你幸运通过上面的面试，那么就会有算法加面，这个只针对算法。</p>
+<p>算法面试就会针对你的简历问你的算法相关的项目经历，以及问一些算法的知识，比如数据结构、传统机器学习、深度学习等。</p>
+<h4 id="Offer"><a href="#Offer" class="headerlink" title="Offer"></a>Offer</h4><p>如果你通过了上面的面试，那么不久就会收到告知面试通过的电话，然后还会邮件发送offer意向书，但是薪资要等到9月底才会谈。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>总的来说，thoughtworks的面试体验还是挺好的，但是感觉面试难度不是太大。</p>
+<p>最后没有选择去thoughtworks，其实我对这个公司文化还是蛮喜欢的，之前参加过他们公司举办的一个结对编程比赛，但是工资比较低，虽然说不加班。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+              <a href="/tags/thoughtworks/" rel="tag"># thoughtworks</a>
+              <a href="/tags/%E5%B7%A5%E4%BD%9C/" rel="tag"># 工作</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Leetcode-914-X-of-a-Kind-in-a-Deck-of-Cards.html" rel="prev" title="Leetcode 914: X of a Kind in a Deck of Cards">
+                  <i class="fa fa-angle-left"></i> Leetcode 914: X of a Kind in a Deck of Cards
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Mac%E4%B8%8BLaTeX%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA.html" rel="next" title="Mac下LaTeX环境的搭建">
+                  Mac下LaTeX环境的搭建 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">会微积分的喵</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">341k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:10</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

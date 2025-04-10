@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"fengxc.me","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="MathJax.Hub.Config({ tex2jax: {inlineMath: [[&#39;$&#39;,&#39;$&#39;], [&#39;\\(&#39;,&#39;\\)&#39;]]} });      写在前面之前一直没有接触过关于图形的算法题，这次在牛客网上看直播的时候有讲到两个图形题，在此做一个总结，图形题主要是需要关于数学方面的知识，其本身应该是一个数学问题，代码方面不是很难。所以需要我们了解图形方面的数学知识。 题目题目一题目描">
+<meta property="og:type" content="article">
+<meta property="og:title" content="两个图形算法题">
+<meta property="og:url" content="https://fengxc.me/%E4%B8%A4%E4%B8%AA%E5%9B%BE%E5%BD%A2%E7%AE%97%E6%B3%95%E9%A2%98.html">
+<meta property="og:site_name" content="会微积分的喵">
+<meta property="og:description" content="MathJax.Hub.Config({ tex2jax: {inlineMath: [[&#39;$&#39;,&#39;$&#39;], [&#39;\\(&#39;,&#39;\\)&#39;]]} });      写在前面之前一直没有接触过关于图形的算法题，这次在牛客网上看直播的时候有讲到两个图形题，在此做一个总结，图形题主要是需要关于数学方面的知识，其本身应该是一个数学问题，代码方面不是很难。所以需要我们了解图形方面的数学知识。 题目题目一题目描">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://7oxhal.com1.z0.glb.clouddn.com/point_rotate1.png">
+<meta property="article:published_time" content="2017-10-30T16:10:16.000Z">
+<meta property="article:modified_time" content="2025-04-10T14:09:26.313Z">
+<meta property="article:author" content="会微积分的喵">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="图形">
+<meta property="article:tag" content="三角形">
+<meta property="article:tag" content="矩形">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://7oxhal.com1.z0.glb.clouddn.com/point_rotate1.png">
+
+
+<link rel="canonical" href="https://fengxc.me/%E4%B8%A4%E4%B8%AA%E5%9B%BE%E5%BD%A2%E7%AE%97%E6%B3%95%E9%A2%98.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://fengxc.me/%E4%B8%A4%E4%B8%AA%E5%9B%BE%E5%BD%A2%E7%AE%97%E6%B3%95%E9%A2%98.html","path":"两个图形算法题.html","title":"两个图形算法题"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>两个图形算法题 | 会微积分的喵</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">会微积分的喵</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">我走得很慢，但我从不后退</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">2.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E4%B8%80"><span class="nav-number">2.1.</span> <span class="nav-text">题目一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E4%BA%8C"><span class="nav-number">2.2.</span> <span class="nav-text">题目二</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">会微积分的喵</p>
+  <div class="site-description" itemprop="description">Happy Code, Happy Life</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">204</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/%E4%B8%A4%E4%B8%AA%E5%9B%BE%E5%BD%A2%E7%AE%97%E6%B3%95%E9%A2%98.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="两个图形算法题 | 会微积分的喵">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          两个图形算法题
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-10-30 16:10:16" itemprop="dateCreated datePublished" datetime="2017-10-30T16:10:16+00:00">2017-10-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-10 14:09:26" itemprop="dateModified" datetime="2025-04-10T14:09:26+00:00">2025-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>0</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>之前一直没有接触过关于图形的算法题，这次在牛客网上看直播的时候有讲到两个图形题，在此做一个总结，图形题主要是需要关于数学方面的知识，其本身应该是一个数学问题，代码方面不是很难。所以需要我们了解图形方面的数学知识。</p>
+<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><h4 id="题目一"><a href="#题目一" class="headerlink" title="题目一"></a>题目一</h4><p><strong>题目描述：</strong><br>判断一个点是否在矩形内部。<br><span id="more"></span><br>在二维坐标系中，所有的值都是double类型，那么一个矩形可以由4个点来代表，（$x_1$, $y_1$）为最左的点、（$x_2$, $y_2$）为最上的点、（$x_3$, $y_3$）为最下的点、（$x_4$, $y_4$）为最右的点。给定4个点代表的矩形，在给定一个点（x, y）,判断（x, y）是否在矩形中。</p>
+<p><strong>输入描述：</strong><br>输入是矩形4个点的坐标：$x_1$, $y_1$, $x_2$, $y_2$, $x_3$, $y_3$, $x_4$, $y_4$及给定点的坐标$x, y$</p>
+<p><strong>输出描述：</strong><br>True: 给的点$x, y$在矩形内部<br>False: 给的点$x, y$不在矩形内部</p>
+<p><strong>解题思路：</strong><br>首先这个题目的矩形的位置分两种情况，一种是矩形和$x$轴，y轴是平行的，一种是矩形与坐标轴是不平行的。前一种情况是很简单的，只需要判断给定点的x是否在$x_1$和$x_4$之前，给定点的y是否在$y_1$和$y_4$之间。而对于第二种情况，我们只需进行图形的旋转即可变为第一种情况。</p>
+<p>对于点($x$, $y$)关于某点旋转$\theta$度后的坐标（$x_1$, $x_2$）的求解，即为平面内的坐标点的旋转公式。</p>
+<p>下面进行简单的讲解。<br><img src="http://7oxhal.com1.z0.glb.clouddn.com/point_rotate1.png" alt="坐标旋转"><br>对于上图，求C(c, d)关于B(a, b)旋转$\beta$&deg;后的点A($x$, $y$)的坐标。</p>
+<ol>
+<li>设点C旋转前的角度为$\theta$,即&ang;CBx, 旋转后的角度则为$\theta-\beta$.</li>
+<li>求C、B两点距离，$|CB| = c / cos\theta = d/sin\theta$</li>
+<li>求A、B两点距离, $|AB| = x/cos(\theta - \beta) = y/sin(\theta - \beta)$</li>
+<li>显然$|CB| = |AB| = r$，所以<script type="math/tex; mode=display">r = c/cos\theta=d/sin\theta=x/cos(\theta-\beta) = y/sin(\theta-\beta)</script></li>
+<li>由三角函数两角和差公式知：<script type="math/tex; mode=display">sin(\theta-\beta) = sin(\theta)cos(\beta)-cos(\theta)sin(\beta)</script><script type="math/tex; mode=display">cos(\theta-\beta) = cos(\theta)cos(\beta)+sin(\theta)sin(\beta)</script>所以：<script type="math/tex; mode=display">x = r\*cos(\theta-\beta) = r\*cos(\theta)cos(\beta)+r\*sin(\theta)sin(\beta) = c\*cos(\beta) + d\*sin(\beta)</script><script type="math/tex; mode=display">y = r\*sin(\theta-\beta) = r\*sin(\theta)cos(\beta)-r\*cos(\theta)sin(\beta) = d\*cos(\beta) - c\*sin(\beta)</script>由上可知，旋转后的坐标只与旋转前的坐标和旋转角度有关。<br>根据上面的数学知识，我们就可以编写代码了。<br><strong>具体代码：</strong><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">isInside</span><span class="params">(<span class="type">double</span> x1, <span class="type">double</span> y1, <span class="type">double</span> x4, <span class="type">double</span> y4,</span></span><br><span class="line"><span class="params">            <span class="type">double</span> x, <span class="type">double</span> y)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (x &lt;= x1) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (x &gt;= x4) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (y &gt;= y1) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (y &lt;= y4) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">isInside</span><span class="params">(<span class="type">double</span> x1, <span class="type">double</span> y1, <span class="type">double</span> x2, <span class="type">double</span> y2,</span></span><br><span class="line"><span class="params">        <span class="type">double</span> x3, <span class="type">double</span> y3, <span class="type">double</span> x4, <span class="type">double</span> y4, <span class="type">double</span> x, <span class="type">double</span> y)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (y1 == y2) &#123;</span><br><span class="line">        <span class="keyword">return</span> isInside(x1, y1, x4, y4, x, y);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">double</span> <span class="variable">l</span> <span class="operator">=</span> Math.abs(y4 - y3);</span><br><span class="line">    <span class="type">double</span> <span class="variable">k</span> <span class="operator">=</span> Math.abs(x4 - x3);</span><br><span class="line">    <span class="type">double</span> <span class="variable">s</span> <span class="operator">=</span> Math.sqrt(k * k + l * l);</span><br><span class="line">    <span class="type">double</span> <span class="variable">sin</span> <span class="operator">=</span> l / s;</span><br><span class="line">    <span class="type">double</span> <span class="variable">cos</span> <span class="operator">=</span> k / s;</span><br><span class="line">    <span class="type">double</span> <span class="variable">x1R</span> <span class="operator">=</span> cos * x1 + sin * y1;</span><br><span class="line">    <span class="type">double</span> <span class="variable">y1R</span> <span class="operator">=</span> -x1 * sin + y1 * cos;</span><br><span class="line">    <span class="type">double</span> <span class="variable">x4R</span> <span class="operator">=</span> cos * x4 + sin * y4;</span><br><span class="line">    <span class="type">double</span> <span class="variable">y4R</span> <span class="operator">=</span> -x4 * sin + y4 * cos;</span><br><span class="line">    <span class="type">double</span> <span class="variable">xR</span> <span class="operator">=</span> cos * x + sin * y;</span><br><span class="line">    <span class="type">double</span> <span class="variable">yR</span> <span class="operator">=</span> -x * sin + y * cos;</span><br><span class="line">    <span class="keyword">return</span> isInside(x1R, y1R, x4R, y4R, xR, yR);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="题目二"><a href="#题目二" class="headerlink" title="题目二"></a>题目二</h4><p>判断一个点是否在三角形内部<br>在二维坐标系中，所有的值都是double类型，那么一个三角形可以由3个点来代表，给定3个点代表的三角形，再给定一个点(x, y)，判断(x, y)是否在三角形中。</p>
+<p><strong>输入描述：</strong><br>输入是三角形3个点的坐标：$x_1$, $y_1$, $x_2$, $y_2$, $x_3$, $y_3$及给定点的坐标$x, y$</p>
+<p><strong>输出描述：</strong><br>True: 给的点$x, y$在三角形内部<br>False: 给的点$x, y$不在三角形内部</p>
+<p><strong>解题思路：</strong><br>首先我们可以想到的是利用面积的思路，假设给定的点在三角形内部，那么由这个点与原三角形的三个点形成的3个小三角形的面积必然等于原来三角形的面积。而如果给定的点在三角形的外部，则3个三角形的面积必然超过原来三角形的面积。已知三角形的3个点，求三角形的面积，我们可以根据海伦公式求面积。</p>
+<p>第二种方法就是如果给定的点在三角形内部，那么在原三角形上沿着逆时针的方向，可以发现给定的点都在左边，如果给点的点不在三角形的内部，那么必然存在一边，给定的点在边的右边。我们可以利用这个性质来进行判断。关于点在线段的左侧还是右侧，可以利用叉乘进行判断。</p>
+<p>具体代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">isInside1</span><span class="params">(<span class="type">double</span> x1, <span class="type">double</span> y1, <span class="type">double</span> x2, <span class="type">double</span> y2,</span></span><br><span class="line"><span class="params">        <span class="type">double</span> x3, <span class="type">double</span> y3, <span class="type">double</span> x, <span class="type">double</span> y)</span> &#123;</span><br><span class="line">    <span class="type">double</span> <span class="variable">area1</span> <span class="operator">=</span> getArea(x1, y1, x2, y2, x, y);</span><br><span class="line">    <span class="type">double</span> <span class="variable">area2</span> <span class="operator">=</span> getArea(x1, y1, x3, y3, x, y);</span><br><span class="line">    <span class="type">double</span> <span class="variable">area3</span> <span class="operator">=</span> getArea(x2, y2, x3, y3, x, y);</span><br><span class="line">    <span class="type">double</span> <span class="variable">allArea</span> <span class="operator">=</span> getArea(x1, y1, x2, y2, x3, y3);</span><br><span class="line">    <span class="keyword">return</span> area1 + area2 + area3 &lt;= allArea;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">double</span> <span class="title function_">getArea</span><span class="params">(<span class="type">double</span> x1, <span class="type">double</span> y1, <span class="type">double</span> x2, <span class="type">double</span> y2,</span></span><br><span class="line"><span class="params">        <span class="type">double</span> x3, <span class="type">double</span> y3)</span> &#123;</span><br><span class="line">    <span class="type">double</span> <span class="variable">side1Len</span> <span class="operator">=</span> getSideLength(x1, y1, x2, y2);</span><br><span class="line">    <span class="type">double</span> <span class="variable">side2Len</span> <span class="operator">=</span> getSideLength(x1, y1, x3, y3);</span><br><span class="line">    <span class="type">double</span> <span class="variable">side3Len</span> <span class="operator">=</span> getSideLength(x2, y2, x3, y3);</span><br><span class="line">    <span class="type">double</span> <span class="variable">p</span> <span class="operator">=</span> (side1Len + side2Len + side3Len) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">return</span> Math.sqrt((p - side1Len) * (p - side2Len) * (p - side3Len) * p);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">double</span> <span class="title function_">getSideLength</span><span class="params">(<span class="type">double</span> x1, <span class="type">double</span> y1, <span class="type">double</span> x2,</span></span><br><span class="line"><span class="params">        <span class="type">double</span> y2)</span> &#123;</span><br><span class="line">    <span class="type">double</span> <span class="variable">a</span> <span class="operator">=</span> Math.abs(x1 - x2);</span><br><span class="line">    <span class="type">double</span> <span class="variable">b</span> <span class="operator">=</span> Math.abs(y1 - y2);</span><br><span class="line">    <span class="keyword">return</span> Math.sqrt(a * a + b * b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">isInside2</span><span class="params">(<span class="type">double</span> x1, <span class="type">double</span> y1, <span class="type">double</span> x2, <span class="type">double</span> y2,</span></span><br><span class="line"><span class="params">        <span class="type">double</span> x3, <span class="type">double</span> y3, <span class="type">double</span> x, <span class="type">double</span> y)</span> &#123;</span><br><span class="line">        <span class="comment">// 保证逆时针方向</span></span><br><span class="line">    <span class="keyword">if</span> (crossProduct(x3 - x1, y3 - y1, x2 - x1, y2 - y1) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="type">double</span> <span class="variable">tmpx</span> <span class="operator">=</span> x2;</span><br><span class="line">        <span class="type">double</span> <span class="variable">tmpy</span> <span class="operator">=</span> y2;</span><br><span class="line">        x2 = x3;</span><br><span class="line">        y2 = y3;</span><br><span class="line">        x3 = tmpx;</span><br><span class="line">        y3 = tmpy;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (crossProduct(x2 - x1, y2 - y1   , x - x1, y - y1) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (crossProduct(x3 - x2, y3 - y2, x - x2, y - y2) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (crossProduct(x1 - x3, y1 - y3, x - x3, y - y3) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">double</span> <span class="title function_">crossProduct</span><span class="params">(<span class="type">double</span> x1, <span class="type">double</span> y1, <span class="type">double</span> x2, <span class="type">double</span> y2)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x1 * y2 - x2 * y1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+              <a href="/tags/%E5%9B%BE%E5%BD%A2/" rel="tag"># 图形</a>
+              <a href="/tags/%E4%B8%89%E8%A7%92%E5%BD%A2/" rel="tag"># 三角形</a>
+              <a href="/tags/%E7%9F%A9%E5%BD%A2/" rel="tag"># 矩形</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E8%B0%B7%E6%AD%8CKickstart-2017-F%E8%BD%AE%E7%BC%96%E7%A8%8B%E9%A2%98%E8%A7%A3%E7%AD%94%EF%BC%88Java%E7%89%88%EF%BC%89.html" rel="prev" title="谷歌Kickstart 2017 F轮编程题解答（Java版）">
+                  <i class="fa fa-angle-left"></i> 谷歌Kickstart 2017 F轮编程题解答（Java版）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/matplotlib%E7%94%BB%E5%9B%BE%E5%AD%A6%E4%B9%A0.html" rel="next" title="matplotlib画图学习笔记">
+                  matplotlib画图学习笔记 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">会微积分的喵</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">341k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:10</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

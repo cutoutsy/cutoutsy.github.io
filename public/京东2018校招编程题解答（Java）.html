@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"fengxc.me","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="MathJax.Hub.Config({ tex2jax: {inlineMath: [[&#39;$&#39;,&#39;$&#39;], [&#39;\\(&#39;,&#39;\\)&#39;]]} });      写在前面本篇博客主要是解答这次校招中京东的笔试编程题，这次京东的笔试编程题比较难，涉及KMP算法、manacher算法等。文中的解法也是在观看了左神（左程云）9月20号在牛客网的直播后，自己花时间写出来的。本篇博客不涉及算法的具体分析，主">
+<meta property="og:type" content="article">
+<meta property="og:title" content="京东2018校招编程题解答（Java）">
+<meta property="og:url" content="https://fengxc.me/%E4%BA%AC%E4%B8%9C2018%E6%A0%A1%E6%8B%9B%E7%BC%96%E7%A8%8B%E9%A2%98%E8%A7%A3%E7%AD%94%EF%BC%88Java%EF%BC%89.html">
+<meta property="og:site_name" content="会微积分的喵">
+<meta property="og:description" content="MathJax.Hub.Config({ tex2jax: {inlineMath: [[&#39;$&#39;,&#39;$&#39;], [&#39;\\(&#39;,&#39;\\)&#39;]]} });      写在前面本篇博客主要是解答这次校招中京东的笔试编程题，这次京东的笔试编程题比较难，涉及KMP算法、manacher算法等。文中的解法也是在观看了左神（左程云）9月20号在牛客网的直播后，自己花时间写出来的。本篇博客不涉及算法的具体分析，主">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-09-21T15:50:46.000Z">
+<meta property="article:modified_time" content="2025-04-10T14:09:26.317Z">
+<meta property="article:author" content="会微积分的喵">
+<meta property="article:tag" content="京东">
+<meta property="article:tag" content="JAVA">
+<meta property="article:tag" content="校招">
+<meta property="article:tag" content="编程题">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://fengxc.me/%E4%BA%AC%E4%B8%9C2018%E6%A0%A1%E6%8B%9B%E7%BC%96%E7%A8%8B%E9%A2%98%E8%A7%A3%E7%AD%94%EF%BC%88Java%EF%BC%89.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://fengxc.me/%E4%BA%AC%E4%B8%9C2018%E6%A0%A1%E6%8B%9B%E7%BC%96%E7%A8%8B%E9%A2%98%E8%A7%A3%E7%AD%94%EF%BC%88Java%EF%BC%89.html","path":"京东2018校招编程题解答（Java）.html","title":"京东2018校招编程题解答（Java）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>京东2018校招编程题解答（Java） | 会微积分的喵</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">会微积分的喵</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">我走得很慢，但我从不后退</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%8F%8A%E8%A7%A3%E7%AD%94"><span class="nav-number">2.</span> <span class="nav-text">题目及解答</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E4%B8%80"><span class="nav-number">2.1.</span> <span class="nav-text">题目一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E4%BA%8C"><span class="nav-number">2.2.</span> <span class="nav-text">题目二</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E4%B8%89"><span class="nav-number">2.3.</span> <span class="nav-text">题目三</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%9B%9B"><span class="nav-number">2.4.</span> <span class="nav-text">题目四</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E4%BA%94"><span class="nav-number">2.5.</span> <span class="nav-text">题目五</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">会微积分的喵</p>
+  <div class="site-description" itemprop="description">Happy Code, Happy Life</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">204</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/%E4%BA%AC%E4%B8%9C2018%E6%A0%A1%E6%8B%9B%E7%BC%96%E7%A8%8B%E9%A2%98%E8%A7%A3%E7%AD%94%EF%BC%88Java%EF%BC%89.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="京东2018校招编程题解答（Java） | 会微积分的喵">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          京东2018校招编程题解答（Java）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-09-21 15:50:46" itemprop="dateCreated datePublished" datetime="2017-09-21T15:50:46+00:00">2017-09-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-10 14:09:26" itemprop="dateModified" datetime="2025-04-10T14:09:26+00:00">2025-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>0</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>本篇博客主要是解答这次校招中京东的笔试编程题，这次京东的笔试编程题比较难，涉及KMP算法、manacher算法等。文中的解法也是在观看了左神（左程云）9月20号在<a target="_blank" rel="noopener" href="https://www.nowcoder.com/">牛客网</a>的直播后，自己花时间写出来的。本篇博客不涉及算法的具体分析，主要是解题代码及简单的思路，关于其中的一些算法我会在后面的博客中详细介绍。</p>
+<h3 id="题目及解答"><a href="#题目及解答" class="headerlink" title="题目及解答"></a>题目及解答</h3><h4 id="题目一"><a href="#题目一" class="headerlink" title="题目一"></a>题目一</h4><p><strong>题目描述：</strong><br>东东从京京那里了解到有一个无限长的数字序列: 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, …(数字k在该序列中正好出现k次)。东东想知道这个数字序列的第n项是多少，你能帮帮他么。</p>
+<span id="more"></span>
+<p><strong>输入描述：</strong><br>输入包括一个整数n(1 ≤ n ≤ $10^{18}$) 。</p>
+<p><strong>输出描述：</strong><br>输出一个整数，即数字序列的第n项。</p>
+<p><strong>示例：</strong><br>输入<br>169<br>输出<br>18</p>
+<p><strong>解题思路：</strong><br>这个主要是等差数列的求和，假设给的输入为k，则<br>$n(n-1)/2 &lt; k &lt; n(n+1)/2$，化简得到$\frac{1+\sqrt{1+8k}}{2} &gt; 0$，即求上式满足时的最小正整数。同时此题要注意数的范围。</p>
+<p><strong>具体代码：</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">long</span> <span class="title function_">findNum</span><span class="params">(<span class="type">long</span> input)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="type">long</span>)Math.ceil((Math.sqrt(<span class="number">1</span> + <span class="number">8</span> * input) -<span class="number">1</span>)/<span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="题目二"><a href="#题目二" class="headerlink" title="题目二"></a>题目二</h4><p><strong>题目描述：</strong><br>东东在一本古籍上看到有一种神奇数，如果能够将一个数的数字分成两组，其中一组数字的和等于另一组数字的和，我们就将这个数称为神奇数。例如242就是一个神奇数，我们能够将这个数的数字分成两组,分别是{2,2}以及{4},而且这两组数的和都是4。东东现在需要统计给定区间中有多少个神奇数，即给定区间[l, r]，统计这个区间中有多少个神奇数，请你来帮助他。</p>
+<p><strong>输入描述：</strong><br>输入包括一行，，一行中两个整数l和r(1 ≤ l，r ≤ $10^9$，0 ≤ r - l ≤ $10^6$)，以空格分割。</p>
+<p><strong>输出描述：</strong><br>输出一个整数，即区间内的神奇数个数。</p>
+<p><strong>示例：</strong><br>输入<br>1 50<br>输出<br>4</p>
+<p><strong>解题思路：</strong><br>这个题主要是判断一个数是不是神奇数，且时间复杂度尽量低。一个数判断神奇数的问题其实是一个背包问题，比如242这个数，就是数组arr[2,2,4]中每个数可以用也可以不用，是否能组成sum(arr) = 8的一半，能则是神奇数，反之则不能。还有如果和为奇数则也不能。</p>
+<p><strong>具体代码：</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">findMagicNumber</span><span class="params">(<span class="type">int</span> start, <span class="type">int</span> end)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span>[] digitals = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">10</span>];</span><br><span class="line">    <span class="type">boolean</span>[] dp = <span class="keyword">new</span> <span class="title class_">boolean</span>[<span class="number">9</span> * <span class="number">9</span>];</span><br><span class="line">    Arrays.fill(digitals, -<span class="number">1</span>);</span><br><span class="line">    Arrays.fill(dp, <span class="literal">false</span>);</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> start; i &lt;= end; i++) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> i;</span><br><span class="line">        <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (num &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> num % <span class="number">10</span>;</span><br><span class="line">        digitals[index++] = temp;</span><br><span class="line">            sum += temp;</span><br><span class="line">            num = num / <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 当各位数字和为偶数时，才存在神奇数</span></span><br><span class="line">        <span class="keyword">if</span> ((sum &amp; <span class="number">1</span>) == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; digitals.length &amp;&amp; digitals[j] != -<span class="number">1</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> sum; k &gt;= <span class="number">0</span>; k--) &#123;</span><br><span class="line">                    <span class="comment">// 用一维数组进行更新</span></span><br><span class="line">                        dp[k] = dp[k] || j == <span class="number">0</span> ? sum == digitals[j] : (k - digitals[j] &lt; <span class="number">0</span> ? <span class="literal">false</span> : dp[k-digitals[j]]);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(dp[sum / <span class="number">2</span>]) &#123;</span><br><span class="line">                    ans++;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.fill(digitals, -<span class="number">1</span>);</span><br><span class="line">        Arrays.fill(dp, <span class="literal">false</span>);</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="题目三"><a href="#题目三" class="headerlink" title="题目三"></a>题目三</h4><p><strong>题目描述：</strong><br>给定一个字符串s，请计算输出含有连续两个s作为子串的最短字符串。注意两个s可能有重叠部分。例如，”ababa”含有两个”aba”。</p>
+<p><strong>输入描述：</strong><br>输入包括一个字符串s，字符串长度length(1 ≤ length ≤ 50)，s中每个字符都是小写字母。</p>
+<p><strong>输出描述：</strong><br>输出一个字符串，即含有连续两个s作为子串的最短字符串。</p>
+<p><strong>示例：</strong><br>输入<br>abracadabra<br>输出<br>abracadabracada</p>
+<p><strong>解题思路：</strong><br>这个题目是关于KMP算法中求next数组的问题，我们只需求出字符串最后一个字符后一位的next值。这个能算出来这个题目就解决了。</p>
+<p><strong>具体代码：</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> String <span class="title function_">shortestRepeatString</span><span class="params">(String str)</span>&#123;</span><br><span class="line">    <span class="type">int</span>[] next = <span class="keyword">new</span> <span class="title class_">int</span>[str.length() + <span class="number">1</span>];</span><br><span class="line">    Arrays.fill(ne    xt, <span class="number">0</span>);</span><br><span class="line">    next[<span class="number">0</span>] = -<span class="number">1</span>;</span><br><span class="line">    next[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">2</span>; i &lt; next.length; i++) &#123;</span><br><span class="line">        <span class="type">char</span> <span class="variable">pre</span> <span class="operator">=</span> str.charAt(i - <span class="number">1</span>);</span><br><span class="line">        <span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> next[i - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">while</span> (k != -<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span> (str.charAt(k) == pre) &#123;</span><br><span class="line">                next[i] = next[i - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            k = next[k];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> str + str.substring(next[str.length()]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="题目四"><a href="#题目四" class="headerlink" title="题目四"></a>题目四</h4><p><strong>题目描述：</strong><br>合法的括号匹配序列被定义为:</p>
+<ol>
+<li>空串””是合法的括号序列。</li>
+<li>如果”X”和”Y”是合法的序列，那么”XY”也是一个合法的括号序列。</li>
+<li>如果”X”是一个合法的序列，那么”(X)”也是一个合法的括号序列。</li>
+<li>每个合法的括号序列都可以由上面的规则生成。<br>例如””，”()”，”()()()”， “(()())”，”(((())))”都是合法的。 东东现在有一个合法的括号序列s，一次移除操作分为两步:</li>
+<li>移除序列s中第一个左括号。</li>
+<li>移除序列s中任意一个右括号，保证操作之后s还是一个合法的括号序列。</li>
+</ol>
+<p>东东现在想知道使用上述的移除操作有多少种方案可以把序列s变为空。</p>
+<p>如果两个方案中有一次移除操作移除的是不同的右括号就认为是不同的方案。<br>例如: s = “()()()()()”，输出1，因为每次都只能选择被移除的左括号所相邻的右括号。<br>s = “(((())))”，输出24，第一次有4种情况，第二次有3种情况，… ，依次类推，4 <em> 3 </em> 2 <em> 1 = 24。<br><em>*输入描述：</em></em><br>输入包括一行，一个合法的括号序列s，序列长度length(2 ≤ length ≤ 20)。</p>
+<p><strong>输出描述：</strong><br>输出一个整数，表示方案数。</p>
+<p><strong>示例：</strong><br>输入<br>(((())))<br>输出<br>24</p>
+<p><strong>解题思路：</strong><br>从右往左遍历，遇到左括号看左括号右边右括号数量与左括号数量的差，并将这些差乘起来，即为方案数。</p>
+<p><strong>具体代码：</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">removeSolutions</span><span class="params">(String str)</span>&#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> str.length() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">if</span> (str.charAt(i) == <span class="string">&#x27;)&#x27;</span>) &#123;</span><br><span class="line">            count++;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ans *= count;</span><br><span class="line">            count--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="题目五"><a href="#题目五" class="headerlink" title="题目五"></a>题目五</h4><p><strong>题目描述：</strong><br>京京和东东是好朋友。东东很喜欢回文。回文是指从前往后读和从后往前读是一样的词语。京京准备给东东一个惊喜，先取定一个字符串s，然后在后面附上0个或者更多个字母形成回文，京京希望这个回文越短越好。请帮助京京计算他能够得到的最短的回文长度。</p>
+<p><strong>输入描述：</strong><br>输入包括一个字符串s，字符串s长度length(1 ≤ length ≤ 50)。</p>
+<p><strong>输出描述：</strong><br>输出一个整数，表示京京能够得到的最短的回文长度。</p>
+<p><strong>示例：</strong><br>输入<br>abab<br>输出<br>5</p>
+<p><strong>解题思路：</strong><br>这个题目主要是manacher（马拉车）算法的变形，主要是要求以最后一个字符结尾的时候的最大回文子串。</p>
+<p><strong>具体代码：</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">longestPalindrome</span><span class="params">(String str)</span>&#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 字符串预处理</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">strend</span> <span class="operator">=</span> <span class="string">&quot;$#&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; str.length(); i++) &#123;</span><br><span class="line">        strend += str.charAt(i);</span><br><span class="line">        strend += <span class="string">&quot;#&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    strend += <span class="string">&quot;@&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// manacher算法</span></span><br><span class="line">    <span class="type">int</span>[] radius = <span class="keyword">new</span> <span class="title class_">int</span>[strend.length()];</span><br><span class="line">    Arrays.fill(radius, <span class="number">0</span>);</span><br><span class="line">    <span class="type">int</span> <span class="variable">right</span> <span class="operator">=</span> <span class="number">0</span>; <span class="comment">//回文最右边界</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">center</span> <span class="operator">=</span> <span class="number">0</span>; <span class="comment">//回文中心</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>;  <span class="comment">//回文左边界</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; strend.length(); i++) &#123;</span><br><span class="line">        radius[i] = right &gt; i ? Math.min(radius[<span class="number">2</span> * center - i], right - i): <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (strend.charAt(i + radius[i]) == strend.charAt(i - radius[i])) &#123;</span><br><span class="line">            radius[i] += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (right &lt; i + radius[i]) &#123;</span><br><span class="line">            right = i + radius[i];</span><br><span class="line">            center = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(right == strend.length() - <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>*str.length() - (radius[center] * <span class="number">2</span> - <span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>欢迎大家交流和批评指正！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%BA%AC%E4%B8%9C/" rel="tag"># 京东</a>
+              <a href="/tags/JAVA/" rel="tag"># JAVA</a>
+              <a href="/tags/%E6%A0%A1%E6%8B%9B/" rel="tag"># 校招</a>
+              <a href="/tags/%E7%BC%96%E7%A8%8B%E9%A2%98/" rel="tag"># 编程题</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E4%BF%84%E7%BD%97%E6%96%AF%E5%A5%97%E5%A8%83%E4%BF%A1%E5%B0%81%E9%97%AE%E9%A2%98.html" rel="prev" title="俄罗斯套娃信封问题">
+                  <i class="fa fa-angle-left"></i> 俄罗斯套娃信封问题
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E8%B0%B7%E6%AD%8CKickstart-2017-F%E8%BD%AE%E7%BC%96%E7%A8%8B%E9%A2%98%E8%A7%A3%E7%AD%94%EF%BC%88Java%E7%89%88%EF%BC%89.html" rel="next" title="谷歌Kickstart 2017 F轮编程题解答（Java版）">
+                  谷歌Kickstart 2017 F轮编程题解答（Java版） <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">会微积分的喵</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">341k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:10</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

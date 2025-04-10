@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"fengxc.me","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Happy Code, Happy Life">
+<meta property="og:type" content="website">
+<meta property="og:title" content="会微积分的喵">
+<meta property="og:url" content="https://fengxc.me/index.html">
+<meta property="og:site_name" content="会微积分的喵">
+<meta property="og:description" content="Happy Code, Happy Life">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="会微积分的喵">
+<meta property="article:tag" content="java,机器学习,big data,大数据,深度学习,linux,开发者,程序猿极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://fengxc.me/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>会微积分的喵</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">会微积分的喵</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">我走得很慢，但我从不后退</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">会微积分的喵</p>
+  <div class="site-description" itemprop="description">Happy Code, Happy Life</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">204</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/%E4%BD%9C%E4%B8%9A%E8%BD%A6%E9%97%B4%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 会微积分的喵">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E4%BD%9C%E4%B8%9A%E8%BD%A6%E9%97%B4%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98.html" class="post-title-link" itemprop="url">车间调度问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-09-05 22:33:00" itemprop="dateCreated datePublished" datetime="2022-09-05T22:33:00+00:00">2022-09-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-10 14:09:26" itemprop="dateModified" datetime="2025-04-10T14:09:26+00:00">2025-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BF%90%E7%AD%B9%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">运筹学</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>0</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>一个常见的调度问题是作业车间调度问题，多个作业在多台机器上处理。每个作业由一系列任务组成，这些任务必须按照给定的顺序执行，并且每个任务必须在特定的机器上处理。例如，作业可以是制造单一的消费品，如汽车。问题是如何安排机器上的任务，以最小化调度的长度，即所有任务完成所需的时间。</p>
+<p>作业车间问题由几个约束条件：</p>
+<ul>
+<li>在作业的前一个任务完成之前，作业的任何任务不能启动</li>
+<li>一台机器一次自能做一项任务</li>
+<li>一项任务，一旦开始，必须运行到完成</li>
+</ul>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>下面是一个作业车间调度问题的简单例子，其中每个作业都用一对数字(m, p)来表示，其中m是必须处理该任务的机器编号，p是该任务的处理时间。（作业和机器的编号从0开始）</p>
+<ul>
+<li>job 0 = [(0, 3), (1, 2), (2, 2)]</li>
+<li>job 1 = [(0, 2), (2, 1), (1, 4)]</li>
+<li>job 2 = [(1, 4), (2, 3)]</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E4%BD%9C%E4%B8%9A%E8%BD%A6%E9%97%B4%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/OR-Tools%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 会微积分的喵">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/OR-Tools%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B.html" class="post-title-link" itemprop="url">OR-Tools入门教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-05 15:37:49" itemprop="dateCreated datePublished" datetime="2022-08-05T15:37:49+00:00">2022-08-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-10 14:09:26" itemprop="dateModified" datetime="2025-04-10T14:09:26+00:00">2025-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>0</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>OR-Tools是用c++编写的，但也可以在Python、Java或C#中使用它。下面主要介绍使用Python创建和运行OR-Tools程序。</p>
+<p>以下部分将帮助您开始使用Python的OR-Tools:</p>
+<ul>
+<li>什么是优化问题</li>
+<li>使用Python解决优化问题</li>
+<li>更多使用Python的例子</li>
+<li>确定你希望解决的问题类型</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/OR-Tools%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/OR-Tools%E7%AE%80%E4%BB%8B.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 会微积分的喵">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/OR-Tools%E7%AE%80%E4%BB%8B.html" class="post-title-link" itemprop="url">OR-Tools简介</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-27 23:18:49" itemprop="dateCreated datePublished" datetime="2022-07-27T23:18:49+00:00">2022-07-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-10 14:09:26" itemprop="dateModified" datetime="2025-04-10T14:09:26+00:00">2025-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>0</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>OR-Tools是用于组合优化的开源软件，寻求从大量可能的解决方案中找到问题的最佳解决方案。下面是一些使用OR-Tools解决的问题例子：</p>
+<ul>
+<li>车辆路径规划：在给定的约束条件下(例如，“卡车不能装载超过20000磅”或“所有的递送必须在两个小时内<br>完成”)，为提取和递送包裹的车队找到最佳路线。</li>
+<li>调度问题：在一组固定的机器或其他资源上，为一组复杂的任务找到最佳调度，其中一些任务需要在其他任务之前执行。</li>
+<li>装箱问题：将尽可能多的不同尺寸的物品装入数量固定的箱子中，使得每个箱子容量最大。</li>
+</ul>
+<p>在大多数情况下，像上述问题有大量可能的解决方案，太多了以至于计算机无法全部搜索它们。为了解决这个问题，OR-Tools使用最先进的算法来缩小搜索集合，以便找到一个最优（或接近最优）的解决方案。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/OR-Tools%E7%AE%80%E4%BB%8B.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/python%20redis-py%E8%BF%9E%E6%8E%A5%E5%AE%9E%E8%B7%B5.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 会微积分的喵">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/python%20redis-py%E8%BF%9E%E6%8E%A5%E5%AE%9E%E8%B7%B5.html" class="post-title-link" itemprop="url">python redis-py连接实践</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-02-09 19:43:11" itemprop="dateCreated datePublished" datetime="2022-02-09T19:43:11+00:00">2022-02-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-10 14:09:26" itemprop="dateModified" datetime="2025-04-10T14:09:26+00:00">2025-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>0</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="0x01-Redis四种模式"><a href="#0x01-Redis四种模式" class="headerlink" title="0x01 Redis四种模式"></a>0x01 Redis四种模式</h3><p>这里的模式主要是说的Redis Server的部署模式，有四种：单机模式、主从模式、哨兵模式、集群模式</p>
+<p>这四种模式的详细介绍可以参考这篇文章：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904191236767751">https://juejin.cn/post/6844904191236767751</a></p>
+<p>主从模式的Redis数据库，单点连接主节点。这种模式主要如果主节点挂掉，从库会切换为主节点，但是主节点IP已经变化，应用服务需要修改IP地址，重新发布。</p>
+<p>建议哨兵模式，这种主要连接的是哨兵节点（一个或多个组成），访问redis集群的数据都是通过哨兵集群的，redis集群出现问题，应用服务不用更改访问地址</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/python%20redis-py%E8%BF%9E%E6%8E%A5%E5%AE%9E%E8%B7%B5.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/Python%20requests%20timeout%E8%AF%A6%E8%A7%A3.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 会微积分的喵">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Python%20requests%20timeout%E8%AF%A6%E8%A7%A3.html" class="post-title-link" itemprop="url">Python requests timeout详解</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-01-18 20:02:11" itemprop="dateCreated datePublished" datetime="2022-01-18T20:02:11+00:00">2022-01-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-10 14:09:26" itemprop="dateModified" datetime="2025-04-10T14:09:26+00:00">2025-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>0</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="0x01-源于线上Bug"><a href="#0x01-源于线上Bug" class="headerlink" title="0x01 源于线上Bug"></a>0x01 源于线上Bug</h3><p>某天下午正在愉快的写着代码，突然某服务客户端报错，看了下报错详细信息，是报的超时错误，客户端设置的连接超时时间是5s，一般不可能报错的，开始查日志，定位问题…</p>
+<p>从服务记录的日志来看，是服务里面会请求模型服务，这块耗时超过了5s才返回。整个服务是使用的gunicorn + flask的方式，部署在公司私有云上，请求模型服务使用的是python requests包。</p>
+<p>这块代码如下（经过一定的简化）：<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Python%20requests%20timeout%E8%AF%A6%E8%A7%A3.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/SVN%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 会微积分的喵">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/SVN%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE.html" class="post-title-link" itemprop="url">SVN搭建及配置</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-12 20:54:00" itemprop="dateCreated datePublished" datetime="2021-08-12T20:54:00+00:00">2021-08-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-10 14:09:26" itemprop="dateModified" datetime="2025-04-10T14:09:26+00:00">2025-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">工作</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>0</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="0x01-SVN简介"><a href="#0x01-SVN简介" class="headerlink" title="0x01 SVN简介"></a>0x01 SVN简介</h3><p>SVN知道的同学可能比较少，但是大家可能对git都不陌生，相信大家基本都用过全球最大同性交友网站github。</p>
+<p>SVN和git是一样的，都是一种版本控制系统，用于多个人共同开发同一个项目，共用资源的目的。</p>
+<p>SVN历史比较悠久，在git出来前就有。</p>
+<h3 id="0x02-SVN服务器"><a href="#0x02-SVN服务器" class="headerlink" title="0x02 SVN服务器"></a>0x02 SVN服务器</h3><p>SVN是CS模式，需要有服务器。SVN服务器支持两种运行方式：独立服务器和借助apache运行，本文主要讲独立服务器的运行方式</p>
+<p>本文主要讲在Linux系统Ubuntu 18.04下的安装，其他发行版相差不大。</p>
+<ol>
+<li>安装SVN<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install subversion</span><br></pre></td></tr></table></figure></li>
+<li>建立SVN服务器的文件夹<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">svn默认目录</span></span><br><span class="line">mkdir /var/svn</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/SVN%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/%E3%80%8ABeyond%20Skill%20Rating%20Advanced%20Matchmaking%20in%20Ghost%20Recon%20Online%E3%80%8B%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E5%8F%8A%E6%80%9D%E8%80%83.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 会微积分的喵">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E3%80%8ABeyond%20Skill%20Rating%20Advanced%20Matchmaking%20in%20Ghost%20Recon%20Online%E3%80%8B%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E5%8F%8A%E6%80%9D%E8%80%83.html" class="post-title-link" itemprop="url">《Beyond Skill Rating Advanced Matchmaking in Ghost Recon Online》论文阅读及思考</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-05-23 22:26:00" itemprop="dateCreated datePublished" datetime="2021-05-23T22:26:00+00:00">2021-05-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-10 14:09:26" itemprop="dateModified" datetime="2025-04-10T14:09:26+00:00">2025-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8C%B9%E9%85%8D/" itemprop="url" rel="index"><span itemprop="name">匹配</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>0</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="0x01-简介"><a href="#0x01-简介" class="headerlink" title="0x01 简介"></a>0x01 简介</h3><p>这篇论文是一篇关于匹配系统算法的论文（2012年），那会机器学习才刚开始兴起。</p>
+<p>主要讲的是《Ghost Recon Online》（中文名称：幽灵行动）游戏研发beta测试的时候，对匹配系统算法做的一些研究，论文中提到的算法并没有在线上使用，主要是离线验证。</p>
+<p><img src="https://cutoutsy-blog-1253675385.cos.ap-chengdu.myqcloud.com/blog_ghost_recon_online.png" alt="Ghost Recon Online"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E3%80%8ABeyond%20Skill%20Rating%20Advanced%20Matchmaking%20in%20Ghost%20Recon%20Online%E3%80%8B%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E5%8F%8A%E6%80%9D%E8%80%83.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/Google%20OR-Tools%20%E6%90%9C%E7%B4%A2%E5%8F%82%E6%95%B0%E3%80%81%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E3%80%81cython%E5%AE%9E%E7%8E%B0%E5%8F%8A%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8tips%20.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 会微积分的喵">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Google%20OR-Tools%20%E6%90%9C%E7%B4%A2%E5%8F%82%E6%95%B0%E3%80%81%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E3%80%81cython%E5%AE%9E%E7%8E%B0%E5%8F%8A%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8tips%20.html" class="post-title-link" itemprop="url">Google OR-Tools 搜索参数、源码编译、cython实现及一些使用Tips</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-05-18 20:49:58" itemprop="dateCreated datePublished" datetime="2021-05-18T20:49:58+00:00">2021-05-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-10 14:09:26" itemprop="dateModified" datetime="2025-04-10T14:09:26+00:00">2025-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>0</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="OR-Tools-CP-SAT-搜索参数"><a href="#OR-Tools-CP-SAT-搜索参数" class="headerlink" title="OR-Tools CP-SAT 搜索参数"></a>OR-Tools CP-SAT 搜索参数</h3><p>所有参数:</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/google/or-tools/blob/stable/ortools/sat/sat_parameters.proto">https://github.com/google/or-tools/blob/stable/ortools/sat/sat_parameters.proto</a></p>
+<p>很多参数都要在了解背后的搜索算法后，才知道含义</p>
+<p>输出所有参数及其默认值：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">attributes = [attr <span class="keyword">for</span> attr <span class="keyword">in</span> <span class="built_in">dir</span>(solver.parameters) <span class="keyword">if</span> <span class="keyword">not</span> attr.startswith(<span class="string">&#x27;__&#x27;</span>)]</span><br><span class="line"><span class="keyword">for</span> attr <span class="keyword">in</span> attributes:</span><br><span class="line">    <span class="keyword">if</span> attr == <span class="string">&quot;Extensions&quot;</span>:</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;&#123;&#125; = &#123;&#125;&quot;</span>.<span class="built_in">format</span>(attr, <span class="built_in">eval</span>(<span class="string">&quot;solver.parameters.&#123;&#125;&quot;</span>.<span class="built_in">format</span>(attr))))</span><br></pre></td></tr></table></figure></p>
+<p><strong>下面是参数类型及一些例子：</strong></p>
+<h4 id="Branching-and-polarity-搜索算法相关参数"><a href="#Branching-and-polarity-搜索算法相关参数" class="headerlink" title="Branching and polarity 搜索算法相关参数"></a>Branching and polarity 搜索算法相关参数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">enum VariableOrder &#123;</span><br><span class="line">    IN_ORDER = <span class="number">0</span>;  // As specified by the problem.</span><br><span class="line">    IN_REVERSE_ORDER = <span class="number">1</span>;</span><br><span class="line">    IN_RANDOM_ORDER = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 变量顺序</span></span><br><span class="line"><span class="comment"># 这个参数不变，可以在定义变量时，考虑变量顺序</span></span><br><span class="line">preferred_variable_order = IN_ORDER</span><br><span class="line"></span><br><span class="line">enum Polarity &#123;</span><br><span class="line">    POLARITY_TRUE = <span class="number">0</span>;</span><br><span class="line">    POLARITY_FALSE = <span class="number">1</span>;</span><br><span class="line">    POLARITY_RANDOM = <span class="number">2</span>;</span><br><span class="line">    POLARITY_REVERSE_WEIGHTED_SIGN = <span class="number">4</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line"><span class="comment"># 初始化相关设置</span></span><br><span class="line">optional Polarity initial_polarity = POLARITY_FALSE;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Google%20OR-Tools%20%E6%90%9C%E7%B4%A2%E5%8F%82%E6%95%B0%E3%80%81%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E3%80%81cython%E5%AE%9E%E7%8E%B0%E5%8F%8A%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8tips%20.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">会微积分的喵</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">341k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:10</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
