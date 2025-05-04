@@ -103,7 +103,7 @@ menu:
   about: /about/ || user
   job: /job/ || user
   booklist: /books/ || book
-  read: /booklist/ || book
+  # read: /booklist/ || book
   video: /movies/ || film
   #home: / || fa fa-home
   #about: /about/ || fa fa-user
