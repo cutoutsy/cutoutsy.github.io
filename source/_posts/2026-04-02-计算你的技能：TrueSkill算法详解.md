@@ -1,5 +1,5 @@
 ---
-title: 计算你的技能：TrueSkill算法详解
+title: "计算你的技能：TrueSkill算法详解"
 date: 2026-04-02 20:54:00
 tags:
   - 游戏
@@ -7,9 +7,15 @@ tags:
   - 机器学习
   - TrueSkill
   - Elo
+  - 贝叶斯推断
+  - 技能评分
 categories:
   - 技术
+description: "详细介绍TrueSkill算法——微软Xbox Live使用的贝叶斯技能评分系统。对比Elo评分，深入理解贝叶斯推断在游戏匹配中的应用。"
+keywords: "TrueSkill, Elo, 技能评分, 贝叶斯推断, 机器学习, 游戏匹配, 算法"
 ---
+
+# TrueSkill算法详解
 
 说实话，作为一个对游戏匹配系统感兴趣的玩家，我一直想深入了解这些看似玄学的分数背后的数学原理。这篇文章是Jeffrey Moser的经典之作，原文发表于2010年，讲解了TrueSkill算法的工作原理。翻译这篇文章，希望能帮助更多人理解这个优雅的贝叶斯评分系统。
 
@@ -29,17 +35,17 @@ categories:
 
 技能很难衡量。在某件事上做得好需要刻意的练习，有时候还需要一点运气。如何衡量一个人的技能？你可以问一个人他是否有技能，但这只能给出一个粗略的近似值，因为人们往往对自己的能力过度自信。
 
-![100米短跑](/images/truetkSkill/100M_dash_Osaka07_D2A_Torri_Edwards_320.jpg)
+![100米短跑运动员](https://www.moserware.com/assets/computing-your-skill/100M_dash_Osaka07_D2A_Torri_Edwards_320.jpg)
 
 也许更好的问题是："技能的单位是什么？"对于100米短跑这样的项目，你可以简单地取最近几次冲刺的秒数平均值。
 
-![硬币实验](/images/truetkSkill/pennyheads_400.jpg)
+![硬币正面实验](https://www.moserware.com/assets/computing-your-skill/pennyheads_400.jpg)
 
 然而，对于国际象棋这样的游戏，更难衡量，因为真正重要的只是你是否赢、输或平。
 
 也许只统计胜负总数是有道理的，但这对玩得多（或玩得少）的人不公平。稍微好一点的是记录你赢的比赛百分比。然而，这对欺负弱者和可能被击败但也许学到了一些东西的玩家不公平。
 
-![硬币正面概率](/images/truetkSkill/headspercentage_576.png)
+![硬币正面概率](https://www.moserware.com/assets/computing-your-skill/headspercentage_576.png)
 
 理想情况下，如果所有玩家大约赢一半的比赛，我们会说比赛是平衡的。在这种理想情况下，每个人都会有接近50%的胜率。
 
@@ -49,17 +55,17 @@ categories:
 
 另一种观点是：概率衡量你多么确信某事是真的。例如，如果你根据一些证据非常确定某张牌是A，那么你说这发生的概率是80%。这是**贝叶斯观点**。对于技能评分，我们使用贝叶斯观点。
 
-![扔硬币结果随次数变化](/images/truetkSkill/totalheads1_576.png)
+![扔硬币结果随次数变化](https://www.moserware.com/assets/computing-your-skill/totalheads1_576.png)
 
 随着实验次数增加，正面比例趋向50%
 
-![多次硬币实验结果](/images/truetkSkill/totalheads10_576.png)
+![多次硬币实验结果](https://www.moserware.com/assets/computing-your-skill/totalheads10_576.png)
 
 很多次实验后，比例稳定在50%附近
 
 在数学上，我们假设存在一个"真实"的技能数字，但这个数字被一些我们无法控制的随机噪声"污染"了。这个噪声可能来自疲劳、注意力不集中、运气或你意想不到的走法。
 
-![正态分布](/images/truetkSkill/10_DM_Gauss_Cropped_576.jpg)
+![正态分布](https://www.moserware.com/assets/computing-your-skill/10_DM_Gauss_Cropped_576.jpg)
 
 高斯（Gauss）和他的正态分布——统计学中最重要的分布之一
 
@@ -67,21 +73,21 @@ categories:
 
 在数学上，我们通常假设噪声服从**正态分布**（也称为高斯分布）。正态分布是钟形曲线的另一个名称。它是统计学中最重要的分布之一。
 
-![正态分布曲线](/images/truetkSkill/NormalDistributionWithPercentages_576.png)
+![正态分布曲线](https://www.moserware.com/assets/computing-your-skill/NormalDistributionWithPercentages_576.png)
 
 正态分布由两个数字完全描述：**均值（μ）**和**方差（σ²）**。均值是你期望看到的平均值。方差衡量结果的变化程度。
 
-![3D高斯分布](/images/truetkSkill/Gaussian_3D_Circular.png)
+![3D高斯分布](https://www.moserware.com/assets/computing-your-skill/Gaussian_3D_Circular.png)
 
 对于技能评分，我们用同样的方法。每个玩家都有一个技能均值（μ）和一个技能方差（σ²）。
 
-![2D等高线](/images/truetkSkill/Gaussian_2D_Contour_640.png)
+![2D等高线](https://www.moserware.com/assets/computing-your-skill/Gaussian_2D_Contour_640.png)
 
 ## Elo评分系统
 
 为了介绍技能评分系统的历史，我们从Elo评分系统开始。Elo最初是为国际象棋设计的，但后来被许多1v1游戏采用。
 
-![国际象棋](/images/truetkSkill/ChessSet_160.jpg)
+![国际象棋](https://www.moserware.com/assets/computing-your-skill/ChessSet_160.jpg)
 
 在Elo中，每个玩家有一个技能数字。当两个玩家比赛时，Elo使用这个公式计算预期分数：
 
@@ -95,15 +101,15 @@ categories:
 
 直觉上，如果你赢了（实际表现超过预期），你的评分会增加。如果你的实际表现不如预期，你的评分会下降。
 
-![Elo更新前后对比](/images/truetkSkill/bell_curves_of_bright_beginner_vs_jeff_before_576.png)
+![Elo更新前后对比](https://www.moserware.com/assets/computing-your-skill/bell_curves_of_bright_beginner_vs_jeff_before_576.png)
 
 比赛前：绿色虚线是我的技能分布，蓝色实线是一个初学者的分布
 
-![Elo更新后差异](/images/truetkSkill/bell_curves_difference_576.png)
+![Elo更新后差异](https://www.moserware.com/assets/computing-your-skill/bell_curves_difference_576.png)
 
 比赛后，两个技能分布的差异更加明显
 
-![胜率与评分差异](/images/truetkSkill/cdf_chess_given_rating_difference_640.png)
+![胜率与评分差异](https://www.moserware.com/assets/computing-your-skill/cdf_chess_given_rating_difference_640.png)
 
 ## Elo的局限性
 
@@ -117,7 +123,7 @@ Elo是一个优雅的系统，但它有几个局限性：
 
 **不确定性**：Elo只给你一个数字——没有不确定性度量。
 
-![K因子影响](/images/truetkSkill/KFactorAlphaImpact_576.png)
+![K因子影响](https://www.moserware.com/assets/computing-your-skill/KFactorAlphaImpact_576.png)
 
 K因子对新玩家影响更大，可以更快地调整他们的评分
 
@@ -131,11 +137,11 @@ TrueSkill是由微软研究院的Ralf Herbrich、Tom Minka和Thore Graepel设计
 
 初始值通常是μ = 25，σ = 8.33。这对应于"不确定性很大"的意思。
 
-![TrueSkill更新前后](/images/truetkSkill/TrueSkillCurvesBeforeExample_576.png)
+![TrueSkill更新前后](https://www.moserware.com/assets/computing-your-skill/TrueSkillCurvesBeforeExample_576.png)
 
 比赛前
 
-![TrueSkill更新后](/images/truetkSkill/TrueSkillCurvesAfterExample_576.png)
+![TrueSkill更新后](https://www.moserware.com/assets/computing-your-skill/TrueSkillCurvesAfterExample_576.png)
 
 比赛后：获胜者的μ增加（红色曲线右移），失败者的μ减少
 
@@ -143,21 +149,21 @@ TrueSkill是由微软研究院的Ralf Herbrich、Tom Minka和Thore Graepel设计
 
 在深入TrueSkill之前，我们需要了解一些背景知识。
 
-![贝叶斯公式](/images/truetkSkill/Thomas_Bayes_220.gif)
+![贝叶斯公式](https://www.moserware.com/assets/computing-your-skill/Thomas_Bayes_220.gif)
 
 Thomas Bayes (1702-1761)——贝叶斯推断的创始人
 
 贝叶斯推断的核心思想是：我们从一个先验分布开始，然后根据新的证据（数据）更新它，得到后验分布。
 
-![3D先验分布](/images/truetkSkill/Gaussian_3D_Circular_576.png)
+![3D先验分布](https://www.moserware.com/assets/computing-your-skill/Gaussian_3D_Circular_576.png)
 
 先验分布
 
-![3D似然分布](/images/truetkSkill/Gaussian_3D_Likelihood_576.png)
+![3D似然分布](https://www.moserware.com/assets/computing-your-skill/Gaussian_3D_Likelihood_576.png)
 
 似然分布——根据观察到的结果
 
-![3D后验分布](/images/truetkSkill/Gaussian_3D_Posterior_576.png)
+![3D后验分布](https://www.moserware.com/assets/computing-your-skill/Gaussian_3D_Posterior_576.png)
 
 后验分布——先验和似然的结合
 
@@ -165,33 +171,33 @@ Thomas Bayes (1702-1761)——贝叶斯推断的创始人
 
 假设我们有两个玩家：Alice和Bob。我们想根据他们之间的比赛结果更新他们的技能估计。
 
-![2D先验](/images/truetkSkill/Gaussian_2D_Prior_576.png)
+![2D先验](https://www.moserware.com/assets/computing-your-skill/Gaussian_2D_Prior_576.png)
 
 两人技能的初始联合分布
 
-![2D似然](/images/truetkSkill/Gaussian_2D_Likelihood_576.png)
+![2D似然](https://www.moserware.com/assets/computing-your-skill/Gaussian_2D_Likelihood_576.png)
 
 根据Bob获胜的证据，似然分布
 
-![2D后验](/images/truetkSkill/Gaussian_2D_Posterior_576.png)
+![2D后验](https://www.moserware.com/assets/computing-your-skill/Gaussian_2D_Posterior_576.png)
 
 结合后，得到两人技能的后验分布
 
 如果Alice赢了而不是Bob，似然分布会向相反方向移动：
 
-![2D似然（相反方向）](/images/truetkSkill/Gaussian_2D_Likelihood_Opposite_Direction_576.png)
+![2D似然（相反方向）](https://www.moserware.com/assets/computing-your-skill/Gaussian_2D_Likelihood_Opposite_Direction_576.png)
 
-![2D后验（更新后）](/images/truetkSkill/Gaussian_2D_Posterior_Updated_576.png)
+![2D后验（更新后）](https://www.moserware.com/assets/computing-your-skill/Gaussian_2D_Posterior_Updated_576.png)
 
 ## 因子图
 
 TrueSkill使用一种叫做**因子图**的东西来表示计算。因子图是一种可视化复杂概率计算的方法。
 
-![复杂因子图](/images/truetkSkill/factor_graph_complicated_factorization_576.png)
+![复杂因子图](https://www.moserware.com/assets/computing-your-skill/factor_graph_complicated_factorization_576.png)
 
 复杂的因子分解
 
-![简化因子图](/images/truetkSkill/factor_graph_complicated_simplified_576.png)
+![简化因子图](https://www.moserware.com/assets/computing-your-skill/factor_graph_complicated_simplified_576.png)
 
 简化的因子图
 
@@ -200,7 +206,7 @@ TrueSkill使用一种叫做**因子图**的东西来表示计算。因子图是�
 2. **团队技能节点**：每个团队一个
 3. **结果节点**：比赛的结果
 
-![TrueSkill完整因子图](/images/truetkSkill/TrueSkillFullFactorgraph_720.png)
+![TrueSkill完整因子图](https://www.moserware.com/assets/computing-your-skill/TrueSkillFullFactorgraph_720.png)
 
 TrueSkill的完整因子图
 
@@ -210,31 +216,31 @@ TrueSkill的完整因子图
 
 **第一层：先验**
 
-![第一层：先验](/images/truetkSkill/Layer1_priors_576.png)
+![第一层：先验](https://www.moserware.com/assets/computing-your-skill/Layer1_priors_576.png)
 
 每个玩家从先验分布开始（μ=25, σ=8.33）
 
 **第二层：似然**
 
-![第二层：似然](/images/truetkSkill/Layer2_likelihood_576.png)
+![第二层：似然](https://www.moserware.com/assets/computing-your-skill/Layer2_likelihood_576.png)
 
 根据比赛结果计算似然分布
 
 **第三层：团队求和**
 
-![第三层：团队求和](/images/truetkSkill/Layer3_team_sum_576.png)
+![第三层：团队求和](https://www.moserware.com/assets/computing-your-skill/Layer3_team_sum_576.png)
 
 团队技能是团队中所有成员技能的总和
 
 **第四层：团队差异**
 
-![第四层：团队差异](/images/truetkSkill/Layer4_Team_Diff_576.png)
+![第四层：团队差异](https://www.moserware.com/assets/computing-your-skill/Layer4_Team_Diff_576.png)
 
 比赛结果取决于团队技能差异
 
 **第五层：差异比较**
 
-![第五层：差异比较](/images/truetkSkill/Layer5_Diff_Comparison.png)
+![第五层：差异比较](https://www.moserware.com/assets/computing-your-skill/Layer5_Diff_Comparison.png)
 
 比较技能差异以确定获胜者
 
@@ -244,23 +250,23 @@ TrueSkill使用两个特殊函数来处理比赛结果：
 
 **V函数**：给定团队差异，计算获胜概率
 
-![V函数](/images/truetkSkill/VWinFunctionWithDrawProbabilities_576.png)
+![V函数](https://www.moserware.com/assets/computing-your-skill/VWinFunctionWithDrawProbabilities_576.png)
 
 **W函数**：用于计算更新的权重
 
-![W函数](/images/truetkSkill/WWinFunctionWithDrawProbabilities_576.png)
+![W函数](https://www.moserware.com/assets/computing-your-skill/WWinFunctionWithDrawProbabilities_576.png)
 
 ## 迭代更新
 
 经过几次迭代后，消息会收敛到稳定的值。
 
-![迭代更新过程](/images/truetkSkill/Layer_Iterate_Inner_576.png)
+![迭代更新过程](https://www.moserware.com/assets/computing-your-skill/Layer_Iterate_Inner_576.png)
 
 ## 结果
 
 实现TrueSkill算法最有益的部分是看到它在实践中运行良好。
 
-![桌上足球TrueSkill排行榜](/images/truetkSkill/MostRecentFoosballTrueSkill_720.png)
+![桌上足球TrueSkill排行榜](https://www.moserware.com/assets/computing-your-skill/MostRecentFoosballTrueSkill_720.png)
 
 我的同事们评论说，它在相对快速地计算每个人的正确技能方面几乎是"诡异"地准确。
 
