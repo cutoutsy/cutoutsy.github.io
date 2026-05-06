@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"fengxc.me","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="详细介绍TrueSkill算法——微软Xbox Live使用的贝叶斯技能评分系统。对比Elo评分，深入理解贝叶斯推断在游戏匹配中的应用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算你的技能：TrueSkill算法详解">
+<meta property="og:url" content="https://fengxc.me/2026-04-02-%E8%AE%A1%E7%AE%97%E4%BD%A0%E7%9A%84%E6%8A%80%E8%83%BD%EF%BC%9ATrueSkill%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3.html">
+<meta property="og:site_name" content="会微积分的喵">
+<meta property="og:description" content="详细介绍TrueSkill算法——微软Xbox Live使用的贝叶斯技能评分系统。对比Elo评分，深入理解贝叶斯推断在游戏匹配中的应用。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/100M_dash_Osaka07_D2A_Torri_Edwards_320.jpg">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/pennyheads_400.jpg">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/headspercentage_576.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/totalheads1_576.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/totalheads10_576.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/10_DM_Gauss_Cropped_576.jpg">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/NormalDistributionWithPercentages_576.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/Gaussian_3D_Circular.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/Gaussian_2D_Contour_640.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/ChessSet_160.jpg">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/bell_curves_of_bright_beginner_vs_jeff_before_576.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/bell_curves_difference_576.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/cdf_chess_given_rating_difference_640.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/KFactorAlphaImpact_576.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/TrueSkillCurvesBeforeExample_576.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/TrueSkillCurvesAfterExample_576.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/Thomas_Bayes_220.gif">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/Gaussian_3D_Circular_576.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/Gaussian_3D_Likelihood_576.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/Gaussian_3D_Posterior_576.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/Gaussian_2D_Prior_576.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/Gaussian_2D_Likelihood_576.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/Gaussian_2D_Posterior_576.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/Gaussian_2D_Likelihood_Opposite_Direction_576.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/Gaussian_2D_Posterior_Updated_576.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/factor_graph_complicated_factorization_576.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/factor_graph_complicated_simplified_576.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/TrueSkillFullFactorgraph_720.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/Layer1_priors_576.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/Layer2_likelihood_576.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/Layer3_team_sum_576.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/Layer4_Team_Diff_576.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/Layer5_Diff_Comparison.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/VWinFunctionWithDrawProbabilities_576.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/WWinFunctionWithDrawProbabilities_576.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/Layer_Iterate_Inner_576.png">
+<meta property="og:image" content="https://www.moserware.com/assets/computing-your-skill/MostRecentFoosballTrueSkill_720.png">
+<meta property="article:published_time" content="2026-04-02T20:54:00.000Z">
+<meta property="article:modified_time" content="2026-04-02T13:08:14.191Z">
+<meta property="article:author" content="会微积分的喵">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="游戏">
+<meta property="article:tag" content="TrueSkill">
+<meta property="article:tag" content="Elo">
+<meta property="article:tag" content="贝叶斯推断">
+<meta property="article:tag" content="技能评分">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.moserware.com/assets/computing-your-skill/100M_dash_Osaka07_D2A_Torri_Edwards_320.jpg">
+
+
+<link rel="canonical" href="https://fengxc.me/2026-04-02-%E8%AE%A1%E7%AE%97%E4%BD%A0%E7%9A%84%E6%8A%80%E8%83%BD%EF%BC%9ATrueSkill%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://fengxc.me/2026-04-02-%E8%AE%A1%E7%AE%97%E4%BD%A0%E7%9A%84%E6%8A%80%E8%83%BD%EF%BC%9ATrueSkill%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3.html","path":"2026-04-02-计算你的技能：TrueSkill算法详解.html","title":"计算你的技能：TrueSkill算法详解"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>计算你的技能：TrueSkill算法详解 | 会微积分的喵</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-122351842-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-122351842-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js" defer></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js" defer></script>
+  <script async src="https://hm.baidu.com/hm.js?a4f22e1e9cbbfd498ecb004941dd74f6"></script>
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">会微积分的喵</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">我走得很慢，但我从不后退</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a></li><li class="menu-item menu-item-job"><a href="/job/" rel="section"><i class="user fa-fw"></i>网易内推</a></li><li class="menu-item menu-item-booklist"><a href="/books/" rel="section"><i class="book fa-fw"></i>书单</a></li><li class="menu-item menu-item-video"><a href="/movies/" rel="section"><i class="film fa-fw"></i>视频</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TrueSkill%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3"><span class="nav-number">1.</span> <span class="nav-text">TrueSkill算法详解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-number">1.1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%80%E8%83%BD-%E2%89%88-%E8%8E%B7%E8%83%9C%E6%A6%82%E7%8E%87"><span class="nav-number">1.2.</span> <span class="nav-text">技能 ≈ 获胜概率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%A6%82%E7%8E%87%EF%BC%9F"><span class="nav-number">1.3.</span> <span class="nav-text">什么是概率？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83"><span class="nav-number">1.4.</span> <span class="nav-text">正态分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Elo%E8%AF%84%E5%88%86%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.5.</span> <span class="nav-text">Elo评分系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Elo%E7%9A%84%E5%B1%80%E9%99%90%E6%80%A7"><span class="nav-number">1.6.</span> <span class="nav-text">Elo的局限性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TrueSkill%E7%99%BB%E5%9C%BA"><span class="nav-number">1.7.</span> <span class="nav-text">TrueSkill登场</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%8E%A8%E6%96%AD%E5%85%A5%E9%97%A8"><span class="nav-number">1.8.</span> <span class="nav-text">贝叶斯推断入门</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2D%E6%83%85%E5%86%B5%E4%B8%8B%E7%9A%84%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%9B%B4%E6%96%B0"><span class="nav-number">1.9.</span> <span class="nav-text">2D情况下的贝叶斯更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%A0%E5%AD%90%E5%9B%BE"><span class="nav-number">1.10.</span> <span class="nav-text">因子图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92"><span class="nav-number">1.11.</span> <span class="nav-text">消息传递</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#V%E5%92%8CW%E5%87%BD%E6%95%B0"><span class="nav-number">1.12.</span> <span class="nav-text">V和W函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A3%E6%9B%B4%E6%96%B0"><span class="nav-number">1.13.</span> <span class="nav-text">迭代更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%9C"><span class="nav-number">1.14.</span> <span class="nav-text">结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA"><span class="nav-number">1.15.</span> <span class="nav-text">结论</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="会微积分的喵"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">会微积分的喵</p>
+  <div class="site-description" itemprop="description">Happy Code, Happy Life</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">215</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cutoutsy" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cutoutsy" rel="noopener me" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:cutoutsy@gmail.com" title="E-Mail → mailto:cutoutsy@gmail.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/2026-04-02-%E8%AE%A1%E7%AE%97%E4%BD%A0%E7%9A%84%E6%8A%80%E8%83%BD%EF%BC%9ATrueSkill%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="计算你的技能：TrueSkill算法详解 | 会微积分的喵">
+      <meta itemprop="description" content="详细介绍TrueSkill算法——微软Xbox Live使用的贝叶斯技能评分系统。对比Elo评分，深入理解贝叶斯推断在游戏匹配中的应用。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计算你的技能：TrueSkill算法详解
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-04-02 20:54:00 / 修改时间：13:08:14" itemprop="dateCreated datePublished" datetime="2026-04-02T20:54:00+00:00">2026-04-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2026-04-02-%E8%AE%A1%E7%AE%97%E4%BD%A0%E7%9A%84%E6%8A%80%E8%83%BD%EF%BC%9ATrueSkill%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3.html#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2026-04-02-计算你的技能：TrueSkill算法详解.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>0</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">详细介绍TrueSkill算法——微软Xbox Live使用的贝叶斯技能评分系统。对比Elo评分，深入理解贝叶斯推断在游戏匹配中的应用。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="TrueSkill算法详解"><a href="#TrueSkill算法详解" class="headerlink" title="TrueSkill算法详解"></a>TrueSkill算法详解</h1><p>说实话，作为一个对游戏匹配系统感兴趣的玩家，我一直想深入了解这些看似玄学的分数背后的数学原理。这篇文章是Jeffrey Moser的经典之作，原文发表于2010年，讲解了TrueSkill算法的工作原理。翻译这篇文章，希望能帮助更多人理解这个优雅的贝叶斯评分系统。</p>
+<span id="more"></span>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>事情看起来很简单：我想创建一个数据库来追踪同事们在国际象棋和桌上足球方面的技能水平。我知道自己桌上足球玩得不好，会拖累高手们。我很好奇是否有一种算法能更好地创建平衡的比赛。同时，我也想知道自己国际象棋是否有进步。</p>
+<p>我知道需要一个简单的方法来收集每个人的比赛结果，然后用一种能随着数据增加而不断改进的算法。根据我之前听说过的一些东西，这似乎很适合用”机器学习”来解决。</p>
+<p>但是，机器学习是计算机科学的热门领域——但它令人生畏。像大多数学科一样，要成为该领域的专家需要学习很多东西。我不需要深入研究，只需要理解足够的知识来解决我的问题。Jamie Zawinski说得好：</p>
+<blockquote>
+<p>“不知道某件事并不意味着你笨——只是意味着你不知道它。”</p>
+</blockquote>
+<h2 id="技能-≈-获胜概率"><a href="#技能-≈-获胜概率" class="headerlink" title="技能 ≈ 获胜概率"></a>技能 ≈ 获胜概率</h2><p>技能很难衡量。在某件事上做得好需要刻意的练习，有时候还需要一点运气。如何衡量一个人的技能？你可以问一个人他是否有技能，但这只能给出一个粗略的近似值，因为人们往往对自己的能力过度自信。</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/100M_dash_Osaka07_D2A_Torri_Edwards_320.jpg" alt="100米短跑运动员"></p>
+<p>也许更好的问题是：”技能的单位是什么？”对于100米短跑这样的项目，你可以简单地取最近几次冲刺的秒数平均值。</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/pennyheads_400.jpg" alt="硬币正面实验"></p>
+<p>然而，对于国际象棋这样的游戏，更难衡量，因为真正重要的只是你是否赢、输或平。</p>
+<p>也许只统计胜负总数是有道理的，但这对玩得多（或玩得少）的人不公平。稍微好一点的是记录你赢的比赛百分比。然而，这对欺负弱者和可能被击败但也许学到了一些东西的玩家不公平。</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/headspercentage_576.png" alt="硬币正面概率"></p>
+<p>理想情况下，如果所有玩家大约赢一半的比赛，我们会说比赛是平衡的。在这种理想情况下，每个人都会有接近50%的胜率。</p>
+<h2 id="什么是概率？"><a href="#什么是概率？" class="headerlink" title="什么是概率？"></a>什么是概率？</h2><p>概率是一个有争议的概念。一种观点是：概率描述了你在进行无数次实验后期望看到的东西。例如，如果你抛无数次硬币，你期望大约一半正面朝上。这被称为<strong>频率学派</strong>观点。</p>
+<p>另一种观点是：概率衡量你多么确信某事是真的。例如，如果你根据一些证据非常确定某张牌是A，那么你说这发生的概率是80%。这是<strong>贝叶斯观点</strong>。对于技能评分，我们使用贝叶斯观点。</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/totalheads1_576.png" alt="扔硬币结果随次数变化"></p>
+<p>随着实验次数增加，正面比例趋向50%</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/totalheads10_576.png" alt="多次硬币实验结果"></p>
+<p>很多次实验后，比例稳定在50%附近</p>
+<p>在数学上，我们假设存在一个”真实”的技能数字，但这个数字被一些我们无法控制的随机噪声”污染”了。这个噪声可能来自疲劳、注意力不集中、运气或你意想不到的走法。</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/10_DM_Gauss_Cropped_576.jpg" alt="正态分布"></p>
+<p>高斯（Gauss）和他的正态分布——统计学中最重要的分布之一</p>
+<h2 id="正态分布"><a href="#正态分布" class="headerlink" title="正态分布"></a>正态分布</h2><p>在数学上，我们通常假设噪声服从<strong>正态分布</strong>（也称为高斯分布）。正态分布是钟形曲线的另一个名称。它是统计学中最重要的分布之一。</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/NormalDistributionWithPercentages_576.png" alt="正态分布曲线"></p>
+<p>正态分布由两个数字完全描述：<strong>均值（μ）</strong>和<strong>方差（σ²）</strong>。均值是你期望看到的平均值。方差衡量结果的变化程度。</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/Gaussian_3D_Circular.png" alt="3D高斯分布"></p>
+<p>对于技能评分，我们用同样的方法。每个玩家都有一个技能均值（μ）和一个技能方差（σ²）。</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/Gaussian_2D_Contour_640.png" alt="2D等高线"></p>
+<h2 id="Elo评分系统"><a href="#Elo评分系统" class="headerlink" title="Elo评分系统"></a>Elo评分系统</h2><p>为了介绍技能评分系统的历史，我们从Elo评分系统开始。Elo最初是为国际象棋设计的，但后来被许多1v1游戏采用。</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/ChessSet_160.jpg" alt="国际象棋"></p>
+<p>在Elo中，每个玩家有一个技能数字。当两个玩家比赛时，Elo使用这个公式计算预期分数：</p>
+<p><strong>E[A对B] = 1 / (1 + 10^((R[B] - R[A]) / 400))</strong></p>
+<p>直觉上，评分差异越大，预期分数越极端。如果两个玩家的评分相同，预期分数是0.5（50%）。</p>
+<p>比赛后，使用这个公式更新评分：</p>
+<p><strong>R’[A] = R[A] + K × (S[A] - E[A对B])</strong></p>
+<p>直觉上，如果你赢了（实际表现超过预期），你的评分会增加。如果你的实际表现不如预期，你的评分会下降。</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/bell_curves_of_bright_beginner_vs_jeff_before_576.png" alt="Elo更新前后对比"></p>
+<p>比赛前：绿色虚线是我的技能分布，蓝色实线是一个初学者的分布</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/bell_curves_difference_576.png" alt="Elo更新后差异"></p>
+<p>比赛后，两个技能分布的差异更加明显</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/cdf_chess_given_rating_difference_640.png" alt="胜率与评分差异"></p>
+<h2 id="Elo的局限性"><a href="#Elo的局限性" class="headerlink" title="Elo的局限性"></a>Elo的局限性</h2><p>Elo是一个优雅的系统，但它有几个局限性：</p>
+<p><strong>新玩家问题</strong>：对于新玩家，我们应该期待什么评分？如果他们在前几场比赛中运气不好，评分可能会很低。</p>
+<p><strong>组队游戏</strong>：Elo是为1v1设计的。在组队游戏中，你如何衡量每个人对团队胜利的贡献？</p>
+<p><strong>平局处理</strong>：在某些游戏中平局很常见。Elo处理平局的方式有些笨拙。</p>
+<p><strong>不确定性</strong>：Elo只给你一个数字——没有不确定性度量。</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/KFactorAlphaImpact_576.png" alt="K因子影响"></p>
+<p>K因子对新玩家影响更大，可以更快地调整他们的评分</p>
+<h2 id="TrueSkill登场"><a href="#TrueSkill登场" class="headerlink" title="TrueSkill登场"></a>TrueSkill登场</h2><p>TrueSkill是由微软研究院的Ralf Herbrich、Tom Minka和Thore Graepel设计的，目的是解决Elo的这些局限性。TrueSkill使用贝叶斯推断来根据比赛结果更新技能估计。</p>
+<p>在TrueSkill中，每个玩家有：</p>
+<ul>
+<li>一个技能均值（μ）</li>
+<li>一个技能标准差（σ）</li>
+</ul>
+<p>初始值通常是μ = 25，σ = 8.33。这对应于”不确定性很大”的意思。</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/TrueSkillCurvesBeforeExample_576.png" alt="TrueSkill更新前后"></p>
+<p>比赛前</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/TrueSkillCurvesAfterExample_576.png" alt="TrueSkill更新后"></p>
+<p>比赛后：获胜者的μ增加（红色曲线右移），失败者的μ减少</p>
+<h2 id="贝叶斯推断入门"><a href="#贝叶斯推断入门" class="headerlink" title="贝叶斯推断入门"></a>贝叶斯推断入门</h2><p>在深入TrueSkill之前，我们需要了解一些背景知识。</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/Thomas_Bayes_220.gif" alt="贝叶斯公式"></p>
+<p>Thomas Bayes (1702-1761)——贝叶斯推断的创始人</p>
+<p>贝叶斯推断的核心思想是：我们从一个先验分布开始，然后根据新的证据（数据）更新它，得到后验分布。</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/Gaussian_3D_Circular_576.png" alt="3D先验分布"></p>
+<p>先验分布</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/Gaussian_3D_Likelihood_576.png" alt="3D似然分布"></p>
+<p>似然分布——根据观察到的结果</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/Gaussian_3D_Posterior_576.png" alt="3D后验分布"></p>
+<p>后验分布——先验和似然的结合</p>
+<h2 id="2D情况下的贝叶斯更新"><a href="#2D情况下的贝叶斯更新" class="headerlink" title="2D情况下的贝叶斯更新"></a>2D情况下的贝叶斯更新</h2><p>假设我们有两个玩家：Alice和Bob。我们想根据他们之间的比赛结果更新他们的技能估计。</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/Gaussian_2D_Prior_576.png" alt="2D先验"></p>
+<p>两人技能的初始联合分布</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/Gaussian_2D_Likelihood_576.png" alt="2D似然"></p>
+<p>根据Bob获胜的证据，似然分布</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/Gaussian_2D_Posterior_576.png" alt="2D后验"></p>
+<p>结合后，得到两人技能的后验分布</p>
+<p>如果Alice赢了而不是Bob，似然分布会向相反方向移动：</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/Gaussian_2D_Likelihood_Opposite_Direction_576.png" alt="2D似然（相反方向）"></p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/Gaussian_2D_Posterior_Updated_576.png" alt="2D后验（更新后）"></p>
+<h2 id="因子图"><a href="#因子图" class="headerlink" title="因子图"></a>因子图</h2><p>TrueSkill使用一种叫做<strong>因子图</strong>的东西来表示计算。因子图是一种可视化复杂概率计算的方法。</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/factor_graph_complicated_factorization_576.png" alt="复杂因子图"></p>
+<p>复杂的因子分解</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/factor_graph_complicated_simplified_576.png" alt="简化因子图"></p>
+<p>简化的因子图</p>
+<p>在TrueSkill的因子图中，有三种类型的节点：</p>
+<ol>
+<li><strong>玩家节点</strong>：每个玩家一个</li>
+<li><strong>团队技能节点</strong>：每个团队一个</li>
+<li><strong>结果节点</strong>：比赛的结果</li>
+</ol>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/TrueSkillFullFactorgraph_720.png" alt="TrueSkill完整因子图"></p>
+<p>TrueSkill的完整因子图</p>
+<h2 id="消息传递"><a href="#消息传递" class="headerlink" title="消息传递"></a>消息传递</h2><p>在因子图上，TrueSkill使用消息传递算法来计算后验分布。</p>
+<p><strong>第一层：先验</strong></p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/Layer1_priors_576.png" alt="第一层：先验"></p>
+<p>每个玩家从先验分布开始（μ=25, σ=8.33）</p>
+<p><strong>第二层：似然</strong></p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/Layer2_likelihood_576.png" alt="第二层：似然"></p>
+<p>根据比赛结果计算似然分布</p>
+<p><strong>第三层：团队求和</strong></p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/Layer3_team_sum_576.png" alt="第三层：团队求和"></p>
+<p>团队技能是团队中所有成员技能的总和</p>
+<p><strong>第四层：团队差异</strong></p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/Layer4_Team_Diff_576.png" alt="第四层：团队差异"></p>
+<p>比赛结果取决于团队技能差异</p>
+<p><strong>第五层：差异比较</strong></p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/Layer5_Diff_Comparison.png" alt="第五层：差异比较"></p>
+<p>比较技能差异以确定获胜者</p>
+<h2 id="V和W函数"><a href="#V和W函数" class="headerlink" title="V和W函数"></a>V和W函数</h2><p>TrueSkill使用两个特殊函数来处理比赛结果：</p>
+<p><strong>V函数</strong>：给定团队差异，计算获胜概率</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/VWinFunctionWithDrawProbabilities_576.png" alt="V函数"></p>
+<p><strong>W函数</strong>：用于计算更新的权重</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/WWinFunctionWithDrawProbabilities_576.png" alt="W函数"></p>
+<h2 id="迭代更新"><a href="#迭代更新" class="headerlink" title="迭代更新"></a>迭代更新</h2><p>经过几次迭代后，消息会收敛到稳定的值。</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/Layer_Iterate_Inner_576.png" alt="迭代更新过程"></p>
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p>实现TrueSkill算法最有益的部分是看到它在实践中运行良好。</p>
+<p><img src="https://www.moserware.com/assets/computing-your-skill/MostRecentFoosballTrueSkill_720.png" alt="桌上足球TrueSkill排行榜"></p>
+<p>我的同事们评论说，它在相对快速地计算每个人的正确技能方面几乎是”诡异”地准确。</p>
+<p>看看系统有多快地检测到新玩家有多好，即使他的胜率正好在50%左右，这是很有趣的。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>TrueSkill是一个优雅的贝叶斯技能评分系统，它：</p>
+<ul>
+<li><strong>处理新玩家</strong>：快速了解新玩家的真实技能水平</li>
+<li><strong>处理组队游戏</strong>：衡量每个人对团队胜利的贡献</li>
+<li><strong>处理平局</strong>：优雅地处理平局情况</li>
+<li><strong>不确定性量化</strong>：告诉你对技能估计有多少信心</li>
+</ul>
+<p>理解TrueSkill不仅能帮你更好地认识游戏匹配逻辑，还能让你了解贝叶斯推断在实际应用中的威力。</p>
+<hr>
+<p>原文：<a target="_blank" rel="noopener" href="https://www.moserware.com/2010/03/computing-your-skill.html">Computing Your Skill</a> by Jeffrey Moser<br>翻译：小川</p>
+<p>参考链接：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.moserware.com/assets/computing-your-skill/The%20Math%20Behind%20TrueSkill.pdf">The Math Behind TrueSkill</a> - 详细的数学推导论文</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/moserware/Skills">Moserware.Skills</a> - GitHub上的开源实现</li>
+<li><a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/research/project/trueskill/">Microsoft’s online TrueSkill Calculators</a> - 在线计算器</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
+              <a href="/tags/%E6%B8%B8%E6%88%8F/" rel="tag"># 游戏</a>
+              <a href="/tags/TrueSkill/" rel="tag"># TrueSkill</a>
+              <a href="/tags/Elo/" rel="tag"># Elo</a>
+              <a href="/tags/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%8E%A8%E6%96%AD/" rel="tag"># 贝叶斯推断</a>
+              <a href="/tags/%E6%8A%80%E8%83%BD%E8%AF%84%E5%88%86/" rel="tag"># 技能评分</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026-04-02-%E6%B8%B8%E6%88%8F%E7%8E%A9%E5%AE%B6%E8%83%BD%E5%8A%9B%E5%88%86%E8%AE%A1%E7%AE%97.html" rel="prev" title="游戏玩家能力分计算：Elo、MMR与TrueSkill背后的数学">
+                  <i class="fa fa-angle-left"></i> 游戏玩家能力分计算：Elo、MMR与TrueSkill背后的数学
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026-05-06-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E6%BC%AB%E8%B0%88%EF%BC%9A%E4%BB%8E%E4%B9%B1%E7%A0%81%E8%AF%B4%E8%B5%B7.html" rel="next" title="字符编码漫谈：从乱码说起">
+                  字符编码漫谈：从乱码说起 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">会微积分的喵</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">356k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:23</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"cutoutsy-blog","count":true,"lazyload":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"fengxc.me","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="深入理解字符编码的历史与发展：从ASCII到Unicode&#x2F;UTF-8，解释为什么会有乱码，以及开发者应该了解的编码知识。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="字符编码漫谈：从乱码说起">
+<meta property="og:url" content="https://fengxc.me/2026-05-06-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E6%BC%AB%E8%B0%88%EF%BC%9A%E4%BB%8E%E4%B9%B1%E7%A0%81%E8%AF%B4%E8%B5%B7.html">
+<meta property="og:site_name" content="会微积分的喵">
+<meta property="og:description" content="深入理解字符编码的历史与发展：从ASCII到Unicode&#x2F;UTF-8，解释为什么会有乱码，以及开发者应该了解的编码知识。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-06T20:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-06T11:56:03.348Z">
+<meta property="article:author" content="会微积分的喵">
+<meta property="article:tag" content="字符编码">
+<meta property="article:tag" content="Unicode">
+<meta property="article:tag" content="UTF-8">
+<meta property="article:tag" content="ASCII">
+<meta property="article:tag" content="GBK">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://fengxc.me/2026-05-06-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E6%BC%AB%E8%B0%88%EF%BC%9A%E4%BB%8E%E4%B9%B1%E7%A0%81%E8%AF%B4%E8%B5%B7.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://fengxc.me/2026-05-06-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E6%BC%AB%E8%B0%88%EF%BC%9A%E4%BB%8E%E4%B9%B1%E7%A0%81%E8%AF%B4%E8%B5%B7.html","path":"2026-05-06-字符编码漫谈：从乱码说起.html","title":"字符编码漫谈：从乱码说起"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>字符编码漫谈：从乱码说起 | 会微积分的喵</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-122351842-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-122351842-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js" defer></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js" defer></script>
+  <script async src="https://hm.baidu.com/hm.js?a4f22e1e9cbbfd498ecb004941dd74f6"></script>
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">会微积分的喵</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">我走得很慢，但我从不后退</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a></li><li class="menu-item menu-item-job"><a href="/job/" rel="section"><i class="user fa-fw"></i>网易内推</a></li><li class="menu-item menu-item-booklist"><a href="/books/" rel="section"><i class="book fa-fw"></i>书单</a></li><li class="menu-item menu-item-video"><a href="/movies/" rel="section"><i class="film fa-fw"></i>视频</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%B8%80%E5%88%87%E7%9A%84%E8%B5%B7%E7%82%B9-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8F%AA%E8%AE%A4-0-%E5%92%8C-1"><span class="nav-number">1.</span> <span class="nav-text">一、一切的起点:计算机只认 0 和 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81ASCII-%E7%BE%8E%E5%9B%BD%E4%BA%BA%E5%85%88%E5%AE%9A%E4%BA%86%E8%A7%84%E7%9F%A9-1963"><span class="nav-number">2.</span> <span class="nav-text">二、ASCII:美国人先定了规矩(1963)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ASCII-%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">2.1.</span> <span class="nav-text">ASCII 的设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%B7%B7%E4%B9%B1%E5%B9%B4%E4%BB%A3-%E6%AF%8F%E4%B8%AA%E5%9B%BD%E5%AE%B6%E9%83%BD%E8%87%AA%E5%B7%B1%E6%90%9E%E4%B8%80%E5%A5%97"><span class="nav-number">3.</span> <span class="nav-text">三、混乱年代:每个国家都自己搞一套</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E5%9B%BD-%E4%BB%8E-GB2312-%E5%88%B0-GBK-%E5%86%8D%E5%88%B0-GB18030"><span class="nav-number">3.1.</span> <span class="nav-text">中国:从 GB2312 到 GBK 再到 GB18030</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%9B%BD%E5%AE%B6%E4%B9%9F%E5%9C%A8%E2%80%9D%E5%90%84%E8%87%AA%E4%B8%BA%E6%94%BF%E2%80%9D"><span class="nav-number">3.2.</span> <span class="nav-text">其他国家也在”各自为政”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B7%E4%B9%B1%E7%9A%84%E4%BB%A3%E4%BB%B7-%E4%B9%B1%E7%A0%81%E9%81%8D%E5%9C%B0"><span class="nav-number">3.3.</span> <span class="nav-text">混乱的代价:乱码遍地</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81Unicode-%E8%AE%A9%E5%85%A8%E4%B8%96%E7%95%8C%E5%AD%97%E7%AC%A6%E4%BD%8F%E8%BF%9B%E5%90%8C%E4%B8%80%E6%A0%8B%E6%A5%BC-1991"><span class="nav-number">4.</span> <span class="nav-text">四、Unicode:让全世界字符住进同一栋楼(1991)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%86-Unicode-%E5%8F%AA%E8%A7%A3%E5%86%B3%E4%BA%86%E4%B8%80%E5%8D%8A%E9%97%AE%E9%A2%98"><span class="nav-number">4.1.</span> <span class="nav-text">但 Unicode 只解决了一半问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81UTF-8-%E4%BC%9F%E5%A4%A7%E7%9A%84%E5%A6%A5%E5%8D%8F-1992"><span class="nav-number">5.</span> <span class="nav-text">五、UTF-8:伟大的妥协(1992)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UTF-8-%E7%9A%84%E6%A0%B8%E5%BF%83%E8%AE%BE%E8%AE%A1"><span class="nav-number">5.1.</span> <span class="nav-text">UTF-8 的核心设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%8B%E4%B8%80%E4%B8%AA%E5%85%B7%E4%BD%93%E4%BE%8B%E5%AD%90-%E4%B8%AD%E6%96%87%E2%80%9D%E4%B8%AD%E2%80%9D%E6%98%AF%E6%80%8E%E4%B9%88%E7%BC%96%E7%A0%81%E7%9A%84"><span class="nav-number">5.2.</span> <span class="nav-text">看一个具体例子:中文”中”是怎么编码的?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UTF-8-%E7%9A%84%E4%B8%89%E5%A4%A7%E6%9D%80%E6%89%8B%E9%94%8F"><span class="nav-number">5.3.</span> <span class="nav-text">UTF-8 的三大杀手锏</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%AD%E6%96%87%E8%A6%81%E7%94%A8-3-%E4%B8%AA%E5%AD%97%E8%8A%82"><span class="nav-number">6.</span> <span class="nav-text">六、为什么中文要用 3 个字节?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E4%B8%8A%E7%9A%84%E9%99%90%E5%88%B6"><span class="nav-number">6.1.</span> <span class="nav-text">数学上的限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unicode-%E7%9A%84%E2%80%9D%E5%88%86%E5%8C%BA%E2%80%9D%E9%80%BB%E8%BE%91"><span class="nav-number">6.2.</span> <span class="nav-text">Unicode 的”分区”逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%99%E6%98%AF%E4%B8%8D%E6%98%AF%E5%AF%B9%E4%B8%AD%E6%96%87%E7%9A%84%E2%80%9D%E6%AD%A7%E8%A7%86%E2%80%9D"><span class="nav-number">6.3.</span> <span class="nav-text">这是不是对中文的”歧视”?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E4%BB%8A%E5%A4%A9%E7%9A%84%E4%B8%96%E7%95%8C-UTF-8-%E4%B8%80%E7%BB%9F%E6%B1%9F%E6%B9%96"><span class="nav-number">7.</span> <span class="nav-text">七、今天的世界:UTF-8 一统江湖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E5%AE%9E%E6%88%98-%E5%B8%B8%E8%A7%81%E7%9A%84%E2%80%9D%E4%B9%B1%E7%A0%81%E2%80%9D%E6%98%AF%E6%80%8E%E4%B9%88%E4%BA%A7%E7%94%9F%E7%9A%84"><span class="nav-number">8.</span> <span class="nav-text">八、实战:常见的”乱码”是怎么产生的?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF%E4%B8%80-UTF-8-%E6%96%87%E4%BB%B6%E8%A2%AB%E5%BD%93%E6%88%90-GBK-%E6%89%93%E5%BC%80"><span class="nav-number">8.1.</span> <span class="nav-text">场景一:UTF-8 文件被当成 GBK 打开</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF%E4%BA%8C-%E8%91%97%E5%90%8D%E7%9A%84%E2%80%9D%E9%94%9F%E6%96%A4%E6%8B%B7%E2%80%9D"><span class="nav-number">8.2.</span> <span class="nav-text">场景二:著名的”锟斤拷”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF%E4%B8%89-Windows-%E7%9A%84%E2%80%9D%E7%83%AB%E7%83%AB%E7%83%AB%E2%80%9D"><span class="nav-number">8.3.</span> <span class="nav-text">场景三:Windows 的”烫烫烫”</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E7%BB%99%E5%BC%80%E5%8F%91%E8%80%85%E7%9A%84%E5%BB%BA%E8%AE%AE"><span class="nav-number">9.</span> <span class="nav-text">九、给开发者的建议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E6%80%BB%E7%BB%93-%E7%BC%96%E7%A0%81%E7%9A%84%E6%9D%A5%E9%BE%99%E5%8E%BB%E8%84%89"><span class="nav-number">10.</span> <span class="nav-text">十、总结:编码的来龙去脉</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">11.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="会微积分的喵"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">会微积分的喵</p>
+  <div class="site-description" itemprop="description">Happy Code, Happy Life</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">215</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cutoutsy" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cutoutsy" rel="noopener me" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:cutoutsy@gmail.com" title="E-Mail → mailto:cutoutsy@gmail.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fengxc.me/2026-05-06-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E6%BC%AB%E8%B0%88%EF%BC%9A%E4%BB%8E%E4%B9%B1%E7%A0%81%E8%AF%B4%E8%B5%B7.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="会微积分的喵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会微积分的喵">
+      <meta itemprop="description" content="Happy Code, Happy Life">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="字符编码漫谈：从乱码说起 | 会微积分的喵">
+      <meta itemprop="description" content="深入理解字符编码的历史与发展：从ASCII到Unicode&#x2F;UTF-8，解释为什么会有乱码，以及开发者应该了解的编码知识。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          字符编码漫谈：从乱码说起
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-05-06 20:00:00 / 修改时间：11:56:03" itemprop="dateCreated datePublished" datetime="2026-05-06T20:00:00+00:00">2026-05-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2026-05-06-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E6%BC%AB%E8%B0%88%EF%BC%9A%E4%BB%8E%E4%B9%B1%E7%A0%81%E8%AF%B4%E8%B5%B7.html#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2026-05-06-字符编码漫谈：从乱码说起.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>0</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">深入理解字符编码的历史与发展：从ASCII到Unicode/UTF-8，解释为什么会有乱码，以及开发者应该了解的编码知识。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p>你有没有遇到过这种情况:打开一个文本文件,满屏的”锟斤拷”、”烫烫烫”、”��”,或者一串乱七八糟的问号?</p>
+<p>这背后,是一段长达半个多世纪的”字符编码进化史”。</p>
+</blockquote>
+<h2 id="一、一切的起点-计算机只认-0-和-1"><a href="#一、一切的起点-计算机只认-0-和-1" class="headerlink" title="一、一切的起点:计算机只认 0 和 1"></a>一、一切的起点:计算机只认 0 和 1</h2><p>我们先回到最朴素的问题:<strong>计算机怎么”看见”文字?</strong></p>
+<p>答案是:它根本看不见。</p>
+<p>计算机内部只有电压的高低,对应着 0 和 1 两种状态。无论是图片、音乐、视频,还是你正在读的这段文字,在计算机眼里都是一长串的二进制数字。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">你看到的:  &quot;Hi&quot;</span><br><span class="line">计算机看到: 01001000 01101001</span><br></pre></td></tr></table></figure>
+<p>那么问题来了:<code>01001000</code> 凭什么代表 <code>H</code>?</p>
+<p>答案是:<strong>因为我们约定它代表 <code>H</code></strong>。</p>
+<p>这个”约定”就是<strong>字符编码</strong>——人类和计算机之间的一份”翻译合同”。</p>
+<h2 id="二、ASCII-美国人先定了规矩-1963"><a href="#二、ASCII-美国人先定了规矩-1963" class="headerlink" title="二、ASCII:美国人先定了规矩(1963)"></a>二、ASCII:美国人先定了规矩(1963)</h2><p>故事的开端,是 1963 年的美国。</p>
+<p>当时的计算机还是”贵族玩具”,主要用户是说英语的科学家和工程师。他们需要解决的问题很简单:<strong>怎么让计算机存储和显示英文?</strong></p>
+<p>于是 ASCII(American Standard Code for Information Interchange,美国信息交换标准代码)诞生了。</p>
+<h3 id="ASCII-的设计"><a href="#ASCII-的设计" class="headerlink" title="ASCII 的设计"></a>ASCII 的设计</h3><ul>
+<li>用 <strong>7 位二进制</strong>(后来扩展为 8 位,即 1 字节)表示一个字符</li>
+<li>总共可以表示 <strong>128 个字符</strong>(2⁷ = 128)</li>
+<li>包括:26 个大写字母、26 个小写字母、10 个数字、各种标点符号、一些控制字符</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>字符</th>
+<th>十进制</th>
+<th>二进制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>A</code></td>
+<td>65</td>
+<td><code>01000001</code></td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td>97</td>
+<td><code>01100001</code></td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td>48</td>
+<td><code>00110000</code></td>
+</tr>
+<tr>
+<td>空格</td>
+<td>32</td>
+<td><code>00100000</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>对于只用英文的世界,ASCII 完美无缺。</p>
+<p><strong>但是…世界不只有英文。</strong></p>
+<h2 id="三、混乱年代-每个国家都自己搞一套"><a href="#三、混乱年代-每个国家都自己搞一套" class="headerlink" title="三、混乱年代:每个国家都自己搞一套"></a>三、混乱年代:每个国家都自己搞一套</h2><p>当计算机走向世界,问题来了:<strong>ASCII 只有 128 个位置,根本装不下中文、日文、阿拉伯文、希伯来文……</strong></p>
+<p>于是各个国家和地区开始自己设计编码方案,这造就了一段”群雄割据”的混乱年代。</p>
+<h3 id="中国-从-GB2312-到-GBK-再到-GB18030"><a href="#中国-从-GB2312-到-GBK-再到-GB18030" class="headerlink" title="中国:从 GB2312 到 GBK 再到 GB18030"></a>中国:从 GB2312 到 GBK 再到 GB18030</h3><p><strong>GB2312(1980)</strong></p>
+<p>中国国家标准发布,收录了 <strong>6,763 个汉字</strong> 和 682 个其他符号(标点、希腊字母等)。</p>
+<p>它的思路很巧妙:</p>
+<ul>
+<li>一个英文字符仍然用 <strong>1 字节</strong>(兼容 ASCII)</li>
+<li>一个中文字符用 <strong>2 字节</strong>,且每个字节的最高位都是 1(避免和 ASCII 冲突)</li>
+</ul>
+<p><strong>GBK(1995)</strong></p>
+<p>GB2312 只收录了 6,763 个汉字,但实际汉字有 9 万多个。很多人名(比如朱镕基的”镕”)、古汉语用字、繁体字都打不出来。</p>
+<p>微软为了在 Windows 95 中支持更多汉字,扩展出了 <strong>GBK</strong>,收录了 <strong>21,003 个汉字</strong>,向下兼容 GB2312。</p>
+<p><strong>GB18030(2000)</strong></p>
+<p>国家强制标准,收录了所有 CJK(中日韩)统一汉字,包括少数民族文字,共 <strong>70,000+ 字符</strong>。采用 1/2/4 字节变长编码。</p>
+<h3 id="其他国家也在”各自为政”"><a href="#其他国家也在”各自为政”" class="headerlink" title="其他国家也在”各自为政”"></a>其他国家也在”各自为政”</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>编码</th>
+<th>地区</th>
+<th>字符数</th>
+<th>字节数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ASCII</strong></td>
+<td>美国</td>
+<td>128</td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>ISO-8859-1</strong></td>
+<td>西欧</td>
+<td>256</td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>GB2312/GBK</strong></td>
+<td>中国大陆</td>
+<td>2 万</td>
+<td>1-2</td>
+</tr>
+<tr>
+<td><strong>Big5</strong></td>
+<td>台湾、香港</td>
+<td>1.3 万</td>
+<td>1-2</td>
+</tr>
+<tr>
+<td><strong>Shift-JIS</strong></td>
+<td>日本</td>
+<td>8 千</td>
+<td>1-2</td>
+</tr>
+<tr>
+<td><strong>EUC-KR</strong></td>
+<td>韩国</td>
+<td>1.1 万</td>
+<td>1-2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="混乱的代价-乱码遍地"><a href="#混乱的代价-乱码遍地" class="headerlink" title="混乱的代价:乱码遍地"></a>混乱的代价:乱码遍地</h3><p>由于每种编码对同一段字节序列的解释都不一样,问题接踵而至:</p>
+<p><strong>🔥 场景一:同事发来的文件打不开</strong></p>
+<p>你在中国大陆用 GBK 保存的文件,发给台湾同事。他用 Big5 打开,看到的全是乱码。</p>
+<p><strong>🔥 场景二:网页一片”锟斤拷”</strong></p>
+<p>浏览器以错误的编码解析网页,中文全部变成”锟斤拷烫烫烫”——这正是著名的”锟斤拷之谜”(GBK 解码 UTF-8 替换字符 <code>�</code> 时产生的现象)。</p>
+<p><strong>🔥 场景三:多语言无法共存</strong></p>
+<p>一个文档里既要写中文又要写日文?对不起,GBK 装不下日文,Shift-JIS 也装不下中文,<strong>根本无解</strong>。</p>
+<p>整个世界的文字交流,被困在了一个个孤岛上。</p>
+<h2 id="四、Unicode-让全世界字符住进同一栋楼-1991"><a href="#四、Unicode-让全世界字符住进同一栋楼-1991" class="headerlink" title="四、Unicode:让全世界字符住进同一栋楼(1991)"></a>四、Unicode:让全世界字符住进同一栋楼(1991)</h2><p>20 世纪 90 年代,几家科技公司(Xerox、Apple、Sun、IBM 等)联合发起了 <strong>Unicode 联盟</strong>,目标是:</p>
+<blockquote>
+<p><strong>给世界上每一个字符,分配一个独一无二的编号。</strong></p>
+</blockquote>
+<p>这个编号叫做<strong>码点</strong>(Code Point),用 <code>U+</code> 加十六进制数字表示。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x27;A&#x27;   →  U+0041</span><br><span class="line">&#x27;中&#x27;  →  U+4E2D</span><br><span class="line">&#x27;你&#x27;  →  U+4F60</span><br><span class="line">&#x27;😀&#x27;  →  U+1F600</span><br></pre></td></tr></table></figure>
+<p>Unicode 的容量极其庞大:从 <code>U+0000</code> 到 <code>U+10FFFF</code>,理论上可以容纳 <strong>超过 100 万个字符</strong>。截至目前,已经收录了 14 万多个字符,涵盖了几乎所有现存语言、历史文字、emoji、数学符号、甚至麻将牌和扑克牌。</p>
+<h3 id="但-Unicode-只解决了一半问题"><a href="#但-Unicode-只解决了一半问题" class="headerlink" title="但 Unicode 只解决了一半问题"></a>但 Unicode 只解决了一半问题</h3><p>Unicode <strong>只规定了”字符 → 编号”</strong> 的对应关系,<strong>没规定”编号 → 字节”</strong> 怎么存。</p>
+<p>比如 <code>中</code> 的码点是 <code>U+4E2D</code>,需要 2 字节才能装下:<code>4E 2D</code>。</p>
+<p>但问题来了:</p>
+<ul>
+<li>那 <code>A</code>(U+0041)怎么办?也用 2 字节存成 <code>00 41</code>?那英文文档体积要翻倍!</li>
+<li>emoji <code>😀</code>(U+1F600)需要 3 字节,又怎么和 2 字节的中文混存?</li>
+<li>字节里出现的 <code>00</code>,会让以 <code>\0</code> 结尾的 C 字符串提前截断。</li>
+</ul>
+<p><strong>于是,需要一种”编码方案”来解决 Unicode 的存储问题。</strong></p>
+<p>UTF-8、UTF-16、UTF-32 都是这种方案,其中 <strong>UTF-8 笑到了最后</strong>。</p>
+<h2 id="五、UTF-8-伟大的妥协-1992"><a href="#五、UTF-8-伟大的妥协-1992" class="headerlink" title="五、UTF-8:伟大的妥协(1992)"></a>五、UTF-8:伟大的妥协(1992)</h2><p>UTF-8 由 Unix 之父 <strong>Ken Thompson</strong> 和 <strong>Rob Pike</strong> 在 1992 年的一个晚餐餐巾纸上设计完成。它的天才之处在于:<strong>变长编码</strong>。</p>
+<h3 id="UTF-8-的核心设计"><a href="#UTF-8-的核心设计" class="headerlink" title="UTF-8 的核心设计"></a>UTF-8 的核心设计</h3><p>不同范围的字符,用不同长度的字节来存:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Unicode 范围</th>
+<th>UTF-8 字节数</th>
+<th>字节模式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>U+0000 ~ U+007F</td>
+<td><strong>1 字节</strong></td>
+<td><code>0xxxxxxx</code></td>
+</tr>
+<tr>
+<td>U+0080 ~ U+07FF</td>
+<td><strong>2 字节</strong></td>
+<td><code>110xxxxx 10xxxxxx</code></td>
+</tr>
+<tr>
+<td>U+0800 ~ U+FFFF</td>
+<td><strong>3 字节</strong></td>
+<td><code>1110xxxx 10xxxxxx 10xxxxxx</code></td>
+</tr>
+<tr>
+<td>U+10000 ~ U+10FFFF</td>
+<td><strong>4 字节</strong></td>
+<td><code>11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="看一个具体例子-中文”中”是怎么编码的"><a href="#看一个具体例子-中文”中”是怎么编码的" class="headerlink" title="看一个具体例子:中文”中”是怎么编码的?"></a>看一个具体例子:中文”中”是怎么编码的?</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 查 Unicode 码表:&#x27;中&#x27; = U+4E2D</span><br><span class="line">2. 转换为二进制:    0100 1110 0010 1101  (16 位)</span><br><span class="line">3. 套 3 字节模板:   1110xxxx 10xxxxxx 10xxxxxx</span><br><span class="line">4. 把二进制填进去:  11100100 10111000 10101101</span><br><span class="line">5. 最终十六进制:    E4 B8 AD</span><br></pre></td></tr></table></figure>
+<p>所以 <code>&quot;中&quot;</code> 在 UTF-8 中占 3 字节,即 <code>E4 B8 AD</code>。</p>
+<h3 id="UTF-8-的三大杀手锏"><a href="#UTF-8-的三大杀手锏" class="headerlink" title="UTF-8 的三大杀手锏"></a>UTF-8 的三大杀手锏</h3><p><strong>1. 完美兼容 ASCII</strong></p>
+<p>前 128 个字符(英文字母、数字、符号)的 UTF-8 编码和 ASCII <strong>完全一致</strong>,都是 1 字节。这意味着所有过去 50 年写的英文文档、英文程序代码,<strong>不用任何改动就是合法的 UTF-8</strong>。</p>
+<p><strong>2. 自同步性(Self-synchronizing)</strong></p>
+<p>通过字节首部的特征,可以瞬间判断出当前位置:</p>
+<ul>
+<li><code>0xxxxxxx</code> → 单字节字符</li>
+<li><code>10xxxxxx</code> → 多字节字符的”后续字节”</li>
+<li><code>110xxxxx</code>、<code>1110xxxx</code>、<code>11110xxx</code> → 多字节字符的”起始字节”</li>
+</ul>
+<p>即使从一个文件的中间任意位置开始读取,也能快速找到下一个完整字符的边界。<strong>单个字节损坏,不会导致整个文件报废</strong>。</p>
+<p><strong>3. 没有字节序问题</strong></p>
+<p>UTF-16 和 UTF-32 因为每个字符跨越多个字节,需要规定哪个字节在前(大端序 or 小端序),所以要在文件开头加 BOM(Byte Order Mark)标记。</p>
+<p>UTF-8 是按字节为单位读取的,<strong>根本不存在字节序问题</strong>,文件可以”裸奔”。</p>
+<h2 id="六、为什么中文要用-3-个字节"><a href="#六、为什么中文要用-3-个字节" class="headerlink" title="六、为什么中文要用 3 个字节?"></a>六、为什么中文要用 3 个字节?</h2><p>这是一个常见的疑问:<strong>为什么英文 1 字节,中文却要 3 字节?GBK 不是只用 2 字节就够了吗?</strong></p>
+<h3 id="数学上的限制"><a href="#数学上的限制" class="headerlink" title="数学上的限制"></a>数学上的限制</h3><p>UTF-8 的 2 字节模板 <code>110xxxxx 10xxxxxx</code> 实际可用位只有 <strong>11 位</strong>,最多能表示 2¹¹ = <strong>2,048 个字符</strong>。</p>
+<p>而中文常用汉字就有 7,000 多个,加上扩展共 9 万多。<strong>11 位的”小房间”根本住不下。</strong></p>
+<p>只能升级到 3 字节模板,可用 16 位,能装 65,536 个字符——这才够用。</p>
+<h3 id="Unicode-的”分区”逻辑"><a href="#Unicode-的”分区”逻辑" class="headerlink" title="Unicode 的”分区”逻辑"></a>Unicode 的”分区”逻辑</h3><p>Unicode 在分配码点时,大致遵循”<strong>字符多的语言往后排</strong>“:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">U+0000 ~ U+007F     ASCII 英文                   → 1 字节</span><br><span class="line">U+0080 ~ U+07FF     拉丁扩展、希腊、阿拉伯       → 2 字节</span><br><span class="line">U+0800 ~ U+FFFF     中日韩汉字 ★                 → 3 字节</span><br><span class="line">U+10000 ~ U+10FFFF  emoji、生僻字、古文字         → 4 字节</span><br></pre></td></tr></table></figure>
+<p>中文汉字主要在 <code>U+4E00 ~ U+9FFF</code>,<strong>正好落在 3 字节区间</strong>。</p>
+<h3 id="这是不是对中文的”歧视”"><a href="#这是不是对中文的”歧视”" class="headerlink" title="这是不是对中文的”歧视”?"></a>这是不是对中文的”歧视”?</h3><p>表面看,中文存储要花 3 倍空间,似乎”吃亏”了。但实际上:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>UTF-8</th>
+<th>GBK</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>中文存储</td>
+<td>3 字节</td>
+<td>2 字节 ✓</td>
+</tr>
+<tr>
+<td>英文存储</td>
+<td>1 字节 ✓</td>
+<td>1 字节 ✓</td>
+</tr>
+<tr>
+<td>全球字符支持</td>
+<td>100 万+ ✓</td>
+<td>仅 2 万</td>
+</tr>
+<tr>
+<td>中日混排</td>
+<td>支持 ✓</td>
+<td>乱码</td>
+</tr>
+<tr>
+<td>Emoji 支持</td>
+<td>支持 ✓</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>跨平台兼容</td>
+<td>全球标准 ✓</td>
+<td>中文区限定</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>而且现实中:</p>
+<ul>
+<li>HTML、JSON、代码里有大量英文(标签、关键字、字段名)</li>
+<li>经过 Gzip 压缩后,UTF-8 和 GBK 的体积差距几乎可以忽略</li>
+<li>网络带宽和存储已经不再是稀缺资源</li>
+</ul>
+<p><strong>用一点点空间换全球通用性,这笔账太划算了。</strong></p>
+<h2 id="七、今天的世界-UTF-8-一统江湖"><a href="#七、今天的世界-UTF-8-一统江湖" class="headerlink" title="七、今天的世界:UTF-8 一统江湖"></a>七、今天的世界:UTF-8 一统江湖</h2><p>进入 21 世纪后,UTF-8 几乎赢得了所有战场:</p>
+<ul>
+<li><strong>Web</strong>:截至 2024 年,全球 98% 以上的网页使用 UTF-8 编码</li>
+<li><strong>Linux / macOS</strong>:系统默认编码就是 UTF-8</li>
+<li><strong>JSON</strong>:RFC 8259 强制要求使用 UTF-8</li>
+<li><strong>Python 3</strong>:源码默认编码是 UTF-8,字符串内部用 Unicode</li>
+<li><strong>MySQL</strong>:推荐使用 <code>utf8mb4</code>(完整的 UTF-8,支持 emoji)</li>
+<li><strong>HTML5</strong>:<code>&lt;meta charset=&quot;UTF-8&quot;&gt;</code> 是标配</li>
+</ul>
+<p>只有 Windows 系统因为历史包袱,中文版默认还在使用 GBK(<code>CP936</code>),这就是为什么很多 Python 初学者在 Windows 上遇到”奇怪的乱码问题”——一个文件里 UTF-8 和 GBK 在打架。</p>
+<h2 id="八、实战-常见的”乱码”是怎么产生的"><a href="#八、实战-常见的”乱码”是怎么产生的" class="headerlink" title="八、实战:常见的”乱码”是怎么产生的?"></a>八、实战:常见的”乱码”是怎么产生的?</h2><p>理解了原理后,我们来看看几种典型的乱码场景。</p>
+<h3 id="场景一-UTF-8-文件被当成-GBK-打开"><a href="#场景一-UTF-8-文件被当成-GBK-打开" class="headerlink" title="场景一:UTF-8 文件被当成 GBK 打开"></a>场景一:UTF-8 文件被当成 GBK 打开</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用 UTF-8 编码保存&quot;你好&quot;</span></span><br><span class="line">b = <span class="string">&quot;你好&quot;</span>.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(b)  <span class="comment"># b&#x27;\xe4\xbd\xa0\xe5\xa5\xbd&#x27; (6 字节)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 用 GBK 强行解码</span></span><br><span class="line"><span class="built_in">print</span>(b.decode(<span class="string">&#x27;gbk&#x27;</span>))  <span class="comment"># 浣犲ソ  ← 乱码!</span></span><br></pre></td></tr></table></figure>
+<p>原因:UTF-8 的 6 字节被 GBK 当成 3 个 2 字节的中文字符来解读。</p>
+<h3 id="场景二-著名的”锟斤拷”"><a href="#场景二-著名的”锟斤拷”" class="headerlink" title="场景二:著名的”锟斤拷”"></a>场景二:著名的”锟斤拷”</h3><p>当 GBK 程序遇到无法识别的 UTF-8 字符时,常会用 <code>�</code>(替换字符,UTF-8 编码为 <code>EF BF BD</code>)替代。两个连续的 <code>�</code> 在 UTF-8 中是 6 字节 <code>EF BF BD EF BF BD</code>,用 GBK 解读就成了:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">EF BF → 锟</span><br><span class="line">BD EF → 斤</span><br><span class="line">BF BD → 拷</span><br></pre></td></tr></table></figure>
+<p>→ <strong>“锟斤拷”</strong> 横空出世!</p>
+<h3 id="场景三-Windows-的”烫烫烫”"><a href="#场景三-Windows-的”烫烫烫”" class="headerlink" title="场景三:Windows 的”烫烫烫”"></a>场景三:Windows 的”烫烫烫”</h3><p>Visual Studio Debug 模式下,未初始化的栈内存被填充为 <code>0xCC</code>(int 3 中断指令)。两个 <code>0xCC</code> 在 GBK 中正好是汉字”烫”。</p>
+<p>→ <strong>“烫烫烫”</strong> 由此而来。</p>
+<h2 id="九、给开发者的建议"><a href="#九、给开发者的建议" class="headerlink" title="九、给开发者的建议"></a>九、给开发者的建议</h2><ol>
+<li><strong>新项目一律用 UTF-8</strong>,没有任何理由用 GBK</li>
+<li><strong>数据库选 <code>utf8mb4</code></strong> 而不是 <code>utf8</code>(MySQL 的 <code>utf8</code> 是个历史 bug,只支持 3 字节)</li>
+<li><strong>文件读写显式指定编码</strong>:<code>open(file, encoding=&#39;utf-8&#39;)</code></li>
+<li><strong>HTTP 响应头加上 <code>Content-Type: text/html; charset=utf-8</code></strong></li>
+<li><strong>遇到乱码先确认两件事</strong>:文件实际编码是什么?程序用什么编码读的?</li>
+<li><strong>不要相信”自动检测编码”</strong>:大多数库的自动检测都不靠谱</li>
+</ol>
+<h2 id="十、总结-编码的来龙去脉"><a href="#十、总结-编码的来龙去脉" class="headerlink" title="十、总结:编码的来龙去脉"></a>十、总结:编码的来龙去脉</h2><p>让我们最后梳理一遍整个故事:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1963  ASCII       美国人定的规矩,128 个字符,只够英文用</span><br><span class="line">  ↓</span><br><span class="line">1980s 各国乱战    GB2312、Big5、Shift-JIS……一国一套,互不兼容</span><br><span class="line">  ↓</span><br><span class="line">1991  Unicode     给全世界字符统一编号(但没说怎么存)</span><br><span class="line">  ↓</span><br><span class="line">1992  UTF-8       变长编码,完美兼容 ASCII,赢得全球</span><br><span class="line">  ↓</span><br><span class="line">今天  一统江湖    Web、Linux、JSON、Python 全部默认 UTF-8</span><br></pre></td></tr></table></figure>
+<p><strong>字符编码的本质,是人类与机器之间的一份”翻译合同”。</strong></p>
+<p>从 ASCII 的”美国中心”,到各国分裂的”巴别塔”,再到 Unicode/UTF-8 的”世界大同”,这是一段技术不断追赶人类多样性的历史。</p>
+<p>下一次当你流畅地在网页上看到中文、英文、日文、emoji 共存,请记得感谢一下 60 年前那批默默工作的工程师们——是他们的智慧,让全世界的文字可以在计算机里和平共处。</p>
+<hr>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://chuquan.me/2017/02/08/character-code/">字符编码 | 楚权的世界</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/gaosf123/article/details/82142785">深谈字符编码的发展史 - CSDN博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/38333902">字符编码那点事:快速理解ASCII、Unicode、GBK和UTF-8 - 知乎</a></li>
+<li><a target="_blank" rel="noopener" href="https://tgideas.qq.com/webplat/info/news_version3/804/808/811/m579/201307/218730.shtml">字符编码的前世今生 - 腾讯游戏TGideas</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.imkevinyang.com/2010/06/%E5%85%B3%E4%BA%8E%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%EF%BC%8C%E4%BD%A0%E6%89%80%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84">关于字符编码,你所需要知道的</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/" rel="tag"># 字符编码</a>
+              <a href="/tags/Unicode/" rel="tag"># Unicode</a>
+              <a href="/tags/UTF-8/" rel="tag"># UTF-8</a>
+              <a href="/tags/ASCII/" rel="tag"># ASCII</a>
+              <a href="/tags/GBK/" rel="tag"># GBK</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026-04-02-%E8%AE%A1%E7%AE%97%E4%BD%A0%E7%9A%84%E6%8A%80%E8%83%BD%EF%BC%9ATrueSkill%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3.html" rel="prev" title="计算你的技能：TrueSkill算法详解">
+                  <i class="fa fa-angle-left"></i> 计算你的技能：TrueSkill算法详解
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">会微积分的喵</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">356k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:23</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"cutoutsy-blog","count":true,"lazyload":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js" defer></script>
+
+</body>
+</html>
