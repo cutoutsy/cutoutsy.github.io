@@ -1,0 +1,5 @@
+# Claude Code 本地配置与 skills
+.claude/
+
+# 依赖目录（CI 通过 npm install 重建，无需纳入版本控制）
+node_modules/
